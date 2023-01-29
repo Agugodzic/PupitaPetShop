@@ -1,0 +1,53 @@
+<app-nav></app-nav>
+
+<div id="contenido">
+  <h4 id="titulo">Carrito:</h4>
+  <div class="generador-productos" *ngFor="let producto of productoCantidad">
+  <div class="producto">
+  <!--
+    <div class="selector-cantidad">
+      <input readonly class="input-cantidad" type="number" min="1" max="15" [value]="producto.cantidad"> x
+      <img class="imagen" [src]="producto.producto.imagen1">
+    </div>
+  -->
+
+    <div class="selector-cantidad">
+      <div id="cantidad">{{producto.cantidad}}</div>
+      <div id="botones-cantidad">
+        <button (click)="aumentarProducto(producto.producto.id)" class="boton-cantidad material-symbols-outlined">
+          <p class="flecha">arrow_drop_up</p>
+          </button>
+
+        <button (click)="disminuirProducto(producto.producto.id)" class="boton-cantidad material-symbols-outlined">
+          <p class="flecha">arrow_drop_down</p>
+        </button>
+      </div>
+      <p id="x-cantidad">x</p>
+    </div>
+
+
+    <img class="imagen" [src]="producto.producto.imagen1">
+
+
+    <div class="descripcion">
+      <a [href]="productoLink(producto.producto)"><h4 class="titulo-producto">{{producto.producto.nombre}}</h4></a>
+      <p class="descripcion-producto">{{producto.producto.descripcioncorta}}</p>
+    </div>
+
+    <div class="precio">
+      <h5><div id="precio-cantidad">{{producto.cantidad}} x </div>{{precio(producto.producto.precio, 2)}}</h5>
+    </div>
+
+  </div>
+  <div class="contenedor-borrar">
+      <img class="borrar" (click)="eliminarProducto(producto.producto.id)" src="https://i.postimg.cc/Px9q6YFS/waste-bin-delete-remove-recycle-icon-123840.png">
+  </div>
+</div>
+<div *ngIf="productosCarrito < 1">
+  No hay productos en el carrito.
+</div>
+<div id="total">
+  <h4 class="total-texto">Total: {{precio(total,2)}}</h4>
+</div>
+<a id="boton-comprar" class="boton" href="comprar">Iniciar compra</a>
+</div>

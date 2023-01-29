@@ -1,0 +1,97 @@
+<!------------ Alert -------------->
+<div *ngIf="categoriaAlert" id="fondo-alert">
+  <div id="agregar-categoria" >
+    <p id="titulo">Agregar categoria:</p>
+    <form class="form-categoria" [formGroup]="agregarCategoria" (ngSubmit)="submitCategoria()">
+      <input id="input-categoria"  type="text" placeholder="Nueva Categoria" formControlName="categoria">
+      <div id="botones-categoria">
+        <input class="guardar-categoria" value="Agregar" type="submit" >
+        <button (click)="switchCategoria()" class="cancelar-categoria">Cancelar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!--------------------------------->
+
+<div id="fondo">
+
+  <form class=formulario [formGroup]="editarProducto" class="scroll" *ngIf="editar()" (ngSubmit)="submitEditar()">
+    <div id="contenedor-form-controls">
+    <p id="titulo">Editar producto:</p>
+
+    <div class="contenedor-inl">
+      <p class="descripcion-input">Datos basicos:</p>
+      <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
+      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
+      <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
+
+      <p style="text-align:start">
+        <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
+        <option style="color:rgb(141, 141, 141)">Categoria</option>
+        <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
+      </select>
+      <button type="button" (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
+      </p>
+
+      <p class="descripcion-input">Descripcion corta:</p>
+      <textarea class="campo-de-texto scroll" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+    </div>
+
+    <div class="contenedor-inl">
+
+      <p class="descripcion-input">Imagenes:</p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen1"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen2"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen3"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen4"></p>
+
+      <p class="descripcion-input">Descripcion larga:</p>
+      <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+    </div>
+
+    <div class="contenedor-block">
+      <input class="form-control guardar" value="Guardar" type="submit">
+      <button class="form-control cancelar" (click)="actualizar()"  type="button">Cancelar</button>
+    </div>
+    </div>
+  </form>
+
+  <form class="formulario" [formGroup]="agregarProducto" class="scroll" *ngIf="agregar()" (ngSubmit)="submitAgregar()">
+    <div id="contenedor-form-controls">
+    <p id="titulo">Agregar producto:</p>
+    <div class="contenedor-inl">
+      <p class="descripcion-input">Datos basicos:</p>
+      <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
+      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
+      <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
+
+      <p style="text-align:start"><select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
+        <option style="color:rgb(141, 141, 141)">Categoria</option>
+        <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
+      </select>
+      <button type="button"  (click)="switchCategoria()" class="agregar-categoria">Nueva</button>
+      </p>
+
+      <p class="descripcion-input">Descripcion corta:</p>
+      <textarea class="campo-de-texto scroll" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+    </div>
+
+    <div class="contenedor-inl">
+      <p class="descripcion-input">Imagenes:</p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen1"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen2"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen3"></p>
+      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen4"></p>
+
+      <p class="descripcion-input">Descripcion larga:</p>
+      <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+    </div>
+
+    <div class="contenedor-block">
+      <input class="form-control guardar" value="Guardar" type="submit">
+      <button class="form-control cancelar" (click)="actualizar()" type="button">Cancelar</button>
+    </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+<a href="/home"
+  ><img id="logo" src="https://i.postimg.cc/jdrKSx8g/Sky-Logo.png"
+/></a>
+
+<a *ngIf="!getLogValue()" href="carrito" id="chango">
+  <img id="carrito" src="https://cdn-icons-png.flaticon.com/512/107/107831.png"/>
+  <p *ngIf="generar() !== 0" id="cantidad-productos">{{cantidadCarrito}}</p>
+</a>
+
+<button *ngIf="getLogValue()" id="cerrar-sesion" (click)="logOut()">Cerrar sesion</button>
+
+<div id="nav">
+  <a href="home" class="boton">INICIO</a> <span class="boton">|</span>
+  <a href="store/0" class="boton">TIENDA</a> <span class="boton">|</span>
+  <a href="carrito" class="boton">CARRITO</a>
+</div>

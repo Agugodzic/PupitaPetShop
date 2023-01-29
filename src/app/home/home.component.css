@@ -1,0 +1,88 @@
+.banners {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: block;
+  animation-name: mover;
+  animation-duration: 0.7s;
+}
+
+.filtros {
+  display: inline-block;
+  position: relative;
+  margin: 12px;
+  animation-name: mover;
+  animation-duration: 0.7s;
+}
+
+.tituloBanner {
+  position: absolute;
+  top: 370px;
+  left: 10%;
+  color: white;
+  font-size: 60px;
+  font-family: 'Red Hat Display', sans-serif;
+  animation-name: moverDescripcionBanner;
+  animation-duration: 1.4s;
+}
+
+.descripcionBanner {
+  position: absolute;
+  top: 450px;
+  left: 11%;
+  color: white;
+  font-size: 30px;
+  font-family: 'Red Hat Display', sans-serif;
+  animation-name: moverDescripcionBanner;
+  animation-duration: 1.6s;
+}
+
+.imagenFiltro {
+  width: 300px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.etiquetaFiltro {
+  color: rgba(255, 255, 255, 0.664);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 37px;
+  position: absolute;
+  bottom: 25px;
+  left: 20px;
+  z-index: 100;
+}
+
+.etiquetaFiltro:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+#banner {
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+@keyframes mover {
+  0% {
+    opacity: 0%;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes moverDescripcionBanner {
+  0% {
+    opacity: 0%;
+  }
+  50% {
+    opacity: 0%;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0px);
+  }
+}

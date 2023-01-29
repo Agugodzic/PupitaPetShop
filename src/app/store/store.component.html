@@ -1,0 +1,131 @@
+<!-- Formulario -->
+
+  <div id="contenedor-formulario" *ngIf="agregarProducto && getLogValue()">
+    <div class="centrar">
+      <button class="cerrar" (click)="switchAgregar()"><img class="imagen-cerrar" [src]="Imagen.delete"></button>
+      <app-form-producto accion="agregar" Id="0"></app-form-producto>
+    </div>
+  </div>
+
+<!-----Nav-bar---->
+
+<app-nav></app-nav>
+
+<!----------------->
+
+<div id="tools">
+
+  <div class="tool">
+    <span>Ordenar por:</span>
+    <button (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
+    <button (click)="ordenarProductos('menorPrecio')">Menor precio</button>
+    <button>Mas relevantes</button>
+  </div>
+
+  <div class="tool">
+    <span>Filtrar por:</span>
+    <button>En oferta</button>
+    <button>En stock</button>
+  </div>
+
+</div>
+
+<div id="lateral">
+  <div class="lat-menu">
+    <span>Productos:</span>
+    <button
+      class="botonLateral"
+      (click)="cambiarProducto('Todos los productos')"
+    >
+      Todos
+    </button>
+    <button *ngFor="let categoria of categorias" class="botonLateral" (click)="cambiarProducto(categoria.categoria)">
+      {{categoria.categoria}}
+    </button>
+  </div>
+
+  <div class="lat-menu">
+    <span>Marcas:</span>
+    <button class="botonLateral" (click)="cambiarMarca('Todas las marcas')">
+      Todas
+    </button>
+    <button class="botonLateral" (click)="cambiarMarca('hp')">Hp</button>
+    <button class="botonLateral" (click)="cambiarMarca('genius')">
+      Genius
+    </button>
+    <button class="botonLateral" (click)="cambiarMarca('redragon')">
+      Redragon
+    </button>
+    <button class="botonLateral" (click)="cambiarMarca('samsung')">
+      Samsung
+    </button>
+    <button class="botonLateral" (click)="cambiarMarca('logitech')">
+      Logitech
+    </button>
+  </div>
+</div>
+
+<div *ngIf="productos.length > 0" id="galeria">
+  <span id="filtros"><button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>{{ productoFiltro }} / {{ marcaFiltro }} </span>
+  <div
+    class="contenedorProducto"
+    *ngFor="let producto of productosPaginaActual"
+  >
+    <a [href]="productoLink(producto)" class="producto">
+      <img [src]="producto.imagen1" class="imagen" />
+      <div class="descripcion">
+        <p class="nombre-producto">{{ producto.nombre }}</p>
+        <p class="descripcion-producto">
+          {{ longitud(producto.descripcioncorta, 30) }}...
+        </p>
+        <p class="precio-producto">{{ precio(producto.precio, 0) }}</p>
+      </div>
+    </a>
+  </div>
+</div>
+<div *ngIf="productos.length == 0" id="galeria">
+  <div
+  class="contenedorProducto"
+>
+<p id="no-coincidencias">{{textoAlternativo}}</p>
+</div>
+</div>
+
+<img *ngIf="!getLogValue()" id="chat" [src]=Imagen.logoWsp >
+
+<div id="selectorDePaginas">
+  <button class="controlador-simbolo controladorPaginas" (click)="primeraPagina()">
+    <span class="material-symbols-outlined"> first_page </span>
+  </button>
+  <button class="controlador-simbolo controladorPaginas" (click)="anterior()">
+    <span class="material-symbols-outlined"> navigate_before </span>
+  </button>
+
+  <div id="numerosDePagina" *ngFor="let pagina of listaPaginas">
+    <button
+      [ngStyle]="{
+        'background-color': pagina == paginaActual ? '#F5F5F5' : 'white',
+        padding: pagina == paginaActual ? '5px 7px 5px 7px' : '6px 8px 6px 8px',
+        'font-size':
+          pagina == paginaActual ? 'font-size: 11px' : 'font-size: 14px',
+        'box-shadow':
+          pagina == paginaActual
+            ? '2px 3px 4px 1.5px rgba(77, 76, 76, 0.281)'
+            : '2px 3px 10px 3px rgba(77, 76, 76, 0.281)'
+      }"
+      class="numerosDePagina"
+      (click)="cambiarPagina(pagina)"
+    >
+      {{ pagina }}
+    </button>
+  </div>
+
+  <button class="controladorPaginas" (click)="siguiente()">
+    <span class="controlador-simbolo material-symbols-outlined"> navigate_next </span>
+  </button>
+
+  <button href="tools" class="controladorPaginas" (click)="ultimaPagina()">
+    <span class="material-symbols-outlined"> last_page </span>
+  </button>
+  <div></div>
+</div>

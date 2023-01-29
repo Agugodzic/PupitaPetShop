@@ -1,0 +1,171 @@
+p{
+  margin:4px;
+}
+
+#barra-superior{
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.699);
+  z-index: 4000;
+}
+
+#logo{
+  margin-top: 10px;
+  height: 30px;
+  opacity: 70%;
+}
+
+#logo:hover{
+  height: 31px;
+  opacity: 100%;
+}
+
+#contenido{
+background-color: rgba(230, 227, 227, 0.829);
+min-height: 86vh;
+display: flex;
+align-items: center;
+z-index: 0;
+}
+
+#ventana-compra{
+  min-height: 70vh;
+  max-width: 800px;
+  width: 80vw;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  margin: auto;
+  border: solid;
+  border-width: 1.5px;
+  border-color: rgba(5, 5, 5, 0.527);
+}
+
+#barra-de-progreso{
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nodo{
+  background-color: rgb(158, 158, 158);
+  height: 20px;
+  width: 20px;
+  border:solid;
+  border-color: rgba(0, 0, 0, 0.692);
+  display: inline-block;
+  border-width: 1.5px;
+  border-radius: 40px;
+  transition:0.2s;
+  border-style: none;
+}
+
+.linea-de-progreso{
+  background-color: rgb(212, 212, 212);
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 20px;
+  display: inline-block;
+  width: 17vw;
+  height: 2px;
+  margin: 6px;
+}
+
+#titulo{
+  font-size: 16px;
+  padding:2px;
+  padding-bottom: 2px;
+  font-family:'Montserrat', sans-serif;
+  margin-bottom: 10px;
+ }
+
+button{
+  background-color: rgb(42, 72, 241);
+  height: 30px;
+  min-width: 70px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  color: white;
+  margin:15px;
+  margin-top: 10x;
+  cursor:pointer;
+
+}
+
+button:hover{
+  opacity: 92%;
+}
+
+#boton-volver{
+  background-color: rgb(196, 196, 196);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.911);
+}
+
+#formularios{
+  min-height: 54vh;
+}
+
+form{
+  min-height: 54vh;
+}
+
+.contenedor-inl{
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.form-control{
+  text-align: left;
+  margin-top:5px;
+  margin-bottom:15px;
+  height: 25px;
+  font-size: 15px;
+  padding-left: 5px;
+}
+.form-control::placeholder{
+  opacity: 70%;
+}
+
+.input-name{
+  font-family:'Montserrat', sans-serif;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+
+#paso2-opciones{
+  font-family:'Montserrat', sans-serif;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.paso2-opcion{
+  margin: 20px;
+  text-align: center;
+}
+
+.paso2-opcion-texto{
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  }
+
+.paso2-opcion-boton-imagen{
+  height: 60px;
+}
+
+.paso2-opcion-boton{
+  display: block;
+  background-color: rgba(0, 0, 0, 0.137);
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  padding:0px;
+  text-align: center;
+}

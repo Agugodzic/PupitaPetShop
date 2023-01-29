@@ -1,0 +1,228 @@
+p {
+  font-family: Lato;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#boton-agregar{
+  background-color: rgb(224, 224, 224);
+  border-color:rgba(97, 86, 86, 0.671);
+  border-width: 0px;
+  border-radius: 4px;
+  color:rgb(87, 87, 87);
+  margin-right: 10px;
+  padding-top:4px;
+  padding-bottom: 4px;
+}
+#boton-agregar:hover{
+  background-color: rgba(211, 211, 211, 0.897);
+  color:rgb(102, 102, 102);
+}
+
+#galeria {
+  margin: 5px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: rgba(35, 68, 216, 0);
+  display: inline-block;
+  min-height: 600px;
+  border-radius: 4px;
+  padding: 5px;
+  width: 70vw;
+}
+.imagen {
+  height: 150px;
+  max-width: 150px;
+  background-color: rgba(0, 0, 0, 0.185);
+  margin-bottom: 6px;
+}
+.producto {
+  display: inline-block;
+  width: 150px;
+  height: 310px;
+  background-color: rgba(255, 255, 255, 0.466);
+  text-align: center;
+  padding: 13px;
+  margin: 5px;
+  box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);
+  cursor: pointer;
+  animation-name: transicionProductos;
+  animation-duration: 0.4s;
+}
+@keyframes transicionProductos {
+  0% {
+    opacity: 0%;
+    transform: translatey(5px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0px);
+  }
+}
+.contenedorProducto {
+  display: inline-block;
+}
+#chat {
+  position: fixed;
+  height: 40px;
+  bottom: 30px;
+  right: 20px;
+  cursor: pointer;
+}
+#chat:hover {
+  height: 55px;
+}
+#tools {
+  margin-top: 27px;
+  font-size: 16px;
+  display: block;
+}
+.tool {
+  display: inline;
+  margin: 10px;
+}
+button {
+  margin: 2px;
+  cursor: pointer;
+}
+span {
+  margin: 3px;
+}
+#lateral {
+  background-color: rgba(197, 197, 197, 0.644);
+  display: inline-block;
+  text-align: left;
+  width: 110px;
+  padding: 20px 25px 20px 25px;
+  border-radius: 4px;
+  position: relative;
+  color: rgb(59, 59, 59);
+  vertical-align: top;
+  margin-top: 60px;
+}
+
+#no-coincidencias{
+  margin-top:65px;
+  color:rgba(0, 0, 0, 0.76);
+}
+
+#contenedor-formulario{
+  position:fixed;
+  height:100vh;
+  width: 100vw;
+  background-color:rgba(0, 0, 0, 0.555);
+  z-index:1000;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  top:0px;
+  left:0px;
+}
+
+.centrar{
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  direction:row;
+}
+
+.cerrar{
+  position:absolute;
+  top:10px;
+  right:15px;
+  cursor:pointer;
+  border:none;
+  opacity:80%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 2000;
+}
+
+.cerrar:hover{
+  opacity: 100%;
+}
+
+.imagen-cerrar{
+  height: 17px;
+  cursor:pointer;
+}
+
+.botonLateral {
+  display: block;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+.botonLateral:hover {
+  color: rgb(53, 53, 53);
+}
+.lat-menu {
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+.nombre-producto {
+  font-size: 17px;
+}
+.descripcion-producto {
+  font-size: 15px;
+  margin: 1px;
+}
+.precio-producto {
+  color: rgba(16, 100, 16, 0.836);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+}
+#filtros {
+  text-align: start;
+  margin: 10px 0px 10px 22px;
+  display: block;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.459);
+}
+.controladorPaginas {
+  background-color: rgba(255, 255, 255, 0.856);
+  color: rgba(0, 0, 0, 0.829);
+  border: none;
+  border-radius: 4px;
+  padding: 0px;
+  box-shadow: 2px 3px 10px 4px rgba(92, 91, 91, 0.335);
+  font-size: 12px;
+}
+.controladorPaginas:hover {
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 4px;
+}
+
+.material-symbols-outlined{
+height: 8px;
+font-size: 22px;
+}
+
+#numerosDePagina {
+  display: inline;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+#selectorDePaginas {
+  margin-bottom: 30px;
+}
+.numerosDePagina {
+  background-color: rgba(240, 248, 255, 0);
+  padding: 6px;
+  border: none;
+  margin: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+  transform: TranslateY(-25%);
+  color: rgba(0, 0, 0, 0.76);
+  border-radius: 5px;
+}
+.numerosDePagina:hover {
+  color: black;
+}

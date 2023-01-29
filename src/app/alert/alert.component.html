@@ -1,0 +1,8 @@
+<div id="fondo">
+  <div id="alert">
+    <p id="titulo">{{titulo}}</p>
+    <p id="texto">{{texto}}</p>
+    <button (click)="funcion()">{{textoBoton}}</button>
+    <button id="boton-cancelar" (click)="funcionCancelar()" *ngIf="textoCancelar.length >= 1">{{textoCancelar}}</button>
+  </div>
+</div>

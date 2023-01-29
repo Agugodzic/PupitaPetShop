@@ -1,0 +1,115 @@
+<!-- Formulario -->
+
+<div id="contenedor-formulario" *ngIf="editarProducto">
+  <div class="centrar">
+    <button class="cerrar" (click)="switchEditar()"><img class="imagen-cerrar" [src]="Imagen.delete"></button>
+    <app-form-producto accion="editar" [producto]="producto"></app-form-producto>
+  </div>
+</div>
+
+<!----- Alert ----->
+
+<app-alert
+  *ngIf="mostrarAlert"
+  titulo="Has añadido un producto al carrito:"
+  [texto]="producto.nombre"
+  textoBoton="Ok"
+  accion = "actualizar"
+  >
+</app-alert>
+
+<app-alert
+  *ngIf="getMostrarAlertEliminar() && getLogValue()"
+  titulo="Seguro que desea eliminar este producto?"
+  [texto]="producto.nombre"
+  textoBoton="Eliminar"
+  textoCancelar="Cancelar"
+  accion = "eliminar-producto"
+  accionCancelar="actualizar"
+  [productoId]="productoId">
+</app-alert>
+
+<!----------------->
+
+<app-nav></app-nav>
+
+<div id="contenido">
+  <div id="imagenes-producto">
+    <div id="miniaturas">
+      <div *ngFor="let imagen of ImagenesProducto">
+        <img
+          class="imagen-miniatura"
+          [src]="imagen"
+          (click)="cambiarImagen(imagen)"
+        />
+      </div>
+      <img
+      *ngIf="cantidadImagenes < 4 && logged"
+      class="imagen-miniatura" id="imagen-agergar"
+      src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
+    />
+    </div>
+    <img id="imagen-producto" [src]="imagenSeleccionada" />
+  </div>
+  <div id="descripcion">
+{{ producto.categoria }} / {{ producto.marca }}
+
+    <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
+    <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
+
+    <h2 id="titulo">{{ producto.nombre }}</h2>
+    <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
+
+    <div id="selector-cantidad">
+      Cantidad:
+      <input [(ngModel)]='cantidad'
+       id="input-cantidad" type="number" min="1" value="1">
+    </div>
+
+    <button id="comprar" (click)="agregarAlCarrito(producto.id)">Comprar</button>
+    <button id="agregar" (click)="agregarAlCarrito(producto.id)">Agregar</button>
+
+
+    <p id="texto-descripcion">
+      {{ producto.descripcion }}
+    </p>
+  </div>
+
+  <!--
+
+  <div *ngIf="mostrarEspecificaciones" id="especificaciones">
+    <div id="especificaciones-contenido">
+    </div>
+  </div>
+
+  <button id="verMas" (click)="VerMas()">{{verMas}}</button>
+  -->
+
+
+  <div id="relacionados">
+    <h2>Productos relacionados:</h2>
+    <div id="galeria">
+      <div class="contenedorProducto" *ngFor="let elemento of productos">
+        <a
+          [href]="productoLink(elemento)"
+          class="producto"
+          *ngIf="
+            (elemento.categoria == producto.categoria ||
+            elemento.marca == producto.marca) &&
+            elemento.nombre != producto.nombre
+            "
+        >
+          <img [src]="elemento.imagen1" class="imagen" />
+          <div class="descripcion">
+            <p class="nombre-producto">{{ elemento.nombre }}</p>
+            <p class="descripcion-producto">
+              {{ longitud(elemento.descripcioncorta, 30) }}...
+            </p>
+            <p class="precio-producto">{{ precio(elemento.precio, 0) }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

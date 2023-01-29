@@ -1,0 +1,137 @@
+<div id="barra-superior">
+  <img id="logo" [src]="imagen.logo">
+</div>
+<div id="contenido">
+  <div id="ventana-compra">
+    <div id="barra-de-progreso">
+      <div class="nodo" [ngStyle]="{
+        'background-color': paso1 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
+        'border-color': paso1 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
+        'height': pasoActual == 1 ? '25px':'20px',
+        'width': pasoActual == 1 ? '25px':'20px'
+      }" ></div>
+
+      <div class="linea-de-progreso" id="linea1"></div>
+      <div class="nodo" [ngStyle]="{
+        'background-color': paso2 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
+        'border-color': paso2 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
+        'height': pasoActual == 2 ? '23px':'20px',
+        'width': pasoActual == 2 ? '23px':'20px'
+      }"></div>
+
+      <div class="linea-de-progreso" id="linea2"></div>
+      <div class="nodo" [ngStyle]="{
+        'background-color': paso3 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
+        'border-color': paso3 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
+        'height': pasoActual == 3 ? '23px':'20px',
+        'width': pasoActual == 3 ? '23px':'20px'
+      }"></div>
+
+    </div>
+
+    <div id="formularios">
+      <p id="titulo" *ngIf="pasoActual == 1">Ingresa tus datos:</p>
+      <p id="titulo" *ngIf="pasoActual == 2">Metodos de pago:</p>
+      <p id="titulo" *ngIf="pasoActual == 3">Finalizar compra</p>
+      <p id="titulo" *ngIf="pasoActual == 4">Felicidades por su compra!</p>
+
+
+      <!---------------- PASO 1 -------------------->
+
+      <form *ngIf="pasoActual==1">
+
+        <div class="contenedor-inl">
+          <p class="input-name">Nombre:</p>
+          <p><input class="form-control" type="text" placeholder="Nombre"></p>
+          <p class="input-name">Apellido:</p>
+          <p><input class="form-control" type="text" placeholder="Apellido"></p>
+          <p class="input-name">Telefono:</p>
+          <p><input class="form-control" min="0" type="number" placeholder="Telefono" ></p>
+          <p class="input-name">Email:</p>
+          <p><input class="form-control" type="text" placeholder="Email" ></p>
+        </div>
+
+        <div class="contenedor-inl">
+          <p class="input-name">Ciudad:</p>
+          <p><input class="form-control" type="text" placeholder="Ciudad" ></p>
+          <p class="input-name">Direccion:</p>
+          <p><input class="form-control" type="number" placeholder="Direccion"></p>
+          <p class="input-name">Piso - Departamento:</p>
+          <p><input class="form-control" type="text" placeholder="piso - departamento" ></p>
+          <p class="input-name">Codigo Postal:</p>
+          <p><input class="form-control" min="0"  type="number" placeholder="Codigo Postal" ></p>
+        </div>
+
+        <div id="botones">
+        <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
+        <button (click)="siguiente()">{{textoBoton}}</button>
+        </div>
+
+      </form>
+
+      <!---------------- PASO 2 -------------------->
+
+      <div id="paso2" *ngIf="pasoActual==2">
+
+        <div id="paso2-opciones">
+
+          <div class="paso2-opcion">
+            <button class="paso2-opcion-boton">
+              <img class="paso2-opcion-boton-imagen" [src]="imagen.tarjeta">
+            </button>
+            <p class="paso2-opcion-texto">Tarjeta</p>
+          </div>
+
+          <div class="paso2-opcion">
+            <button class="paso2-opcion-boton">
+              <img class="paso2-opcion-boton-imagen" [src]="imagen.transferencia">
+            </button>
+            <p class="paso2-opcion-texto">Transferencia</p>
+          </div>
+
+          <div class="paso2-opcion">
+            <button class="paso2-opcion-boton">
+              <img class="paso2-opcion-boton-imagen" [src]="imagen.pagofacil">
+            </button>
+            <p class="paso2-opcion-texto">Pagofacil</p>
+          </div>
+
+          <div class="paso2-opcion">
+            <button class="paso2-opcion-boton">
+              <img class="paso2-opcion-boton-imagen" [src]="imagen.logoWsp">
+            </button>
+            <p class="paso2-opcion-texto">Continuar por Wsp</p>
+          </div>
+
+        </div>
+
+        <div id="botones">
+          <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
+          <button (click)="siguiente()">{{textoBoton}}</button>
+          </div>
+        </div>
+
+      <!---------------- PASO 3 -------------------->
+
+      <form *ngIf="pasoActual==3">
+
+        <div id="botones">
+          <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
+          <button (click)="siguiente()">{{textoBoton}}</button>
+        </div>
+      </form>
+
+
+      <!---------------- PASO 4 -------------------->
+
+      <form *ngIf="pasoActual==4">
+
+        <div id="botones">
+          <button (click)="volverALaTienda()">Volver a la tienda</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

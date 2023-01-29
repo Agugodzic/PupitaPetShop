@@ -1,0 +1,10 @@
+body {
+  background-color: rgba(236, 235, 235, 0.555);
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color:black;
+}

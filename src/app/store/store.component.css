@@ -74,15 +74,30 @@ html {
 #chat:hover {
   height: 55px;
 }
-#tools {
-  margin-top: 27px;
+
+#contenedor-tools {
+  padding: 5px;
   font-size: 16px;
   display: block;
+  background-color:rgb(201, 201, 201);
 }
-.tool {
+
+.tools {
   display: inline;
   margin: 10px;
+  font-family:'Montserrat', sans-serif;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.788);
+  margin-left: 40px;
 }
+
+.tool {
+  border-style: none;
+  font-family:'Montserrat', sans-serif;
+  background-color:rgba(255, 255, 255, 0);
+  color: black;
+}
+
 button {
   margin: 2px;
   cursor: pointer;

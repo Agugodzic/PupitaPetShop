@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../servicios/auth.service';
+import { ToolsService } from '../tools.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,8 +8,12 @@ import { AuthService } from '../servicios/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  public imagen:any = this.toolsService.imagen;
 
-  constructor(private authService:AuthService) { }
+  constructor(
+    private authService:AuthService,
+    private toolsService:ToolsService
+  ) { }
 
   public cantidadCarrito = this.generar();
 

@@ -116,11 +116,12 @@ export class ToolsService {
   imagen = {
     borrar:"https://postimg.cc/k6N9G6CS",
     delete:"https://i.postimg.cc/D042wHhw/delete-black.png",
-    logo:"https://i.postimg.cc/jdrKSx8g/Sky-Logo.png",
+    logo:"",
     logoWsp:"https://es.logodownload.org/wp-content/uploads/2018/10/whatsapp-logo-11.png",
     transferencia:"https://cdn-icons-png.flaticon.com/512/794/794735.png?w=360",
     pagofacil:"https://www.hiperconstruccion.com.ar/wp-content/uploads/2020/08/PAGO-FACIL-PNG.png",
-    tarjeta:"https://cdn-icons-png.flaticon.com/512/60/60378.png"
+    tarjeta:"https://cdn-icons-png.flaticon.com/512/60/60378.png",
+    carrito:"https://cdn-icons-png.flaticon.com/512/107/107831.png"
   }
 }
 

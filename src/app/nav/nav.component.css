@@ -2,14 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-#chango {
-  position: absolute;
-  right: 30px;
-  top: 20px;
-  opacity: 80%;
-  cursor: pointer;
-}
-
 #cerrar-sesion{
   position: absolute;
   right: 30px;
@@ -27,30 +19,77 @@ html {
   opacity: 90%;
 }
 
-#carrito{
+#aviso-descuento{
+  display: block;
   height: 25px;
-  display: inline-block;
+  background-color: rgb(255, 255, 255);
 }
 
 #cantidad-productos{
   font-size: 13px;
-  background-color: rgba(37, 235, 103, 0.822);
+  background-color: rgb(255, 255, 255);
   color:rgba(46, 46, 46, 0.925);
   border-radius: 100px;
   display: inline-block;
   padding: 2px 6px 2px 6px;
-  margin-top:0px;
+  margin:2px;
   transform:translateXY(15px,-40px)
 }
 
-#logo {
+#contenedor-carrito{
+  width: 150px;
+  background-color: rgb(219, 179, 0);
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+#chango {
+  opacity: 100%;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#carrito{
   height: 30px;
-  position: absolute;
-  left: 45px;
-  top: 20px;
-  opacity: 80%;
+  opacity: 70%;
+  display: inline-block;
+}
+
+#contenedor-logo{
+  width: 150px;
+  background-color:rgba(210, 105, 30, 0);
+}
+
+#logo {
+  height: 60px;
+  opacity: 90%;
   cursor: pointer;
   /*opacity: 0%;*/
+}
+
+#nav {
+  /*background-color: rgb(255, 255, 255);*/
+  padding: 12px;
+  display: flex;
+  border-radius: 5px;
+  text-align: center;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.253);*/
+  position: sticky;
+}
+
+#contenedor-nav{
+  background-color: rgb(19, 19, 19);
+  height: 80px;
+  display:flex;
+  align-items: center;
+  animation-name: transicionNavegador;
+  animation-duration: 0.3s;
 }
 
 #fondo{
@@ -63,21 +102,6 @@ html {
   transform:translateY(-13px)
 }
 
-#nav {
-  background-color: rgb(255, 255, 255);
-  padding: 12px;
-  display: flex;
-  border-radius: 5px;
-  text-align: center;
-  width: 280px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 13px;
-  box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.253);
-  position: sticky;
-  animation-name: transicionNavegador;
-  animation-duration: 0.6s;
-}
 
 .boton {
   border: none;
@@ -85,13 +109,14 @@ html {
   margin-right: 20px;
   margin-left: 8px;
   transition: 0.1s;
-  color: rgba(0, 0, 0, 0.747);
+  color: rgb(255, 255, 255);
 }
 
 a {
   text-decoration: none;
   font-size: 13px;
   cursor: pointer;
+  font-family:'Montserrat', sans-serif;
 }
 
 footer {

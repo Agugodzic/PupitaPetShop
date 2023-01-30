@@ -11,24 +11,26 @@
 
 <app-nav></app-nav>
 
-<!----------------->
+<!--------- Tools -------->
 
-<div id="tools">
+<div id="contenedor-tools">
 
-  <div class="tool">
+  <div class="tools">
     <span>Ordenar por:</span>
-    <button (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
-    <button (click)="ordenarProductos('menorPrecio')">Menor precio</button>
-    <button>Mas relevantes</button>
+    <button class="tool" (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
+    <button class="tool" (click)="ordenarProductos('menorPrecio')">Menor precio</button>
+    <button class="tool" >Mas relevantes</button>
   </div>
 
-  <div class="tool">
+  <div class="tools">
     <span>Filtrar por:</span>
-    <button>En oferta</button>
-    <button>En stock</button>
+    <button class="tool" >En oferta</button>
+    <button class="tool" >En stock</button>
   </div>
 
 </div>
+
+<!--------- Menu Lateral -------->
 
 <div id="lateral">
   <div class="lat-menu">
@@ -64,6 +66,8 @@
     </button>
   </div>
 </div>
+
+<!--------- Productos -------->
 
 <div *ngIf="productos.length > 0" id="galeria">
   <span id="filtros"><button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>{{ productoFiltro }} / {{ marcaFiltro }} </span>

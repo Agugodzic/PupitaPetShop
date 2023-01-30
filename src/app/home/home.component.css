@@ -9,7 +9,7 @@
 .filtros {
   display: inline-block;
   position: relative;
-  margin: 12px;
+  margin: 13px;
   animation-name: mover;
   animation-duration: 0.7s;
 }

@@ -1,46 +1,54 @@
-<app-nav></app-nav>
+<app-nav tema="claro"></app-nav>
 
-<div class="banners">
-  <a href="/store/0"
-    ><img id="banner" src="https://i.postimg.cc/2yK5dy89/1111.png" value="sdfd"
-  /></a>
-  <div class="tituloBanner">Todo para tu pc</div>
-  <div class="descripcionBanner">Al mejor precio</div>
+<body>
+  <div class="banners"
+    ><img id="banner" src="https://i.postimg.cc/XJzScvKQ/banner.png" value="sdfd"
+    />
+    <div class="descuento-banner">20% OFF a partir de las 10 unidades</div>
+    <div class="titulo-banner">Lo mejor para tu mascota</div>
+    <div class="descripcion-banner">Al mejor precio</div>
+    <a href="/store/0" class="boton">Ir a la tienda</a>
+  </div>
+
+<div id="contenedor-filtros">
+  <div *ngIf="true">
+    <a class="filtros" href="/store/2">
+      <img
+        class="imagen-filtro"
+        src="https://media.istockphoto.com/id/183770030/es/foto/collar%C3%ADn-de-perro.jpg?s=612x612&w=0&k=20&c=sEvDY9aewUd64KJQNNKnxe6JC8XueUOeJRb2SPWfwWQ="
+      />
+      <a class="etiqueta-filtro">collares</a>
+    </a>
+
+    <a class="filtros" href="/store/3">
+      <img
+        class="imagen-filtro"
+        src="https://cdn.shopify.com/s/files/1/0185/9786/products/LSH-1-X-4-RYL_MAIN.jpg?v=1626794959"
+      />
+      <a class="etiqueta-filtro">correas</a>
+    </a>
+
+    <a class="filtros" href="/store/1"
+      ><img
+        class="imagen-filtro"
+        src="https://http2.mlstatic.com/D_NQ_NP_799006-MLA47380703999_092021-O.webp"
+      />
+      <a class="etiqueta-filtro">Colchonetas</a>
+    </a>
+
+      <a class="filtros" href="/store/4"
+        ><img
+          class="imagen-filtro"
+          src="https://http2.mlstatic.com/D_NQ_NP_983112-MLA40337359386_012020-O.webp"
+      />
+      <a class="etiqueta-filtro">Fundas para auto</a>
+    </a>
+  </div>
 </div>
 
-<div class="filtros">
-  <a href="/store/2">
-    <img
-      class="imagenFiltro"
-      src="https://i.postimg.cc/mkjkRZYL/CORSAIR-Gaming-Mouse-Pad-MM800-POLARIS-RGB-15-Zone-LED-Customizable-Lighting-Hard-Mouse-Pad-USB.jpg"
-  /></a>
-  <a class="etiquetaFiltro">Mouses</a>
+
+<div id="slide-productos">
+  <p id="recomendado">Recomendado:</p>
 </div>
 
-<div class="filtros">
-  <a href="/store/3">
-    <img
-      class="imagenFiltro"
-      src="https://i.postimg.cc/N0W1hZ5L/Cynosa-Chroma-Desktop-Setup-Photo-02.jpg"
-  /></a>
-  <a class="etiquetaFiltro">Teclados</a>
-</div>
-
-<div class="filtros">
-  <a href="/store/1"
-    ><img
-      class="imagenFiltro"
-      src="https://i.postimg.cc/xT2VjdW3/c02ebc07b612e85a23bcd1367377691c.jpg"
-  /></a>
-  <a class="etiquetaFiltro">Auriculares</a>
-</div>
-
-<div class="filtros">
-  <a href="/store/4"
-    ><img
-      class="imagenFiltro"
-      src="https://i.postimg.cc/cC4Yf3CG/ASUS-ROG-Balteus-Qi-3-1-1024x673.jpg"
-  /></a>
-  <a class="etiquetaFiltro">Mouse pads</a>
-</div>
-
+</body>

@@ -11,11 +11,12 @@ html {
   border-color:rgba(97, 86, 86, 0.671);
   border-width: 0px;
   border-radius: 4px;
-  color:rgb(87, 87, 87);
+  color:rgb(112, 112, 112);
   margin-right: 10px;
   padding-top:4px;
   padding-bottom: 4px;
 }
+
 #boton-agregar:hover{
   background-color: rgba(211, 211, 211, 0.897);
   color:rgb(102, 102, 102);
@@ -42,14 +43,18 @@ html {
   display: inline-block;
   width: 150px;
   height: 310px;
-  background-color: rgba(255, 255, 255, 0.466);
+  background-color: rgb(255, 255, 255);
   text-align: center;
   padding: 13px;
   margin: 5px;
-  box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);
+  /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);*/
   cursor: pointer;
   animation-name: transicionProductos;
   animation-duration: 0.4s;
+  border-style: solid;
+  border-width: 1px ;
+  border-color: rgb(197, 197, 197);
+
 }
 @keyframes transicionProductos {
   0% {
@@ -64,6 +69,7 @@ html {
 .contenedorProducto {
   display: inline-block;
 }
+
 #chat {
   position: fixed;
   height: 40px;
@@ -79,7 +85,7 @@ html {
   padding: 5px;
   font-size: 16px;
   display: block;
-  background-color:rgb(201, 201, 201);
+  background-color:rgb(214, 212, 212);
 }
 
 .tools {

@@ -1,27 +1,30 @@
 
-
+<!--
 <div id="aviso-descuento">
-  Precio mayorista: A partir de las 10 unidades 30% de descuento!
+  <p id="aviso-texto">Precio mayorista: A partir de las 10 unidades 30% de descuento!</p>
 </div>
+-->
 
 
-<div id="contenedor-nav">
+<div id="contenedor-nav"
+  [ngStyle]="{'background-color':tema == 'oscuro' ? 'black' : 'white' }">
 
   <div id="contenedor-logo">
     <a href="/home"
-    ><img id="logo" src="https://i.postimg.cc/0QcY7Lnp/70321439-109057593824206-3400353572775264256-n.png"
+    ><img [ngStyle]="{'filter':tema == 'oscuro' ? 'invert()' : 'none' }" id="logo" src="https://i.postimg.cc/B62kYXYg/logo.png"
     /></a>
   </div>
 
-  <div id="nav">
-    <a href="home" class="boton">INICIO</a> <span class="boton">|</span>
-    <a href="store/0" class="boton">TIENDA</a> <span class="boton">|</span>
-    <a href="carrito" class="boton">CARRITO</a>
+  <div id="nav" >
+    <a href="home" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">INICIO</a> <span class="boton">|</span>
+    <a href="store/0" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">TIENDA</a> <span class="boton">|</span>
+    <a href="carrito" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">CARRITO</a>
   </div>
 
   <div id="contenedor-carrito">
     <a *ngIf="!getLogValue()" href="carrito" id="chango">
-      <img id="carrito" [src]="imagen.carrito"/>
+      <img *ngIf="tema == 'oscuro'" id="carrito" [src]="imagen.carritoBlanco"/>
+      <img *ngIf="tema !== 'oscuro'" id="carrito" [src]="imagen.carrito"/>
       <p *ngIf="generar() !== 0" id="cantidad-productos">{{cantidadCarrito}}</p>
     </a>
     <button *ngIf="getLogValue()" id="cerrar-sesion" (click)="logOut()">Cerrar sesion</button>

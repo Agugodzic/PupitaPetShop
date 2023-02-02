@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../servicios/auth.service';
 import { ToolsService } from '../tools.service';
 
@@ -8,6 +8,8 @@ import { ToolsService } from '../tools.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @Input() tema:any;
+
   public imagen:any = this.toolsService.imagen;
 
   constructor(

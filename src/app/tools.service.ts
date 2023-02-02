@@ -117,11 +117,12 @@ export class ToolsService {
     borrar:"https://postimg.cc/k6N9G6CS",
     delete:"https://i.postimg.cc/D042wHhw/delete-black.png",
     logo:"",
-    logoWsp:"https://es.logodownload.org/wp-content/uploads/2018/10/whatsapp-logo-11.png",
+    logoWsp:"https://i.postimg.cc/Dwr0RGPv/1490889687-whats-app-82529.png",
     transferencia:"https://cdn-icons-png.flaticon.com/512/794/794735.png?w=360",
     pagofacil:"https://www.hiperconstruccion.com.ar/wp-content/uploads/2020/08/PAGO-FACIL-PNG.png",
     tarjeta:"https://cdn-icons-png.flaticon.com/512/60/60378.png",
-    carrito:"https://cdn-icons-png.flaticon.com/512/107/107831.png"
+    carrito:"https://cdn-icons-png.flaticon.com/512/107/107831.png",
+    carritoBlanco:"https://i.postimg.cc/Bn0BSLXD/carrito-blanco.png"
   }
 }
 

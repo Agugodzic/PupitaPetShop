@@ -20,25 +20,32 @@ html {
 }
 
 #aviso-descuento{
+  padding:1px;
+  font-family:'Montserrat', sans-serif;
+  font-size: 13px;
   display: block;
   height: 25px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(186, 189, 13);
+}
+
+#aviso-texto{
+  margin:0;
+  padding-top:2px;
 }
 
 #cantidad-productos{
   font-size: 13px;
-  background-color: rgb(255, 255, 255);
-  color:rgba(46, 46, 46, 0.925);
+  background-color: rgb(202, 202, 202);
+  color:rgba(0, 0, 0, 0.925);
   border-radius: 100px;
   display: inline-block;
-  padding: 2px 6px 2px 6px;
+  padding: 2px 8px 2px 8px;
   margin:2px;
   transform:translateXY(15px,-40px)
 }
 
 #contenedor-carrito{
-  width: 150px;
-  background-color: rgb(219, 179, 0);
+  width: 80px;
   height: 100%;
   display: flex;
   text-align: center;
@@ -53,20 +60,21 @@ html {
 }
 
 #carrito{
-  height: 30px;
+  height: 25px;
   opacity: 70%;
   display: inline-block;
 }
 
 #contenedor-logo{
-  width: 150px;
-  background-color:rgba(210, 105, 30, 0);
+  width: 120px;
 }
 
 #logo {
-  height: 60px;
-  opacity: 90%;
+  height: 45px;
+  opacity: 80%;
+  margin-left: 25px ;
   cursor: pointer;
+
   /*opacity: 0%;*/
 }
 
@@ -84,12 +92,16 @@ html {
 }
 
 #contenedor-nav{
-  background-color: rgb(19, 19, 19);
-  height: 80px;
+  background-color: rgb(255, 255, 255);
+  height: 70px;
   display:flex;
   align-items: center;
   animation-name: transicionNavegador;
   animation-duration: 0.3s;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(230, 230, 230);
+  border-width: 0 0 0px 0;
 }
 
 #fondo{
@@ -109,7 +121,7 @@ html {
   margin-right: 20px;
   margin-left: 8px;
   transition: 0.1s;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 a {

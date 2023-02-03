@@ -35,7 +35,7 @@ html {
 
 #cantidad-productos{
   font-size: 13px;
-  background-color: rgb(202, 202, 202);
+  background-color: rgba(33, 255, 99, 0.479);
   color:rgba(0, 0, 0, 0.925);
   border-radius: 100px;
   display: inline-block;

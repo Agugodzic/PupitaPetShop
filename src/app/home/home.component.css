@@ -2,16 +2,6 @@ body{
   background-color: rgb(255, 255, 255);
 }
 
-
-#recomendado{
-  text-align: left;
-  font-family: 'Red Hat Display', sans-serif;
-  font-size: 25px;
-  margin: 15px;
-  margin-top: 15px;
-}
-
-
 .banners {
   margin: 0px;
   display: block;
@@ -87,10 +77,11 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  margin-bottom: 15px;
 }
 .etiqueta-filtro{
   color: rgba(0, 0, 0, 0.938);
-  font-family: 'monserrat', sans-serif;
+  font-family: 'Red Hat Display', sans-serif;
   text-align: center;
   width: 200px;
   position: absolute;
@@ -105,7 +96,7 @@ body{
 
 .boton{
   cursor: pointer;
-  background-color: rgba(16, 52, 255, 0.918);
+  background-color: rgba(51, 113, 228, 0.87);
   height: 28px;
   width: 140px;
   border-radius: 5px;
@@ -120,14 +111,107 @@ body{
   animation-name: moverDescripcionBanner;
   animation-duration: 1s;
 }
+.boton:hover{
+  background-color: rgba(51, 113, 228, 0.973);
+}
 
 #slide-productos{
-  background-color: rgb(240, 238, 238);
-  height: 300px;
+  background-color: rgba(209, 209, 209, 0);
   width: 80vw;
-  margin: 50px;
-  margin-left: auto ;
+  margin: 20px;
+  margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
+}
+.nombre-producto {
+  font-size: 17px;
+  min-height: 40px;
+}
+.descripcion-producto {
+  font-size: 15px;
+  margin: 1px;
+  min-height: 40px;
+}
+.precio-producto {
+  color: rgba(16, 100, 16, 0.836);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+}
+.imagen {
+  max-height: 150px;
+  max-width: 150px;
+  background-color: rgba(0, 0, 0, 0.185);
+  margin-bottom: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#contenedor-imagen{
+  position: relative;
+  vertical-align: middle;
+  height: 150px;
+  width: 150px;
+}
+.producto {
+  display: inline-block;
+  width: 150px;
+  height: 310px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 13px;
+  margin: 14px;
+  margin-top: 4px;
+  /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);*/
+  cursor: pointer;
+  animation-name: transicionProductos;
+  animation-duration: 0.4s;
+  border-style: solid;
+  border-width: 1px ;
+  border-color: rgb(197, 197, 197);
+}
+.contenedorProducto {
+  display: inline;
+}
+#ver-todos{
+  cursor: pointer;
+  background-color: rgba(51, 113, 228, 0.87);
+  height: 26px;
+  width: 100px;
+  border-radius: 4px;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 16px;
+  border-style: none;
+  color: white;
+}
+#ver-todos:hover{
+  background-color: rgb(51, 113, 228);
+}
+#recomendados-titulo{
+  display:inline-block;
+  text-align: left;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 25px;
+  width: 35vw;
+}
+#recomendados-boton{
+  display:inline-block;
+  text-align: end;
+  font-size: 25px;
+  width: 40vw;
+}
+
+#chat {
+  position: fixed;
+  height: 45px;
+  bottom: 30px;
+  right: 20px;
+  cursor: pointer;
+  animation-name: chat;
+  animation-duration: 1s;
+}
+#chat:hover {
+  height: 55px;
 }
 
 @keyframes mover {
@@ -140,7 +224,13 @@ body{
     transform: translateX(0px);
   }
 }
-
+@keyframes chat {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+  }
+}
 @keyframes moverDescripcionBanner {
   0% {
     opacity: 0%;

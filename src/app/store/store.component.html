@@ -70,14 +70,18 @@
 <!--------- Productos -------->
 
 <div *ngIf="productos.length > 0" id="galeria">
-  <span id="filtros"><button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>{{ productoFiltro }} / {{ marcaFiltro }} </span>
+  <span id="filtros"><button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
+    {{ productoFiltro }} / {{ marcaFiltro }} </span>
   <div
     class="contenedorProducto"
     *ngFor="let producto of productosPaginaActual"
   >
     <a [href]="productoLink(producto)" class="producto">
-      <img [src]="producto.imagen1" class="imagen" />
-      <div class="descripcion">
+      <div id="contenedor-imagen">
+        <img [src]="producto.imagen1" class="imagen" />
+      </div>
+
+      <div id="descripcion">
         <p class="nombre-producto">{{ producto.nombre }}</p>
         <p class="descripcion-producto">
           {{ longitud(producto.descripcioncorta, 30) }}...

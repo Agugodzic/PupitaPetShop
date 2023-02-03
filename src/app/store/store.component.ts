@@ -40,7 +40,7 @@ export class StoreComponent implements OnInit {
   public Imagen = this.ToolsService.imagen;
 
   public categorias:CategoriaModel[];
-  public getLogValue(){ return this.authService.loggedIn() };
+
 
 
   constructor(
@@ -52,7 +52,9 @@ export class StoreComponent implements OnInit {
     private authService:AuthService
   ) {}
 
-
+  public getLogValue(){
+    return this.authService.loggedIn()
+  };
 
   public listarProductos(){
     this.ProductoService.listar().subscribe(

@@ -19,7 +19,13 @@
       />
       <a class="etiqueta-filtro">collares</a>
     </a>
-
+    <a class="filtros" href="/store/4"
+        ><img
+          class="imagen-filtro"
+          src="https://i.postimg.cc/WpdLs9Ly/201026124128-dogcoatsgoldpaw-super-169.png"
+      />
+      <a class="etiqueta-filtro">Abrigos</a>
+    </a>
     <a class="filtros" href="/store/3">
       <img
         class="imagen-filtro"
@@ -43,12 +49,34 @@
       />
       <a class="etiqueta-filtro">Fundas para auto</a>
     </a>
+
+
   </div>
 </div>
 
 
 <div id="slide-productos">
-  <p id="recomendado">Recomendado:</p>
+  <div id="recomendados"><p id="recomendados-titulo">Recomendados:</p><div id="recomendados-boton"><button id="ver-todos">Ver todos</button></div></div>
+    <div
+    class="contenedorProducto"
+    *ngFor="let producto of productosRecomendados"
+     >
+    <a [href]="productoLink(producto)" class="producto">
+      <div id="contenedor-imagen">
+        <img [src]="producto.imagen1" class="imagen" />
+      </div>
+
+      <div id="descripcion">
+        <p class="nombre-producto">{{ producto.nombre }}</p>
+        <p class="descripcion-producto">
+          {{ longitud(producto.descripcioncorta.toString(), 30) }}...
+        </p>
+        <p class="precio-producto">{{ precio(producto.precio, 0) }}</p>
+      </div>
+    </a>
+  </div>
 </div>
 
 </body>
+
+<img *ngIf="!getLogValue() && false" id="chat" [src]=imagen.logoWsp >

@@ -50,6 +50,8 @@ html {
   display: flex;
   text-align: center;
   align-items: center;
+  position:absolute;
+  right: 4px;
 }
 
 #chango {
@@ -150,5 +152,10 @@ footer {
   100% {
     opacity: 100%;
     transform: translateX(0px);
+  }
+}
+@media only screen and (max-width: 670px) {
+  #nav{
+    display:none;
   }
 }

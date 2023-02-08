@@ -9,7 +9,7 @@
 
 <!-----Nav-bar---->
 
-<app-nav></app-nav>
+<app-nav tema="claro"></app-nav>
 
 <!--------- Tools -------->
 
@@ -22,10 +22,15 @@
     <button class="tool" >Mas relevantes</button>
   </div>
 
-  <div class="tools">
+  <div class="tools" id="selector-categoria-in">
     <span>Filtrar por:</span>
-    <button class="tool" >En oferta</button>
-    <button class="tool" >En stock</button>
+      <div class="tool" ><div class="desplegable-tool">{{ productoFiltro }}</div>
+        <div id="desplegable">
+          <a class="desplegable-categoria" [href]="linkCategoria(categoria.id)" *ngFor="let categoria of categorias">
+            <a class="tool">{{categoria.categoria}}</a>
+          </a>
+        </div>
+      </div>
   </div>
 
 </div>
@@ -51,27 +56,24 @@
     <button class="botonLateral" (click)="cambiarMarca('Todas las marcas')">
       Todas
     </button>
-    <button class="botonLateral" (click)="cambiarMarca('hp')">Hp</button>
-    <button class="botonLateral" (click)="cambiarMarca('genius')">
-      Genius
-    </button>
-    <button class="botonLateral" (click)="cambiarMarca('redragon')">
-      Redragon
-    </button>
-    <button class="botonLateral" (click)="cambiarMarca('samsung')">
-      Samsung
-    </button>
-    <button class="botonLateral" (click)="cambiarMarca('logitech')">
-      Logitech
-    </button>
+    <button class="botonLateral" (click)="cambiarMarca('Pupita')">Pupita</button>
   </div>
 </div>
 
 <!--------- Productos -------->
 
 <div *ngIf="productos.length > 0" id="galeria">
-  <span id="filtros"><button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
-    {{ productoFiltro }} / {{ marcaFiltro }} </span>
+  <div id="contenedor-filtros">
+    <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
+
+    {{"Tienda / " + productoFiltro }}
+
+    <div id="selector-categoria-out">
+      Categoria
+    </div>
+  </div>
+
+
   <div
     class="contenedorProducto"
     *ngFor="let producto of productosPaginaActual"
@@ -115,11 +117,7 @@
         'background-color': pagina == paginaActual ? '#F5F5F5' : 'white',
         padding: pagina == paginaActual ? '5px 7px 5px 7px' : '6px 8px 6px 8px',
         'font-size':
-          pagina == paginaActual ? 'font-size: 11px' : 'font-size: 14px',
-        'box-shadow':
-          pagina == paginaActual
-            ? '2px 3px 4px 1.5px rgba(77, 76, 76, 0.281)'
-            : '2px 3px 10px 3px rgba(77, 76, 76, 0.281)'
+          pagina == paginaActual ? 'font-size: 11px' : 'font-size: 14px'
       }"
       class="numerosDePagina"
       (click)="cambiarPagina(pagina)"
@@ -129,7 +127,7 @@
   </div>
 
   <button class="controladorPaginas" (click)="siguiente()">
-    <span class="controlador-simbolo material-symbols-outlined"> navigate_next </span>
+    <span class="controlador-simbolo material-symbols-outlined" > navigate_next </span>
   </button>
 
   <button href="tools" class="controladorPaginas" (click)="ultimaPagina()">

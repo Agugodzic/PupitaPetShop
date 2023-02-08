@@ -34,9 +34,16 @@
 <app-nav></app-nav>
 
 <div id="contenido">
+
+  <div id="contenido-edicion">
+    <a href="store/0">Tienda</a>{{ " / "+producto.categoria }}
+      <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
+      <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
+    </div>
+
   <div id="imagenes-producto">
     <div id="miniaturas">
-      <div *ngFor="let imagen of ImagenesProducto">
+      <div class="contenedor-miniatura"*ngFor="let imagen of ImagenesProducto">
         <img
           class="imagen-miniatura"
           [src]="imagen"
@@ -45,17 +52,26 @@
       </div>
       <img
       *ngIf="cantidadImagenes < 4 && logged"
-      class="imagen-miniatura" id="imagen-agergar"
+      class="contenedor-miniatura" id="imagen-agergar"
       src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
     />
     </div>
-    <img id="imagen-producto" [src]="imagenSeleccionada" />
-  </div>
-  <div id="descripcion">
-{{ producto.categoria }} / {{ producto.marca }}
 
+
+    <div id="contenedor-imagen">
+      <img id="imagen-producto" [src]="imagenSeleccionada" />
+    </div>
+  </div>
+
+
+  <div id="descripcion">
+
+  <div id="descripcion-edicion">
+    {{ "Tienda / "+producto.categoria }}
     <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
     <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
+  </div>
+
 
     <h2 id="titulo">{{ producto.nombre }}</h2>
     <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
@@ -87,15 +103,14 @@
 
 
   <div id="relacionados">
-    <h2>Productos relacionados:</h2>
+    <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productos">
         <a
           [href]="productoLink(elemento)"
           class="producto"
           *ngIf="
-            (elemento.categoria == producto.categoria ||
-            elemento.marca == producto.marca) &&
+            (elemento.categoria == producto.categoria) &&
             elemento.nombre != producto.nombre
             "
         >

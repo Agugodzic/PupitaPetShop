@@ -112,7 +112,7 @@ export class StoreComponent implements OnInit {
     }
   }
 
-  private generadorDeFiltro(categoria: number):any {
+ /* private generadorDeFiltro(categoria: number):any {
     let numeroRuta = 0;
 
     if (categoria == numeroRuta) {
@@ -122,6 +122,24 @@ export class StoreComponent implements OnInit {
 
       for(let Categoria of this.categorias){
         numeroRuta ++;
+
+        if (categoria == numeroRuta) {
+          return Categoria.categoria;
+        }
+      }
+    }
+  }*/
+
+  private generadorDeFiltro(categoria: number):any {
+    let numeroRuta:number;
+
+    if (categoria == 0) {
+      return 'Todos los productos';
+    }
+    else{
+
+      for(let Categoria of this.categorias){
+        numeroRuta = Categoria.id;
 
         if (categoria == numeroRuta) {
           return Categoria.categoria;
@@ -190,6 +208,10 @@ export class StoreComponent implements OnInit {
       this.paginaActual = this.paginaActual + 1;
       this.actualizarLista();
     }
+  }
+
+  linkCategoria(id:number){
+    return `store/${id}`
   }
 
   ultimaPagina(): void {

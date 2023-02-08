@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaModel } from '../modelos/categoria-model';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
+import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 
@@ -16,11 +18,13 @@ export class HomeComponent implements OnInit {
   public precio = this.toolsService.precio;
   public longitud = this.toolsService.recortarString;
   public imagen = this.toolsService.imagen;
+  private categorias:CategoriaModel[];
 
   constructor(
     private productoService:ProductoService,
     private toolsService:ToolsService,
-    private authService:AuthService
+    private authService:AuthService,
+    private categoriaService:CategoriaService
     ) { }
 
     public getLogValue(){
@@ -35,13 +39,31 @@ export class HomeComponent implements OnInit {
       })
     }
 
+    public listarCategorias(){
+      this.categoriaService.listar().subscribe(
+        (response: CategoriaModel[])  =>{
+          this.categorias = response;
+      })
+    }
+
+    public categoriaLink(categoria:string){
+      let categoriaId:number = 0;
+
+      for(let Categoria of this.categorias){
+        if(Categoria.categoria == categoria){
+          categoriaId = Categoria.id;
+        }
+      }
+      return '/store/' + categoriaId;
+    }
+
     public productoLink(producto: any): string {
       return '/prod/' + producto.id;
     }
 
     public asignarProductosRecomendados(){
-      for(let n = 1 ; n < 6; n++){
-        if(this.productos !== null){
+      for(let n = 0 ; n < 5; n++){
+        if(this.productos !== null && this.productos[n] !== undefined){
           this.productosRecomendados.push(this.productos[n]);
         }
       }

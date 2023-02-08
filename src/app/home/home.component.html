@@ -1,8 +1,9 @@
 <app-nav tema="claro"></app-nav>
 
 <body>
+  <!--
   <div class="banners"
-    ><img id="banner" src="https://i.postimg.cc/XJzScvKQ/banner.png" value="sdfd"
+    ><img id="banner" src="https://i.postimg.cc/wjMMmwZt/banner8.png" value="sdfd"
     />
     <div class="descuento-banner">20% OFF a partir de las 10 unidades</div>
     <div class="titulo-banner">Lo mejor para tu mascota</div>
@@ -10,31 +11,33 @@
     <a href="/store/0" class="boton">Ir a la tienda</a>
   </div>
 
+  -->
+
 <div id="contenedor-filtros">
   <div *ngIf="true">
-    <a class="filtros" href="/store/2">
+    <a class="filtros">
       <img
         class="imagen-filtro"
         src="https://media.istockphoto.com/id/183770030/es/foto/collar%C3%ADn-de-perro.jpg?s=612x612&w=0&k=20&c=sEvDY9aewUd64KJQNNKnxe6JC8XueUOeJRb2SPWfwWQ="
       />
       <a class="etiqueta-filtro">collares</a>
     </a>
-    <a class="filtros" href="/store/4"
+    <a class="filtros"
         ><img
           class="imagen-filtro"
           src="https://i.postimg.cc/WpdLs9Ly/201026124128-dogcoatsgoldpaw-super-169.png"
       />
       <a class="etiqueta-filtro">Abrigos</a>
     </a>
-    <a class="filtros" href="/store/3">
-      <img
+    <a class="filtros"
+      ><img
         class="imagen-filtro"
         src="https://cdn.shopify.com/s/files/1/0185/9786/products/LSH-1-X-4-RYL_MAIN.jpg?v=1626794959"
       />
-      <a class="etiqueta-filtro">correas</a>
+      <a class="etiqueta-filtro">Correas</a>
     </a>
 
-    <a class="filtros" href="/store/1"
+    <a class="filtros"
       ><img
         class="imagen-filtro"
         src="https://http2.mlstatic.com/D_NQ_NP_799006-MLA47380703999_092021-O.webp"
@@ -42,7 +45,7 @@
       <a class="etiqueta-filtro">Colchonetas</a>
     </a>
 
-      <a class="filtros" href="/store/4"
+      <a class="filtros"
         ><img
           class="imagen-filtro"
           src="https://http2.mlstatic.com/D_NQ_NP_983112-MLA40337359386_012020-O.webp"
@@ -56,7 +59,7 @@
 
 
 <div id="slide-productos">
-  <div id="recomendados"><p id="recomendados-titulo">Recomendados:</p><div id="recomendados-boton"><button id="ver-todos">Ver todos</button></div></div>
+  <div id="recomendados"><p id="recomendados-titulo">Recomendados:</p><div id="recomendados-boton"><a href="/store/0" id="ver-todos">Ver todos</a></div></div>
     <div
     class="contenedorProducto"
     *ngFor="let producto of productosRecomendados"

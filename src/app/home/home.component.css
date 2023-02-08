@@ -1,3 +1,4 @@
+
 body{
   background-color: rgb(255, 255, 255);
 }
@@ -11,7 +12,7 @@ body{
 #banner {
   border-radius: 2px;
   width: 98.8vw;
-  opacity: 100%;
+  opacity: 92%;
 }
 .titulo-banner {
   position: absolute;
@@ -96,7 +97,7 @@ body{
 
 .boton{
   cursor: pointer;
-  background-color: rgba(51, 113, 228, 0.87);
+  background-color: rgba(51, 113, 228, 0.938);
   height: 28px;
   width: 140px;
   border-radius: 5px;
@@ -175,17 +176,16 @@ body{
 }
 #ver-todos{
   cursor: pointer;
-  background-color: rgba(51, 113, 228, 0.87);
-  height: 26px;
-  width: 100px;
-  border-radius: 4px;
+  background-color: rgba(33, 94, 187, 0.856);
+  padding:2px 4px 2px 4px;
+  border-radius: 5px;
   font-family: 'Red Hat Display', sans-serif;
   font-size: 16px;
   border-style: none;
   color: white;
 }
 #ver-todos:hover{
-  background-color: rgb(51, 113, 228);
+  background-color: rgb(33, 95, 187);
 }
 #recomendados-titulo{
   display:inline-block;
@@ -244,3 +244,22 @@ body{
     transform: translateX(0px);
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .producto {
+
+    width: 150px;
+    height: 310px;
+
+    padding: 13px;
+    margin: 14px;
+    margin-top: 4px;
+  }
+
+  #slide-productos{
+    background-color: rgba(209, 209, 209, 0);
+    width: 98vw;
+    margin: 20px auto;
+  }
+
+  }

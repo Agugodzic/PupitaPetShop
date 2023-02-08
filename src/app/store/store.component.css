@@ -86,7 +86,7 @@ html {
   padding: 5px;
   font-size: 16px;
   display: block;
-  background-color:rgb(214, 212, 212);
+  background-color:rgb(0, 0, 0);
 }
 
 .tools {
@@ -94,15 +94,19 @@ html {
   margin: 10px;
   font-family:'Montserrat', sans-serif;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.788);
+  color: rgba(245, 245, 245, 0.788);
   margin-left: 40px;
+
 }
 
 .tool {
+  display: inline;
+  position:relative;
   border-style: none;
   font-family:'Montserrat', sans-serif;
   background-color:rgba(255, 255, 255, 0);
-  color: black;
+  color: rgb(255, 255, 255);
+  max-width: 200px;
 }
 
 button {
@@ -113,16 +117,37 @@ span {
   margin: 3px;
 }
 #lateral {
-  background-color: rgba(197, 197, 197, 0.644);
+  background-color:rgb(255, 255, 255);
   display: inline-block;
   text-align: left;
   width: 110px;
   padding: 20px 25px 20px 25px;
   border-radius: 4px;
   position: relative;
-  color: rgb(59, 59, 59);
+  color: rgb(102, 80, 38);
   vertical-align: top;
   margin-top: 60px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(128, 128, 128, 0.253);
+  font-family:'Montserrat', sans-serif;
+}
+.botonLateral {
+  display: block;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  text-align: center;
+  font-family:'Montserrat', sans-serif;
+  color: rgb(0, 0, 0);
+}
+.botonLateral:hover {
+  color: rgb(240, 237, 237);
+}
+.lat-menu {
+  margin-bottom: 25px;
+  margin-top: 10px;
 }
 
 #no-coincidencias{
@@ -171,22 +196,7 @@ span {
   cursor:pointer;
 }
 
-.botonLateral {
-  display: block;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0);
-  text-align: center;
-  color: rgb(0, 0, 0);
-}
-.botonLateral:hover {
-  color: rgb(53, 53, 53);
-}
-.lat-menu {
-  margin-bottom: 25px;
-  margin-top: 10px;
-}
+
 .nombre-producto {
   font-size: 17px;
   min-height: 40px;
@@ -204,7 +214,7 @@ span {
 }
 #filtros {
   text-align: start;
-  margin: 10px 0px 10px 22px;
+  margin: 10px 0px 10px 10px;
   display: block;
   font-style: italic;
   color: rgba(0, 0, 0, 0.459);
@@ -213,18 +223,18 @@ span {
   background-color: rgba(255, 255, 255, 0.856);
   color: rgba(0, 0, 0, 0.829);
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0px;
-  box-shadow: 2px 3px 10px 4px rgba(92, 91, 91, 0.335);
   font-size: 12px;
+  border: solid;
+  border-width: 1px;
+  border-color: #a3a3a3;
 }
 .controladorPaginas:hover {
   color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 4px;
 }
 
-.material-symbols-outlined{
+.material-symbols-numeros{
 height: 8px;
 font-size: 22px;
 }
@@ -240,18 +250,62 @@ font-size: 22px;
 .numerosDePagina {
   background-color: rgba(240, 248, 255, 0);
   padding: 6px;
-  border: none;
+  border: solid;
+  border-width: 1px;
+  border-color: #a3a3a3;
   margin: 2px;
   margin-left: 6px;
   margin-right: 6px;
   transform: TranslateY(-25%);
   color: rgba(0, 0, 0, 0.76);
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .numerosDePagina:hover {
   color: black;
 }
 
+#desplegable{
+	position: absolute;
+	background: #000000;
+	width: 150px;
+  top:18px;
+  left: -4px;
+  visibility: hidden;
+  z-index: 2000;
+  padding: 8px;
+  text-align: left;
+
+}
+.tool:hover #desplegable{
+  visibility: visible;
+}
+
+.desplegable-tool{
+  margin:10px;
+  font-size: 13px;
+  display: inline;
+  cursor:pointer;
+}
+
+.desplegable-categoria{
+	display: block;
+	color: #fff;
+	font-family: 'Open sans';
+	text-decoration: none;
+  padding-top: 12px ;
+  padding-bottom: 12px;
+}
+
+.desplegable-categoria:hover{
+  background-color: rgba(255, 255, 255, 0.199);
+}
+.tool:active .desplegable{
+  visibility: hidden;
+}
+
+#selector-categoria-out{
+  display: flex;
+}
 
 @keyframes transicionProductos {
   0% {
@@ -262,4 +316,36 @@ font-size: 22px;
     opacity: 100%;
     transform: translateX(0px);
   }
+}
+
+@media only screen and (max-width: 670px) {
+  #lateral{
+    display:none
+  }
+  #galeria{
+    margin:2px;
+    width: 99vw;
+  }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+  .tools {
+    display: block;
+  }
+  .desplegable-categoria{
+    display: block;
+    color: #fff;
+    font-family: 'Open sans';
+    text-decoration: none;
+    padding-top: 12px ;
+    padding-bottom: 12px;
+  }
+
+  #selector-categoria-in{
+    position:absolute;
+    visibility: hidden;
+  }
+
 }

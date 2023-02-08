@@ -10,13 +10,13 @@
   [ngStyle]="{'background-color':tema == 'oscuro' ? 'black' : 'white' }">
 
   <div id="contenedor-logo">
-    <a href="/home"
+    <a href=""
     ><img [ngStyle]="{'filter':tema == 'oscuro' ? 'invert()' : 'none' }" id="logo" src="https://i.postimg.cc/B62kYXYg/logo.png"
     /></a>
   </div>
 
   <div id="nav" >
-    <a href="home" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">INICIO</a> <span class="boton">|</span>
+    <a href="" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">INICIO</a> <span class="boton">|</span>
     <a href="store/0" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">TIENDA</a> <span class="boton">|</span>
     <a href="carrito" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">CARRITO</a>
   </div>
@@ -27,7 +27,6 @@
       <img *ngIf="tema !== 'oscuro'" id="carrito" [src]="imagen.carrito"/>
       <p *ngIf="generar() !== 0" id="cantidad-productos">{{cantidadCarrito}}</p>
     </a>
-    <button *ngIf="getLogValue()" id="cerrar-sesion" (click)="logOut()">Cerrar sesion</button>
   </div>
-
+  <button *ngIf="getLogValue()" id="cerrar-sesion" (click)="logOut()">Cerrar sesion</button>
 </div>

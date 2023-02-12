@@ -22,7 +22,7 @@ import { InterceptorService } from './servicios/interceptor.service';
 import { LogInComponent } from './logIn/logIn.component';
 import { ProductoMiniaturaComponent } from './producto-miniatura/producto-miniatura.component';
 
-import { loadScript } from "@paypal/paypal-js";
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { loadScript } from "@paypal/paypal-js";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule
   ],
   providers: [ProductoService , AuthService,{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent],

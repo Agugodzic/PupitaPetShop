@@ -21,13 +21,13 @@ export class StoreComponent implements OnInit {
   public marcaFiltro: string = 'Todas las marcas';
   public logged:boolean = true;
   public textoAlternativo:string = "";
+  public estadoRecursos:any;
 
   private extraerElementos = this.ToolsService.extraerElementos;
   private menorPrecio = this.ToolsService.menorPrecio;
   private mayorPrecio = this.ToolsService.mayorPrecio;
-  public listaDeProductos:any = [];
+  public listaDeProductos:any;
   private productosService:any = [];
-  private Precio = this.ToolsService.precio;
   private filtrar = this.ToolsService.filtrarProductosEnLista;
   public productos = this.productosService;
   private categoria:any;
@@ -40,6 +40,7 @@ export class StoreComponent implements OnInit {
   public Imagen = this.ToolsService.imagen;
 
   public categorias:CategoriaModel[];
+  public mostrarSelectorCategorias:boolean = false;
 
 
 
@@ -60,6 +61,7 @@ export class StoreComponent implements OnInit {
     this.ProductoService.listar().subscribe(
       (response: ProductoModel[])  =>{
         this.productosService = response;
+        this.estadoRecursos = 'defined';
         this.actualizarLista();
         this.textoAlternativo = "No se encontraron coincidencias."
     })
@@ -104,7 +106,11 @@ export class StoreComponent implements OnInit {
     console.log(this.productosPaginaActual.length);
   }
 
-  switchAgregar():void{
+  public switchSelectorCategorias(){
+    this.mostrarSelectorCategorias = !this.mostrarSelectorCategorias;
+  }
+
+  public switchAgregar():void{
     if(this.agregarProducto == false){
       this.agregarProducto = true;
     }else{
@@ -164,6 +170,11 @@ export class StoreComponent implements OnInit {
     this.actualizarLista();
   }
 
+  cambiarProductoM(producto:any) {
+    this.cambiarProducto(producto);
+    this.switchSelectorCategorias();
+  }
+
   cambiarMarca(marca:string) {
     this.marcaFiltro = marca;
     this.paginaActual = 1;
@@ -190,7 +201,7 @@ export class StoreComponent implements OnInit {
   }
 
   get precio() {
-    return this.Precio;
+    return this.ToolsService.precio;
   }
 
   ordenarProductos(orden:string) {

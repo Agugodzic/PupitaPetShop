@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PayPalScriptDataAttributes, PayPalScriptOptions } from '@paypal/paypal-js';
 import { ToolsService } from '../tools.service';
+
+
+declare var paypal:any;
 
 @Component({
   selector: 'app-comprar',
@@ -7,6 +11,7 @@ import { ToolsService } from '../tools.service';
   styleUrls: ['./comprar.component.css']
 })
 export class ComprarComponent implements OnInit {
+  @ViewChild( 'paypal', { static:true }) paypalElement:ElementRef;
   public imagen:any;
   public textoBoton:string = "Siguiente";
   public pasoActual:number = 1;
@@ -56,6 +61,9 @@ export class ComprarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    paypal
+    .Buttons()
+    .render(this.paypalElement.nativeElement)
   }
 
 }

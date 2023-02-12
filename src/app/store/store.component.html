@@ -1,4 +1,8 @@
-<!-- Formulario -->
+<div id="contenedor-store" [ngStyle]="{
+  'cursor': estadoRecursos == undefined ? 'wait': 'default'
+}">
+
+<!-- Formularios -->
 
   <div id="contenedor-formulario" *ngIf="agregarProducto && getLogValue()">
     <div class="centrar">
@@ -7,11 +11,27 @@
     </div>
   </div>
 
-<!-----Nav-bar---->
+  <div id="contenedor-formulario" *ngIf="mostrarSelectorCategorias">
+    <div class="centrar">
+      <div id="selector-categorias">
+
+        <button class="selector-categorias-opcion" (click)="cambiarProductoM('Todos los productos')">
+          Ver todo
+        </button>
+
+        <button (click)="cambiarProductoM(categoria.categoria)" class="selector-categorias-opcion" *ngFor="let categoria of categorias">
+          {{categoria.categoria}}
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+<!------------- Nav-bar ------------>
 
 <app-nav tema="claro"></app-nav>
 
-<!--------- Tools -------->
+<!--------------- Tools ------------->
 
 <div id="contenedor-tools">
 
@@ -24,15 +44,22 @@
 
   <div class="tools" id="selector-categoria-in">
     <span>Filtrar por:</span>
-      <div class="tool" ><div class="desplegable-tool">{{ productoFiltro }}</div>
-        <div id="desplegable">
-          <a class="desplegable-categoria" [href]="linkCategoria(categoria.id)" *ngFor="let categoria of categorias">
-            <a class="tool">{{categoria.categoria}}</a>
-          </a>
+      <div class="tool" >
+
+        <div class="desplegable-tool">{{ productoFiltro +" "}}
+          <div style="opacity:70%;font-size:11px;display:inline;">▼</div>
+        </div>
+
+        <div>
+          <div id="desplegable">
+            <a class="desplegable-categoria" [href]="linkCategoria(categoria.id)" *ngFor="let categoria of categorias">
+              <a class="tool">{{categoria.categoria}}</a>
+            </a>
+          </div>
         </div>
       </div>
-  </div>
 
+  </div>
 </div>
 
 <!--------- Menu Lateral -------->
@@ -47,7 +74,9 @@
       Todos
     </button>
     <button *ngFor="let categoria of categorias" class="botonLateral" (click)="cambiarProducto(categoria.categoria)">
-      {{categoria.categoria}}
+      <div  [ngStyle]="{
+        'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
+        " >{{categoria.categoria}}</div>
     </button>
   </div>
 
@@ -62,38 +91,45 @@
 
 <!--------- Productos -------->
 
-<div *ngIf="productos.length > 0" id="galeria">
-  <div id="contenedor-filtros">
-    <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
+<div id="galeria" *ngIf="estadoRecursos == undefined">
+  <p id="mensaje-espera">Aguarde un momento...</p>
+</div>
 
-    {{"Tienda / " + productoFiltro }}
+  <div *ngIf="productos.length > 0" id="galeria">
 
-    <div id="selector-categoria-out">
-      Categoria
+    <div id="contenedor-filtros">
+      <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
+
+      <span id="filtros">{{"Tienda / " + productoFiltro }}</span>
+
+      <div id="selector-categoria-out">
+        <button id="selector-categoria-out-boton" (click)="switchSelectorCategorias()">Categorias<div style="opacity:70%;font-size:11px;display:inline;">▼</div></button>
+      </div>
     </div>
-  </div>
-
 
   <div
     class="contenedorProducto"
     *ngFor="let producto of productosPaginaActual"
   >
-    <a [href]="productoLink(producto)" class="producto">
-      <div id="contenedor-imagen">
-        <img [src]="producto.imagen1" class="imagen" />
-      </div>
+  <app-producto-miniatura [producto]="producto"></app-producto-miniatura>
 
-      <div id="descripcion">
-        <p class="nombre-producto">{{ producto.nombre }}</p>
-        <p class="descripcion-producto">
-          {{ longitud(producto.descripcioncorta, 30) }}...
-        </p>
-        <p class="precio-producto">{{ precio(producto.precio, 0) }}</p>
-      </div>
-    </a>
   </div>
 </div>
+
+
+<!--------- Productos | No coincidencias-------->
+
 <div *ngIf="productos.length == 0" id="galeria">
+  <div id="contenedor-filtros">
+    <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
+
+    <span id="filtros">{{"Tienda / " + productoFiltro }}</span>
+
+    <div id="selector-categoria-out">
+      <button id="selector-categoria-out-boton" (click)="switchSelectorCategorias()">Categorias ></button>
+    </div>
+
+  </div>
   <div
   class="contenedorProducto"
 >
@@ -102,6 +138,8 @@
 </div>
 
 <img *ngIf="!getLogValue()" id="chat" [src]=Imagen.logoWsp >
+
+<!----------- Controlador de paginas -------------->
 
 <div id="selectorDePaginas">
   <button class="controlador-simbolo controladorPaginas" (click)="primeraPagina()">
@@ -133,5 +171,6 @@
   <button href="tools" class="controladorPaginas" (click)="ultimaPagina()">
     <span class="material-symbols-outlined"> last_page </span>
   </button>
-  <div></div>
+</div>
+
 </div>

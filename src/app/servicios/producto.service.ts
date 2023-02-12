@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductoModel } from '../modelos/producto-model';
 import { HttpClient } from '@angular/common/http';
+import { ToolsService } from '../tools.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiServerUrl = "http://localhost:8080"
+  private apiServerUrl = this.toolsService.apiServerUrl;
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private toolsService:ToolsService) {
+  }
 
  public listar():Observable<ProductoModel[]>{
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/listar`)

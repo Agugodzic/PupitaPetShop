@@ -38,8 +38,10 @@
 
       <!---------------- PASO 1 -------------------->
 
-      <form *ngIf="pasoActual==1">
+      <div #paypal></div>
 
+      <form *ngIf="pasoActual==1">
+        <!--
         <div class="contenedor-inl">
           <p class="input-name">Nombre:</p>
           <p><input class="form-control" type="text" placeholder="Nombre"></p>
@@ -61,9 +63,9 @@
           <p class="input-name">Codigo Postal:</p>
           <p><input class="form-control" min="0"  type="number" placeholder="Codigo Postal" ></p>
         </div>
-
+        -->
         <div id="botones">
-        <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
+        <a *ngIf="pasoActual < 4" id="boton-volver" href="/carrito">Volver</a>
         <button (click)="siguiente()">{{textoBoton}}</button>
         </div>
 

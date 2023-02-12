@@ -20,6 +20,9 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './servicios/auth.service';
 import { InterceptorService } from './servicios/interceptor.service';
 import { LogInComponent } from './logIn/logIn.component';
+import { ProductoMiniaturaComponent } from './producto-miniatura/producto-miniatura.component';
+
+import { loadScript } from "@paypal/paypal-js";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { LogInComponent } from './logIn/logIn.component';
     LogInComponent,
     FormProductoComponent,
     ComprarComponent,
-    NavComponent
+    NavComponent,
+    ProductoMiniaturaComponent
   ],
   imports: [
     BrowserModule,

@@ -4,9 +4,12 @@ p{
 
 #barra-superior{
   height: 50px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(224, 224, 224);
   box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.699);
   z-index: 4000;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgba(0, 0, 0, 0);
 }
 
 #logo{
@@ -21,7 +24,7 @@ p{
 }
 
 #contenido{
-background-color: rgba(230, 227, 227, 0.829);
+background-color: rgb(255, 255, 255);
 min-height: 86vh;
 display: flex;
 align-items: center;
@@ -37,7 +40,7 @@ z-index: 0;
   margin: auto;
   border: solid;
   border-width: 1.5px;
-  border-color: rgba(5, 5, 5, 0.527);
+  border-color: rgba(5, 5, 5, 0.185);
 }
 
 #barra-de-progreso{
@@ -78,7 +81,7 @@ z-index: 0;
   margin-bottom: 10px;
  }
 
-button{
+button {
   background-color: rgb(42, 72, 241);
   height: 30px;
   min-width: 70px;
@@ -95,10 +98,24 @@ button:hover{
   opacity: 92%;
 }
 
+a{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  height: 30px;
+  min-width: 70px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  color: white;
+  margin:15px;
+  margin-top: 10x;
+  cursor:pointer;
+  padding:6px;
+}
+
 #boton-volver{
   background-color: rgb(196, 196, 196);
   border-color: rgba(0, 0, 0, 0);
   color: rgba(0, 0, 0, 0.911);
+
 }
 
 #formularios{

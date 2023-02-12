@@ -139,6 +139,7 @@ span {
   text-align: left;
   font-family: 'Red Hat Display', sans-serif;
   margin-left: 100px;
+  white-space: nowrap;
 }
 
 p {
@@ -152,10 +153,8 @@ p {
   display: block;
   border-radius: 4px;
   padding: 5px;
-  overflow-x: scroll;
-  height: 370px;
-  width: 70vw;
-  white-space: nowrap;
+  height: fit-content;
+  width: 95vw;
 }
 
 .contenedorProducto {
@@ -164,15 +163,7 @@ p {
 
 .producto {
   white-space:normal;
-  display: inline-block;
-  width: 150px;
-  height: 310px;
-  background-color: rgba(255, 255, 255, 0.466);
-  text-align: center;
-  padding: 13px;
-  margin: 5px;
-  box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);
-  cursor: pointer;
+  font-family: none;
 }
 
 
@@ -281,13 +272,13 @@ span {
   border: 1px;
   border-color: rgba(0, 0, 0, 0.158);
   border-style: solid;
-  width:690px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
   margin-bottom: 20px;
   width:70vw;
+  height: fit-content;
   min-height: 50px;
   background-color: rgb(233, 233, 233);
 }
@@ -314,7 +305,15 @@ span {
   visibility: hidden;
 }
 
-@media only screen and (max-width: 800px) {
+#mensaje-espera{
+  font-size: 15px;
+  margin-top: 35px;
+  color:rgba(0, 0, 0, 0.24);
+  font-family:'Montserrat', sans-serif;
+}
+
+
+@media only screen and (max-width: 910px) {
   #contenido{
     width: 92vw;
     background-color: rgba(255, 255, 255, 0);
@@ -341,6 +340,7 @@ span {
     text-align: start;
     display: block;
     margin-left: 20px;
+    margin-top: 15px;
   }
 
   #imagenes-producto{
@@ -362,38 +362,39 @@ span {
 
   #contenedor-imagen{
     display: flex;
-    width: 370px;
-    height: 370px;
-    margin: 8px;
+    width: 75vw;
+    height: 75vw;
+    margin: 2vw;
     margin-top: 30px;
     float:none;
     border-radius: 5px;
     padding: 0px;
-    margin-right: 15px;
+    margin-right: 0px;
     border: 1px;
     border-color:rgba(0, 0, 0, 0.164);
     border-style: solid;
   }
 
   #imagen-producto {
-    max-height: 368px;
-    max-width: 368px;
+    max-width: 75vw;
+    max-height: 75vw;
     margin: 0 auto;
+
   }
 
   .contenedor-miniatura{
-    margin: 8px;
+    margin: 3vw;
     display:flex;
     align-items: center;
-    width: 70px;
-    height: 70px;
-    margin-bottom: 15px;
-    margin-left: 15px;
+    width: 13vw;
+    height: 13vw;
+    margin-bottom: 5vw;
+    margin-top: 0;
 
   }
   .imagen-miniatura {
-    max-width: 70px;
-    max-height: 70px;
+    max-width: 13vw;
+    max-height: 13vw;
     margin: 0 auto;
   }
 
@@ -407,6 +408,7 @@ span {
     font-family: 'Red Hat Display', sans-serif;
     margin: 0px;
     display: block;
+    overflow: hidden;
   }
 
   #relacionados-titulo{

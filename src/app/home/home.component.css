@@ -124,53 +124,7 @@ body{
   margin-right: auto;
   border-radius: 5px;
 }
-.nombre-producto {
-  font-size: 17px;
-  min-height: 40px;
-}
-.descripcion-producto {
-  font-size: 15px;
-  margin: 1px;
-  min-height: 40px;
-}
-.precio-producto {
-  color: rgba(16, 100, 16, 0.836);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 15px;
-}
-.imagen {
-  max-height: 150px;
-  max-width: 150px;
-  background-color: rgba(0, 0, 0, 0.185);
-  margin-bottom: 6px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-#contenedor-imagen{
-  position: relative;
-  vertical-align: middle;
-  height: 150px;
-  width: 150px;
-}
-.producto {
-  display: inline-block;
-  width: 150px;
-  height: 310px;
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 13px;
-  margin: 14px;
-  margin-top: 4px;
-  /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);*/
-  cursor: pointer;
-  animation-name: transicionProductos;
-  animation-duration: 0.4s;
-  border-style: solid;
-  border-width: 1px ;
-  border-color: rgb(197, 197, 197);
-}
+
 .contenedorProducto {
   display: inline;
 }
@@ -260,6 +214,22 @@ body{
     background-color: rgba(209, 209, 209, 0);
     width: 98vw;
     margin: 20px auto;
+  }
+
+
+  .filtros {
+    width: 30vw;
+    height: 45vw;
+    margin:15px;
+    font-size: 22px;
+  }
+  .imagen-filtro {
+    max-width: 30vw;
+    max-height: 30vw;
+    position: relative;
+  }
+  .etiqueta-filtro{
+    width: 30vw;
   }
 
   }

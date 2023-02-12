@@ -33,15 +33,24 @@
 
 <app-nav></app-nav>
 
-<div id="contenido">
+<div id="contenido" [ngStyle]="{
+  'cursor': producto == undefined ? 'wait': 'default'
+}">
+
+  <div  *ngIf="producto == undefined">
+    <p id="mensaje-espera">Aguarde un momento...</p>
+  </div>
+
 
   <div id="contenido-edicion">
     <a href="store/0">Tienda</a>{{ " / "+producto.categoria }}
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
-    </div>
+  </div>
 
-  <div id="imagenes-producto">
+
+
+  <div id="imagenes-producto" *ngIf="producto !== undefined">
     <div id="miniaturas">
       <div class="contenedor-miniatura"*ngFor="let imagen of ImagenesProducto">
         <img
@@ -64,7 +73,7 @@
   </div>
 
 
-  <div id="descripcion">
+  <div id="descripcion" *ngIf="producto !== undefined">
 
   <div id="descripcion-edicion">
     {{ "Tienda / "+producto.categoria }}
@@ -102,27 +111,17 @@
   -->
 
 
-  <div id="relacionados">
+  <div id="relacionados" *ngIf="producto !== undefined">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productos">
-        <a
-          [href]="productoLink(elemento)"
+
+        <app-producto-miniatura
           class="producto"
-          *ngIf="
-            (elemento.categoria == producto.categoria) &&
-            elemento.nombre != producto.nombre
-            "
-        >
-          <img [src]="elemento.imagen1" class="imagen" />
-          <div class="descripcion">
-            <p class="nombre-producto">{{ elemento.nombre }}</p>
-            <p class="descripcion-producto">
-              {{ longitud(elemento.descripcioncorta, 30) }}...
-            </p>
-            <p class="precio-producto">{{ precio(elemento.precio, 0) }}</p>
-          </div>
-        </a>
+          *ngIf="(elemento.categoria == producto.categoria) &&elemento.nombre != producto.nombre"
+          [producto]="elemento">
+        </app-producto-miniatura>
+
       </div>
     </div>
   </div>

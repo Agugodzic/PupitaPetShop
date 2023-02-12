@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { LoginModel } from '../modelos/login-model';
+import { ToolsService } from '../tools.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,10 @@ import { LoginModel } from '../modelos/login-model';
 export class AuthService {
 
   currentUserSubject: BehaviorSubject<any>;
-  private apiServerUrl = "http://localhost:8080" ;
+  private apiServerUrl = this.toolsService.apiServerUrl;
 
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient,
+    private toolsService:ToolsService){
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(sessionStorage.getItem('token') || '{}')
     );

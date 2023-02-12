@@ -1,3 +1,6 @@
+#contenedor-carrito{
+  min-height: calc(100vh - 60px);
+}
 
 #contenido {
   background-color: rgb(255, 255, 255);
@@ -19,6 +22,19 @@
   font-size: 17px;
 }
 
+#mensaje-espera{
+  font-size: 17px;
+  margin-top: 30px;
+  color:rgba(0, 0, 0, 0.61);
+}
+
+#texto-vacio{
+  font-size: 17px;
+  margin-top: 30px;
+  color:rgba(0, 0, 0, 0.61);
+}
+
+
 .producto{
   margin:5px;
   border-radius: 8px;
@@ -35,7 +51,7 @@
 
 .contenedor-imagen{
   display: flex;
-  margin:5px;
+  margin:4px;
   height: 80px;
   align-items: center;
 }
@@ -46,14 +62,16 @@
 
 .descripcion{
   margin:5px;
-  padding-top: 10px;
+  padding-top: 0px;
   flex-grow: 2;
+  padding:4px;
 }
 
 .precio{
   font-size: 18px;
   margin:5px;
   flex-grow: 1;
+  text-align: end;
 }
 
 .titulo-producto{
@@ -100,7 +118,7 @@
 
 #boton-comprar{
   cursor: pointer;
-  background-color: rgb(57, 80, 214);
+  background-color: rgb(100, 121, 235);
   height: 35px;
   width: 120px;
   border-radius: 5px;
@@ -123,7 +141,7 @@
 }
 
 .material-symbols-outlined{
-font-size: 15px;
+  font-size: 15px;
 }
 
 .input-cantidad{
@@ -140,7 +158,6 @@ font-size: 15px;
 #botones-cantidad{
   padding:0;
   background-color: rgba(137, 43, 226, 0);
-
 }
 
 .boton-cantidad{
@@ -211,11 +228,20 @@ input[type=number]{
   border-radius: 1px;
 }
 
+#titulo-descripcion{
+  display:flex;
+  align-items: center;
+  text-align: center;
+  flex-grow: 3;
+}
+
 #precio-descripcion{
   display: inline;
+  text-align: center;
 }
 
 @media only screen and (max-width: 800px) {
+
   #contenido{
     width: 97vw;
     background-color: rgba(255, 255, 255, 0);
@@ -223,78 +249,96 @@ input[type=number]{
     margin-bottom: 50px;
     border-style: none;
     min-height: 0;
-}
+  }
 
-.producto{
-  margin:5px;
-  border-radius: 8px;
-  border: 1px;
-  border-color: rgba(0, 0, 0, 0.158);
-  border-style: solid;
-  vertical-align: top;
-  display: inline-flex;
-  flex-direction: row;
-  padding-left: 20px;
-  width:90vw;
-}
+  .producto{
+    margin:5px;
+    border-radius: 8px;
+    border: 1px;
+    border-color: rgba(0, 0, 0, 0.158);
+    border-style: solid;
+    vertical-align: top;
+    display: inline-flex;
+    flex-direction: row;
+    padding-left: 10px;
+    width:90vw;
+  }
 
-.input-cantidad{
-  opacity: 95%;
-  width: 40px;
-  height: 18px;
-  font-size: 14px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color:rgba(0, 0, 0, 0.76);
-  margin-right:  10px;
-  transform: translateY(2px);
-}
-.boton-cantidad{
-  display: flex;
-  height: 18px;
-  width: 25px;
-  padding:0;
-  transform: translateY(2px);
-  font-size: 35px;
-  align-items: center;
-  vertical-align: middle;
-  margin: 6px;
-  border-style: none;
-  background-color: rgba(15, 20, 22, 0.726);
-  border-radius: 5px;
-  color: rgba(255, 255, 255, 0.911);
-  cursor:pointer;
-  opacity: 70%;
-}
+  .input-cantidad{
+    opacity: 95%;
+    width: 40px;
+    height: 18px;
+    font-size: 14px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:rgba(0, 0, 0, 0.76);
+    margin-right:  10px;
+    transform: translateY(2px);
+  }
 
-.descripcion-producto{
+  .boton-cantidad{
+    display: flex;
+    height: 18px;
+    width: 25px;
+    padding:0;
+    transform: translateY(2px);
+    font-size: 35px;
+    align-items: center;
+    vertical-align: middle;
+    margin: 6px;
+    border-style: none;
+    background-color: rgba(15, 20, 22, 0.726);
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.911);
+    cursor:pointer;
+    opacity: 70%;
+  }
+
+  .descripcion-producto{
+    visibility: hidden;
+    position:absolute;
+  }
+
+  .contenedor-borrar{
+    visibility: hidden;
+    position:absolute;
+  }
+
+  .contenedor-borrar-in{
+    display:flex;
+    right: 10px;
+    margin-top:7px;
+    height: 90px ;
+    width: 40px;
+    align-items: center;
+    visibility: visible;
+  }
+
+  #titulo-descripcion{
+    display:flex;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .precio{
+    display: inline;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .imagen{
+    height: auto;
+    width: auto;
+    max-height: 75px;
+    max-width: 75px;
+  }
+
+  #x-cantidad{
   visibility: hidden;
   position:absolute;
-}
-
-.contenedor-borrar{
-  visibility: hidden;
-  position:absolute;
-}
-
-.contenedor-borrar-in{
-  display:flex;
-  right: 10px;
-  margin-top:7px;
-  height: 90px ;
-  width: 40px;
-  align-items: center;
-  visibility: visible;
-}
-
-#titulo-descripcion{
-  display:flex;
-  align-items: center;
-}
-
-.imagen{
-  height: auto;
-  width: auto;
-  max-height: 80px;
-  max-width: 80px;
-}
+  }
+  #cantidad{
+    width: 30px;
+    font-size: 14px;
+  }
 }

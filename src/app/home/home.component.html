@@ -44,14 +44,14 @@
       />
       <a class="etiqueta-filtro">Colchonetas</a>
     </a>
-
+<!--
       <a class="filtros"
         ><img
           class="imagen-filtro"
           src="https://http2.mlstatic.com/D_NQ_NP_983112-MLA40337359386_012020-O.webp"
       />
       <a class="etiqueta-filtro">Fundas para auto</a>
-    </a>
+    </a>-->
 
 
   </div>
@@ -64,19 +64,7 @@
     class="contenedorProducto"
     *ngFor="let producto of productosRecomendados"
      >
-    <a [href]="productoLink(producto)" class="producto">
-      <div id="contenedor-imagen">
-        <img [src]="producto.imagen1" class="imagen" />
-      </div>
-
-      <div id="descripcion">
-        <p class="nombre-producto">{{ producto.nombre }}</p>
-        <p class="descripcion-producto">
-          {{ longitud(producto.descripcioncorta.toString(), 30) }}...
-        </p>
-        <p class="precio-producto">{{ precio(producto.precio, 0) }}</p>
-      </div>
-    </a>
+     <app-producto-miniatura [producto]="producto"></app-producto-miniatura>
   </div>
 </div>
 

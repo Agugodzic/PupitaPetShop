@@ -124,5 +124,9 @@ export class ToolsService {
     carrito:"https://cdn-icons-png.flaticon.com/512/107/107831.png",
     carritoBlanco:"https://i.postimg.cc/Bn0BSLXD/carrito-blanco.png"
   }
+
+  //apiServerUrl = "https://pupita-backend-production.up.railway.app";
+  apiServerUrl = "http://localhost:8080";
+  //apiServerUrl = ""
 }
 

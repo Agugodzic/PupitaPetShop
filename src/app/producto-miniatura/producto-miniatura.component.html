@@ -1,0 +1,16 @@
+<a [href]="productoLink(producto)" class="producto">
+  <div id="contenedor-imagen">
+    <img [src]="producto.imagen1" class="producto-imagen"/>
+  </div>
+
+  <div id="descripcion">
+    <p class="producto-nombre">{{ producto.nombre }}</p>
+    <p class="producto-descripcion">
+      {{ longitud(producto.descripcioncorta.toUpperCase(), 30) }}...
+    </p>
+    <p class="producto-precio">{{ precio(producto.precio, 0) }}</p>
+  </div>
+
+  <button class="agregar">Agregar</button>
+
+</a>

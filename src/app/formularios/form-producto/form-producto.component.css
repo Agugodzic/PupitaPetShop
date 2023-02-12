@@ -39,8 +39,11 @@ form{
   padding-top:15px;
   padding-bottom:30px;
   text-align: center;
-  z-index:1000;
+  z-index:5000;
   overflow-y: scroll;
+  max-height: 90vh;
+  max-width: 90vw;
+
 }
 
 .form-categoria{

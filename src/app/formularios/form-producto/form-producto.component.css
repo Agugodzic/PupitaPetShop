@@ -39,7 +39,7 @@ form{
   padding-top:15px;
   padding-bottom:30px;
   text-align: center;
-  z-index:5000;
+  z-index:1000;
   overflow-y: scroll;
   max-height: 90vh;
   max-width: 90vw;
@@ -56,7 +56,7 @@ form{
   font-family:'Montserrat', sans-serif;
   margin-left: auto;
   margin-right: auto;
-  z-index:5000;
+  z-index:6000;
   overflow-y: hidden;
   width: 300px;
   display:block;
@@ -70,6 +70,7 @@ form{
   background-color: white;
   border-radius: 8px;
   padding:2px 4px 4px 2px;
+  z-index:6000;
 }
 
 #input-categoria{
@@ -88,6 +89,7 @@ form{
   color: rgb(0, 0, 0);
   margin-left:8px;
   cursor:pointer;
+  z-index:6000;
 }
 #nueva-categoria:hover{
   background-color: rgb(228, 228, 228);

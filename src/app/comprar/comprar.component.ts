@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { PayPalScriptDataAttributes, PayPalScriptOptions } from '@paypal/paypal-js';
 import { ToolsService } from '../tools.service';
 
 
@@ -61,9 +60,6 @@ export class ComprarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    paypal
-    .Buttons()
-    .render(this.paypalElement.nativeElement)
   }
 
 }

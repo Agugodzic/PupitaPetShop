@@ -114,17 +114,15 @@
   -->
 
 
-  <div id="relacionados" *ngIf="producto !== undefined">
+  <div id="relacionados" *ngIf="producto !== undefined ">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productos">
-
         <app-producto-miniatura
           class="producto"
           *ngIf="(elemento.categoria == producto.categoria) &&elemento.nombre != producto.nombre"
           [producto]="elemento">
         </app-producto-miniatura>
-
       </div>
     </div>
   </div>

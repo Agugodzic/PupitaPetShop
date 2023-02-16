@@ -64,7 +64,7 @@ z-index: 0;
 }
 
 .linea-de-progreso{
-  background-color: rgb(212, 212, 212);
+  background-color: rgba(212, 212, 212, 0.219);
   border-color: rgba(0, 0, 0, 0);
   border-radius: 20px;
   display: inline-block;
@@ -90,7 +90,9 @@ button {
   color: white;
   margin:15px;
   margin-top: 10x;
+  font-size: 15px;
   cursor:pointer;
+  font-family: 'Red Hat Display', sans-serif;
 
 }
 
@@ -99,12 +101,11 @@ button:hover{
 }
 
 a{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Red Hat Display', sans-serif;
   height: 30px;
   min-width: 70px;
   border-radius: 5px;
   border-color: rgba(0, 0, 0, 0);
-  color: white;
   margin:15px;
   margin-top: 10x;
   cursor:pointer;
@@ -120,6 +121,7 @@ a{
 
 #formularios{
   min-height: 54vh;
+  margin-top: 20px;
 }
 
 form{
@@ -154,15 +156,19 @@ form{
 
 #paso2-opciones{
   font-family:'Montserrat', sans-serif;
-  display: inline-flex;
-  vertical-align: middle;
   align-items: center;
+  text-align: center;
   font-size: 14px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  width: 60vw;
+  margin:50px  auto ;
+  display: inline-block;
+
 }
 
 .paso2-opcion{
+  width: fit-content;
+  display: inline-flex;
+  flex-direction: column;
   margin: 20px;
   text-align: center;
 }

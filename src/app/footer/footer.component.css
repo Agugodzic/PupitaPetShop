@@ -5,6 +5,7 @@
   list-style: none;
   margin-top: 100px;
   font-family: 'Red Hat Display', sans-serif;
+  font-size: 80%;
   text-align: left;
   padding: 10px 10vw;
 }
@@ -19,7 +20,7 @@
 }
 
 .icon{
-  height: 25px;
+  height: 20px;
 }
 
 ul{

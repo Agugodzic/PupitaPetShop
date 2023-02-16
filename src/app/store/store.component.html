@@ -73,11 +73,14 @@
     >
       Todos
     </button>
-    <button *ngFor="let categoria of categorias" class="botonLateral" (click)="cambiarProducto(categoria.categoria)">
-      <div  [ngStyle]="{
-        'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
-        " >{{categoria.categoria}}</div>
-    </button>
+
+    <div *ngFor="let categoria of categorias" >
+      <button *ngIf="categoriasEnUso.includes(categoria.categoria)" class="botonLateral" (click)="cambiarProducto(categoria.categoria)">
+        <div  [ngStyle]="{
+          'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
+          " >{{categoria.categoria}}</div>
+      </button>
+    </div>
   </div>
 
   <div class="lat-menu">

@@ -175,8 +175,8 @@ export class ToolsService {
     carritoBlanco:"https://i.postimg.cc/Bn0BSLXD/carrito-blanco.png"
   }
 
-  //apiServerUrl = "https://pupita-backend-production.up.railway.app";
-  public apiServerUrl = "http://localhost:8080";
+  public apiServerUrl = "https://pupita-backend-production.up.railway.app";
+  //public apiServerUrl = "http://localhost:8080";
   //apiServerUrl = ""
 }
 

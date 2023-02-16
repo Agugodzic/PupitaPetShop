@@ -31,6 +31,7 @@ export class StoreComponent implements OnInit {
   private filtrar = this.ToolsService.filtrarProductosEnLista;
   public productos = this.productosService;
   private categoria:any;
+
   private cantidadDePaginas = this.numerosDePagina(this.productos).length;
   private paginas = this.numerosDePagina(this.productos);
 
@@ -41,8 +42,9 @@ export class StoreComponent implements OnInit {
 
   public categorias:CategoriaModel[];
   public mostrarSelectorCategorias:boolean = false;
-  private productosPorPagina = 12;
 
+  private productosPorPagina = 12;
+  public categoriasEnUso:any = [];
 
   constructor(
     private ToolsService: ToolsService,
@@ -62,8 +64,13 @@ export class StoreComponent implements OnInit {
       (response: ProductoModel[])  =>{
         this.productosService = response;
         this.estadoRecursos = 'defined';
-        this.actualizarLista();
+        this.actualizarLista();// se filtran los productos para mostrar en pantalla
         this.textoAlternativo = "No se encontraron coincidencias."
+        response.forEach((producto)=>{ // se filtran las categorias que contienen productos para ocultar las vacias;
+          let usadas:any = [];
+          if(!usadas.includes(producto.categoria))
+            this.categoriasEnUso.push(producto.categoria);
+        })
     })
   }
 
@@ -118,24 +125,6 @@ export class StoreComponent implements OnInit {
     }
   }
 
- /* private generadorDeFiltro(categoria: number):any {
-    let numeroRuta = 0;
-
-    if (categoria == numeroRuta) {
-      return 'Todos los productos';
-    }
-    else{
-
-      for(let Categoria of this.categorias){
-        numeroRuta ++;
-
-        if (categoria == numeroRuta) {
-          return Categoria.categoria;
-        }
-      }
-    }
-  }*/
-
   private generadorDeFiltro(categoria: number):any {
     let numeroRuta:number;
 
@@ -154,34 +143,34 @@ export class StoreComponent implements OnInit {
     }
   }
 
-  productosPaginaActual = this.extraerElementos(
+  public productosPaginaActual = this.extraerElementos(
     this.productos,
     this.productosPorPagina * (this.paginaActual - 1),
     this.indicesPorPagina()
   );
 
-  productoLink(producto: any): string {
+  public productoLink(producto: any): string {
     return '/prod/' + producto.id;
   }
 
-  cambiarProducto(producto:any) {
+  public cambiarProducto(producto:any) {
     this.productoFiltro = producto;
     this.paginaActual = 1;
     this.actualizarLista();
   }
 
-  cambiarProductoM(producto:any) {
+  public cambiarProductoM(producto:any) {
     this.cambiarProducto(producto);
     this.switchSelectorCategorias();
   }
 
-  cambiarMarca(marca:string) {
+  public cambiarMarca(marca:string) {
     this.marcaFiltro = marca;
     this.paginaActual = 1;
     this.actualizarLista();
   }
 
-  numerosDePagina(productos:any) {
+  public numerosDePagina(productos:any) {
     let listaPaginas = [1];
     let contador = 1;
     let numerosDePagina = 1;
@@ -196,15 +185,15 @@ export class StoreComponent implements OnInit {
     return listaPaginas;
   }
 
-  get listaPaginas() {
+  public get listaPaginas() {
     return this.paginas;
   }
 
-  get precio() {
+  public get precio() {
     return this.ToolsService.precio;
   }
 
-  ordenarProductos(orden:string) {
+  public ordenarProductos(orden:string) {
     if (orden === 'menorPrecio') {
       this.productosService = this.menorPrecio(this.productosService);
     } else if (orden === 'mayorPrecio') {
@@ -214,35 +203,35 @@ export class StoreComponent implements OnInit {
     this.paginaActual = 1;
   }
 
-  siguiente(): void {
+  public siguiente(): void {
     if (this.paginaActual < this.cantidadDePaginas) {
       this.paginaActual = this.paginaActual + 1;
       this.actualizarLista();
     }
   }
 
-  linkCategoria(id:number){
+  public linkCategoria(id:number){
     return `store/${id}`
   }
 
-  ultimaPagina(): void {
+  public ultimaPagina(): void {
     this.paginaActual = this.numerosDePagina(this.productos).length;
     this.actualizarLista();
   }
 
-  anterior(): void {
+  public anterior(): void {
     if (this.paginaActual > 1) {
       this.paginaActual--;
       this.actualizarLista();
     }
   }
 
-  primeraPagina(): void {
+  public primeraPagina(): void {
     this.paginaActual = 1;
     this.actualizarLista();
   }
 
-  cambiarPagina(pagina: number): void {
+  public cambiarPagina(pagina: number): void {
     this.paginaActual = pagina;
     this.actualizarLista();
   }

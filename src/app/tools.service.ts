@@ -1,5 +1,9 @@
+import { HttpClientJsonpModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductosService } from './productos.service';
+import { CarritoModel } from './modelos/carrito-model';
+import { PreferenciaModel } from './modelos/preferencia-model';
+import { ProductoModel } from './modelos/producto-model';
+import { ProductoService } from './servicios/producto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +13,11 @@ export class ToolsService {
   constructor() { }
 
 
-  recortarString(cadena: string, longitud: number): string {
+  public recortarString(cadena: string, longitud: number): string {
     return cadena.substr(0, longitud);
   }
-  extraerElementos(
+
+  public extraerElementos(
     lista:any,
     indicePrimerElemento: number,
     indiceUltimoElemento: number
@@ -23,7 +28,8 @@ export class ToolsService {
     }
     return extraidos;
   }
-  menorPrecio(productos:any) {
+
+  public menorPrecio(productos:any) {
     //Toma una lista de objetos que contienen la propiedad precio y los ordena de menor a mayor.
     let ordenados = productos;
 
@@ -36,7 +42,8 @@ export class ToolsService {
     }
     return ordenados;
   }
-  mayorPrecio(productos:any) {
+
+  public mayorPrecio(productos:any) {
     ////Toma una lista de objetos que contienen la propiedad precio y los ordena de menor a mayor.
     let ordenados = productos;
 
@@ -49,7 +56,8 @@ export class ToolsService {
     }
     return ordenados;
   }
-  precio(numero:number, decimales:number) {
+
+  public precio(numero:number, decimales:number) {
     // transforma un numero al formato precio. ej: 2889.99 a $2.889,99
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
@@ -58,7 +66,7 @@ export class ToolsService {
     }).format(numero);
   }
 
-  filtrarProductosEnLista(
+  public filtrarProductosEnLista(
     /*
     Esta funcion destinada al filtro de productos toma cinco argumentos:
      1- Una lista de objetos que contienen la propiedad categoria y la propiedad marca.
@@ -74,6 +82,7 @@ export class ToolsService {
     excepcionMarca:string
   ): any {
     let listaFiltrada = [];
+
     for (let objeto of lista) {
       if (
         (objeto.categoria == filtroProducto ||
@@ -83,6 +92,7 @@ export class ToolsService {
         listaFiltrada.push(objeto);
       }
     }
+
     for (let objeto of listaFiltrada) {
       console.log(
         'producto: ' + objeto.categoria + ' |  marca: ' + objeto.marca
@@ -93,7 +103,7 @@ export class ToolsService {
     return listaFiltrada;
   }
 
-  filtrarPorId(arrayElementos:any,arrayDeId:any){
+  public filtrarPorId(arrayElementos:any,arrayDeId:any){
     let listaFiltrada:any = [];
     for(let elemento of arrayElementos){
       for(let id of arrayDeId){
@@ -105,15 +115,55 @@ export class ToolsService {
     return listaFiltrada;
   }
 
-  categorias:any = [
-    "Mouses",
-    "Teclados",
-    "Monitores",
-    "Auriculares",
-    "Mousepads"
-  ]
+  public toCarritoModel(carrito:any){
+    let IDs:number[] = carrito;
+    let productoCantidad = [];
+    let revisados:any = [];
+    let cantidad:number;
 
-  imagen = {
+    for(let id of IDs){
+      cantidad = 0;
+
+      if(!revisados.includes(id)){
+        revisados.push(id);
+        IDs.forEach((elemento)=>{ if(elemento == id){cantidad++} })
+
+        productoCantidad.push(
+          {
+          id:id,
+          cantidad:cantidad,
+          }
+        )
+      }
+    }
+
+    return productoCantidad;
+  }
+
+  public preferencias(productos:ProductoModel[],carrito:CarritoModel[]):PreferenciaModel[]{
+    let preferencias:PreferenciaModel[] = [];
+    let producto:any;
+
+    for(let elemento of carrito){
+      producto = productos.find(
+        (prod:any) => prod.id == Number(elemento.id)
+      );
+
+      preferencias.push({
+        id:elemento.id,
+        category_id:producto.categoria,
+        currency_id:"ARS",
+        description:"",
+        title:producto.nombre,
+        quantity:elemento.cantidad,
+        unit_price:producto.precio,
+      });
+    }
+
+    return preferencias;
+  }
+
+  public imagen = {
     borrar:"https://postimg.cc/k6N9G6CS",
     delete:"https://i.postimg.cc/D042wHhw/delete-black.png",
     logo:"",
@@ -126,7 +176,7 @@ export class ToolsService {
   }
 
   //apiServerUrl = "https://pupita-backend-production.up.railway.app";
-  apiServerUrl = "http://localhost:8080";
+  public apiServerUrl = "http://localhost:8080";
   //apiServerUrl = ""
 }
 

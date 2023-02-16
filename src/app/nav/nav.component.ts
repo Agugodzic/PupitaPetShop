@@ -9,8 +9,10 @@ import { ToolsService } from '../tools.service';
 })
 export class NavComponent implements OnInit {
   @Input() tema:any;
+  @Input() actual:any;
 
   public imagen:any = this.toolsService.imagen;
+  public textoDescuento:string = "15% OFF a partir de las 10 unidades!"
 
   constructor(
     private authService:AuthService,
@@ -31,6 +33,16 @@ export class NavComponent implements OnInit {
     }
 
     return carritoIDs.length;
+  }
+
+  estiloBoton(numeroBoton:number){
+    return {
+            //'border-top-style': this.actual == numeroBoton ? 'solid':'none',
+            'border-bottom-style': this.actual == numeroBoton ? 'solid':'none',
+            'color': this.actual == numeroBoton ? 'none':'none',
+            //'opacity': this.actual == numeroBoton ? '90%':'none',
+            //'background-color': this.actual == numeroBoton ? 'rgba(0, 0, 0, 0.75)':'none'
+           }
   }
 
   public getLogValue(){ return this.authService.loggedIn() };

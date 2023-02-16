@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,9 @@ import { InterceptorService } from './servicios/interceptor.service';
 import { LogInComponent } from './logIn/logIn.component';
 import { ProductoMiniaturaComponent } from './producto-miniatura/producto-miniatura.component';
 
-import { NgxPayPalModule } from 'ngx-paypal';
+import { ContactanosComponent } from './contactanos/contactanos.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FormProductoComponent,
     ComprarComponent,
     NavComponent,
-    ProductoMiniaturaComponent
+    ProductoMiniaturaComponent,
+    ContactanosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +50,9 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPayPalModule
   ],
   providers: [ProductoService , AuthService,{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

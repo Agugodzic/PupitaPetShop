@@ -41,7 +41,7 @@ export class StoreComponent implements OnInit {
 
   public categorias:CategoriaModel[];
   public mostrarSelectorCategorias:boolean = false;
-
+  private productosPorPagina = 12;
 
 
   constructor(
@@ -80,7 +80,7 @@ export class StoreComponent implements OnInit {
     if (this.paginaActual == this.cantidadDePaginas) {
       return this.productos.length - 1;
     } else {
-      return 10 * this.paginaActual - 1;
+      return this.productosPorPagina * this.paginaActual - 1;
     }
   }
 
@@ -100,7 +100,7 @@ export class StoreComponent implements OnInit {
     this.paginas = this.numerosDePagina(this.productos);
     this.productosPaginaActual = this.extraerElementos(
       this.productos,
-      10 * (this.paginaActual - 1),
+      this.productosPorPagina * (this.paginaActual - 1),
       this.indicesPorPagina()
     );
     console.log(this.productosPaginaActual.length);
@@ -156,7 +156,7 @@ export class StoreComponent implements OnInit {
 
   productosPaginaActual = this.extraerElementos(
     this.productos,
-    10 * (this.paginaActual - 1),
+    this.productosPorPagina * (this.paginaActual - 1),
     this.indicesPorPagina()
   );
 
@@ -187,7 +187,7 @@ export class StoreComponent implements OnInit {
     let numerosDePagina = 1;
     for (let iterador = 1; iterador < productos.length; iterador++) {
       contador++;
-      if (contador > 10) {
+      if (contador > this.productosPorPagina) {
         numerosDePagina++;
         listaPaginas.push(numerosDePagina);
         contador = 1;

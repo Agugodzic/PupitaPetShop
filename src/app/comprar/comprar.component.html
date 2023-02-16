@@ -1,3 +1,4 @@
+
 <div id="barra-superior">
   <img id="logo" [src]="imagen.logo">
 </div>
@@ -36,12 +37,12 @@
       <p id="titulo" *ngIf="pasoActual == 4">Felicidades por su compra!</p>
 
 
-      <!---------------- PASO 1 -------------------->
+      --------------- PASO 1 --------------------
 
-      <div #paypal></div>
+
 
       <form *ngIf="pasoActual==1">
-        <!--
+
         <div class="contenedor-inl">
           <p class="input-name">Nombre:</p>
           <p><input class="form-control" type="text" placeholder="Nombre"></p>
@@ -71,7 +72,7 @@
 
       </form>
 
-      <!---------------- PASO 2 -------------------->
+      --------------- PASO 2 -------------------
 
       <div id="paso2" *ngIf="pasoActual==2">
 
@@ -113,7 +114,7 @@
           </div>
         </div>
 
-      <!---------------- PASO 3 -------------------->
+      <-------------- PASO 3 -------------------
 
       <form *ngIf="pasoActual==3">
 
@@ -124,7 +125,7 @@
       </form>
 
 
-      <!---------------- PASO 4 -------------------->
+      ---------------- PASO 4 --------------------
 
       <form *ngIf="pasoActual==4">
 

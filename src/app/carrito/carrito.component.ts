@@ -3,6 +3,9 @@ import { ToolsService } from '../tools.service';
 import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
+import { PreferenciaModel } from '../modelos/preferencia-model';
+import { CarritoModel } from '../modelos/carrito-model';
+import { CheckoutExpressService } from '../servicios/checkout-express.service';
 
 @Component({
   selector: 'app-carrito',
@@ -24,6 +27,7 @@ export class CarritoComponent implements OnInit {
   constructor(
     private ProductoService: ProductoService,
     private ToolsService: ToolsService,
+    private Checkout:CheckoutExpressService
   ) {}
 
   productoLink(producto: any): string {
@@ -65,7 +69,7 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  aumentarProducto(productoID:number){
+  public aumentarProducto(productoID:number){
 
     if(this.carritoLocalStorage != null && this.carritoLocalStorage!= undefined){
       this.carritoLocalStorage = JSON.parse(this.carritoLocalStorage);
@@ -81,7 +85,7 @@ export class CarritoComponent implements OnInit {
       location.reload();
 }
 
-  disminuirProducto(id:number){
+  public disminuirProducto(id:number){
     let nuevaLista:any = [];
     let revisados:any = [];
 
@@ -95,7 +99,7 @@ export class CarritoComponent implements OnInit {
     location.reload();
   }
 
-  eliminarProducto(id:number){
+  public eliminarProducto(id:number){
     let nuevaLista:any = [];
 
     for(let elemento of this.carritoId){
@@ -108,12 +112,32 @@ export class CarritoComponent implements OnInit {
     location.reload();
   }
 
-  precioTotal(){
+  public precioTotal(){
     let total:number=0;
     for(let producto of this.productosCarrito){
       total = total + producto.precio;
     }
     return total;
+  }
+
+  public pruebas(){
+    this.enviarPreferencias();
+  }
+
+  public enviarPreferencias(){
+    let _carrito:CarritoModel[];
+    let _preferencias:PreferenciaModel[];
+
+    _carrito = this.ToolsService.toCarritoModel(this.carritoId)
+
+    this.ProductoService.listar().subscribe(
+      (response: ProductoModel[])  =>{
+      _preferencias = this.ToolsService.preferencias(response,_carrito);
+    this.Checkout.sendPreferences(_preferencias).subscribe(
+      (response)=> window.location.href = response.body.init_point.toString()
+
+    );
+    })
   }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 .producto {
   display: inline-block;
-  width: 150px;
+  width: 165px;
   height: auto;
   background-color: rgba(255, 255, 255, 0);
   text-align: center;
@@ -13,11 +13,13 @@
   border-style: solid;
   border-width: 1px ;
   border-color: rgb(185, 176, 155);
+  vertical-align: top;
+
 }
 
 .producto-imagen {
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 165px;
+  max-width: 165px;
   background-color: rgba(0, 0, 0, 0.185);
   margin-bottom: 6px;
   position: absolute;
@@ -28,8 +30,8 @@
 #contenedor-imagen{
   position: relative;
   vertical-align: middle;
-  height: 150px;
-  width: 150px;
+  height: 165px;
+  width: 165px;
 }
 
 .producto-nombre {
@@ -48,7 +50,14 @@
   font-size: 15px;
 }
 
-.agregar{
+.agregar-input{
+  height: 22px;
+  width: 20px;
+  display: inline;
+  margin-right: 15px;
+}
+.agregar-boton{
+  display:inline;
   background-color: white ;
   border-style: solid;
   border-width: 1px;
@@ -59,7 +68,7 @@
   margin:2px;
   cursor:pointer;
 }
-.agregar:hover{
+.agregar-boton:hover{
   border-color:#a3893a;
   color: #8f762d;
 }

@@ -7,6 +7,10 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 
+#contenedor-componente{
+  min-height: 95vh;
+}
+
 #contenido {
   background-color: rgb(255, 255, 255);
   padding-right: 50px;

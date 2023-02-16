@@ -1,4 +1,21 @@
+<div class="cho-container"></div>
+<script>
+  const mp = new MercadoPago('PUBLIC_KEY', {
+    locale: 'es-AR'
+  });
+
+  mp.checkout({
+    preference: {
+      id: 'YOUR_PREFERENCE_ID'
+    },
+    render: {
+      container: '.cho-container',
+      label: 'Pagar',
+    }
+  });
+</script>
+
 <router-outlet id="vista"></router-outlet>
 
-<footer>@PupitaPetShop 2023</footer>
+<app-footer>@PupitaPetShop 2023</app-footer>
 

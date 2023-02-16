@@ -2,13 +2,13 @@
   'cursor': total == undefined ? 'wait': 'default'
 }">
 
-<app-nav></app-nav>
+<app-nav actual="4"></app-nav>
 
 <div id="contenido">
   <h4 id="titulo">Carrito:</h4>
 
   <div id="mensaje-espera" *ngIf="total == undefined">
-    <p id="mensaje-espera-texto">Aguarde un momento...</p>
+    <p id="mensaje-espera-texto"></p>
   </div>
 
 
@@ -83,6 +83,7 @@
       <h4 class="total-texto">Total: {{precio(total,2)}}</h4>
     </div>
 
+    <button (click)="pruebas()" class="boton" style="display:block;margin:20px;margin-left:auto;margin-right:auto">pruebas</button>
     <a *ngIf="productosCarrito.length > 0" id="boton-comprar" class="boton" href="comprar">Iniciar compra</a>
   </div>
 

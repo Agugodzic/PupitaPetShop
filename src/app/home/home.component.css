@@ -1,13 +1,11 @@
-
-body{
-  background-color: rgb(255, 255, 255);
-}
-
 .banners {
   margin: 0px;
   display: block;
   animation-name: mover;
   animation-duration: 0.3s;
+}
+#contenedor-home{
+  min-height: 100vh;
 }
 #banner {
   border-radius: 2px;

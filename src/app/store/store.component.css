@@ -286,7 +286,7 @@ span {
   padding-left: 3px;
 }
 .desplegable-categoria:hover{
-  background-color: rgba(185, 141, 45, 0.637);
+  background-color: rgba(131, 73, 8, 0.288);
 }
 .tool:active .desplegable{
   visibility: hidden;

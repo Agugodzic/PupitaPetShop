@@ -1,0 +1,28 @@
+#contenedor-footer{
+  display: flex;
+  min-height: 130px;
+  background-color: rgba(0, 0, 0, 0.089);
+  list-style: none;
+  margin-top: 100px;
+  font-family: 'Red Hat Display', sans-serif;
+  text-align: left;
+  padding: 10px 10vw;
+}
+.content{
+  width: 500px;
+  display: inline-block;
+  margin:15px;
+}
+
+.horizontal{
+  display: inline;
+}
+
+.icon{
+  height: 25px;
+}
+
+ul{
+  padding-right: 0;
+  padding-left: 25px;
+}

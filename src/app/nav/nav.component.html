@@ -1,7 +1,7 @@
 
 <!--
 <div id="aviso-descuento">
-  <p id="aviso-texto">Precio mayorista: A partir de las 10 unidades 30% de descuento!</p>
+  <p id="aviso-texto">{{textoDescuento.toUpperCase()}}</p>
 </div>
 -->
 
@@ -15,10 +15,19 @@
     /></a>
   </div>
 
+  <!--
   <div id="nav" >
-    <a href="" class="boton" id="nav-inicio" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">INICIO</a> <span id="nav-inicio"  class="boton">|</span>
+    <a href="home" class="boton" id="nav-inicio" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">INICIO</a> <span id="nav-inicio"  class="boton">|</span>
     <a href="store/0" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">TIENDA</a> <span class="boton">|</span>
     <a href="carrito" class="boton" [ngStyle]="{'color':tema == 'oscuro' ? 'white' : 'black' }">CARRITO</a>
+  </div>
+-->
+
+  <div id="nav" >
+    <a href="home" class="boton" [ngStyle]="estiloBoton(1)" id="nav-inicio">INICIO</a>
+    <a target="_blank" href="https://api.whatsapp.com/send?phone=+5493415717618&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." class="boton" [ngStyle]="estiloBoton(2)">CONTACTANOS</a>
+    <a href="store/0" class="boton" [ngStyle]="estiloBoton(3)">TIENDA</a>
+    <a href="carrito" class="boton" [ngStyle]="estiloBoton(4)">CARRITO</a>
   </div>
 
   <div id="contenedor-carrito">

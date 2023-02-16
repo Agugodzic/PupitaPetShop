@@ -44,7 +44,7 @@
   vertical-align: top;
   display: inline-flex;
   flex-direction: row;
-  padding-left: 40px;
+  padding-left: 20px;
   width:690px;
   align-items: center;
 }
@@ -61,17 +61,19 @@
 }
 
 .descripcion{
-  margin:5px;
+  margin:6px;
   padding-top: 0px;
   flex-grow: 2;
-  padding:4px;
+  padding:8px;
 }
 
 .precio{
-  font-size: 18px;
-  margin:5px;
+  font-size: 17px;
+  margin:4px;
   flex-grow: 1;
   text-align: end;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .titulo-producto{
@@ -82,6 +84,8 @@
 .descripcion-producto{
   margin-top: 5px;
   margin-bottom: 5px;
+  max-width: 400px;
+  font-size: 15px;
 }
 
 .borrar{
@@ -140,6 +144,34 @@
   color:rgb(0, 0, 0);
 }
 
+#x-cantidad{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#cantidad{
+  display: flexs;
+  border-style: solid;
+  border-width: 1px;
+  opacity: 95%;
+  width: 40px;
+  height: 20px;
+  border-color: rgba(0, 0, 0, 0.452);
+  font-size: 14px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color:rgba(0, 0, 0, 0.76);
+  margin-right:  3px;
+  transform: translateY(2px);
+  align-items: center;
+  vertical-align: middle;
+}
+
+#precio-cantidad{
+  display: inline;
+  opacity: 60%;
+  margin-right: 5px;
+}
+
 .material-symbols-outlined{
   font-size: 15px;
 }
@@ -187,33 +219,7 @@
   transform: translateX(-4px);
 }
 
-#x-cantidad{
-  margin-left: 12px;
-  margin-right: 12px;
-}
 
-#cantidad{
-  display: flexs;
-  border-style: solid;
-  border-width: 1px;
-  opacity: 95%;
-  width: 40px;
-  height: 20px;
-  border-color: rgba(0, 0, 0, 0.452);
-  font-size: 14px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color:rgba(0, 0, 0, 0.76);
-  margin-right:  3px;
-  transform: translateY(2px);
-  align-items: center;
-  vertical-align: middle;
-}
-
-#precio-cantidad{
-  display: inline;
-  opacity: 60%;
-  margin-right: 5px;
-}
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button
@@ -284,7 +290,7 @@ input[type=number]{
     font-size: 35px;
     align-items: center;
     vertical-align: middle;
-    margin: 6px;
+    margin: 10px;
     border-style: none;
     background-color: rgba(15, 20, 22, 0.726);
     border-radius: 5px;
@@ -313,6 +319,11 @@ input[type=number]{
     visibility: visible;
   }
 
+  .borrar{
+    height: 18px;
+    margin:0 auto;
+  }
+
   #titulo-descripcion{
     display:flex;
     align-items: center;
@@ -324,6 +335,7 @@ input[type=number]{
     display: inline;
     text-align: center;
     font-size: 15px;
+    white-space:normal;
   }
 
   .imagen{

@@ -1,6 +1,7 @@
-<app-nav tema="claro"></app-nav>
+<div id="contenedor-home">
 
-<body>
+<app-nav actual="1" tema="claro"></app-nav>
+
   <!--
   <div class="banners"
     ><img id="banner" src="https://i.postimg.cc/wjMMmwZt/banner8.png" value="sdfd"
@@ -68,6 +69,7 @@
   </div>
 </div>
 
-</body>
+</div>
 
-<img *ngIf="!getLogValue() && false" id="chat" [src]=imagen.logoWsp >
+<a target="_blank" href="https://api.whatsapp.com/send?phone=+5493415717618&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." ><img *ngIf="!getLogValue()" id="chat" [src]=imagen.logoWsp ></a>
+

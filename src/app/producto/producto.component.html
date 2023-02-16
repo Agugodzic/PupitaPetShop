@@ -1,3 +1,6 @@
+<div id="contenedor-componente">
+
+
 <!-- Formulario -->
 
 <div id="contenedor-formulario" *ngIf="editarProducto">
@@ -33,13 +36,13 @@
 
 <app-nav></app-nav>
 
+<div  *ngIf="producto == undefined">
+  <p id="mensaje-espera"></p>
+</div>
+
 <div id="contenido" [ngStyle]="{
   'cursor': producto == undefined ? 'wait': 'default'
 }">
-
-  <div  *ngIf="producto == undefined">
-    <p id="mensaje-espera">Aguarde un momento...</p>
-  </div>
 
 
   <div id="contenido-edicion">
@@ -126,4 +129,5 @@
     </div>
   </div>
 
+</div>
 </div>

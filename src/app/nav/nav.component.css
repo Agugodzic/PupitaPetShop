@@ -25,7 +25,7 @@ html {
   font-size: 13px;
   display: block;
   height: 25px;
-  background-color: rgb(186, 189, 13);
+  background-color: rgb(251, 255, 0);
 }
 
 #aviso-texto{
@@ -68,12 +68,12 @@ html {
 }
 
 #contenedor-logo{
-  width: 100px;
+  width: 0px;
 }
 
 #logo {
   height: 45px;
-  opacity: 80%;
+  opacity: 70%;
   margin-left: 25px ;
   cursor: pointer;
 
@@ -83,14 +83,14 @@ html {
 #nav {
   /*background-color: rgb(255, 255, 255);*/
   padding: 12px;
-  display: flex;
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
   width: 280px;
   margin-left: auto;
   margin-right: auto;
   /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.253);*/
   position: sticky;
+
 }
 
 #contenedor-nav{
@@ -103,9 +103,8 @@ html {
   margin: 0;
   flex-grow: 3;
   border-bottom-style: solid ;
-  border-color: rgba(146, 114, 74, 0.253);
+  border-color: rgba(73, 59, 40, 0.192);
   border-width: 1px;
-
 }
 
 #fondo{
@@ -125,7 +124,13 @@ html {
   margin-right: 20px;
   margin-left: 8px;
   transition: 0.1s;
-  color: rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.911);
+  border-width:2px;
+  padding-top:6px;
+  padding-bottom:6px;
+  border-color:rgba(0, 0, 0, 0.123);
+  font-size: 13px;
+
 }
 
 a {

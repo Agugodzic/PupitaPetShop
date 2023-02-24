@@ -6,8 +6,8 @@ export interface ProductoModel{
   categoria:String;
   descripcioncorta:String;
   descripcion:String;
-  imagen1:String;
-  imagen2:String;
-  imagen3:String;
-  imagen4:String;
+  imagen1:any;
+  imagen2:any;
+  imagen3:any;
+  imagen4:any;
 }

@@ -1,16 +1,15 @@
-import { HttpClientJsonpModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { CarritoModel } from './modelos/carrito-model';
 import { PreferenciaModel } from './modelos/preferencia-model';
 import { ProductoModel } from './modelos/producto-model';
-import { ProductoService } from './servicios/producto.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToolsService {
 
-  constructor() { }
+  constructor(private sanitizer:DomSanitizer) { }
 
 
   public recortarString(cadena: string, longitud: number): string {
@@ -140,6 +139,7 @@ export class ToolsService {
     return productoCantidad;
   }
 
+
   public preferencias(productos:ProductoModel[],carrito:CarritoModel[]):PreferenciaModel[]{
     let preferencias:PreferenciaModel[] = [];
     let producto:any;
@@ -162,6 +162,28 @@ export class ToolsService {
 
     return preferencias;
   }
+  extraerBase64 = async ($event: any) => new Promise(
+    (resolve, reject):any => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+
+    } catch (e) {
+      return null;
+    }
+  })
 
   public imagen = {
     borrar:"https://postimg.cc/k6N9G6CS",
@@ -172,11 +194,12 @@ export class ToolsService {
     pagofacil:"https://www.hiperconstruccion.com.ar/wp-content/uploads/2020/08/PAGO-FACIL-PNG.png",
     tarjeta:"https://cdn-icons-png.flaticon.com/512/60/60378.png",
     carrito:"https://cdn-icons-png.flaticon.com/512/107/107831.png",
-    carritoBlanco:"https://i.postimg.cc/Bn0BSLXD/carrito-blanco.png"
+    carritoBlanco:"https://i.postimg.cc/Bn0BSLXD/carrito-blanco.png",
+    patita:"https://static.vecteezy.com/system/resources/previews/009/344/667/original/dog-paw-free-png.png"
   }
 
-  public apiServerUrl = "https://pupita-backend-production.up.railway.app";
-  //public apiServerUrl = "http://localhost:8080";
+  //public apiServerUrl = "https://pupita-backend-production.up.railway.app";
+  public apiServerUrl = "http://localhost:8080";
   //apiServerUrl = ""
 }
 

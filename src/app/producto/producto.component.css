@@ -6,9 +6,8 @@ input[type=number]::-webkit-outer-spin-button
   opacity: 100%;
 }
 
-
-#contenedor-componente{
-  min-height: 95vh;
+.boton1, .boton2{
+  margin-top:30px;
 }
 
 #contenido {
@@ -78,7 +77,8 @@ input[type=number]::-webkit-outer-spin-button
 
 #texto-descripcion {
   text-align: justify;
-  font-size: 18px;
+  font-size: 17px;
+  font-family: 'Red Hat Display', sans-serif;
 }
 
 #precio {
@@ -86,38 +86,6 @@ input[type=number]::-webkit-outer-spin-button
   font-size: 30px;
 }
 
-
-#agregar {
-  margin:12px;
-  height: 30px;
-  min-width: 100px;
-  border-radius: 5px;
-  border-style: none;
-  background-color: rgb(219, 219, 219);
-  color: rgba(0, 0, 0, 0.747);
-  margin-right: 0;
-}
-
-#agregar:hover {
-  background-color: rgb(206, 203, 203);
-  cursor: pointer;
-}
-
-#comprar {
-  margin:12px;
-  height: 30px;
-  min-width: 100px;
-  border-radius: 5px;
-  border-style: none;
-  background-color: rgb(68, 90, 218);
-  border-color: rgba(0, 0, 0, 0);
-  color: white;
-}
-
-#comprar:hover {
-  background-color: rgb(36, 60, 194);
-  cursor: pointer;
-}
 
 #selector-cantidad{
   font-size:17px
@@ -144,6 +112,7 @@ span {
   font-family: 'Red Hat Display', sans-serif;
   margin-left: 100px;
   white-space: nowrap;
+
 }
 
 p {
@@ -158,7 +127,7 @@ p {
   border-radius: 4px;
   padding: 5px;
   height: fit-content;
-  width: 95vw;
+  width: 70vw;
 }
 
 .contenedorProducto {
@@ -285,6 +254,7 @@ span {
   height: fit-content;
   min-height: 50px;
   background-color: rgb(233, 233, 233);
+  font-family: 'Red Hat Display', sans-serif;
 }
 
 #verMas {
@@ -362,6 +332,8 @@ span {
     padding: 0;
     margin:0px;
     min-height: none;
+    font-family: 'Monserrat', sans-serif;
+    font-weight: 500px;
   }
 
   #contenedor-imagen{
@@ -417,5 +389,10 @@ span {
 
   #relacionados-titulo{
     margin-left: 20px;
+  }
+  #galeria{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 98vw;
   }
 }

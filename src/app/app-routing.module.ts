@@ -7,6 +7,8 @@ import { StoreComponent } from './store/store.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { LogInComponent } from './logIn/logIn.component';
 import { ContactanosComponent } from './contactanos/contactanos.component';
+import { PruebasComponent } from './pruebas/pruebas.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 const routes: Routes = [
 { path: 'store/:categoria', component: StoreComponent },
@@ -17,7 +19,8 @@ const routes: Routes = [
 { path: 'comprar', component:ComprarComponent },
 { path: 'admin-log', component:LogInComponent },
 { path: 'contactanos', component:ContactanosComponent},
-
+{ path: 'pruebas', component:PruebasComponent},
+{ path: 'h12236456', component:PedidosComponent},
 { path: '', redirectTo: '/store/0', pathMatch: 'full' },
 { path: '**', redirectTo: '/store/0', pathMatch: 'full' }
 ];

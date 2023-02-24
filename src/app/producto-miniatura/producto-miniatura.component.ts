@@ -8,13 +8,14 @@ import { ToolsService } from '../tools.service';
 })
 export class ProductoMiniaturaComponent implements OnInit {
   @Input() producto:any;
+  private cantidad:number = 1;
+  private productosCarrito:any;
+  public linkStatus:boolean = true;
+  public mostrarAlert:boolean = false;
 
   constructor(
     private toolsService:ToolsService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   get precio() {
     return this.toolsService.precio;
@@ -25,9 +26,44 @@ export class ProductoMiniaturaComponent implements OnInit {
   }
 
 
+  agregarAlCarrito():void{
 
-  productoLink(producto: any): string {
-    return '/prod/' + producto.id;
+    if(this.productosCarrito != null && this.productosCarrito!= undefined){
+      this.productosCarrito = JSON.parse(this.productosCarrito);
+
+      for(let prod = 1; prod <= this.cantidad; prod++){
+       this.productosCarrito.push(this.producto.id);
+      }
+
+      localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
+      }else{
+
+        for(let prod = 1; prod <= this.cantidad; prod++){
+          this.productosCarrito = [this.producto.id];
+         }
+
+        localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
+      };
+
+      this.mostrarAlert = true;
+
   }
 
+  abrirProducto(producto: any):void{
+    if(this.linkStatus){
+      window.location.href = '/prod/' + producto.id;
+    }
+  }
+
+  public desactivarLink():void{
+    this.linkStatus = false;
+  }
+
+  public activarLink():void{
+    this.linkStatus = true;
+  }
+
+  ngOnInit(): void {
+    this.productosCarrito = localStorage.getItem('carrito');
+  }
 }

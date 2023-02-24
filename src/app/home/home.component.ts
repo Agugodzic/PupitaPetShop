@@ -13,12 +13,12 @@ import { ToolsService } from '../tools.service';
 })
 export class HomeComponent implements OnInit {
 
-  public productosRecomendados:ProductoModel[] = [];
-  public productos:ProductoModel[];
   public precio = this.toolsService.precio;
   public longitud = this.toolsService.recortarString;
   public imagen = this.toolsService.imagen;
   private categorias:CategoriaModel[];
+  private productos:any;
+  public productosRecomendados:any = [];
 
   constructor(
     private productoService:ProductoService,
@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
     }
 
     public asignarProductosRecomendados(){
+      this.productosRecomendados = [];
       for(let n = 0 ; n < 5; n++){
         if(this.productos !== null && this.productos[n] !== undefined){
           this.productosRecomendados.push(this.productos[n]);
@@ -70,6 +71,9 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    let localStorage_:any = localStorage.getItem("productos");
+    this.productos =  JSON.parse(localStorage_);
+    this.asignarProductosRecomendados();
     this.listarProductos();
   }
 

@@ -27,6 +27,7 @@ export class StoreComponent implements OnInit {
   private menorPrecio = this.ToolsService.menorPrecio;
   private mayorPrecio = this.ToolsService.mayorPrecio;
   public listaDeProductos:any;
+  private productosLocalStorage_:any = localStorage.getItem("productos");
   private productosService:any = [];
   private filtrar = this.ToolsService.filtrarProductosEnLista;
   public productos = this.productosService;
@@ -39,11 +40,11 @@ export class StoreComponent implements OnInit {
   public agregarProducto:boolean = false;
   public longitud = this.ToolsService.recortarString;
   public Imagen = this.ToolsService.imagen;
-
-  public categorias:CategoriaModel[];
+  private categoriasLocalStorage_:any = localStorage.getItem("categorias");
+  public categorias = JSON.parse(this.categoriasLocalStorage_);
   public mostrarSelectorCategorias:boolean = false;
 
-  private productosPorPagina = 12;
+  private productosPorPagina = 10;
   public categoriasEnUso:any = [];
 
   constructor(
@@ -71,6 +72,7 @@ export class StoreComponent implements OnInit {
           if(!usadas.includes(producto.categoria))
             this.categoriasEnUso.push(producto.categoria);
         })
+        localStorage.setItem("productos",JSON.stringify(this.productosService));
     })
   }
 
@@ -79,6 +81,7 @@ export class StoreComponent implements OnInit {
       (response:CategoriaModel[]) =>{
         this.categorias = response;
         this.productoFiltro = this.generadorDeFiltro(this.categoria);
+
       }
     )
   }
@@ -237,6 +240,10 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if(this.productosLocalStorage_ != null && this.productosLocalStorage_!= undefined){
+      this.productosService = JSON.parse(this.productosLocalStorage_) };
+
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
     this.listarProductos();

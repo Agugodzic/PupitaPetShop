@@ -4,7 +4,79 @@ body {
   padding: 0px;
   margin: 0px;
 }
+
+.page-component{
+  min-height: 100vh ;
+}
 a {
   text-decoration: none;
   color:black;
+}
+
+html, body { height: 100%; }
+body { margin: 0 }
+
+.boton1{
+  margin:12px;
+  height: 30px;
+  min-width: 130px;
+  border-radius: 3px;
+  border-style: none;
+  background-color: rgba(68, 91, 218, 0.952);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.863);
+  font-weight: 600;
+  font-size: 14px;
+}
+.boton1:hover{
+  background-color: rgba(42, 71, 235, 0.76);
+  cursor: pointer;
+}
+.boton1-a{
+  padding: 8px 20px;
+  font-family: 'Monserrat', sans-serif;
+  margin:12px;
+  height: 30px;
+  min-width: 130px;
+  border-radius: 3px;
+  border-style: none;
+  background-color: rgba(68, 91, 218, 0.952);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.863);
+  font-weight: 600;
+  font-size: 14px;
+}
+.boton1-a:hover{
+  background-color: rgba(42, 71, 235, 0.76);
+  cursor: pointer;
+}
+.boton2{
+  margin:12px;
+  height: 30px;
+  min-width: 130px;
+  border-radius: 3px;
+  border-style: none;
+  background-color: rgba(65, 137, 230, 0.205);
+  color: #4f708fd7;
+  font-weight: 600;
+  font-size: 14px;
+}
+.boton2:hover{
+  background-color: rgba(54, 141, 255, 0.301);
+  cursor: pointer;
+}
+.boton3{
+  margin:12px;
+  height: 30px;
+  min-width: 130px;
+  border-radius: 3px;
+  border-style: none;
+  background-color:#92c0eca8;
+  color: rgba(20, 70, 136, 0.767);
+  font-weight: 600;
+  font-size: 14px;
+}
+.boton3:hover{
+  background-color:#92c0ecd5;
+  cursor: pointer;
 }

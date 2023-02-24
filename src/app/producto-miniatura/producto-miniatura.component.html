@@ -1,4 +1,13 @@
-<a [href]="productoLink(producto)" class="producto">
+<app-alert
+  *ngIf="mostrarAlert"
+  titulo="Has añadido un producto al carrito:"
+  [texto]="producto.nombre"
+  textoBoton="Ok"
+  accion = "actualizar"
+  >
+</app-alert>
+
+<button (click)="abrirProducto(producto)" class="producto">
   <div id="contenedor-imagen">
     <img [src]="producto.imagen1" class="producto-imagen"/>
   </div>
@@ -6,13 +15,13 @@
   <div id="descripcion">
     <p class="producto-nombre">{{ producto.nombre }}</p>
     <p class="producto-descripcion">
-      {{ longitud(producto.descripcioncorta, 30) }}...
+      {{ longitud( producto.descripcioncorta , 30) }}...
     </p>
     <p class="producto-precio">{{ precio(producto.precio, 0) }}</p>
   </div>
 
   <div class="agregar">
    <!--<input class="agregar-input" type="number" placeholder="1">-->
-    <button class="agregar-boton">Agregar</button>
+    <button class="agregar-boton" style="pointer-events:auto" (click)="agregarAlCarrito()" (mouseenter)="desactivarLink()" (mouseout)="activarLink()">Agregar</button>
   </div>
-</a>
+</button>

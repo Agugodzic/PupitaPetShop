@@ -39,10 +39,9 @@
 
 
       <form *ngIf="pasoActual==1">
-
         <div class="contenedor-inl">
           <p class="input-name">Nombre:</p>
-          <p><input class="form-control" type="text" placeholder="Nombre"></p>
+          <p><input matInput class="form-control" type="text" placeholder="Nombre"></p>
           <p class="input-name">Apellido:</p>
           <p><input class="form-control" type="text" placeholder="Apellido"></p>
           <p class="input-name">Telefono:</p>
@@ -61,6 +60,7 @@
           <p class="input-name">Codigo Postal:</p>
           <p><input class="form-control" min="0"  type="number" placeholder="Codigo Postal" ></p>
         </div>
+
 
         <div id="botones">
         <a *ngIf="pasoActual < 4" id="boton-volver" href="/carrito">Volver</a>

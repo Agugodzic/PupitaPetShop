@@ -1,6 +1,4 @@
-<div id="contenedor-store" [ngStyle]="{
-  'cursor': estadoRecursos == undefined ? 'wait': 'default'
-}">
+<div id="contenedor-store">
 
 <!-- Formularios -->
 
@@ -33,6 +31,7 @@
 
 <!--------------- Tools ------------->
 
+<!--
 <div id="contenedor-tools">
 
   <div class="tools">
@@ -61,6 +60,8 @@
 
   </div>
 </div>
+-->
+<img style="width:100%" src="https://puppis.vteximg.com.br/arquivos/ids/190746/2212-Website-Banner-Perro-Viaje-256030-237161-D.png?v=638120633641770000">
 
 <!--------- Menu Lateral -------->
 
@@ -68,39 +69,39 @@
   <div class="lat-menu">
     <span>Productos:</span>
     <button
-      class="botonLateral"
+      class="boton-lateral"
       (click)="cambiarProducto('Todos los productos')"
     >
+    <img *ngIf="productoFiltro == 'Todos los productos'" class="boton-lateral-patita" [src]="Imagen.patita">
       Todos
     </button>
 
     <div *ngFor="let categoria of categorias" >
-      <button *ngIf="categoriasEnUso.includes(categoria.categoria)" class="botonLateral" (click)="cambiarProducto(categoria.categoria)">
+      <!--*ngIf="categoriasEnUso.includes(categoria.categoria)" -->
+      <button class="boton-lateral" (click)="cambiarProducto(categoria.categoria)">
+        <img *ngIf="productoFiltro == categoria.categoria" class="boton-lateral-patita" [src]="Imagen.patita">
         <div  [ngStyle]="{
-          'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
+          'color': categoria.categoria == productoFiltro ?  'black': 'black'}
           " >{{categoria.categoria}}</div>
       </button>
     </div>
   </div>
 
   <div class="lat-menu">
-    <span>Marcas:</span>
-    <button class="botonLateral" (click)="cambiarMarca('Todas las marcas')">
-      Todas
-    </button>
-    <button class="botonLateral" (click)="cambiarMarca('Pupita')">Pupita</button>
+    <span>Ordenar:</span>
+
+    <button class="boton-lateral" (click)="ordenarProductos('menorPrecio')">Menor precio</button>
+    <button class="boton-lateral" (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
   </div>
+
 </div>
 
 <!--------- Productos -------->
 
-<div id="galeria" *ngIf="estadoRecursos == undefined">
-  <p id="mensaje-espera"></p>
-</div>
-
+<div id="galeria">
   <div *ngIf="productos.length > 0" id="galeria">
 
-    <div *ngIf="estadoRecursos !== undefined" id="contenedor-filtros">
+    <div id="contenedor-filtros">
       <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
 
       <span id="filtros">{{"Tienda / " + productoFiltro }}</span>
@@ -122,7 +123,7 @@
 
 <!--------- Productos | No coincidencias-------->
 
-<div *ngIf="productos.length == 0 && estadoRecursos !== undefined" id="galeria">
+<div *ngIf="productos.length == 0" id="galeria">
   <div id="contenedor-filtros">
     <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
 

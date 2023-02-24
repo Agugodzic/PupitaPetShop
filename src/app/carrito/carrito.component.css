@@ -1,7 +1,3 @@
-#contenedor-carrito{
-  min-height: calc(100vh - 60px);
-}
-
 #contenido {
   background-color: rgb(255, 255, 255);
   margin-top: 40px;
@@ -12,9 +8,11 @@
   border: 1px;
   border-color: rgba(0, 0, 0, 0.158);
   border-style: solid;
+  height: fit-content;
   min-height: 510px;
   width:800px;
   font-family: 'Red Hat Display', sans-serif;
+  padding-bottom: 30px;
 }
 
 #titulo{
@@ -121,16 +119,24 @@
 }
 
 #boton-comprar{
-  cursor: pointer;
-  background-color: rgb(100, 121, 235);
-  height: 35px;
-  width: 120px;
-  border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  color: white;
-  padding:5px;
-  margin-bottom: 50px;
+  margin:12px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 30px;
+  min-width: 130px;
+  border-radius: 3px;
+  border-style: none;
+  background-color: rgba(68, 91, 218, 0.952);
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px 10px;
+
 }
+#boton-comprar:hover {
+  background-color: rgba(42, 71, 235, 0.76);
+  cursor: pointer;
+}
+
 
 .contenedor-borrar-in{
   display: absolute;

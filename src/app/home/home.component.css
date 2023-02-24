@@ -4,9 +4,7 @@
   animation-name: mover;
   animation-duration: 0.3s;
 }
-#contenedor-home{
-  min-height: 100vh;
-}
+
 #banner {
   border-radius: 2px;
   width: 98.8vw;

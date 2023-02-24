@@ -10,11 +10,11 @@ span {
 }
 
 #contenedor-store {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh);
 }
 #galeria {
   margin: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   background: rgba(235, 235, 235, 0);
   display: inline-block;
   min-height: 600px;
@@ -81,14 +81,14 @@ span {
   position: relative;
   color: rgb(0, 0, 0);
   vertical-align: top;
-  margin-top: 60px;
+  margin-top: 20px;
   border-style: solid;
   border-width: 1px;
   border-color: rgba(128, 128, 128, 0);
   font-family:'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
 }
-.botonLateral {
+.boton-lateral{
   display: block;
   border: none;
   cursor: pointer;
@@ -97,7 +97,7 @@ span {
   text-align: center;
   font-family:'Montserrat', sans-serif;
   color: rgb(0, 0, 0);
-  font-size: 14px;
+  font-size: 15px;
 }
 .botonLateral:hover {
   color: rgb(138, 91, 39);
@@ -105,6 +105,14 @@ span {
 .lat-menu {
   margin-bottom: 25px;
   margin-top: 10px;
+}
+.boton-lateral-patita{
+  position:absolute;
+  height: 30px;
+  text-align: start;
+  opacity: 40%;
+  left:5px;
+  transform: translateY(-7px);
 }
 #no-coincidencias{
   margin-top:65px;
@@ -156,6 +164,7 @@ span {
   align-items: center;
 }
 #filtros {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: italic;
   color: rgba(0, 0, 0, 0.459);
 }
@@ -326,7 +335,7 @@ span {
  }
 }
 
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 750px) {
   #lateral{
     display:none
   }
@@ -334,6 +343,7 @@ span {
     margin:0px;
     width: 90vw;
     padding: 0;
+    margin-bottom: 50px;
   }
   #contenedor-store{
     margin:0;

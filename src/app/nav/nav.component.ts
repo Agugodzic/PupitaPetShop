@@ -38,8 +38,8 @@ export class NavComponent implements OnInit {
   estiloBoton(numeroBoton:number){
     return {
             //'border-top-style': this.actual == numeroBoton ? 'solid':'none',
-            'border-bottom-style': this.actual == numeroBoton ? 'solid':'none',
-            'color': this.actual == numeroBoton ? 'none':'none',
+            //'border-bottom-style': this.actual == numeroBoton ? 'solid':'none',
+            'color': this.actual == numeroBoton ? 'none':'color:rgba(27, 27, 27, 0.595)',
             //'opacity': this.actual == numeroBoton ? '90%':'none',
             //'background-color': this.actual == numeroBoton ? 'rgba(0, 0, 0, 0.75)':'none'
            }

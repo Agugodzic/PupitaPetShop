@@ -80,6 +80,10 @@ html {
   /*opacity: 0%;*/
 }
 
+#menu-desplegable{
+  visibility: hidden;
+}
+
 #nav {
   /*background-color: rgb(255, 255, 255);*/
   padding: 12px;
@@ -103,8 +107,10 @@ html {
   margin: 0;
   flex-grow: 3;
   border-bottom-style: solid ;
-  border-color: rgba(73, 59, 40, 0.192);
+  /*border-color: rgba(73, 59, 40, 0.062);*/
+  border-color: rgba(53, 43, 29, 0.13);
   border-width: 1px;
+  /*box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.082);*/
 }
 
 #fondo{
@@ -129,15 +135,29 @@ html {
   padding-top:6px;
   padding-bottom:6px;
   border-color:rgba(0, 0, 0, 0.123);
+  /*border-color:#f57332;*/
   font-size: 13px;
 
 }
 
 a {
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   font-family:'Montserrat', sans-serif;
+}
+span {
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button{
+  border-style: none;
+  background-color: rgba(245, 245, 220, 0);
+}
+button:hover{
+  background-color: rgba(0, 0, 0, 0.116);
 }
 
 footer {
@@ -161,7 +181,14 @@ footer {
     transform: translateX(0px);
   }
 }
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 720px) {
+  #menu-desplegable{
+    visibility: visible;
+    margin-left: 15px;
+  }
+  #logo{
+    margin-left: 15px;
+  }
   #nav-inicio{
     visibility: hidden;
     position:absolute;
@@ -170,6 +197,7 @@ footer {
     display:flex;
     text-align: left;
     width: fit-content;
+    visibility: hidden;
   }
   #contenedor-logo{
     width: 100px;
@@ -177,8 +205,5 @@ footer {
   }
   #cerrar-sesion{
     width: 70px;
-  }
-  #nav{
-    visibility: hidden;
   }
 }

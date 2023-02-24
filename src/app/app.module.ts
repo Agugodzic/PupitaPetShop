@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +24,13 @@ import { ProductoMiniaturaComponent } from './producto-miniatura/producto-miniat
 
 import { ContactanosComponent } from './contactanos/contactanos.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher,MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { PruebasComponent } from './pruebas/pruebas.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -42,16 +48,28 @@ import { FooterComponent } from './footer/footer.component';
     NavComponent,
     ProductoMiniaturaComponent,
     ContactanosComponent,
-    FooterComponent
+    FooterComponent,
+    PruebasComponent,
+    PedidosComponent
   ],
   imports: [
+    MatIconModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
-  providers: [ProductoService , AuthService,{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
+  providers: [
+    ProductoService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

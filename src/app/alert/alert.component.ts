@@ -18,6 +18,7 @@ export class AlertComponent implements OnInit {
   @Input() productoId:number;
   @Input() ruta:string;
   @Input() tipo:string;
+  @Input() metodo:any;
 
   @Output() mostrar = new EventEmitter();
 

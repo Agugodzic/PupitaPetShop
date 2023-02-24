@@ -33,6 +33,10 @@ html {
   transition: 0.1s;
   color: rgba(0, 0, 0, 0.747);
 }
+button{
+  border-style: none;
+  background-color: none;
+}
 
 a {
   text-decoration: none;

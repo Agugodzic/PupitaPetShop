@@ -12,13 +12,16 @@
     </form>
   </div>
 </div>
-<!--------------------------------->
+
+<!-------------------------------------------- FORMULARIO EDITAR--------------------------------------------->
 
 <div id="fondo">
 
-  <form class=formulario [formGroup]="editarProducto" class="scroll" *ngIf="editar()" (ngSubmit)="submitEditar()">
+  <form class=formulario [formGroup]="editarProducto" enctype='multipart/form-data' class="scroll" *ngIf="editar()" (ngSubmit)="submitEditar()">
     <div id="contenedor-form-controls">
     <p id="titulo">Editar producto:</p>
+
+    <!------------------- datos basicos / descripcion corta --------------------->
 
     <div class="contenedor-inl">
       <p class="descripcion-input">Datos basicos:</p>
@@ -31,66 +34,98 @@
         <option style="color:rgb(141, 141, 141)">Categoria</option>
         <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
       </select>
-      <button type="button" (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
+      <button (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>
-      <textarea class="campo-de-texto scroll" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+      <textarea class="campo-de-texto scroll" maxlength="255" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
     </div>
 
     <div class="contenedor-inl">
 
-      <p class="descripcion-input">Imagenes:</p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen1"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen2"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen3"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen4"></p>
+<!------------------- inputs de imagen --------------------->
+
+<p class="descripcion-input">Imagen:</p>
+<div class="container-input">
+  <input (change)="image1Change($event)" formControlName="imagen1" accept="image/*" type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"/>
+  <label for="file-1">
+  <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+  <span class="iborrainputfile">Seleccionar imagen</span>
+  </label>
+</div>
+
+<div id="contenedor-preview"><img height="170px" src="https://i.pinimg.com/736x/5a/a2/ac/5aa2ac56c01d031bd3f4a649fa1b606a.jpg"><img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px"></div>
+
+<!------------------- descripcion larga --------------------->
 
       <p class="descripcion-input">Descripcion larga:</p>
       <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
     </div>
 
+<!------------------------- botones ------------------------->
+
     <div class="contenedor-block">
-      <input class="form-control guardar" value="Guardar" type="submit">
-      <button class="form-control cancelar" (click)="actualizar()"  type="button">Cancelar</button>
+      <input class="form-control boton1" value="Guardar" type="submit">
+      <button class="form-control boton2" (click)="actualizar()"  type="button">Cancelar</button>
     </div>
     </div>
   </form>
 
-  <form class="formulario" [formGroup]="agregarProducto" class="scroll" *ngIf="agregar()" (ngSubmit)="submitAgregar()">
+<!----------------------------------------- FORMULARIO AGREGAR---------------------------------------->
+
+  <form class="formulario" [formGroup]="agregarProducto" enctype='multipart/form-data' class="scroll" *ngIf="agregar()" (ngSubmit)="submitAgregar()">
     <div id="contenedor-form-controls">
     <p id="titulo">Agregar producto:</p>
     <div class="contenedor-inl">
+
+    <!------------------- datos basicos / descripcion corta --------------------->
+
       <p class="descripcion-input">Datos basicos:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
       <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
       <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
 
-      <p style="text-align:start"><select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
+      <p style="text-align:start">
+        <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
         <option style="color:rgb(141, 141, 141)">Categoria</option>
         <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
       </select>
-      <button type="button"  (click)="switchCategoria()" class="agregar-categoria">Nueva</button>
+      <button type="button"  (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>
-      <textarea class="campo-de-texto scroll" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+      <textarea class="campo-de-texto scroll" maxlength="255"  placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
     </div>
 
     <div class="contenedor-inl">
+
+    <!------------------- inputs de imagen --------------------->
+
       <p class="descripcion-input">Imagenes:</p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen1"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen2"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen3"></p>
-      <p><input class="form-control" type="text" placeholder="Link de imagen" formControlName="imagen4"></p>
+      <div class="container-input">
+        <input (change)="image1Change($event)" formControlName="imagen1" accept="image/*" type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"/>
+        <label for="file-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+        <span class="iborrainputfile">Seleccionar imagen</span>
+        </label>
+      </div>
+
+      <div id="contenedor-preview">
+        <img height="169px" width="169px" *ngIf="!imageFile1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81rH-ojGJ0uVfThbfEF0Dg7nGd7fEF-YeLpUkaeMLXCB6TXfDe4UZdfjOtjJGNG4UxuY&usqp=CAU">
+        <img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px">
+      </div>
+
+      <!------------------- descripcion larga --------------------->
 
       <p class="descripcion-input">Descripcion larga:</p>
       <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
     </div>
 
+    <!------------------------- botones ------------------------->
+
     <div class="contenedor-block">
-      <input class="form-control guardar" value="Guardar" type="submit">
-      <button class="form-control cancelar" (click)="actualizar()" type="button">Cancelar</button>
+      <input class="boton1" value="Guardar" type="submit">
+      <button class="boton2" (click)="actualizar()" type="button">Cancelar</button>
     </div>
     </div>
   </form>

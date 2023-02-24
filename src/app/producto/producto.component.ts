@@ -46,6 +46,15 @@ export class ProductoComponent implements OnInit {
 
   public getLogValue(){ return this.authService.loggedIn() };
 
+  private preCargarProducto(){
+    let productosLocalStorage:any = localStorage.getItem("productos");
+    this.productos = JSON.parse(productosLocalStorage);
+    this.producto = this.productos.find(
+      (prod:any) => prod.id == Number(this.productoId)
+    );
+    this.listarImagenes();
+    this.imagenSeleccionada = this.producto.imagen1;
+  }
 
   public listarProductos(){
     this.ProductoService.listar().subscribe(
@@ -54,11 +63,13 @@ export class ProductoComponent implements OnInit {
         this.producto = this.productos.find(
           (prod:any) => prod.id == Number(this.productoId)
         );
-        this.listarImagenes();
-        this.imagenSeleccionada = this.producto.imagen1;
-    })
+        this.listarImagenes();/*
+        this.ToolsService.extraerBase64(this.producto.imagen1).then((image:any) => {
+          this.imagenSeleccionada = image.base;
+    })*/
+    this.imagenSeleccionada = this.producto.imagen1
+  })
   }
-
   public switchEliminar(){
     if(this.mostrarAlertEliminar == false){
       this.mostrarAlertEliminar = true;
@@ -126,14 +137,14 @@ export class ProductoComponent implements OnInit {
           localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
         };
         this.mostrarAlert = true;
-
   }
 
   listarImagenes(){
-    if(this.producto.imagen1.length > 5){this.ImagenesProducto.push(this.producto.imagen1)}
-    if(this.producto.imagen2.length > 5){this.ImagenesProducto.push(this.producto.imagen2)}
-    if(this.producto.imagen3.length > 5){this.ImagenesProducto.push(this.producto.imagen3)}
-    if(this.producto.imagen4.length > 5){this.ImagenesProducto.push(this.producto.imagen4)}
+    this.ImagenesProducto = [];
+    if(this.producto.imagen1){this.ImagenesProducto.push(this.producto.imagen1)}
+    if(this.producto.imagen2){this.ImagenesProducto.push(this.producto.imagen2)}
+    if(this.producto.imagen3){this.ImagenesProducto.push(this.producto.imagen3)}
+    if(this.producto.imagen4){this.ImagenesProducto.push(this.producto.imagen4)}
     this.cantidadImagenes = this.ImagenesProducto.length;
   }
 
@@ -147,8 +158,9 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit() {
     this.productosCarrito = localStorage.getItem('carrito');
-    this.listarProductos();
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
+    this.listarProductos();
+    this.preCargarProducto();
     this.cantidadImagenes = this.ImagenesProducto.length;
   }
 }

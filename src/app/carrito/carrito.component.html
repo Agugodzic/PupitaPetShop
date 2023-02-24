@@ -1,4 +1,4 @@
-<div id="contenedor-carrito" [ngStyle]="{
+<div class="page-component" [ngStyle]="{
   'cursor': total == undefined ? 'wait': 'default'
 }">
 
@@ -84,7 +84,7 @@
     </div>
 
     <button *ngIf="false" (click)="pruebas()" class="boton" style="display:block;margin:20px;margin-left:auto;margin-right:auto">pruebas</button>
-    <a *ngIf="productosCarrito.length > 0" id="boton-comprar" class="boton" href="comprar">Iniciar compra</a>
+    <a *ngIf="productosCarrito.length > 0" class="boton1-a" href="comprar">Iniciar compra</a>
   </div>
 
 </div>

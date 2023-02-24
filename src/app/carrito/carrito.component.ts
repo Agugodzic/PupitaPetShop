@@ -18,11 +18,12 @@ export class CarritoComponent implements OnInit {
   public total:number;
 
   public productosCarrito:any;
-  public productos:any;
+  private localStorage_:any = localStorage.getItem("productos");
+  public productos:any = JSON.parse(this.localStorage_);;
   public productoCantidad:any = [];
 
-  private carritoLocalStorage:any;
-  private carritoId:any;
+  private carritoLocalStorage:any = [];
+  private carritoId:any = [];
 
   constructor(
     private ProductoService: ProductoService,
@@ -38,14 +39,23 @@ export class CarritoComponent implements OnInit {
     this.ProductoService.listar().subscribe(
       (response: ProductoModel[])  =>{
         this.productos = response;
-        this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
+        this.productosCarrito = this.ToolsService.filtrarPorId(response,this.carritoId);
         this.listarProductoCantidad(this.productosCarrito)
         this.total = this.precioTotal();
     });
   }
 
+  private preCargarProducto(){
+    let productosLocalStorage:any = localStorage.getItem("productos");
+    this.productos = JSON.parse(productosLocalStorage);
+    this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
+    this.listarProductoCantidad(this.productosCarrito)
+    this.total = this.precioTotal();
+  }
+
   public listarProductoCantidad(listaProductos:any){
     let productos = listaProductos;
+    this.productoCantidad = [];
 
     while(productos.length != 0){
 
@@ -59,6 +69,8 @@ export class CarritoComponent implements OnInit {
           productos = productos.filter( (prod:any) => prod !== producto)
         }
       });
+
+
 
       this.productoCantidad.push(
         {
@@ -141,8 +153,10 @@ export class CarritoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listarProductos();
-    this.carritoLocalStorage= localStorage.getItem("carrito");
+    this.carritoLocalStorage = localStorage.getItem("carrito");
     this.carritoId = JSON.parse(this.carritoLocalStorage);
+    this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
+    this.preCargarProducto()
+    this.listarProductos();
   }
 }

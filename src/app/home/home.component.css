@@ -3,62 +3,31 @@
   display: block;
   animation-name: mover;
   animation-duration: 0.3s;
+  background-attachment:fixed;
 }
 
 #banner {
-  border-radius: 2px;
-  width: 98.8vw;
-  opacity: 92%;
+  background-attachment:fixed;
+  background-size: contain;
+  height:300px;
+  width: 100vw;
 }
-.titulo-banner {
-  position: absolute;
-  top: 270px;
-  left: 10%;
-  color: rgb(0, 0, 0);
-  font-size: 60px;
-  font-family: 'Red Hat Display', sans-serif;
-  animation-name: moverDescripcionBanner;
-  animation-duration: 1.4s;
-}
-.descripcion-banner {
-  position: absolute;
-  top: 350px;
-  left: 10%;
-  color: rgb(0, 0, 0);
-  font-size: 30px;
-  font-family: 'Red Hat Display', sans-serif;
-  animation-name: moverDescripcionBanner;
-  animation-duration: 1.1s;
-}
-.descuento-banner{
-  position: absolute;
-  top: 245px;
-  left: 10%;
-  color: rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0.918);
-  font-size: 18px;
-  font-family: 'Red Hat Display', sans-serif;
-  animation-name: moverDescripcionBanner;
-  animation-duration: 1.2s;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
 
 #contenedor-filtros{
   display:inline-block;
-  width: 95vw;
-  padding:15px;
+  width: 100vw;
+  margin-top: 2vw;
+  margin-bottom: 3vw;
 }
+
 .filtros {
   display:inline-block;
   position: relative;
-  animation-name: mover;
-  animation-duration: 0.7s;
-  width: 200px;
-  height: 210px;
-  margin:15px;
-  margin-top: 0px;
+  /*animation-name: mover;
+  animation-duration: 0.7s;*/
+  width: fit-content;
+  height: auto;
+  margin:1vw;
   vertical-align: middle;
   font-size: 22px;
 }
@@ -66,29 +35,39 @@
   font-size: 24px;
 }
 .imagen-filtro {
+  width: 22vw;
+  height: 22vw;
+  object-fit:cover;
   display:inline-block;
-  max-width: 180px;
-  max-height: 180px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   cursor: pointer;
-  margin-bottom: 15px;
+  overflow: hidden;
 }
 .etiqueta-filtro{
-  color: rgba(0, 0, 0, 0.938);
-  font-family: 'Red Hat Display', sans-serif;
-  text-align: center;
-  width: 200px;
+  width: 22vw;
+  height: 4vw;
+  margin-top: 18vw;
+  background-color: rgba(0, 0, 0, 0.295);
+  color: rgb(255, 255, 255);
+  font-family: 'Monserrat', sans-serif;
+  font-size: 2.5vw;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  bottom: 5px;
-  left: 0px;
-  z-index: 100;
+  display:flex;
+  top:0;
+  left: 0;
 }
 .etiqueta-filtro:hover {
+  background-color: rgba(0, 0, 0, 0.329);
   color: rgb(255, 255, 255);
   cursor: pointer;
+}
+.etiqueta2{
+  font-size: 2vw;
+}
+
+.filtro2{
+  width: 46vw ;
 }
 
 .boton{
@@ -114,10 +93,8 @@
 
 #slide-productos{
   background-color: rgba(209, 209, 209, 0);
-  width: 80vw;
-  margin: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100vw;
+  margin: auto 20px;
   border-radius: 5px;
 }
 
@@ -214,18 +191,57 @@
 
 
   .filtros {
-    width: 30vw;
-    height: 45vw;
-    margin:15px;
+    width: 40vw;
+    height: 40vw;
     font-size: 22px;
+    margin:2vw;
   }
   .imagen-filtro {
-    max-width: 30vw;
-    max-height: 30vw;
+    width: 40vw;
+    height: 40vw;
     position: relative;
   }
   .etiqueta-filtro{
-    width: 30vw;
+    width: 40vw;
+    height: 8vw;
+    font-size: 5vw;
+    margin-top:32vw;
+    background-color: rgba(0, 0, 0, 0.322);
   }
 
   }
+
+  /*
+.titulo-banner {
+  position: absolute;
+  top: 270px;
+  left: 10%;
+  color: rgb(0, 0, 0);
+  font-size: 60px;
+  font-family: 'Red Hat Display', sans-serif;
+  animation-name: moverDescripcionBanner;
+  animation-duration: 1.4s;
+}
+.descripcion-banner {
+  position: absolute;
+  top: 350px;
+  left: 10%;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  font-family: 'Red Hat Display', sans-serif;
+  animation-name: moverDescripcionBanner;
+  animation-duration: 1.1s;
+}
+.descuento-banner{
+  position: absolute;
+  top: 245px;
+  left: 10%;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.918);
+  font-size: 18px;
+  font-family: 'Red Hat Display', sans-serif;
+  animation-name: moverDescripcionBanner;
+  animation-duration: 1.2s;
+  padding-left: 5px;
+  padding-right: 5px;
+}*/

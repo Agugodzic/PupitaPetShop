@@ -2,6 +2,7 @@
 <div id="contenido">
   <div id="ventana-compra">
     <div id="barra-de-progreso">
+
       <div class="nodo" [ngStyle]="{
         'background-color': paso1 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
         'border-color': paso1 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
@@ -10,6 +11,7 @@
       }" ></div>
 
       <div class="linea-de-progreso" id="linea1"></div>
+
       <div class="nodo" [ngStyle]="{
         'background-color': paso2 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
         'border-color': paso2 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
@@ -18,6 +20,7 @@
       }"></div>
 
       <div class="linea-de-progreso" id="linea2"></div>
+
       <div class="nodo" [ngStyle]="{
         'background-color': paso3 ? 'rgb(86, 111, 253)':'rgb(235, 235, 235)',
         'border-color': paso3 ? 'rgb(15, 102, 202)':'rgba(0, 0, 0, 0.562)',
@@ -33,91 +36,123 @@
       <p id="titulo" *ngIf="pasoActual == 3">Finalizar compra</p>
       <p id="titulo" *ngIf="pasoActual == 4">Felicidades por su compra!</p>
 
+      <!--------------- PASO 1 ------------------->
 
-        <!--------------- PASO 1 -------------------->
-
-
-
-      <form *ngIf="pasoActual==1">
+      <form *ngIf="pasoActual==1" [formGroup]="datosDeUsuario" (ngSubmit)="submitDatos()">
         <div class="contenedor-inl">
+
           <p class="input-name">Nombre:</p>
-          <p><input matInput class="form-control" type="text" placeholder="Nombre"></p>
+          <p><input matInput class="form-control" type="text" placeholder="Nombre" name="nombre" formControlName="nombre" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('nombre')?.errors?.['required'] || datosDeUsuario.get('nombre')?.errors?.['required'] && datosDeUsuario.get('nombre')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('nombre')?.errors?.['minlength']" class="validator-error-msj">Demasiado corto</p>
+          </div>
+
           <p class="input-name">Apellido:</p>
-          <p><input class="form-control" type="text" placeholder="Apellido"></p>
+          <p><input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('apellido')?.errors?.['required'] || datosDeUsuario.get('apellido')?.errors?.['required'] && datosDeUsuario.get('apellido')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('apellido')?.errors?.['minlength']" class="validator-error-msj">Demasiado corto</p>
+          </div>
+
           <p class="input-name">Telefono:</p>
-          <p><input class="form-control" min="0" type="number" placeholder="Telefono" ></p>
+          <p><input class="form-control" min="0" type="number" placeholder="Telefono" formControlName="telefono" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('telefono')?.errors?.['required'] || datosDeUsuario.get('telefono')?.errors?.['required'] && datosDeUsuario.get('telefono')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('telefono')?.errors?.['min']" class="validator-error-msj">Numero invalido</p>
+          </div>
+
           <p class="input-name">Email:</p>
-          <p><input class="form-control" type="text" placeholder="Email" ></p>
+          <p><input class="form-control" type="text" placeholder="Email" formControlName="email" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('email')?.errors?.['required'] || datosDeUsuario.get('email')?.errors?.['required'] && datosDeUsuario.get('email')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('email')?.errors?.['email']" class="validator-error-msj">Email no valido</p>
+          </div>
         </div>
 
         <div class="contenedor-inl">
-          <p class="input-name">Ciudad:</p>
-          <p><input class="form-control" type="text" placeholder="Ciudad" ></p>
-          <p class="input-name">Direccion:</p>
-          <p><input class="form-control" type="number" placeholder="Direccion"></p>
-          <p class="input-name">Piso - Departamento:</p>
-          <p><input class="form-control" type="text" placeholder="piso - departamento" ></p>
-          <p class="input-name">Codigo Postal:</p>
-          <p><input class="form-control" min="0"  type="number" placeholder="Codigo Postal" ></p>
-        </div>
 
+          <p class="input-name">Ciudad:</p>
+          <p><input class="form-control" type="text" placeholder="Ciudad" formControlName="ciudad" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('ciudad')?.errors?.['required']  || datosDeUsuario.get('ciudad')?.errors?.['required'] && datosDeUsuario.get('ciudad')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('ciudad')?.errors?.['minlength']" class="validator-error-msj">campo invalido</p>
+          </div>
+
+          <p class="input-name">Direccion:</p>
+          <p><input class="form-control" type="text" placeholder="Direccion" formControlName="direccion" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('direccion')?.errors?.['required'] || datosDeUsuario.get('direccion')?.errors?.['required'] && datosDeUsuario.get('direccion')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('direccion')?.errors?.['minlength']" class="validator-error-msj">campo invalido</p>
+          </div>
+
+          <p class="input-name">Piso - Departamento:</p>
+          <p><input class="form-control" type="text" placeholder="piso - departamento" formControlName="pisoDepto" ></p>
+
+          <p class="input-name">Codigo Postal:</p>
+          <p><input class="form-control" min="0"  type="number" placeholder="Codigo Postal" formControlName="codigoPostal" required></p>
+          <div class="validator-error-container">
+            <p *ngIf="clickedSumbit && datosDeUsuario.get('codigoPostal')?.errors?.['required'] || datosDeUsuario.get('codigoPostal')?.errors?.['required'] && datosDeUsuario.get('codigoPostal')?.touched " class="validator-error-msj">Campo requerido</p>
+            <p *ngIf="datosDeUsuario.get('codigoPostal')?.errors?.['email'] || datosDeUsuario.get('codigoPostal')?.errors?.['email']" class="validator-error-msj">campo invalido</p>
+          </div>
+
+        </div>
 
         <div id="botones">
-        <a *ngIf="pasoActual < 4" id="boton-volver" href="/carrito">Volver</a>
-        <button (click)="siguiente()">{{textoBoton}}</button>
+        <a *ngIf="pasoActual < 4" id="volver" href="/carrito">Volver</a>
+        <input type="submit" class="boton1" [value]="textoBoton">
         </div>
 
       </form>
 
-     <!--------------- PASO 2 ------------------->
 
-      <div id="paso2" *ngIf="pasoActual==2">
 
-        <div id="paso2-opciones">
+        <!--------------- PASO 2 -------------------->
 
-          <div class="paso2-opcion">
-            <button class="paso2-opcion-boton">
-              <img class="paso2-opcion-boton-imagen" [src]="imagen.tarjeta">
+        <div id="paso2" *ngIf="pasoActual==2">
+
+          <div id="paso2-opciones">
+
+          <button (click)="selectOption(1)" class="paso2-opcion" [ngStyle]=selectOptionStyle1()>
+            <div class="paso2-opcion-boton-imagen">
+              <img class="paso2-opcion-boton-imagen-mini" src="https://img.icons8.com/color/12x/mercado-pago.png">
+              <img class="paso2-opcion-boton-imagen-mini" src="https://lomejordevillacarlospaz.com/wp-content/uploads/2022/03/PAGO-FACIL-PNG.png">
+              <img class="paso2-opcion-boton-imagen-mini" src="https://upload.wikimedia.org/wikipedia/commons/7/72/MasterCard_early_1990s_logo.png">
+              <img class="paso2-opcion-boton-imagen-mini" src="https://e7.pngegg.com/pngimages/49/82/png-clipart-credit-card-visa-logo-mastercard-bank-mastercard-blue-text.png">
+            </div>
+
+            <div class="paso2-opcion-info">
+              <h3 class="paso2-opcion-info-titulo">Continuar en la Web</h3>
+              <div class="paso2-opcion-info-texto">
+                Podras pagar con Mercado pago, tarjeta de Credito o Debito, Rapipago, Pago Facil, entre otros
+              </div>
+            </div>
+          </button>
+
+            <button (click)="selectOption(2)" class="paso2-opcion" [ngStyle]=selectOptionStyle2()>
+              <img class="paso2-opcion-boton-imagen2" [src]="imagen.logoWsp">
+              <div class="paso2-opcion-info">
+                <h3 class="paso2-opcion-info-titulo">Continuar por Wsp</h3>
+                <div class="paso2-opcion-info-texto">Recibiremos tu pedido por Wsp y podras acordar con nosotros los metodos de pago y envio.
+                </div>
+              </div>
             </button>
-            <p class="paso2-opcion-texto">Tarjeta</p>
+
           </div>
 
-          <div class="paso2-opcion">
-            <button class="paso2-opcion-boton">
-              <img class="paso2-opcion-boton-imagen" [src]="imagen.transferencia">
-            </button>
-            <p class="paso2-opcion-texto">Transferencia</p>
+          <div id="botones">
+            <button *ngIf="pasoActual < 4" class="boton2" (click)="volver()">Volver</button>
+            <button (click)="sendOption()" class="boton1">{{textoBoton}}</button>
+            </div>
           </div>
-
-          <div class="paso2-opcion">
-            <button class="paso2-opcion-boton">
-              <img class="paso2-opcion-boton-imagen" [src]="imagen.pagofacil">
-            </button>
-            <p class="paso2-opcion-texto">Pagofacil</p>
-          </div>
-
-          <div class="paso2-opcion">
-            <button class="paso2-opcion-boton">
-              <img class="paso2-opcion-boton-imagen" [src]="imagen.logoWsp">
-            </button>
-            <p class="paso2-opcion-texto">Continuar por Wsp</p>
-          </div>
-
-        </div>
-
-        <div id="botones">
-          <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
-          <button (click)="siguiente()">{{textoBoton}}</button>
-          </div>
-        </div>
 
         <!-------------- PASO 3 ------------------->
 
       <form *ngIf="pasoActual==3">
 
         <div id="botones">
-          <button *ngIf="pasoActual < 4" id="boton-volver" (click)="volver()">Volver</button>
-          <button (click)="siguiente()">{{textoBoton}}</button>
+          <button *ngIf="pasoActual < 4" class="boton2" (click)="volver()">Volver</button>
+          <button (click)="siguiente()" class="boton1">{{textoBoton}}</button>
         </div>
       </form>
 

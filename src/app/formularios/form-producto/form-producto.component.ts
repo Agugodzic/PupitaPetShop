@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input,  OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CategoriaModel } from 'src/app/modelos/categoria-model';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
-import { ToolsService } from 'src/app/tools.service';
 
 @Component({
   selector: 'app-form-producto',
@@ -29,7 +28,6 @@ export class FormProductoComponent implements OnInit {
     private formBuilder:FormBuilder,
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
-    private tools:ToolsService,
     private sanitizer:DomSanitizer
     ) { }
 
@@ -70,12 +68,15 @@ export class FormProductoComponent implements OnInit {
       this.editarProducto.value.imagen4 = this.imageFile4;
     }
     /*console.log("in submit" + this.editarProducto.value.imagen1)*/
-    this.productoService.editar(this.editarProducto.value).subscribe(() => {
+    this.productoService.editar(this.editarProducto.value).subscribe((response) => {
       location.reload();
     });
   }
 
   public submitAgregar(){
+    let botonStatus = document.querySelector('button');
+    if(botonStatus){botonStatus.disabled = true}
+
     if(this.imageFile1){
       this.agregarProducto.value.imagen1 = this.imageFile1;
     }
@@ -88,9 +89,11 @@ export class FormProductoComponent implements OnInit {
     if(this.imageFile4){
       this.agregarProducto.value.imagen4 = this.imageFile4;
     }
-    this.productoService.agregar(this.agregarProducto.value).subscribe(() => {
+    this.productoService.agregar(this.agregarProducto.value).subscribe((response) => {
+      if(botonStatus){botonStatus.disabled = false}
       location.reload();
     });
+
   }
 
   public submitCategoria(){
@@ -148,7 +151,6 @@ export class FormProductoComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.listarCategorias();
 
     this.agregarCategoria = this.formBuilder.group(
       {
@@ -195,13 +197,14 @@ export class FormProductoComponent implements OnInit {
       descripcioncorta:this.producto.descripcioncorta,
       descripcion:this.producto.descripcion,
       categoria:this.producto.categoria,
-      imagen1:this.producto.imagen1,
+
       imagen2:this.producto.imagen2,
       imagen3:this.producto.imagen3,
       imagen4:this.producto.imagen4
-    })}
+    })
 
     this.imageFile1 = this.producto.imagen1;
-
+    }
+    this.listarCategorias();
   }
   }

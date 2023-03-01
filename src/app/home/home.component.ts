@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   private categorias:CategoriaModel[];
   private productos:any;
   public productosRecomendados:any = [];
+  image = "https://t1.ea.ltmcdn.com/es/posts/0/3/7/que_es_mejor_arnes_o_collar_para_perros_22730_orig.jpg";
 
   constructor(
     private productoService:ProductoService,

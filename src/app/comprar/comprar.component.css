@@ -35,13 +35,28 @@ z-index: 0;
   min-height: 70vh;
   max-width: 800px;
   width: 80vw;
-  background-color: rgba(228, 228, 228, 0.637);
-  border-radius: 12px;
+  background-color: rgba(228, 228, 228, 0);
+  border-radius: 10px;
   margin: auto;
   border: solid;
   border-width: 1.5px;
-  border-color: rgba(5, 5, 5, 0);
+  border-color: rgba(5, 5, 5, 0.137);
+  padding-bottom: 40px;
 }
+
+#titulo{
+  font-size: 16px;
+  padding:2px;
+  padding-bottom: 2px;
+  font-family:'Montserrat', sans-serif;
+  margin-bottom: 10px;
+ }
+
+
+
+
+/*  ---  BARRA DE PROGRESO  ---  */
+
 
 #barra-de-progreso{
   margin-top: 15px;
@@ -73,31 +88,13 @@ z-index: 0;
   margin: 6px;
 }
 
-#titulo{
-  font-size: 16px;
-  padding:2px;
-  padding-bottom: 2px;
-  font-family:'Montserrat', sans-serif;
-  margin-bottom: 10px;
- }
+
+/*  ---  BOTONES  ---  */
+
 
 button {
-  background-color: rgb(42, 72, 241);
-  height: 30px;
-  min-width: 70px;
-  border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  color: white;
   margin:15px;
   margin-top: 10x;
-  font-size: 15px;
-  cursor:pointer;
-  font-family: 'Red Hat Display', sans-serif;
-
-}
-
-button:hover{
-  opacity: 92%;
 }
 
 a{
@@ -107,17 +104,17 @@ a{
   border-radius: 5px;
   border-color: rgba(0, 0, 0, 0);
   margin:15px;
-  margin-top: 10x;
+  margin-top: 10px;
   cursor:pointer;
   padding:6px;
 }
 
-#boton-volver{
-  background-color: rgb(196, 196, 196);
-  border-color: rgba(0, 0, 0, 0);
-  color: rgba(0, 0, 0, 0.911);
-
+#volver{
+  margin: auto 70px;
 }
+
+
+/*  ---  FORMULARIOS  ---  */
 
 #formularios{
   min-height: 54vh;
@@ -126,6 +123,19 @@ a{
 
 form{
   min-height: 54vh;
+}
+
+.validator-error-container{
+  text-align: left;
+  margin-left: 3px;
+  transform: translateY(-21px);
+}
+
+.validator-error-msj{
+  position:absolute;
+  color:rgba(236, 51, 51, 0.829);
+  font-family:'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
 .contenedor-inl{
@@ -149,43 +159,100 @@ form{
 .input-name{
   font-family:'Montserrat', sans-serif;
   text-align: left;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0px;
+  margin-top:14px;
 }
 
+
+/*  ---  OPCIONES DE PAGO  ---  */
+
+
+#paso2{
+ height: fit-content;
+}
 
 #paso2-opciones{
   font-family:'Montserrat', sans-serif;
   align-items: center;
   text-align: center;
   font-size: 14px;
-  width: 60vw;
-  margin:50px  auto ;
-  display: inline-block;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
 
 }
 
 .paso2-opcion{
-  width: fit-content;
-  display: inline-flex;
-  flex-direction: column;
+  flex-grow: 2;
+  height: 100px;
+  width: 700px;
+  display: flex;
+  flex-direction: row;
   margin: 20px;
   text-align: center;
+  background-color: rgba(234, 255, 231, 0.63);
+  align-items: center;
+  position:relative;
+  border-style: solid;
+  border-color:rgba(0, 0, 0, 0.171);
+  border-radius: 6px;
+  border-width: 1px;
+  padding: 60px 20px;
+  cursor:pointer;
+}
+.paso2-opcion:hover{
+  background-color: rgba(70, 247, 47, 0.200);
 }
 
-.paso2-opcion-texto{
-  width: 100px;
-  height: 20px;
+.paso2-opcion-info{
+  font-family: 'Monserrat', sans-serif;
+  width: fit-content;
+  height: fit-content;
   text-align: center;
+  position:relative;
+  margin:5px;
+  padding:6px;
+  z-index:30000 ;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
   }
+
+.paso2-opcion-info-titulo{
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 17px;
+  margin: 5px;
+}
+
+.paso2-opcion-info-texto{
+  font-size: 16px;
+  color:rgba(0, 0, 0, 0.726);
+  margin: 10px 10px;
+}
 
 .paso2-opcion-boton-imagen{
   height: 60px;
+  width: 100px;
+  margin: 10px 10px;
+  transform: translateY(-5px);
 }
-
+.paso2-opcion-boton-imagen2{
+  height: 60px;
+  width: 60px;
+  margin: 10px 10px;
+}
+.paso2-opcion-boton-imagen-mini{
+  height:min-content;
+  max-height: 35px;
+  width: 35px;
+  align-items: center;
+  align-content: center;
+  margin:2px;
+}
 .paso2-opcion-boton{
   display: block;
-  background-color: rgba(0, 0, 0, 0.137);
+  background-color: rgba(0, 0, 0, 0);
   height: 80px;
   width: 80px;
   border-radius: 8px;

@@ -14,12 +14,12 @@ span {
 }
 #galeria {
   margin: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
   background: rgba(235, 235, 235, 0);
   display: inline-block;
   min-height: 600px;
   border-radius: 4px;
-  padding: 5px;
+  padding: 2px;
   width: 80vw;
 }
 .contenedorProducto {
@@ -72,10 +72,9 @@ span {
   max-width: 200px;
 }
 #lateral {
-  background-color:rgba(245, 242, 242, 0);
   display: inline-block;
   text-align: left;
-  width: 130px;
+  width: fit-content;
   padding: 20px 25px 20px 25px;
   border-radius: 4px;
   position: relative;
@@ -247,7 +246,7 @@ span {
   background-color: rgba(0, 0, 0, 0);
 }
 #selectorDePaginas {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .numerosDePagina {
   background-color: rgba(240, 248, 255, 0);

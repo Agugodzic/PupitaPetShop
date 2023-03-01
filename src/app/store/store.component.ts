@@ -164,6 +164,7 @@ export class StoreComponent implements OnInit {
 
   public cambiarProductoM(producto:any) {
     this.cambiarProducto(producto);
+    this.paginaActual = 1;
     this.switchSelectorCategorias();
   }
 
@@ -202,8 +203,8 @@ export class StoreComponent implements OnInit {
     } else if (orden === 'mayorPrecio') {
       this.productosService = this.mayorPrecio(this.productosService);
     }
-    this.actualizarLista();
     this.paginaActual = 1;
+    this.actualizarLista();
   }
 
   public siguiente(): void {

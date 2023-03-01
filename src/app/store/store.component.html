@@ -72,16 +72,14 @@
       class="boton-lateral"
       (click)="cambiarProducto('Todos los productos')"
     >
-    <img *ngIf="productoFiltro == 'Todos los productos'" class="boton-lateral-patita" [src]="Imagen.patita">
       Todos
     </button>
 
     <div *ngFor="let categoria of categorias" >
       <!--*ngIf="categoriasEnUso.includes(categoria.categoria)" -->
       <button class="boton-lateral" (click)="cambiarProducto(categoria.categoria)">
-        <img *ngIf="productoFiltro == categoria.categoria" class="boton-lateral-patita" [src]="Imagen.patita">
         <div  [ngStyle]="{
-          'color': categoria.categoria == productoFiltro ?  'black': 'black'}
+          'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
           " >{{categoria.categoria}}</div>
       </button>
     </div>

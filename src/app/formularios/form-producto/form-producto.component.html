@@ -54,7 +54,7 @@
   </label>
 </div>
 
-<div id="contenedor-preview"><img height="170px" src="https://i.pinimg.com/736x/5a/a2/ac/5aa2ac56c01d031bd3f4a649fa1b606a.jpg"><img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px"></div>
+<div id="contenedor-preview"><img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px"></div>
 
 <!------------------- descripcion larga --------------------->
 
@@ -65,8 +65,8 @@
 <!------------------------- botones ------------------------->
 
     <div class="contenedor-block">
-      <input class="form-control boton1" value="Guardar" type="submit">
-      <button class="form-control boton2" (click)="actualizar()"  type="button">Cancelar</button>
+      <input class="boton1" value="Guardar" type="submit">
+      <button class="boton2" (click)="actualizar()"  type="button">Cancelar</button>
     </div>
     </div>
   </form>
@@ -124,7 +124,7 @@
     <!------------------------- botones ------------------------->
 
     <div class="contenedor-block">
-      <input class="boton1" value="Guardar" type="submit">
+      <input class="boton1" id="btn" value="Guardar" type="submit">
       <button class="boton2" (click)="actualizar()" type="button">Cancelar</button>
     </div>
     </div>

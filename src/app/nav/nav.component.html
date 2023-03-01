@@ -49,9 +49,9 @@
   <div id="nav" >
     <a href="home" class="boton" [ngStyle]="estiloBoton(1)" id="nav-inicio">INICIO</a>
     <a *ngIf="!getLogValue()" target="_blank" href="https://api.whatsapp.com/send?phone=+5493415717618&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." class="boton" [ngStyle]="estiloBoton(2)">CONTACTANOS</a>
+    <a href="h12236456" *ngIf="getLogValue()" class="boton">PEDIDOS</a>
     <a href="store/0" class="boton" [ngStyle]="estiloBoton(3)">TIENDA</a>
     <a href="carrito" *ngIf="!getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">CARRITO</a>
-    <a href="h12236456" *ngIf="getLogValue()" class="boton">PEDIDOS</a>
     <a href="pruebas" *ngIf="getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">PRUEBAS</a>
   </div>
 

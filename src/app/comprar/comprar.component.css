@@ -41,7 +41,7 @@ z-index: 0;
   border: solid;
   border-width: 1.5px;
   border-color: rgba(5, 5, 5, 0.137);
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 #titulo{
@@ -94,7 +94,7 @@ z-index: 0;
 
 button {
   margin:15px;
-  margin-top: 10x;
+  margin-top: 40px;
 }
 
 a{
@@ -136,6 +136,13 @@ form{
   color:rgba(236, 51, 51, 0.829);
   font-family:'Montserrat', sans-serif;
   font-size: 14px;
+}
+
+.validator-error-msj-paso2{
+  color:rgba(250, 15, 15, 0.562);
+  font-family:'Montserrat', sans-serif;
+  font-size: 16px;
+  margin:15px;
 }
 
 .contenedor-inl{
@@ -202,7 +209,7 @@ form{
   cursor:pointer;
 }
 .paso2-opcion:hover{
-  background-color: rgba(70, 247, 47, 0.200);
+  border-color: rgba(0, 0, 0, 0.315);
 }
 
 .paso2-opcion-info{
@@ -258,4 +265,25 @@ form{
   border-radius: 8px;
   padding:0px;
   text-align: center;
+  align-items: center;
+}
+
+#gracias{
+  display:flex;
+  text-align: center;
+  align-items: center;
+  font-family: 'Red Hat Display', sans-serif;
+  height:30vh;
+  align-content: center;
+  color:rgba(0, 0, 0, 0.644);
+}
+#gracias-mensaje{
+  flex-grow:1;
+}
+
+.boton2{
+  height:40px;
+  padding: 5px 20px;
+  font-size: 17px;
+  cursor:pointer;
 }

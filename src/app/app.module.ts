@@ -1,15 +1,13 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarritoComponent } from './carrito/carrito.component';
-import { CarruselComponent } from './carrusel/carrusel.component';
 import { HomeComponent } from './home/home.component';
 import { ProductoComponent } from './producto/producto.component';
 import { StoreComponent } from './store/store.component';
 import { AlertComponent } from './alert/alert.component';
-import { VentanaComponent } from './ventana/ventana.component';
 import { FormProductoComponent } from './formularios/form-producto/form-producto.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -36,12 +34,10 @@ import { PedidosComponent } from './pedidos/pedidos.component';
   declarations: [
     AppComponent,
     CarritoComponent,
-    CarruselComponent,
     HomeComponent,
     ProductoComponent,
     StoreComponent,
     AlertComponent,
-    VentanaComponent,
     LogInComponent,
     FormProductoComponent,
     ComprarComponent,

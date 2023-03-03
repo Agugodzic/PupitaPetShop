@@ -19,7 +19,7 @@ export class CarritoComponent implements OnInit {
 
   public productosCarrito:any;
   private localStorage_:any = localStorage.getItem("productos");
-  public productos:any = JSON.parse(this.localStorage_);;
+  public productos:any = JSON.parse(this.localStorage_);
   public productoCantidad:any = [];
 
   private carritoLocalStorage:any = [];
@@ -147,7 +147,6 @@ export class CarritoComponent implements OnInit {
       _preferencias = this.ToolsService.preferencias(response,_carrito);
     this.Checkout.sendPreferences(_preferencias).subscribe(
       (response)=> window.location.href = response.body.init_point.toString()
-
     );
     })
   }

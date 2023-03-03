@@ -137,8 +137,9 @@
                 </div>
               </div>
             </button>
-
           </div>
+
+          <i class="validator-error-msj-paso2" *ngIf="errorPaso2">Debe seleccionar una opcion.</i>
 
           <div id="botones">
             <button *ngIf="pasoActual < 4" class="boton2" (click)="volver()">Volver</button>
@@ -149,24 +150,13 @@
         <!-------------- PASO 3 ------------------->
 
       <form *ngIf="pasoActual==3">
-
-        <div id="botones">
-          <button *ngIf="pasoActual < 4" class="boton2" (click)="volver()">Volver</button>
-          <button (click)="siguiente()" class="boton1">{{textoBoton}}</button>
+        <div id="gracias">
+          <h1 id="gracias-mensaje">Gracias por confiar en nosotros!</h1>
         </div>
+
+        <button class="boton2" (click)="volverALaTienda()">Volver a la tienda</button>
+
       </form>
-
-
-        <!---------------- PASO 4 -------------------->
-
-      <form *ngIf="pasoActual==4">
-
-        <div id="botones">
-          <button (click)="volverALaTienda()">Volver a la tienda</button>
-        </div>
-      </form>
-
     </div>
-
   </div>
 </div>

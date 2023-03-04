@@ -28,6 +28,6 @@ export class CategoriaService {
   }
 
   public eliminar(id:number):Observable<any>{
-    return this.http.delete(`${this.apiServerUrl}/productos/${id}`)
+    return this.http.delete(`${this.apiServerUrl}/categorias/${id}`)
   }
 }

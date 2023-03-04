@@ -1,9 +1,10 @@
 <app-alert
   *ngIf="mostrarAlert"
-  titulo="Has añadido un producto al carrito:"
+  titulo="Selecciona la cantidad de unidades:"
   [texto]="producto.nombre"
-  textoBoton="Ok"
+  textoBoton="Listo!"
   accion = "actualizar"
+  tipo="inputNumber"
   >
 </app-alert>
 

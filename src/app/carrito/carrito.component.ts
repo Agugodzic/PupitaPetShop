@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToolsService } from '../tools.service';
 import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
@@ -12,7 +12,7 @@ import { CheckoutExpressService } from '../servicios/checkout-express.service';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, OnDestroy {
   public precio = this.ToolsService.precio;
   public imagen = this.ToolsService.imagen;
   public total:number;
@@ -157,5 +157,8 @@ export class CarritoComponent implements OnInit {
     this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
     this.preCargarProducto()
     this.listarProductos();
+  }
+  ngOnDestroy():void{
+    this.ProductoService.listar().subscribe();
   }
 }

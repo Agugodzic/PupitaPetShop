@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
@@ -23,6 +23,8 @@ export class AlertComponent implements OnInit {
   @Output() mostrar = new EventEmitter();
 
   private categoria:CategoriaModel;
+  public inputNumberValue:number;
+  public tipoInputNumber:any;
 
   constructor(
     private productoService:ProductoService,
@@ -67,6 +69,7 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tipoInputNumber = () => {
+      if(this.tipo== "inputNumber"){ return true; }else{return false}}
   }
-
 }

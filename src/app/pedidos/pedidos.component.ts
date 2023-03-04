@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PedidoModel } from '../modelos/pedido-model';
+import { OrdenService } from '../servicios/orden.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -8,58 +9,18 @@ import { PedidoModel } from '../modelos/pedido-model';
 })
 export class PedidosComponent implements OnInit , OnDestroy {
   public pedidos:any = [];
-  public pedidosPrueba:PedidoModel[] = [];
+  public ordenes:any = []
 
-  constructor(){
-    this.pedidosPrueba = [{
-      id:0,
-      nombre:"Jose Herrero",
-      email:"pepe@gmail.com",
-      telefono:34259855,
-      ciudad:"Santa Fe",
-      direccion:"Antonia Godoy 4568",
-      pisoDepartamento:"-",
-      codigoPostal:"3000",
-      descripcion:[],
-      fecha:"03/02/2022",
-      total:1568,
-      estadoEnvio:"no enviado",
-      estadoPago:"pagado",
-    },{
-      id:0,
-      email:"pepe@gmail.com",
-      nombre:"Juan Perez",
-      telefono:34259855,
-      ciudad:"Santa Fe",
-      direccion:"Antonia Godoy 4568",
-      pisoDepartamento:"-",
-      codigoPostal:"3000",
-      descripcion:[],
-      fecha:"03/02/2022",
-      total:1568,
-      estadoEnvio:"no enviado",
-      estadoPago:"pagado",
-    },{
-      id:0,
-      nombre:"Juana Loca",
-      email:"pepe@gmail.com",
-      telefono:34259855,
-      ciudad:"Santa Fe",
-      direccion:"Antonia Godoy 4568",
-      pisoDepartamento:"-",
-      codigoPostal:"3000",
-      descripcion:[],
-      fecha:"03/02/2022",
-      total:1568,
-      estadoEnvio:"no enviado",
-      estadoPago:"pagado",
-    }]
+  constructor(
+    private ordenService:OrdenService
+  ){}
+
+  listarOrdenes(){
+    this.ordenService.listar().subscribe()
   }
 
   ngOnInit(): void {
   }
-
-
 
   ngOnDestroy():void{
 

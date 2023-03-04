@@ -3,6 +3,9 @@
     <p id="titulo">{{titulo}}</p>
     <p id="texto">{{texto}}</p>
     <button (click)="funcion()">{{textoBoton}}</button>
+    <div *ngIf="tipoInputNumber">
+          <input *ngModel="inputNumberValue" type="number" value=1>
+    </div>
     <button id="boton-cancelar" (click)="funcionCancelar()" *ngIf="textoCancelar.length >= 1">{{textoCancelar}}</button>
   </div>
 </div>

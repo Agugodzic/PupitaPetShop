@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../servicios/auth.service';
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
 })
-export class ProductoComponent implements OnInit {
+export class ProductoComponent implements OnInit, OnDestroy {
 
   public verMas:string = 'Ver especificaciones';
   public longitud = this.ToolsService.recortarString;
@@ -162,5 +162,7 @@ export class ProductoComponent implements OnInit {
     this.listarProductos();
     this.preCargarProducto();
     this.cantidadImagenes = this.ImagenesProducto.length;
+  }
+  ngOnDestroy():void{
   }
 }

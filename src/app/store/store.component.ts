@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../tools.service';
 import { ProductosService } from '../productos.service';
@@ -13,7 +13,7 @@ import { AuthService } from '../servicios/auth.service';
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
-export class StoreComponent implements OnInit {
+export class StoreComponent implements OnInit , OnDestroy {
 
   @Input() productoIn:string = 'Todos los productos';
 
@@ -249,6 +249,10 @@ export class StoreComponent implements OnInit {
     this.categoria = this.route.snapshot.paramMap.get('categoria');
     this.listarProductos();
     this.actualizarLista();
+  }
+  ngOnDestroy():void{
+    this.ProductoService.listar().subscribe();
+    this.categoriaService.listar().subscribe();
   }
 
 }

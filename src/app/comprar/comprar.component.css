@@ -2,6 +2,7 @@ p{
   margin:4px;
 }
 
+
 #barra-superior{
   height: 50px;
   background-color: rgb(224, 224, 224);
@@ -95,6 +96,27 @@ z-index: 0;
 button {
   margin:15px;
   margin-top: 40px;
+}
+
+.boton1{
+  height:30px;
+  padding: 5px 20px;
+  font-size: 16px;
+  cursor:pointer;
+}
+
+.boton2{
+  height:30px;
+  padding: 5px 20px;
+  font-size: 16px;
+  cursor:pointer;
+}
+
+.volver-tienda{
+  height:40px;
+  padding: 5px 20px;
+  font-size: 17px;
+  cursor:pointer;
 }
 
 a{
@@ -281,9 +303,3 @@ form{
   flex-grow:1;
 }
 
-.boton2{
-  height:40px;
-  padding: 5px 20px;
-  font-size: 17px;
-  cursor:pointer;
-}

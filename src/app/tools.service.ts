@@ -139,6 +139,28 @@ export class ToolsService {
     return productoCantidad;
   }
 
+  agregarAlCarrito(productoID:number,cantidad:number){
+
+    let productosCarrito:any = localStorage.getItem('carrito');
+
+    if(productosCarrito != null && productosCarrito!= undefined){
+      productosCarrito = JSON.parse(productosCarrito);
+
+      for(let prod = 1; prod <= cantidad; prod++){
+       productosCarrito.push(productoID);
+      }
+
+      localStorage.setItem("carrito",JSON.stringify(productosCarrito));
+      }else{
+
+        for(let prod = 1; prod <= cantidad; prod++){
+          productosCarrito = [productoID];
+         }
+
+        localStorage.setItem("carrito",JSON.stringify(productosCarrito));
+      };
+}
+
 
   public preferencias(productos:ProductoModel[],carrito:CarritoModel[]):PreferenciaModel[]{
     let preferencias:PreferenciaModel[] = [];
@@ -198,8 +220,8 @@ export class ToolsService {
     patita:"https://static.vecteezy.com/system/resources/previews/009/344/667/original/dog-paw-free-png.png"
   }
 
-  public apiServerUrl = "https://pupita-backend-production.up.railway.app";
-  //public apiServerUrl = "http://localhost:8080";
+  // public apiServerUrl = "https://pupita-backend-production.up.railway.app";
+ public apiServerUrl = "http://localhost:8080";
   //apiServerUrl = ""
 }
 

@@ -54,6 +54,12 @@ z-index: 0;
  }
 
 
+#gracias-imagen{
+  width: 500px;
+  text-align: center;
+  margin: 5 auto;
+}
+
 
 
 /*  ---  BARRA DE PROGRESO  ---  */
@@ -206,7 +212,7 @@ form{
   align-items: center;
   text-align: center;
   font-size: 14px;
-  width: 800px;
+  margin:  1px;
   display: flex;
   flex-direction: column;
 
@@ -215,10 +221,9 @@ form{
 .paso2-opcion{
   flex-grow: 2;
   height: 100px;
-  width: 700px;
   display: flex;
   flex-direction: row;
-  margin: 20px;
+  margin: 15px 2vw;
   text-align: center;
   background-color: rgba(234, 255, 231, 0.63);
   align-items: center;
@@ -303,3 +308,46 @@ form{
   flex-grow:1;
 }
 
+
+@media only screen and (max-width: 1200px) {
+
+  .paso2-opcion{
+    flex-grow: 2;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin:15px 5vw;
+    align-items: center;
+    position:relative;
+    padding: 15px 14px;
+    cursor:pointer;
+  }
+
+  .paso2-opcion-info{
+    margin:5px;
+    padding:6px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+  .paso2-opcion-info-texto{
+    font-size: 16px;
+    margin: 10px 10px;
+  }
+
+  .paso2-opcion-boton-imagen{
+    height: 60px;
+    width: 100px;
+    margin: auto;
+    transform: translateY(-5px);
+  }
+  .paso2-opcion-boton-imagen-mini{
+    max-height: 30px;
+    width: 30px;
+  }
+
+  #ventana-compra{
+    width: 90vw;
+  }
+}

@@ -224,8 +224,8 @@ form{
   border-radius: 5px;
   border-color: rgba(0, 0, 0, 0);
   color: white;
-  cursor:pointer;
   margin: 15px;
+  cursor:pointer;
 }
 
 .cancelar-categoria{

@@ -25,6 +25,9 @@ export class ProductoMiniaturaComponent implements OnInit {
     return this.toolsService.recortarString;
   }
 
+  public mostrarAlertCantidad(){
+    this.mostrarAlert = !this.mostrarAlert;
+  }
 
   agregarAlCarrito():void{
 
@@ -44,8 +47,6 @@ export class ProductoMiniaturaComponent implements OnInit {
 
         localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
       };
-
-      this.mostrarAlert = true;
 
   }
 

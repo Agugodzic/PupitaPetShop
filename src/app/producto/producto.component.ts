@@ -118,25 +118,9 @@ export class ProductoComponent implements OnInit, OnDestroy {
     }
   }
 
-  agregarAlCarrito(productoID:number){
-
-      if(this.productosCarrito != null && this.productosCarrito!= undefined){
-        this.productosCarrito = JSON.parse(this.productosCarrito);
-
-        for(let prod = 1; prod <= this.cantidad; prod++){
-         this.productosCarrito.push(productoID);
-        }
-
-        localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
-        }else{
-
-          for(let prod = 1; prod <= this.cantidad; prod++){
-            this.productosCarrito = [productoID];
-           }
-
-          localStorage.setItem("carrito",JSON.stringify(this.productosCarrito));
-        };
-        this.mostrarAlert = true;
+  agregarAlCarrito(productoID:number,cantidad:number){
+      this.ToolsService.agregarAlCarrito(productoID,cantidad)
+      this.mostrarAlert = true;
   }
 
   listarImagenes(){

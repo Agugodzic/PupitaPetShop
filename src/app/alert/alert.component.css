@@ -1,3 +1,12 @@
+*{
+  font-family:'Montserrat', sans-serif;
+}
+
+button{
+  font-weight: 500;
+  cursor:pointer;
+}
+
 #fondo{
   background-color: rgba(0, 0, 0, 0.281);
   position:fixed;
@@ -19,27 +28,6 @@
   border-radius: 8px;
   padding:2px 4px 4px 2px;
 }
-button{
-  background-color: rgb(68, 90, 218);
-  height: 30px;
-  min-width: 70px;
-  border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  color: white;
-  margin:15px;
-  cursor:pointer;
-}
-
-#boton-cancelar{
-  background-color: rgb(196, 196, 196);
-  border-color: rgba(0, 0, 0, 0);
-  color: rgba(0, 0, 0, 0.911);
-}
-
-button:hover {
-  background-color: rgb(36, 60, 194);
-  cursor: pointer;
-}
 
 #titulo{
   font-size: 18px;
@@ -50,4 +38,11 @@ button:hover {
 #texto{
   font-size: 14px;
   font-family:'Montserrat', sans-serif;
+}
+#input-cantidad{
+  text-align:center;
+  margin-bottom:7px;
+  width:40px;
+  font-size: 16px;
+  background-color:rgba(240, 240, 240, 0.74);
 }

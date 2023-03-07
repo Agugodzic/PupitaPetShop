@@ -1,10 +1,12 @@
 <app-alert
   *ngIf="mostrarAlert"
-  titulo="Selecciona la cantidad de unidades:"
-  [texto]="producto.nombre"
-  textoBoton="Listo!"
-  accion = "actualizar"
+  [titulo]="producto.nombre"
+  textoBoton="Agregar al carrito!"
+  accion = "agregar-carrito"
   tipo="inputNumber"
+  [productoId] = "producto.id"
+  textoCancelar="Cancelar"
+  accionCancelar="actualizar"
   >
 </app-alert>
 
@@ -23,6 +25,6 @@
 
   <div class="agregar">
    <!--<input class="agregar-input" type="number" placeholder="1">-->
-    <button class="agregar-boton" style="pointer-events:auto" (click)="agregarAlCarrito()" (mouseenter)="desactivarLink()" (mouseout)="activarLink()">Agregar</button>
+    <button class="agregar-boton" style="pointer-events:auto" (click)="mostrarAlertCantidad()" (mouseenter)="desactivarLink()" (mouseout)="activarLink()">Agregar</button>
   </div>
 </button>

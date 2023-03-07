@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
+import { ToolsService } from '../tools.service';
 
 @Component({
   selector: 'app-alert',
@@ -23,24 +24,38 @@ export class AlertComponent implements OnInit {
   @Output() mostrar = new EventEmitter();
 
   private categoria:CategoriaModel;
-  public inputNumberValue:number;
+  public cantidad:number = 1;
   public tipoInputNumber:any;
 
   constructor(
     private productoService:ProductoService,
-    private categoriaService:CategoriaService
+    private categoriaService:CategoriaService,
+    private toolsService:ToolsService
     ){}
 
   actualizar(){
     location.reload()
   }
 
+  agregarAlCarrito(){
+    this.toolsService.agregarAlCarrito(this.productoId,this.cantidad);
+    location.reload;
+  }
+
   funcion(){
     if(this.accion == "eliminar-producto"){
       this.eliminarProducto()
     }
+    if(this.accion == "agregar-imagen"){
+      //this.productoService.agregarImagen().subscribe();
+      location.reload()
+    }
     if(this.accion == "actualizar"){
       location.reload()
+    }
+    if(this.accion == "agregar-carrito"){
+      this.agregarAlCarrito();
+      location.reload();
     }
     if(this.accion == "agregar-categoria"){
       location.reload()
@@ -69,7 +84,6 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tipoInputNumber = () => {
-      if(this.tipo== "inputNumber"){ return true; }else{return false}}
+    this.tipoInputNumber = this.tipo == "inputNumber"
   }
 }

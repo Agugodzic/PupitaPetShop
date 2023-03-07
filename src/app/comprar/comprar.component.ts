@@ -18,7 +18,7 @@ declare var paypal:any;
 export class ComprarComponent implements OnInit {
   public imagen:any;
   public textoBoton:string = "Siguiente";
-  public pasoActual:number = 1;
+  public pasoActual:number = 2;
 
   public paso1:boolean = true;
   public paso2:boolean = false;
@@ -95,8 +95,8 @@ export class ComprarComponent implements OnInit {
     this.checkout.sendPreferences(_preferencias).subscribe(
       (response)=>  {
         //window.location.href = response.body.init_point.toString();
-        window.open(response.body.init_point.toString());
-        alert(response.body.collector_id.toString())
+        location.href = response.body.init_point.toString();
+        //alert(response.body.collector_id.toString())
       }
     );
     })

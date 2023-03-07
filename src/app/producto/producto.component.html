@@ -92,11 +92,11 @@
     <div id="selector-cantidad">
       Cantidad:
       <input [(ngModel)]='cantidad'
-       id="input-cantidad" type="number" min="1" value="1">
+       id="input-cantidad" type="number" min="1" max="10" value="1">
     </div>
     <div id="botones">
-      <button class="boton1" (click)="agregarAlCarrito(producto.id)">Comprar</button>
-      <button class="boton2" style="margin-right:0" (click)="agregarAlCarrito(producto.id)">Agregar</button>
+      <button class="boton1" (click)="agregarAlCarrito(producto.id,cantidad)">Comprar</button>
+      <button class="boton2" style="margin-right:0" (click)="agregarAlCarrito(producto.id,cantidad)">Agregar</button>
     </div>
 
 

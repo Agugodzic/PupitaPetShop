@@ -7,11 +7,9 @@ export interface OrdenModel {
   codigoPostal:string;
   direccion:string;
   pisoDepto:string;
-  descripcion:any,
+  descripcion:string,
   fecha:string,
   total:number,
   estadoDePago:string;
   estadoDeEnvio:string;
-  idPreferencia:string;
-  idOrdenMp:string;
 }

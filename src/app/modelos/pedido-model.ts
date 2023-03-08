@@ -2,16 +2,17 @@ import { PreferenciaModel } from "./preferencia-model";
 
 export interface PedidoModel{
   id:number;
-  email:string;
   nombre:string;
+  apellido:string;
+  email:string;
   telefono:number;
   ciudad:string;
-  direccion:string;
-  pisoDepartamento:string;
   codigoPostal:string;
+  direccion:string;
+  pisoDepto:string;
   descripcion:PreferenciaModel[];
   fecha:string;
   total:number;
-  estadoEnvio:string;
-  estadoPago:string;
+  estadoDeEnvio:string;
+  estadoDePago:string;
 }

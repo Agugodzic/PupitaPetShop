@@ -106,7 +106,6 @@
       </form>
 
 
-
         <!--------------- PASO 2 -------------------->
 
         <div id="paso2" *ngIf="pasoActual==2">
@@ -143,7 +142,7 @@
 
           <div id="botones">
             <button *ngIf="pasoActual < 4" class="boton2" (click)="volver()">Volver</button>
-            <button (click)="sendOption()" class="boton1">{{textoBoton}}</button>
+            <button (click)="sendOption()" [ngStyle]="{'opacity':paso2option == 0? ' 80%' : '100%'}" class="boton1">{{textoBoton}}</button>
             </div>
           </div>
 

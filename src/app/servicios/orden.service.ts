@@ -23,8 +23,8 @@ export class OrdenService {
     return this.http.put<OrdenModel>(`${this.apiServerUrl}/orden/editar`,orden)
   }
 
-  public agregar(orden:OrdenModel):Observable<OrdenModel>{
-    return this.http.put<OrdenModel>(`${this.apiServerUrl}/orden/agregar`,orden)
+  public agregar(orden:OrdenModel):Observable<any>{
+    return this.http.post<OrdenModel>(`${this.apiServerUrl}/orden/agregar`,orden)
   }
 
   public eliminar(id:number):Observable<any>{

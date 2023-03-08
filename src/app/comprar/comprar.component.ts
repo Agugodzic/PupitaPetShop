@@ -6,6 +6,8 @@ import { ProductoModel } from '../modelos/producto-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
+import { OrdenService } from '../servicios/orden.service';
+import { OrdenModel } from '../modelos/orden-model';
 
 
 declare var paypal:any;
@@ -27,7 +29,7 @@ export class ComprarComponent implements OnInit {
   public clickedSumbit = false;
   private datosValidados:any;
   public datosDeUsuario:FormGroup;
-  public paso2option:number;
+  public paso2option:number = 0;
   public errorPaso2:boolean;
   public productosCarrito:any;
   private localStorage_:any = localStorage.getItem("productos");
@@ -39,6 +41,7 @@ export class ComprarComponent implements OnInit {
     private productoService:ProductoService,
     private checkout:CheckoutExpressService,
     private toolsService:ToolsService,
+    private ordenService:OrdenService,
     private formBuilder:FormBuilder,) {
     this.imagen = toolsService.imagen;
   }
@@ -83,36 +86,82 @@ export class ComprarComponent implements OnInit {
     this.paso2option = opcion;
   }
 
+  private enviarOrden(productos:ProductoModel[]){
+    let _carrito:CarritoModel[]= this.toolsService.toCarritoModel(this.carritoId);
+    let _ordenId:number = 0;
+    let _preferencias:PreferenciaModel[] = this.toolsService.preferencias(productos,_carrito,_ordenId);
+    let orden = this.generarOrden(_preferencias);
+
+
+    this.ordenService.agregar(orden).subscribe(
+      (response)  =>{
+        console.log(response)
+      _ordenId = response.id;
+      _preferencias = this.toolsService.preferencias(productos,_carrito,_ordenId);
+      this.checkout.sendPreferences(_preferencias).subscribe(
+        (response)=>  {
+          //location.href = response.body.init_point.toString();
+          //alert(response.body.collector_id.toString())
+        });
+      })
+    }
+
   private sendPreferencias(){
-    let _carrito:CarritoModel[];
-    let _preferencias:PreferenciaModel[];
-
-    _carrito = this.toolsService.toCarritoModel(this.carritoId)
-
     this.productoService.listar().subscribe(
       (response: ProductoModel[])  =>{
-      _preferencias = this.toolsService.preferencias(response,_carrito);
-    this.checkout.sendPreferences(_preferencias).subscribe(
-      (response)=>  {
-        //window.location.href = response.body.init_point.toString();
-        location.href = response.body.init_point.toString();
-        //alert(response.body.collector_id.toString())
-      }
-    );
-    })
+        this.enviarOrden(response)
+      })
+  }
+
+  private generarOrden(preferencias:any):OrdenModel{
+    let orden = {
+      id:undefined,
+      nombre:"",
+      apellido:"",
+      email:"",
+      telefono:0,
+      ciudad:"",
+      codigoPostal:"",
+      direccion:"",
+      pisoDepto:"",
+      descripcion:"",
+      fecha:"",
+      total:0,
+      estadoDePago:"",
+      estadoDeEnvio:""
+    };
+/*
+    for(let preferencia of preferencias){
+      orden.descripcion = orden.descripcion + " | " + preferencia.quantity + " x " + preferencia.descripcion;
+    }
+
+    orden.nombre="";
+    orden.apellido="";
+    orden.email="";
+    orden.telefono=0;
+    orden.ciudad="";
+    orden.codigoPostal="";
+    orden.direccion="";
+    orden.pisoDepto = "";
+    orden.fecha="";
+    orden.total=0;
+    orden.estadoDeEnvio = "Pendiente";
+    orden.estadoDePago = "Pendiente";
+*/
+    return orden;
   }
 
   private sendPreferenciasWsp():any{
-    let _carrito:CarritoModel[];
+    let carrito:CarritoModel[];
     let preferencias:PreferenciaModel[] = [];
     let preferenciasToUrl:string = "";
     let total:number = 0;
-
-    _carrito = this.toolsService.toCarritoModel(this.carritoId)
+    let ordenId:number = 0;
+    carrito = this.toolsService.toCarritoModel(this.carritoId)
 
     this.productoService.listar().subscribe(
       (response: ProductoModel[])  =>{
-      preferencias = this.toolsService.preferencias(response,_carrito);
+      preferencias = this.toolsService.preferencias(response,carrito,ordenId);
 
       for(let preferencia of preferencias){
         total = total + preferencia.quantity * preferencia.unit_price;

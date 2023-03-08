@@ -161,11 +161,9 @@ export class ToolsService {
       };
 }
 
-
-  public preferencias(productos:ProductoModel[],carrito:CarritoModel[]):PreferenciaModel[]{
+  public preferencias(productos:ProductoModel[],carrito:CarritoModel[],ordenId:number):PreferenciaModel[]{
     let preferencias:PreferenciaModel[] = [];
     let producto:any;
-
     for(let elemento of carrito){
       producto = productos.find(
         (prod:any) => prod.id == Number(elemento.id)

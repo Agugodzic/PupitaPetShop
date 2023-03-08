@@ -132,24 +132,6 @@ export class CarritoComponent implements OnInit, OnDestroy {
     return total;
   }
 
-  public pruebas(){
-    this.enviarPreferencias();
-  }
-
-  public enviarPreferencias(){
-    let _carrito:CarritoModel[];
-    let _preferencias:PreferenciaModel[];
-
-    _carrito = this.ToolsService.toCarritoModel(this.carritoId)
-
-    this.ProductoService.listar().subscribe(
-      (response: ProductoModel[])  =>{
-      _preferencias = this.ToolsService.preferencias(response,_carrito);
-    this.Checkout.sendPreferences(_preferencias).subscribe(
-      (response)=> window.location.href = response.body.init_point.toString()
-    );
-    })
-  }
 
   ngOnInit() {
     this.carritoLocalStorage = localStorage.getItem("carrito");

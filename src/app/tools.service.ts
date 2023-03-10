@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CarritoModel } from './modelos/carrito-model';
+import { ItemsModel } from './modelos/items-model';
 import { PreferenciaModel } from './modelos/preferencia-model';
 import { ProductoModel } from './modelos/producto-model';
 
@@ -139,7 +140,7 @@ export class ToolsService {
     return productoCantidad;
   }
 
-  agregarAlCarrito(productoID:number,cantidad:number){
+  public agregarAlCarrito(productoID:number,cantidad:number){
 
     let productosCarrito:any = localStorage.getItem('carrito');
 
@@ -161,15 +162,16 @@ export class ToolsService {
       };
 }
 
-  public preferencias(productos:ProductoModel[],carrito:CarritoModel[],ordenId:number):PreferenciaModel[]{
-    let preferencias:PreferenciaModel[] = [];
+  public preferencias(productos:ProductoModel[],carrito:CarritoModel[],ordenId:number){
+    let preferencia:PreferenciaModel;
+    let Items:ItemsModel[] = [];
     let producto:any;
     for(let elemento of carrito){
       producto = productos.find(
         (prod:any) => prod.id == Number(elemento.id)
       );
 
-      preferencias.push({
+      Items.push({
         id:elemento.id,
         category_id:producto.categoria,
         currency_id:"ARS",
@@ -180,9 +182,18 @@ export class ToolsService {
       });
     }
 
-    return preferencias;
+    preferencia = {
+      items: Items,
+      metadata : {
+        ordenId:ordenId
+      }
+    }
+    console.log(preferencia)
+
+    return preferencia;
   }
-  extraerBase64 = async ($event: any) => new Promise(
+
+  public extraerBase64 = async ($event: any) => new Promise(
     (resolve, reject):any => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
@@ -204,6 +215,14 @@ export class ToolsService {
       return null;
     }
   })
+
+  public fechaEsp(){
+    let fecha = new Date();
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre'];
+    const dias_semana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let fechaActual = dias_semana[fecha.getDay()] + ' ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear() ;
+    return fechaActual;
+  }
 
   public imagen = {
     borrar:"https://postimg.cc/k6N9G6CS",

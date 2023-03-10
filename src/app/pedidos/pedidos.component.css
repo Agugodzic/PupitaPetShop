@@ -9,16 +9,24 @@ h1,h2,h3{
 }
 span{
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.582);
+  opacity: 60%;
 }
 p{
-  margin:7px;
+  margin:10px 8px;
   text-align: left;
 }
 #contenedor-pedidos{
   display: inline-block;
+  text-align: center;
+  width: 90vw;
+}
+.contenedor-pedido{
+  display:inline;
+  width: fit-content;
+  height: fit-content;
 }
 .pedido{
+  display: inline-block;
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
@@ -27,12 +35,33 @@ p{
   width: fit-content;
   height: fit-content;
   margin: 20px;
-  text-align: left;
+  /*box-shadow: 3px 3px 4px 4px rgba(0, 0, 0, 0.062);*/
+}
+.botones{
+  display:block;
+  width: 200px;
+}
+.id{
+  background-color: rgba(16, 40, 173, 0.767);
+  border-radius: 8px;
+  color:white;
+  width: fit-content;
+  max-height: 15px;
+  padding: 4px 6px;
+  font-size: 13px;
 }
 .pedido-columna{
   text-align: left;
   margin-left: 25px;
+
 }
 .pedido-botones{
+  margin-top: 12px;
   display:block;
+}
+.texto-conteo{
+  text-align:center;
+  margin:20px;
+  font-style:italic;
+  opacity:50%
 }

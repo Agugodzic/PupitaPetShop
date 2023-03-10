@@ -1,9 +1,81 @@
-<div class="page-component">
+<div class="page-component" *ngIf="getLogValue()">
   <app-nav></app-nav>
-  <h1 id="">PEDIDOS:</h1>
+
+  <h1 style="margin-top:30px" id="">PEDIDOS</h1>
   <div id="contenedor-pedidos">
     <h2>Pendientes:</h2>
-    <div class="pedido" *ngFor="let pedido of ordenes">
+    <p class="texto-conteo" *ngIf="conteo.pendientes == 0"><span >No hay envios pendientes</span></p>
+    <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
+      <div class="pedido" *ngIf="pedido.estadoDeEnvio == 'Pendiente' ">
+        <p class="id">Id: {{"   " +  pedido.id}}</p>
+        <div style="display: flex;">
+          <div class="pedido-columna">
+            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+
+          </div>
+        </div>
+        <div style="text-align:center" style = "text-align:center"  class="pedido-botones">
+          <button class="boton1 botones">Ver pedido</button>
+          <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
+          <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+        </div>
+      </div>
+    </div>
+
+
+    <h2 style="margin-top:60px">Enviados:</h2>
+    <p class="texto-conteo" style="text-align:center" *ngIf="conteo.enviados == 0"><span>La lista se encuentra vacia</span></p>
+    <div class="contenedor-pedido"  *ngFor="let pedido of pedidos">
+      <div class="pedido" style="background-color:rgba(82, 255, 212, 0.103)" *ngIf="pedido.estadoDeEnvio == 'Enviado' ">
+        <p class="id">Id: {{"   " +  pedido.id}}</p>
+        <div style="display: flex;">
+          <div class="pedido-columna">
+            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+
+          </div>
+        </div>
+        <div  style = "text-align:center"  class="pedido-botones">
+          <button class="boton1 botones">Ver pedido</button>
+          <button  class="boton2 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
+          <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:60px">Entregados:</h2>
+    <p class="texto-conteo" style="text-align:center" *ngIf="conteo.entregados == 0"><span>La lista se encuentra vacia</span></p>
+    <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
+      <div class="pedido" style="background-color:rgba(82, 255, 91, 0.158)"  *ngIf="pedido.estadoDeEnvio == 'Entregado' ">
+        <p class="id">Id: {{"   " +  pedido.id}}</p>
+        <div style="display: flex;">
+          <div class="pedido-columna">
+            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+          </div>
+        </div>
+        <div  class="contenedor-pedido" style = "text-align:center"  class="pedido-botones">
+          <button class="boton1 botones">Ver pedido</button>
+          <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
+          <button  class="boton3 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<!--
+      <div class="pedido" *ngFor="let pedido of pedidos">
       <div style="display: flex;">
         <div class="pedido-columna">
           <p><span>Id:</span> {{" " +  pedido.id}}</p>
@@ -14,22 +86,19 @@
         <div class="pedido-columna">
           <p><span>Ciudad:</span> {{" " +  pedido.ciudad}}</p>
           <p><span>Dirección: </span>{{" " +  pedido.direccion}}</p>
-          <p><span>Piso/depto:</span> {{" " +  pedido.pisoDepartamento}}</p>
+          <p><span>Piso/depto:</span> {{" " +  pedido.pisoDepto}}</p>
           <p><span>Cod. postal:</span> {{" " +  pedido.codigoPostal}}</p>
         </div>
         <div class="pedido-columna">
-          <p><span>Descripción:</span> {{" " +  pedido.descripcion}}</p>
+          <p><span>Descripción:</span> Ver pedido</p>
           <p><span>Total:</span> {{"  $" +  pedido.total}}</p>
-          <p><span>Estado Envio:</span> {{" " +  pedido.estadoEnvio}}</p>
-          <p><span>Estado Pago</span> <span [ngStyle]="{'color':pedido.estadoPago == 'pagado' ? 'rgba(20, 165, 15, 0.836)' : 'none'}">{{" " +  pedido.estadoPago}}</span></p>
+          <p><span>Estado de Envio:</span> {{" " +  pedido.estadoDeEnvio}}</p>
+          <p><span>Estado de Pago:</span> <span [ngStyle]="{'color':pedido.estadoPago == 'Pagado' ? 'rgba(20, 165, 15, 0.836)' : 'none'}">{{" " +  pedido.estadoDePago}}</span></p>
         </div>
       </div>
       <div class="pedido-botones">
         <button class="boton1">Ver pedido</button>
-        <button class="boton2">Enviado</button>
-        <button class="boton3">Entregado</button>
+        <button class="boton2" (click)="marcarComoEnviado(pedido)">Enviado</button>
+        <button class="boton3" (click)="marcarComoEntregado(pedido)">Entregado</button>
       </div>
-    </div>
-    <h2 style="margin-top:60px">Enviados:</h2>
-  </div>
-</div>
+-->

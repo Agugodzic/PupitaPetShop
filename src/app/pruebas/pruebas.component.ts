@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsModel } from '../modelos/items-model';
 import { PreferenciaModel } from '../modelos/preferencia-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 import { ProductoService } from '../servicios/producto.service';
@@ -12,7 +13,7 @@ export class PruebasComponent implements OnInit {
   public localStorageData:any;
   public serviceData:any;
   public carritoPrueba:any;
-  private preferencias:PreferenciaModel[] = [];
+  private items:ItemsModel[] = [];
   linkCheckout:string;
 
   constructor(
@@ -28,7 +29,7 @@ export class PruebasComponent implements OnInit {
 
     generarPreferencias(){
       for(let producto of this.carritoPrueba){
-        this.preferencias.push({
+        this.items.push({
           id:producto.id,
           category_id:"",
           currency_id:"ARS",
@@ -40,9 +41,6 @@ export class PruebasComponent implements OnInit {
       }
     }
 
-    enviarPreferencias(){
-      this.check.sendPreferences(this.preferencias).subscribe((req)=> window.location.href = req.body.sandbox_init_point);
-    }
 
   ngOnInit(){
     this.productoService.listar().subscribe(response => this.serviceData = response);

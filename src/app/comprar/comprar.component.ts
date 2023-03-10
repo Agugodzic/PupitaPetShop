@@ -20,7 +20,7 @@ declare var paypal:any;
 export class ComprarComponent implements OnInit {
   public imagen:any;
   public textoBoton:string = "Siguiente";
-  public pasoActual:number = 2;
+  public pasoActual:number = 1;
 
   public paso1:boolean = true;
   public paso2:boolean = false;
@@ -89,19 +89,18 @@ export class ComprarComponent implements OnInit {
   private enviarOrden(productos:ProductoModel[]){
     let _carrito:CarritoModel[]= this.toolsService.toCarritoModel(this.carritoId);
     let _ordenId:number = 0;
-    let _preferencias:PreferenciaModel[] = this.toolsService.preferencias(productos,_carrito,_ordenId);
+    let _preferencias:PreferenciaModel = this.toolsService.preferencias(productos,_carrito,_ordenId);
     let orden = this.generarOrden(_preferencias);
 
 
     this.ordenService.agregar(orden).subscribe(
       (response)  =>{
-        console.log(response)
+        console.log(response.id)
       _ordenId = response.id;
       _preferencias = this.toolsService.preferencias(productos,_carrito,_ordenId);
       this.checkout.sendPreferences(_preferencias).subscribe(
         (response)=>  {
-          //location.href = response.body.init_point.toString();
-          //alert(response.body.collector_id.toString())
+          location.href = response.body.init_point.toString();
         });
       })
     }
@@ -113,47 +112,35 @@ export class ComprarComponent implements OnInit {
       })
   }
 
-  private generarOrden(preferencias:any):OrdenModel{
+  private generarOrden(preferencia:PreferenciaModel):OrdenModel{
+    let fecha = new Date();
     let orden = {
       id:undefined,
-      nombre:"",
-      apellido:"",
-      email:"",
-      telefono:0,
-      ciudad:"",
-      codigoPostal:"",
-      direccion:"",
-      pisoDepto:"",
+      nombre:this.datosDeUsuario.value.nombre,
+      apellido:this.datosDeUsuario.value.apellido,
+      email:this.datosDeUsuario.value.email,
+      telefono:this.datosDeUsuario.value.telefono,
+      ciudad:this.datosDeUsuario.value.ciudad,
+      codigoPostal:this.datosDeUsuario.value.codigoPostal,
+      direccion:this.datosDeUsuario.value.direccion,
+      pisoDepto:this.datosDeUsuario.value.pisoDepto,
       descripcion:"",
-      fecha:"",
+      fecha:this.toolsService.fechaEsp(),
       total:0,
-      estadoDePago:"",
-      estadoDeEnvio:""
+      estadoDePago:"Pendiente",
+      estadoDeEnvio:"Pendiente"
     };
-/*
-    for(let preferencia of preferencias){
-      orden.descripcion = orden.descripcion + " | " + preferencia.quantity + " x " + preferencia.descripcion;
-    }
 
-    orden.nombre="";
-    orden.apellido="";
-    orden.email="";
-    orden.telefono=0;
-    orden.ciudad="";
-    orden.codigoPostal="";
-    orden.direccion="";
-    orden.pisoDepto = "";
-    orden.fecha="";
-    orden.total=0;
-    orden.estadoDeEnvio = "Pendiente";
-    orden.estadoDePago = "Pendiente";
-*/
+    for(let item of preferencia.items){
+      orden.descripcion = orden.descripcion + item.quantity + " x " + item.title + " | " ;
+      orden.total = orden.total + item.unit_price * item.quantity;
+    }
     return orden;
   }
 
   private sendPreferenciasWsp():any{
     let carrito:CarritoModel[];
-    let preferencias:PreferenciaModel[] = [];
+    let preferencia:PreferenciaModel;
     let preferenciasToUrl:string = "";
     let total:number = 0;
     let ordenId:number = 0;
@@ -161,11 +148,11 @@ export class ComprarComponent implements OnInit {
 
     this.productoService.listar().subscribe(
       (response: ProductoModel[])  =>{
-      preferencias = this.toolsService.preferencias(response,carrito,ordenId);
+      preferencia = this.toolsService.preferencias(response,carrito,ordenId);
 
-      for(let preferencia of preferencias){
-        total = total + preferencia.quantity * preferencia.unit_price;
-        preferenciasToUrl = preferenciasToUrl + "%20" + preferencia.quantity + "%20" + preferencia.title + "%20%20"+ preferencia.quantity+ "%20x%20$" + preferencia.unit_price + "%0A" ;
+      for(let item of preferencia.items){
+        total = total + item.quantity * item.unit_price;
+        preferenciasToUrl = preferenciasToUrl + "%20" + item.quantity + "%20" + item.title + "%20%20"+ item.quantity+ "%20x%20$" + item.unit_price + "%0A" ;
       }
 
       let textoWsp:string = "Hola, %20mi%20nombre%20es%20"+ this.datosValidados.nombre +
@@ -178,7 +165,7 @@ export class ComprarComponent implements OnInit {
         "piso/depto: " + this.datosValidados.pisoDepto+"%0A"+
         "c. postal: " + this.datosValidados.codigoPostal+"%0A";
 
-      let linkWspMsj:string = "https://api.whatsapp.com/send?phone=+5493415717618&text=" + textoWsp;
+      let linkWspMsj:string = "https://api.whatsapp.com/send?phone=+5493425419964&text=" + textoWsp;
       window.open(linkWspMsj);
       this.pasoActual = 3;
       localStorage.setItem('carrito',"[]");

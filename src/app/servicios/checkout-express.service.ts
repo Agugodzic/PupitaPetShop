@@ -13,7 +13,7 @@ export class CheckoutExpressService {
   constructor(private http:HttpClient) {
    }
 
-  public sendPreferences(preferencias:PreferenciaModel[]):Observable<any>{
+  public sendPreferences(preferencias:PreferenciaModel):Observable<any>{
     return this.http.post<PreferenciaModel[]>(`${this.expressUrl}/crear-orden`,preferencias)
   }
 }

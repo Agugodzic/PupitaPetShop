@@ -9,7 +9,11 @@ import { OrdenService } from '../servicios/orden.service';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent implements OnInit , OnDestroy {
+  public orden:OrdenModel;
+  public id:number;
+  public mostrarOrden = false;
   public pedidos:any = [];
+  public seccionActual: string = 'pendientes';
   public getLogValue(){ return this.authService.loggedIn() };
   public conteo = {
     pendientes:0,
@@ -21,6 +25,28 @@ export class PedidosComponent implements OnInit , OnDestroy {
     private ordenService:OrdenService,
     private authService:AuthService
   ){}
+
+  public colorEstadosEnvio(estadoDeEnvio:any):any{
+    if(estadoDeEnvio.toString == 'Pendiente'){
+      return {'color':'rgba(20, 165, 15, 0.836)'};
+    }
+    else if(estadoDeEnvio == 'Enviado'){
+      return {'color':'rgb(230, 188, 0)'};
+    }
+    else if(estadoDeEnvio == 'Entregado'){
+      return {'color':'rgb(189, 50, 15)'};
+    }else{
+      return {'color':'black'};
+    }
+  }
+
+  public estiloBoton(estado:string){
+    return {
+      'background-color':this.seccionActual==estado?'rgba(42, 71, 235, 0.76)':'white',
+      'color':this.seccionActual==estado?'white':'black',
+      'border-style':this.seccionActual==estado?'none':'solid',
+      }
+  }
 
   listarOrdenes(){
     this.ordenService.listar().subscribe(
@@ -60,6 +86,10 @@ export class PedidosComponent implements OnInit , OnDestroy {
       this.conteoDeEnvios()
 });
   }
+  switchOrden(Orden:any){
+    this.orden = Orden;
+    this.mostrarOrden = !this.mostrarOrden;
+  }
 
   conteoDeEnvios(){
     let pendientes:number = 0;
@@ -83,6 +113,11 @@ export class PedidosComponent implements OnInit , OnDestroy {
       entregados:entregados
     }
   }
+
+  public cambiarSeccion(seccion:string){
+    this.seccionActual = seccion;
+  }
+
 
   ngOnInit(): void {
     this.listarOrdenes();

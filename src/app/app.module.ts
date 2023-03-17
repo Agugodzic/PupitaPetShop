@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './servicios/producto.service';
 import { ComprarComponent } from './comprar/comprar.component';
 import { NavComponent } from './nav/nav.component';
+import { ImageInputComponent } from './formularios/image-input/image-input.component';
 import { AuthService } from './servicios/auth.service';
 import { InterceptorService } from './servicios/interceptor.service';
 import { LogInComponent } from './logIn/logIn.component';
@@ -29,9 +30,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { PruebasComponent } from './pruebas/pruebas.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { PedidoComponent } from './pedido/pedido.component';
 
 @NgModule({
   declarations: [
+    ImageInputComponent,
     AppComponent,
     CarritoComponent,
     HomeComponent,
@@ -46,7 +50,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     ContactanosComponent,
     FooterComponent,
     PruebasComponent,
-    PedidosComponent
+    PedidosComponent,
+    PedidoComponent,
   ],
   imports: [
     MatIconModule,
@@ -65,6 +70,7 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    { provide: LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

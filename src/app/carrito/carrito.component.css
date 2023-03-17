@@ -54,8 +54,8 @@
   align-items: center;
 }
 .imagen{
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 77px;
+  max-height: 77px;
 }
 
 .descripcion{
@@ -76,6 +76,7 @@
 
 .titulo-producto{
   margin-top: 5px;
+  font-size: 15px;
   margin-bottom: 5px;
 }
 
@@ -83,7 +84,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
   max-width: 400px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .borrar{

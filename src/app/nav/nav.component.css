@@ -62,7 +62,7 @@ html {
 }
 
 #carrito{
-  height: 25px;
+  height: 24px;
   opacity: 70%;
   display: inline-block;
 }
@@ -72,9 +72,9 @@ html {
 }
 
 #logo {
-  height: 45px;
+  height: 43px;
   opacity: 70%;
-  margin-left: 25px ;
+  margin-left: 8px ;
   cursor: pointer;
 
   /*opacity: 0%;*/
@@ -127,8 +127,8 @@ html {
 .boton {
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  margin-right: 20px;
-  margin-left: 8px;
+  margin-right: 26px;
+  margin-left: 0px;
   transition: 0.1s;
   color: rgba(0, 0, 0, 0.911);
   border-width:2px;
@@ -136,7 +136,7 @@ html {
   padding-bottom:6px;
   border-color:rgba(0, 0, 0, 0.123);
   /*border-color:#f57332;*/
-  font-size: 13px;
+  font-size: 12px;
 
 }
 

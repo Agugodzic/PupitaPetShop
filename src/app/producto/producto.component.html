@@ -1,5 +1,12 @@
 <div class="page-component">
 
+  <app-image-input
+  *ngIf="mostrarInputImage"
+  [resource]="resource"
+  [value]="inputImageValue"
+  [imagenNumber]="inputImageNumber"
+  [action]="inputImageAction"
+></app-image-input>
 
 <!-- Formulario -->
 
@@ -9,6 +16,7 @@
     <app-form-producto accion="editar" [producto]="producto"></app-form-producto>
   </div>
 </div>
+
 
 <!----- Alert ----->
 
@@ -55,24 +63,25 @@
 
   <div id="imagenes-producto" *ngIf="producto !== undefined">
     <div id="miniaturas">
-      <div class="contenedor-miniatura"*ngFor="let imagen of ImagenesProducto">
+      <div class="contenedor-miniatura"*ngFor="let elemento of ImagenesProducto">
         <img
           class="imagen-miniatura"
-          [src]="imagen"
-          (click)="cambiarImagen(imagen)"
+          [src]="elemento.imagen"
+          (click)="cambiarImagen(elemento)"
         />
       </div>
-      <!--
       <img
-      *ngIf="cantidadImagenes < 4 && logged"
+      *ngIf="cantidadImagenes < 4 && getLogValue()"
+      (click) = "switchInputImage(cantidadImagenes,'agregar')"
+      style="opacity: 70%;"
       class="contenedor-miniatura" id="imagen-agergar"
       src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
-    />-->
+    />
     </div>
 
 
     <div id="contenedor-imagen">
-      <img id="imagen-producto" [src]="imagenSeleccionada" />
+      <img id="imagen-producto" [src]="imagenSeleccionada.imagen" />
     </div>
   </div>
 
@@ -115,7 +124,9 @@
 
   <button id="verMas" (click)="VerMas()">{{verMas}}</button>
   -->
+</div>
 
+<!---------- PRODUCTOS  RELACIONADOS  ----------->
 
   <div id="relacionados" *ngIf="producto !== undefined ">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
@@ -129,6 +140,4 @@
       </div>
     </div>
   </div>
-
-</div>
 </div>

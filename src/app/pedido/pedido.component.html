@@ -1,0 +1,28 @@
+<div id="fondo">
+  <div id="ventana">
+      <div style="display: flex;">
+        <div class="pedido-columna">
+          <p><span>Id:</span> {{" " +  orden.id}}</p>
+          <p><span>Nombre:</span> {{" " +  orden.nombre}}</p>
+          <p><span>Email:</span> {{" " +  orden.email}}</p>
+          <p><span>Teléfono:</span> {{" " +  orden.telefono}}</p>
+        </div>
+        <div class="pedido-columna">
+          <p><span>Ciudad:</span> {{" " +  orden.ciudad}}</p>
+          <p><span>Dirección: </span>{{" " +  orden.direccion}}</p>
+          <p><span>Piso/depto:</span> {{" " +  orden.pisoDepto}}</p>
+          <p><span>Cod. postal:</span> {{" " +  orden.codigoPostal}}</p>
+        </div>
+        <div class="pedido-columna">
+          <p><span>Total:</span> {{"  $" +  orden.total}}</p>
+          <p><span>Estado de Envio:</span> <span [ngStyle]="colorEstadosEnvio()">{{" " +  orden.estadoDeEnvio}}</span></p>
+          <p><span>Estado de Pago:</span> <span [ngStyle]="colorEstadosPago()">{{" " +  estadoDePagoActualizado}}</span></p>
+        </div>
+  </div>
+  <div id="descripcion">
+    <p *ngFor="let producto of descripcion">
+       {{producto}}
+    </p>
+  </div>
+  <button style="display:block;margin:15px auto;" class="boton3" (click)="cerrar()">Cerrar</button>
+</div>

@@ -108,8 +108,11 @@ span {
 #relacionados {
   text-align: left;
   font-family: 'Red Hat Display', sans-serif;
-  margin-left: 100px;
+  margin:40px auto;
+  padding:10px;
+  margin-top:80px;
   white-space: nowrap;
+  width: 76vw;
 
 }
 
@@ -125,7 +128,7 @@ p {
   border-radius: 4px;
   padding: 5px;
   height: fit-content;
-  width: 70vw;
+  width: fit-content;
 }
 
 .contenedorProducto {
@@ -381,16 +384,19 @@ span {
     text-align: left;
     font-family: 'Red Hat Display', sans-serif;
     margin: 0px;
+    margin-top: 50px;
     display: block;
-    overflow: hidden;
+    text-align: center;
   }
 
   #relacionados-titulo{
     margin-left: 20px;
+    text-align: left;
+    font-size: 22px;
   }
   #galeria{
     margin-left: 1vw;
     margin-right: 1vw;
-    width: 98vw;
+    width: fit-content;
   }
 }

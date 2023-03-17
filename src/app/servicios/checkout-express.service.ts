@@ -14,6 +14,10 @@ export class CheckoutExpressService {
    }
 
   public sendPreferences(preferencias:PreferenciaModel):Observable<any>{
-    return this.http.post<PreferenciaModel[]>(`${this.expressUrl}/crear-orden`,preferencias)
+    return this.http.post<PreferenciaModel[]>(`${this.expressUrl}/new-order`,preferencias)
+  }
+
+  public findPaymentById(orderId:any):Observable<any>{
+    return this.http.get<any>(`${this.expressUrl}/find-paymeny-by-id/${orderId}`);
   }
 }

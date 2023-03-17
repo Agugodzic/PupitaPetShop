@@ -16,7 +16,7 @@ export class LogInComponent implements OnInit {
 
   comprobar(){
     if(this.authService.loggedIn()){
-      window.location.href='/store/0';
+      window.location.href='/#/store/0';
     }else{
       alert("El usuario o la contraseña son incorrectos.")
     }

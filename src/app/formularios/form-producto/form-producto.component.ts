@@ -108,25 +108,6 @@ export class FormProductoComponent implements OnInit {
       this.imageFile1 = image.base;
     }
   )}
-  public image2Change(event:any):any{
-    let imagen = event.target.files[0];
-    this.extraerBase64(imagen).then((image:any) => {
-      this.imageFile2 = image.base;
-    }
-  )}
-  public image3Change(event:any):any{
-    let imagen = event.target.files[0];
-    this.extraerBase64(imagen).then((image:any) => {
-      this.imageFile3 = image.base;
-    }
-  )}
-  public image4Change(event:any):any{
-    let imagen = event.target.files[0];
-    this.extraerBase64(imagen).then((image:any) => {
-      this.imageFile4 = image.base;
-    }
-  )}
-
   extraerBase64 = async ($event: any) => new Promise(
     (resolve, reject):any => {
     try {

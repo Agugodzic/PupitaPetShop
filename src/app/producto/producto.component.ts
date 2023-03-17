@@ -16,7 +16,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public verMas:string = 'Ver especificaciones';
   public longitud = this.ToolsService.recortarString;
   public productoId:number;
-  public imagenSeleccionada:string = "";
+  public imagenSeleccionada:any = {};
   public producto:any;
   public precio = this.ToolsService.precio;
   public logged:boolean = true;
@@ -34,6 +34,12 @@ export class ProductoComponent implements OnInit, OnDestroy {
   private productosCarrito:any;
   public ImagenesProducto:any = [];
   public productos:any = [];
+  public inputImageNumber:number;
+  public inputImageValue:string;
+  public mostrarInputImage:boolean = false;
+  public inputImageAction:string;
+  public resource: any;
+
 
   constructor(
     private ProductosService: ProductosService,
@@ -53,7 +59,6 @@ export class ProductoComponent implements OnInit, OnDestroy {
       (prod:any) => prod.id == Number(this.productoId)
     );
     this.listarImagenes();
-    this.imagenSeleccionada = this.producto.imagen1;
   }
 
   public listarProductos(){
@@ -67,26 +72,33 @@ export class ProductoComponent implements OnInit, OnDestroy {
         this.ToolsService.extraerBase64(this.producto.imagen1).then((image:any) => {
           this.imagenSeleccionada = image.base;
     })*/
-    this.imagenSeleccionada = this.producto.imagen1
   })
   }
-  public switchEliminar(){
-    if(this.mostrarAlertEliminar == false){
-      this.mostrarAlertEliminar = true;
-    }
-    else{this.mostrarAlertEliminar = false}
 
+  public switchEliminar(){
+    this.mostrarAlertEliminar = this.mostrarAlertEliminar!;
+  }
+
+  public switchInputImage(name:number,action:string){
+    this.inputImageNumber = name;
+    this.inputImageAction = action;
+    this.resource = this.producto;
+    this.mostrarInputImage = !this.mostrarInputImage;
   }
 
   public eliminarProducto(){
     this.ProductoService.eliminar(this.productoId).subscribe()
   }
 
-  mostrarId() {
+  public eliminarImagen(){
+
+  }
+
+  public mostrarId() {
     alert(this.productoId);
   }
 
-  buscarId(array: any): any {
+  public buscarId(array: any): any {
     for (let elemento of array) {
       if (elemento.id === this.productoId) {
         return elemento;
@@ -94,21 +106,21 @@ export class ProductoComponent implements OnInit, OnDestroy {
     }
   }
 
-  cambiarImagen(imagen:any) {
+  public cambiarImagen(imagen:any) {
     this.imagenSeleccionada = imagen;
   }
 
-  productoLink(producto: any): string {
-    return '/prod/' + producto.id;
+  public productoLink(producto: any): string {
+    return '#/prod/' + producto.id;
   }
 
-  mostrarObjeto(objeto:any) {
+  public mostrarObjeto(objeto:any) {
     for (let producto of objeto) {
       console.log(Number(producto.precio));
     }
   }
 
-  VerMas(){
+  public VerMas(){
     if (this.verMas == 'Ver especificaciones') {
       this.verMas = 'Ocultar especificaciones';
       this.mostrarEspecificaciones = true;
@@ -118,21 +130,29 @@ export class ProductoComponent implements OnInit, OnDestroy {
     }
   }
 
-  agregarAlCarrito(productoID:number,cantidad:number){
+  public agregarAlCarrito(productoID:number,cantidad:number){
       this.ToolsService.agregarAlCarrito(productoID,cantidad)
       this.mostrarAlert = true;
   }
 
-  listarImagenes(){
+  public listarImagenes(){
     this.ImagenesProducto = [];
-    if(this.producto.imagen1){this.ImagenesProducto.push(this.producto.imagen1)}
-    if(this.producto.imagen2){this.ImagenesProducto.push(this.producto.imagen2)}
-    if(this.producto.imagen3){this.ImagenesProducto.push(this.producto.imagen3)}
-    if(this.producto.imagen4){this.ImagenesProducto.push(this.producto.imagen4)}
-    this.cantidadImagenes = this.ImagenesProducto.length;
+    let contador = 0;
+    let imagenes = [this.producto.imagen1,this.producto.imagen2,this.producto.imagen3,this.producto.imagen4]
+    for(let imagen of imagenes){
+      if(imagen){
+        contador = contador + 1;
+        this.ImagenesProducto.push({
+          numero:contador,
+          imagen:imagen
+        })
+      }
+    }
+    this.cantidadImagenes = contador;
+    this.imagenSeleccionada = {numero:1,imagen:this.producto.imagen1}
   }
 
-  switchEditar():void{
+  public switchEditar():void{
     if(this.editarProducto == false){
       this.editarProducto = true;
     }else{
@@ -145,8 +165,8 @@ export class ProductoComponent implements OnInit, OnDestroy {
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
     this.listarProductos();
     this.preCargarProducto();
-    this.cantidadImagenes = this.ImagenesProducto.length;
   }
+
   ngOnDestroy():void{
   }
 }

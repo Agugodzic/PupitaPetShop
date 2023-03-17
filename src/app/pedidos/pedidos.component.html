@@ -1,74 +1,95 @@
+<!-----  VENTANA PEDIDO ----->
+
+<app-pedido
+  *ngIf="mostrarOrden"
+  [orden]="orden">
+</app-pedido>
+
+<!----- ------- ------ ------>
+
 <div class="page-component" *ngIf="getLogValue()">
   <app-nav></app-nav>
 
-  <h1 style="margin-top:30px" id="">PEDIDOS</h1>
+  <!--<h1 style="margin-top:30px" id="">PEDIDOS</h1>-->
+
+
+  <div id="botones-estado">
+    <button (click)="cambiarSeccion('pendientes')" class="boton-estado" id="boton-pendientes" [ngStyle]="estiloBoton('pendientes')"  >Pendientes</button>
+    <button (click)="cambiarSeccion('enviados')" class="boton-estado" [ngStyle]="estiloBoton('enviados')" >Enviados</button>
+    <button (click)="cambiarSeccion('entregados')" class="boton-estado" [ngStyle]="estiloBoton('entregados')" >Entregados</button>
+  </div>
+
   <div id="contenedor-pedidos">
-    <h2>Pendientes:</h2>
-    <p class="texto-conteo" *ngIf="conteo.pendientes == 0"><span >No hay envios pendientes</span></p>
-    <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
-      <div class="pedido" *ngIf="pedido.estadoDeEnvio == 'Pendiente' ">
-        <p class="id">Id: {{"   " +  pedido.id}}</p>
-        <div style="display: flex;">
-          <div class="pedido-columna">
-            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
-            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
-            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
-            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+    <div id="pendientes" *ngIf="seccionActual == 'pendientes'">
+      <h2 class="titulo">Pendientes:</h2>
+      <p class="texto-conteo" *ngIf="conteo.pendientes == 0"><span >No hay envios pendientes</span></p>
+      <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
+        <div class="pedido" *ngIf="pedido.estadoDeEnvio == 'Pendiente' ">
+          <p class="id">Id: {{"   " +  pedido.id}}</p>
+          <div style="display: flex;">
+            <div class="pedido-columna">
+              <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+              <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+              <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+              <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
 
+            </div>
           </div>
-        </div>
-        <div style="text-align:center" style = "text-align:center"  class="pedido-botones">
-          <button class="boton1 botones">Ver pedido</button>
-          <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
-          <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+          <div style="text-align:center" style = "text-align:center"  class="pedido-botones">
+            <button class="boton1 botones" (click)="switchOrden(pedido)">Ver pedido</button>
+            <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
+            <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+          </div>
         </div>
       </div>
     </div>
 
+    <div id="enviados" *ngIf="seccionActual == 'enviados'">
+      <h2 class="titulo">Enviados:</h2>
+      <p class="texto-conteo" style="text-align:center" *ngIf="conteo.enviados == 0"><span>La lista se encuentra vacia</span></p>
+      <div class="contenedor-pedido"  *ngFor="let pedido of pedidos">
+        <div class="pedido" *ngIf="pedido.estadoDeEnvio == 'Enviado' ">
+          <p class="id">Id: {{"   " +  pedido.id}}</p>
+          <div style="display: flex;">
+            <div class="pedido-columna">
+              <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+              <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+              <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+              <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
 
-    <h2 style="margin-top:60px">Enviados:</h2>
-    <p class="texto-conteo" style="text-align:center" *ngIf="conteo.enviados == 0"><span>La lista se encuentra vacia</span></p>
-    <div class="contenedor-pedido"  *ngFor="let pedido of pedidos">
-      <div class="pedido" style="background-color:rgba(82, 255, 212, 0.103)" *ngIf="pedido.estadoDeEnvio == 'Enviado' ">
-        <p class="id">Id: {{"   " +  pedido.id}}</p>
-        <div style="display: flex;">
-          <div class="pedido-columna">
-            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
-            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
-            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
-            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
-
+            </div>
           </div>
-        </div>
-        <div  style = "text-align:center"  class="pedido-botones">
-          <button class="boton1 botones">Ver pedido</button>
-          <button  class="boton2 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
-          <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+          <div  style = "text-align:center"  class="pedido-botones">
+            <button class="boton1 botones" (click)="switchOrden(pedido)">Ver pedido</button>
+            <button  class="boton2 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
+            <button  class="boton3 botones" (click)="marcarComoEntregado(pedido)">Marcar como entregado</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <h2 style="margin-top:60px">Entregados:</h2>
-    <p class="texto-conteo" style="text-align:center" *ngIf="conteo.entregados == 0"><span>La lista se encuentra vacia</span></p>
-    <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
-      <div class="pedido" style="background-color:rgba(82, 255, 91, 0.158)"  *ngIf="pedido.estadoDeEnvio == 'Entregado' ">
-        <p class="id">Id: {{"   " +  pedido.id}}</p>
-        <div style="display: flex;">
-          <div class="pedido-columna">
-            <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
-            <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
-            <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
-            <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+    <div id="entregados" *ngIf="seccionActual == 'entregados'">
+      <h2 class="titulo">Entregados:</h2>
+      <p class="texto-conteo" style="text-align:center" *ngIf="conteo.entregados == 0"><span>La lista se encuentra vacia</span></p>
+      <div class="contenedor-pedido" *ngFor="let pedido of pedidos">
+        <div class="pedido" *ngIf="pedido.estadoDeEnvio == 'Entregado' ">
+          <p class="id">Id: {{"   " +  pedido.id}}</p>
+          <div style="display: flex;">
+            <div class="pedido-columna">
+              <p><span>Nombre: </span>   {{"   " +  pedido.nombre}}</p>
+              <p><span>Ciudad: </span>   {{"   " +  pedido.ciudad}}</p>
+              <p><span>Total: </span>   {{"    $" +  pedido.total}}</p>
+              <p><span>Estado de Envio:</span>   {{"   " +  pedido.estadoDeEnvio}}</p>
+            </div>
           </div>
-        </div>
-        <div  class="contenedor-pedido" style = "text-align:center"  class="pedido-botones">
-          <button class="boton1 botones">Ver pedido</button>
-          <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
-          <button  class="boton3 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
+          <div  class="contenedor-pedido" style = "text-align:center"  class="pedido-botones">
+            <button class="boton1 botones" (click)="switchOrden(pedido)">Ver pedido</button>
+            <button  class="boton2 botones" (click)="marcarComoEnviado(pedido)">Marcar como enviado</button>
+            <button  class="boton3 botones" (click)="marcarComoPendiente(pedido)">Marcar como pendiente</button>
+          </div>
         </div>
       </div>
     </div>
-
 
   </div>
 </div>

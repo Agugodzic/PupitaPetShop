@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToolsService } from '../tools.service';
-import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
-import { PreferenciaModel } from '../modelos/preferencia-model';
-import { CarritoModel } from '../modelos/carrito-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 
 @Component({

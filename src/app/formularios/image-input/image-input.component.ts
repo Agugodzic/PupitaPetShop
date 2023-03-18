@@ -9,7 +9,7 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 })
 export class ImageInputComponent implements OnInit{
   @Input() resource:any;
-  @Input() imageNumber:any;
+  @Input() imageNumber:number;
   @Input() action: any;
   preview: any;
 
@@ -26,16 +26,14 @@ export class ImageInputComponent implements OnInit{
   public submit(){
     this.productoService.editar(this.resource).subscribe(
       ()=>{
-        //location.reload();
-        alert('se envio'+this.preview);
         location.reload()
       }
     )
   }
 
-  public imageChange(event:any):any{
+  public async imageChange(event:any){
     let imagen = event.target.files[0];
-    this.extraerBase64(imagen).then((image:any) => {
+    await this.extraerBase64(imagen).then((image:any) => {
       this.preview = image.base;
       if(this.imageNumber == 1){
         return this.resource.imagen1 = image.base;
@@ -70,5 +68,8 @@ export class ImageInputComponent implements OnInit{
   })
 
   ngOnInit(): void {
+    if(this.action == 'agregar'){
+      this.imageNumber = this.imageNumber + 1;
+    }
   }
 }

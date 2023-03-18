@@ -4,7 +4,7 @@
   *ngIf="mostrarInputImage"
   [resource]="resource"
   [value]="inputImageValue"
-  [imagenNumber]="inputImageNumber"
+  [imageNumber]="inputImageNumber"
   [action]="inputImageAction"
 ></app-image-input>
 
@@ -81,6 +81,7 @@
 
 
     <div id="contenedor-imagen">
+      <button *ngIf="getLogValue()" style="position:absolute" class="boton3" (click)="eliminarImagen(imagenSeleccionada.numero)">Eliminar imagen</button>
       <img id="imagen-producto" [src]="imagenSeleccionada.imagen" />
     </div>
   </div>

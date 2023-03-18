@@ -79,8 +79,9 @@ export class ProductoComponent implements OnInit, OnDestroy {
     this.mostrarAlertEliminar = this.mostrarAlertEliminar!;
   }
 
-  public switchInputImage(name:number,action:string){
-    this.inputImageNumber = name;
+  public switchInputImage(numero:number,action:string){
+
+    this.inputImageNumber = numero;
     this.inputImageAction = action;
     this.resource = this.producto;
     this.mostrarInputImage = !this.mostrarInputImage;
@@ -90,8 +91,49 @@ export class ProductoComponent implements OnInit, OnDestroy {
     this.ProductoService.eliminar(this.productoId).subscribe()
   }
 
-  public eliminarImagen(){
+  public eliminarImagen(numero:number){
+    let nuevaLista:any = [];
+    let numeros:any = [];
 
+    this.ImagenesProducto.splice(numero-1,1);
+
+
+
+    this.imagenSeleccionada = this.ImagenesProducto[0];
+
+    if(this.ImagenesProducto[0].imagen.length > 1){
+      this.producto.imagen1 = this.ImagenesProducto[0].imagen
+    }else(
+      this.producto.imagen1 = null
+    )
+    if(this.ImagenesProducto[1].imagen.length > 1){
+      this.producto.imagen2 = this.ImagenesProducto[1].imagen
+    }else(
+      this.producto.imagen2 = null
+    )
+    if(this.ImagenesProducto[2].imagen.length > 1){
+      this.producto.imagen3 = this.ImagenesProducto[2].imagen
+    }else(
+      this.producto.imagen3 = null
+    )
+    if(this.ImagenesProducto[3].imagen){
+      this.producto.imagen4 = this.ImagenesProducto[3].imagen
+    }else(
+      this.producto.imagen4 = null
+    )
+    alert('paso de fase')
+
+    /*this.ImagenesProducto = [];
+    for(let imagen of nuevaLista){
+      let contador = 1;
+      this.ImagenesProducto.push({numero:contador,imagen:imagen})
+    }
+
+    this.cantidadImagenes = this.ImagenesProducto.length;
+*/
+
+    this.ProductoService.editar(this.producto).subscribe(
+    )
   }
 
   public mostrarId() {

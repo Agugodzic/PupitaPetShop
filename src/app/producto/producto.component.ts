@@ -92,46 +92,41 @@ export class ProductoComponent implements OnInit, OnDestroy {
   }
 
   public eliminarImagen(numero:number){
-    let nuevaLista:any = [];
+    let productoImagen:any = [];
     let numeros:any = [];
 
     this.ImagenesProducto.splice(numero-1,1);
 
-
-
-    this.imagenSeleccionada = this.ImagenesProducto[0];
-
-    if(this.ImagenesProducto[0].imagen.length > 1){
+    try{
       this.producto.imagen1 = this.ImagenesProducto[0].imagen
-    }else(
+    }catch(err){
+      console.log(err)
       this.producto.imagen1 = null
-    )
-    if(this.ImagenesProducto[1].imagen.length > 1){
-      this.producto.imagen2 = this.ImagenesProducto[1].imagen
-    }else(
-      this.producto.imagen2 = null
-    )
-    if(this.ImagenesProducto[2].imagen.length > 1){
-      this.producto.imagen3 = this.ImagenesProducto[2].imagen
-    }else(
-      this.producto.imagen3 = null
-    )
-    if(this.ImagenesProducto[3].imagen){
-      this.producto.imagen4 = this.ImagenesProducto[3].imagen
-    }else(
-      this.producto.imagen4 = null
-    )
-    alert('paso de fase')
+    }
 
-    /*this.ImagenesProducto = [];
-    for(let imagen of nuevaLista){
-      let contador = 1;
-      this.ImagenesProducto.push({numero:contador,imagen:imagen})
+    try{
+       this.producto.imagen2 = this.ImagenesProducto[1].imagen
+    }catch(err){
+      console.log(err)
+      this.producto.imagen2 = null
+    }
+
+    try{
+      this.producto.imagen3 = this.ImagenesProducto[2].imagen
+    }catch(err){
+      console.log(err)
+      this.producto.imagen3 = null
+    }
+
+    try{
+      this.producto.imagen4 = this.ImagenesProducto[3].imagen
+    }catch(err){
+      console.log(err)
+      this.producto.imagen4 = null
     }
 
     this.cantidadImagenes = this.ImagenesProducto.length;
-*/
-
+    this.imagenSeleccionada = this.ImagenesProducto[0];
     this.ProductoService.editar(this.producto).subscribe(
     )
   }

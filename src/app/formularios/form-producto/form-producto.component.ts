@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CategoriaModel } from 'src/app/modelos/categoria-model';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
+import { LocalStorageService } from 'src/app/servicios/local-storage.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 
 @Component({
@@ -19,16 +20,20 @@ export class FormProductoComponent implements OnInit {
   public agregarCategoria:FormGroup;
   public categorias:CategoriaModel[];
   public categoriaAlert:boolean = false;
+
   public imageFile1: any;
   public imageFile2: any;
   public imageFile3: any;
   public imageFile4: any;
 
+  private buttonDisabled:boolean = false;
+
   constructor(
     private formBuilder:FormBuilder,
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private localStorageService:LocalStorageService
     ) { }
 
   public switchCategoria(){
@@ -48,6 +53,7 @@ export class FormProductoComponent implements OnInit {
   }
 
   private listarCategorias(){
+    this.categorias = this.localStorageService.getValues('categorias')
     this.categoriaService.listar().subscribe(
       (response: CategoriaModel[])  =>{
         this.categorias = response;
@@ -69,35 +75,35 @@ export class FormProductoComponent implements OnInit {
     }
     /*console.log("in submit" + this.editarProducto.value.imagen1)*/
     this.productoService.editar(this.editarProducto.value).subscribe((response) => {
+      //this.localStorageService.setProductValue(this.editarProducto.value);
       location.reload();
     });
+
+    //this.functionAgregar = undefined;
   }
 
   public submitAgregar(){
-    let botonStatus = document.querySelector('button');
-    if(botonStatus){botonStatus.disabled = true}
-
-    if(this.imageFile1){
-      this.agregarProducto.value.imagen1 = this.imageFile1;
+    if(!this.buttonDisabled){
+      this.buttonDisabled = !this.buttonDisabled;
+      if(this.imageFile1){
+        this.agregarProducto.value.imagen1 = this.imageFile1;
+      }
+      this.productoService.agregar(this.agregarProducto.value).subscribe((response) => {
+        this.localStorageService.addValue('productos',response);
+        location.reload();
+      });
+      let button = document.querySelector('button');
+      button?.setAttribute('style', 'cursor:wait');
     }
-    if(this.imageFile2){
-      this.agregarProducto.value.imagen2 = this.imageFile2;
-    }
-    if(this.imageFile3){
-      this.agregarProducto.value.imagen3 = this.imageFile3;
-    }
-    if(this.imageFile4){
-      this.agregarProducto.value.imagen4 = this.imageFile4;
-    }
-    this.productoService.agregar(this.agregarProducto.value).subscribe((response) => {
-      if(botonStatus){botonStatus.disabled = false}
-      location.reload();
-    });
-
   }
 
   public submitCategoria(){
-    this.categoriaService.agregar(this.agregarCategoria.value).subscribe(()=>this.listarCategorias())
+    this.categoriaService.agregar(this.agregarCategoria.value).subscribe(
+      (response)=>{
+        this.localStorageService.addValue('categorias',response);
+        this.listarCategorias()
+      }
+    )
     this.switchCategoria()
     this.listarCategorias()
   }
@@ -132,6 +138,8 @@ export class FormProductoComponent implements OnInit {
   })
 
   ngOnInit(): void {
+
+    this.listarCategorias();
 
     this.agregarCategoria = this.formBuilder.group(
       {
@@ -169,6 +177,7 @@ export class FormProductoComponent implements OnInit {
         imagen4:["",[]]
       }
     )
+
     if(this.accion=="editar"){
       this.editarProducto.patchValue({
       id:this.producto.id,
@@ -186,6 +195,6 @@ export class FormProductoComponent implements OnInit {
 
     this.imageFile1 = this.producto.imagen1;
     }
-    this.listarCategorias();
+
   }
   }

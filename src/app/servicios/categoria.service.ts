@@ -15,6 +15,10 @@ export class CategoriaService {
     private toolsService:ToolsService) {
   }
 
+  public buscarPorId(id:number):Observable<CategoriaModel[]>{
+    return this.http.get<CategoriaModel[]>(`${this.apiServerUrl}/categorias/id/${id}`)
+  }
+
   public listar():Observable<CategoriaModel[]>{
     return this.http.get<CategoriaModel[]>(`${this.apiServerUrl}/categorias/listar`)
   }
@@ -24,7 +28,7 @@ export class CategoriaService {
   }
 
   public agregar(categoria:CategoriaModel):Observable<CategoriaModel>{
-    return this.http.put<CategoriaModel>(`${this.apiServerUrl}/categorias/agregar`,categoria)
+    return this.http.post<CategoriaModel>(`${this.apiServerUrl}/categorias/agregar`,categoria)
   }
 
   public eliminar(id:number):Observable<any>{

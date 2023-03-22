@@ -5,6 +5,7 @@ import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
 
 @Component({
   selector: 'app-producto',
@@ -46,15 +47,15 @@ export class ProductoComponent implements OnInit, OnDestroy {
     private ProductoService: ProductoService,
     private ToolsService: ToolsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
   ) {
   }
 
   public getLogValue(){ return this.authService.loggedIn() };
 
   private preCargarProducto(){
-    let productosLocalStorage:any = localStorage.getItem("productos");
-    this.productos = JSON.parse(productosLocalStorage);
+    this.productos = this.localStorageService.getValues("productos")
     this.producto = this.productos.find(
       (prod:any) => prod.id == Number(this.productoId)
     );
@@ -76,7 +77,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   }
 
   public switchEliminar(){
-    this.mostrarAlertEliminar = this.mostrarAlertEliminar!;
+    this.mostrarAlertEliminar = !this.mostrarAlertEliminar;
   }
 
   public switchInputImage(numero:number,action:string){
@@ -85,10 +86,6 @@ export class ProductoComponent implements OnInit, OnDestroy {
     this.inputImageAction = action;
     this.resource = this.producto;
     this.mostrarInputImage = !this.mostrarInputImage;
-  }
-
-  public eliminarProducto(){
-    this.ProductoService.eliminar(this.productoId).subscribe()
   }
 
   public eliminarImagen(numero:number){

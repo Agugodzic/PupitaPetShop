@@ -7,6 +7,7 @@ import { ProductoModel } from '../modelos/producto-model';
 import { CategoriaService } from '../servicios/categoria.service';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { AuthService } from '../servicios/auth.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
 
 @Component({
   selector: 'app-store',
@@ -27,7 +28,6 @@ export class StoreComponent implements OnInit , OnDestroy {
   private menorPrecio = this.ToolsService.menorPrecio;
   private mayorPrecio = this.ToolsService.mayorPrecio;
   public listaDeProductos:any;
-  private productosLocalStorage_:any = localStorage.getItem("productos");
   private productosService:any = [];
   private filtrar = this.ToolsService.filtrarProductosEnLista;
   public productos = this.productosService;
@@ -40,8 +40,7 @@ export class StoreComponent implements OnInit , OnDestroy {
   public agregarProducto:boolean = false;
   public longitud = this.ToolsService.recortarString;
   public Imagen = this.ToolsService.imagen;
-  private categoriasLocalStorage_:any = localStorage.getItem("categorias");
-  public categorias = JSON.parse(this.categoriasLocalStorage_);
+  public categorias:any = [];
   public mostrarSelectorCategorias:boolean = false;
 
   private productosPorPagina = 10;
@@ -53,7 +52,8 @@ export class StoreComponent implements OnInit , OnDestroy {
     private ProductoService: ProductoService,
     private route: ActivatedRoute,
     private categoriaService:CategoriaService,
-    private authService:AuthService
+    private authService:AuthService,
+    private localStorageService:LocalStorageService
   ) {}
 
   public getLogValue(){
@@ -241,10 +241,8 @@ export class StoreComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit() {
-
-    if(this.productosLocalStorage_ != null && this.productosLocalStorage_!= undefined){
-      this.productosService = JSON.parse(this.productosLocalStorage_) };
-
+    this.productosService = this.localStorageService.getValues("productos")
+    this.categorias = this.localStorageService.getValues("categorias");
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
     this.listarProductos();

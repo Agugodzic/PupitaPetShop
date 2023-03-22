@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { CategoriaService } from '../servicios/categoria.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 
@@ -30,7 +31,8 @@ export class AlertComponent implements OnInit {
   constructor(
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
-    private toolsService:ToolsService
+    private toolsService:ToolsService,
+    private localStorageService:LocalStorageService
     ){}
 
   actualizar(){
@@ -75,8 +77,10 @@ export class AlertComponent implements OnInit {
   }
 
   eliminarProducto(){
-    this.productoService.eliminar(this.productoId).subscribe();
-    window.location.href='/store/0';
+    this.productoService.eliminar(this.productoId).subscribe((response)=>{
+      window.location.href='/#/store/0';
+    });
+    this.localStorageService.deleteValue('productos',this.productoId)
   }
 
   agregarCategoria(){

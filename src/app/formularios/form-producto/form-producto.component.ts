@@ -20,6 +20,7 @@ export class FormProductoComponent implements OnInit {
   public agregarCategoria:FormGroup;
   public categorias:CategoriaModel[];
   public categoriaAlert:boolean = false;
+  public spinner:boolean = false;
 
   public imageFile1: any;
   public imageFile2: any;
@@ -61,6 +62,12 @@ export class FormProductoComponent implements OnInit {
   }
 
   public submitEditar(){
+    this.spinner = true;
+    let button1 = document.querySelector('.boton1');
+    let button2 = document.querySelector('.boton2');
+    button1?.setAttribute('style', 'opacity:80%');
+    button2?.setAttribute('style', 'opacity:85%');
+
     if(this.imageFile1){
       this.editarProducto.value.imagen1 = this.imageFile1;
     }
@@ -83,6 +90,8 @@ export class FormProductoComponent implements OnInit {
   }
 
   public submitAgregar(){
+    this.spinner = true;
+
     if(!this.buttonDisabled){
       this.buttonDisabled = !this.buttonDisabled;
       if(this.imageFile1){
@@ -92,8 +101,10 @@ export class FormProductoComponent implements OnInit {
         this.localStorageService.addValue('productos',response);
         location.reload();
       });
-      let button = document.querySelector('button');
-      button?.setAttribute('style', 'cursor:wait');
+      let button1 = document.querySelector('.boton1');
+      let button2 = document.querySelector('.boton2');
+      button1?.setAttribute('style', 'opacity:80%');
+      button2?.setAttribute('style', 'opacity:85%');
     }
   }
 

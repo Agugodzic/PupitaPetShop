@@ -79,8 +79,8 @@ export class AlertComponent implements OnInit {
   eliminarProducto(){
     this.productoService.eliminar(this.productoId).subscribe((response)=>{
       window.location.href='/#/store/0';
+     // this.localStorageService.deleteValue('productos',this.productoId)
     });
-    this.localStorageService.deleteValue('productos',this.productoId)
   }
 
   agregarCategoria(){

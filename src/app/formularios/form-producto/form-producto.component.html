@@ -69,6 +69,7 @@
       <input class="boton1" value="Guardar" type="submit">
       <button class="boton2" (click)="actualizar()"  type="button">Cancelar</button>
     </div>
+    <app-spinner *ngIf="spinner" class="spinner"></app-spinner>
     </div>
   </form>
 
@@ -126,9 +127,10 @@
     <!------------------------- botones ------------------------->
 
     <div class="contenedor-block">
-      <input class="boton1" id="btn" value="Guardar" type="submit">
-      <button class="boton2" (click)="actualizar()" type="button">Cancelar</button>
+      <input class="boton1 boton" id="btn" value="Guardar" type="submit">
+      <button class="boton2 boton" (click)="actualizar()" type="button">Cancelar</button>
     </div>
+    <app-spinner *ngIf="spinner" class="spinner"></app-spinner>
     </div>
   </form>
 </div>

@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, isDevMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,9 @@ import { PruebasComponent } from './pruebas/pruebas.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PedidoComponent } from './pedido/pedido.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     PruebasComponent,
     PedidosComponent,
     PedidoComponent,
+    SpinnerComponent,
   ],
   imports: [
     MatIconModule,
@@ -64,6 +68,8 @@ import { PedidoComponent } from './pedido/pedido.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({name:'TEST', maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [
     ProductoService,

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   constructor(
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
-    private localStorageService:LocalStorageService
+    private localStorageService:LocalStorageService,
      ){}
 
   title = 'e-commerce';

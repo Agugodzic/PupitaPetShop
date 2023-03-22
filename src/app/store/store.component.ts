@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../tools.service';
-import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { CategoriaService } from '../servicios/categoria.service';
@@ -48,7 +47,6 @@ export class StoreComponent implements OnInit , OnDestroy {
 
   constructor(
     private ToolsService: ToolsService,
-    private ProductosService: ProductosService,
     private ProductoService: ProductoService,
     private route: ActivatedRoute,
     private categoriaService:CategoriaService,
@@ -72,7 +70,7 @@ export class StoreComponent implements OnInit , OnDestroy {
           if(!usadas.includes(producto.categoria))
             this.categoriasEnUso.push(producto.categoria);
         })
-        localStorage.setItem("productos",JSON.stringify(this.productosService));
+        //this. localStorageService.setValues("productos",this.productosService);
     })
   }
 
@@ -241,7 +239,7 @@ export class StoreComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit() {
-    this.productosService = this.localStorageService.getValues("productos")
+   //this.productosService = this.localStorageService.getValues("productos")
     this.categorias = this.localStorageService.getValues("categorias");
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');

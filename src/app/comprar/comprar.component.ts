@@ -49,7 +49,7 @@ export class ComprarComponent implements OnInit {
   // ------------ METODOS PASO 1 ------------------//
 
   public volverALaTienda(){
-    window.location.href='/store/0';
+    window.location.href='/#/store/0';
   }
 
   public selectOptionStyle1():any{

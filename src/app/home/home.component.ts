@@ -3,6 +3,7 @@ import { CategoriaModel } from '../modelos/categoria-model';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
 import { CategoriaService } from '../servicios/categoria.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
     private productoService:ProductoService,
     private toolsService:ToolsService,
     private authService:AuthService,
-    private categoriaService:CategoriaService
+    private categoriaService:CategoriaService,
+    private localStorageService:LocalStorageService
     ) { }
 
     public getLogValue(){

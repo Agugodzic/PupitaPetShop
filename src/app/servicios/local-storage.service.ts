@@ -11,7 +11,26 @@ export class LocalStorageService {
   setValues(item:string,recurso:any){
   /* recibe como entrada el nombre del item a modificar y el array completo de los recursos a agregar o actualizar.
   crea el item en el localStorage o lo actualiza por completo si este ya existe. */
-      localStorage.setItem(item,JSON.stringify(recurso));
+    if(item == "productos"){
+      let productos:any = [];
+      recurso.forEach((rec:any)=>{
+
+        if(productos.length < 10){
+          productos.push(rec);
+        }else{
+          rec.imagen1="";
+          rec.imagen2="";
+          rec.imagen3="";
+          rec.imagen4="";
+          productos.push(rec);
+        }
+      })
+      localStorage.setItem(item,JSON.stringify(productos));
+    }else{
+          localStorage.setItem(item,JSON.stringify(recurso));
+    }
+
+
   }
 
 
@@ -41,8 +60,16 @@ export class LocalStorageService {
     let productos:any;
 
     if(productos_ != null && productos_ != undefined){
+
       productos = JSON.parse(productos_);
-      productos.push(recurso);
+      if(productos.length < 10){
+        productos.push(recurso);
+      }else{
+        recurso.imagen1 = "";
+        recurso.imagen2 = "";
+        recurso.imagen3 = "";
+        recurso.imagen3 = "";
+      }
     }
 
     localStorage.setItem("productos",JSON.stringify(productos));
@@ -107,7 +134,7 @@ export class LocalStorageService {
           nuevaLista.push(value)
         }
       });
-      localStorage.setItem(item,JSON.stringify(nuevaLista));
+      //localStorage.setItem(item,JSON.stringify(nuevaLista));
     }
   }
 }

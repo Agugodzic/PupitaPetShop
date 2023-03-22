@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 import { ProductoModel } from '../modelos/producto-model';
@@ -25,7 +24,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public mostrarEspecificaciones:boolean = false;
   public mostrarAlert:boolean = false;
   public editarProducto:boolean = false;
-  public Imagen = this.ProductosService.imagen;
+  public Imagen = this.ToolsService.imagen;
 
   public cantidad:number = 1;
 
@@ -43,7 +42,6 @@ export class ProductoComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private ProductosService: ProductosService,
     private ProductoService: ProductoService,
     private ToolsService: ToolsService,
     private route: ActivatedRoute,
@@ -55,7 +53,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public getLogValue(){ return this.authService.loggedIn() };
 
   private preCargarProducto(){
-    this.productos = this.localStorageService.getValues("productos")
+    //this.productos = this.localStorageService.getValues("productos")
     this.producto = this.productos.find(
       (prod:any) => prod.id == Number(this.productoId)
     );

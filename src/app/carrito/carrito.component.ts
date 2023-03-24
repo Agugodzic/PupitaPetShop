@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToolsService } from '../tools.service';
-import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
-import { PreferenciaModel } from '../modelos/preferencia-model';
-import { CarritoModel } from '../modelos/carrito-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 
 @Component({
@@ -12,14 +9,14 @@ import { CheckoutExpressService } from '../servicios/checkout-express.service';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit, OnDestroy {
+export class CarritoComponent implements OnInit {
   public precio = this.ToolsService.precio;
   public imagen = this.ToolsService.imagen;
   public total:number;
 
-  public productosCarrito:any;
-  private localStorage_:any = localStorage.getItem("productos");
-  public productos:any = JSON.parse(this.localStorage_);
+  public productosCarrito:any = [];
+  public productos:any = [];
+  public estadoRecurso = {undefined:true}
   public productoCantidad:any = [];
 
   private carritoLocalStorage:any = [];
@@ -32,25 +29,18 @@ export class CarritoComponent implements OnInit, OnDestroy {
   ) {}
 
   productoLink(producto: any): string {
-    return '/prod/' + producto.id;
+    return '/#/prod/' + producto.id;
   }
 
   public listarProductos(){
     this.ProductoService.listar().subscribe(
       (response: ProductoModel[])  =>{
+        this.estadoRecurso.undefined = false;
         this.productos = response;
         this.productosCarrito = this.ToolsService.filtrarPorId(response,this.carritoId);
         this.listarProductoCantidad(this.productosCarrito)
         this.total = this.precioTotal();
     });
-  }
-
-  private preCargarProducto(){
-    let productosLocalStorage:any = localStorage.getItem("productos");
-    this.productos = JSON.parse(productosLocalStorage);
-    this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
-    this.listarProductoCantidad(this.productosCarrito)
-    this.total = this.precioTotal();
   }
 
   public listarProductoCantidad(listaProductos:any){
@@ -137,10 +127,6 @@ export class CarritoComponent implements OnInit, OnDestroy {
     this.carritoLocalStorage = localStorage.getItem("carrito");
     this.carritoId = JSON.parse(this.carritoLocalStorage);
     this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
-    this.preCargarProducto()
     this.listarProductos();
-  }
-  ngOnDestroy():void{
-    this.ProductoService.listar().subscribe();
   }
 }

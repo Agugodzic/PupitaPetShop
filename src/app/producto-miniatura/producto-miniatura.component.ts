@@ -52,7 +52,7 @@ export class ProductoMiniaturaComponent implements OnInit {
 
   abrirProducto(producto: any):void{
     if(this.linkStatus){
-      window.location.href = '/prod/' + producto.id;
+      window.location.href = '#/prod/' + producto.id;
     }
   }
 

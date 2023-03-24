@@ -1,5 +1,12 @@
 <div class="page-component">
 
+  <app-image-input
+  *ngIf="mostrarInputImage"
+  [resource]="resource"
+  [value]="inputImageValue"
+  [imageNumber]="inputImageNumber"
+  [action]="inputImageAction"
+></app-image-input>
 
 <!-- Formulario -->
 
@@ -9,6 +16,7 @@
     <app-form-producto accion="editar" [producto]="producto"></app-form-producto>
   </div>
 </div>
+
 
 <!----- Alert ----->
 
@@ -36,48 +44,47 @@
 
 <app-nav></app-nav>
 
-<div  *ngIf="producto == undefined">
-  <p id="mensaje-espera"></p>
-</div>
-
 <div id="contenido" [ngStyle]="{
-  'cursor': producto == undefined ? 'wait': 'default'
+  'cursor': loading ? 'wait': 'default'
 }">
 
+<div *ngIf="loading" class="contenedor-loading">
+  <app-loadder class="loader"></app-loadder>
+</div>
 
-  <div id="contenido-edicion">
+  <div id="contenido-edicion" *ngIf="!loading">
     <a href="store/0">Tienda</a>{{ " / "+producto.categoria }}
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
   </div>
 
-
-
-  <div id="imagenes-producto" *ngIf="producto !== undefined">
+  <div id="imagenes-producto" *ngIf="!loading">
     <div id="miniaturas">
-      <div class="contenedor-miniatura"*ngFor="let imagen of ImagenesProducto">
+      <div class="contenedor-miniatura"*ngFor="let elemento of ImagenesProducto">
         <img
           class="imagen-miniatura"
-          [src]="imagen"
-          (click)="cambiarImagen(imagen)"
+          [src]="elemento.imagen"
+          (click)="cambiarImagen(elemento)"
         />
       </div>
-      <!--
       <img
-      *ngIf="cantidadImagenes < 4 && logged"
+      *ngIf="cantidadImagenes < 4 && getLogValue()"
+      (click) = "switchInputImage(cantidadImagenes,'agregar')"
+      style="opacity: 70%;"
       class="contenedor-miniatura" id="imagen-agergar"
       src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
-    />-->
+    />
     </div>
 
 
     <div id="contenedor-imagen">
-      <img id="imagen-producto" [src]="imagenSeleccionada" />
+      <button *ngIf="getLogValue()" style="position:absolute" class="boton3" (click)="eliminarImagen(imagenSeleccionada.numero)">Eliminar imagen</button>
+      <img id="imagen-producto" [src]="imagenSeleccionada.imagen" />
     </div>
   </div>
 
 
-  <div id="descripcion" *ngIf="producto !== undefined">
+  <div id="descripcion" *ngIf="!loading">
 
   <div id="descripcion-edicion">
     {{ "Tienda / "+ producto.categoria }}
@@ -115,9 +122,11 @@
 
   <button id="verMas" (click)="VerMas()">{{verMas}}</button>
   -->
+</div>
 
+<!---------- PRODUCTOS  RELACIONADOS  ----------->
 
-  <div id="relacionados" *ngIf="producto !== undefined ">
+  <div id="relacionados" *ngIf="!loading">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productos">
@@ -129,6 +138,4 @@
       </div>
     </div>
   </div>
-
-</div>
 </div>

@@ -15,6 +15,10 @@ export class OrdenService {
     private toolsService:ToolsService) {
   }
 
+  public buscarPorId(id:number):Observable<OrdenModel[]>{
+    return this.http.get<OrdenModel[]>(`${this.apiServerUrl}/orden/id/${id}`)
+  }
+
   public listar():Observable<OrdenModel[]>{
     return this.http.get<OrdenModel[]>(`${this.apiServerUrl}/orden/listar`)
   }

@@ -7,6 +7,7 @@ body {
   text-align: center;
   padding: 0px;
   margin: 0px;
+  /*zoom:90%;*/
 }
 
 .page-component{
@@ -18,7 +19,7 @@ a {
   color:black;
 }
 
-html, body { height: 100%; }
+html, body { height: 100% }
 body { margin: 0 }
 
 button{
@@ -55,7 +56,7 @@ button{
   border-color: rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.863);
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 .boton1-a:hover{
   background-color: rgba(42, 71, 235, 0.76);
@@ -71,7 +72,7 @@ button{
   background-color: rgba(65, 137, 230, 0.205);
   color: #4f708fd7;
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 .boton3{
   text-align: center;
@@ -83,7 +84,7 @@ button{
   background-color:#92c0eca8;
   color: rgba(20, 70, 136, 0.767);
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 .boton3:hover{
   background-color:#92c0ecd5;

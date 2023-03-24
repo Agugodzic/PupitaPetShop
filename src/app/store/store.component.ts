@@ -7,6 +7,10 @@ import { ProductoModel } from '../modelos/producto-model';
 import { CategoriaService } from '../servicios/categoria.service';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { AuthService } from '../servicios/auth.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
+import { Observable } from 'rxjs';
+import { listaDeProductos } from '../state/selectors/productos.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-store',
@@ -27,8 +31,7 @@ export class StoreComponent implements OnInit , OnDestroy {
   private menorPrecio = this.ToolsService.menorPrecio;
   private mayorPrecio = this.ToolsService.mayorPrecio;
   public listaDeProductos:any;
-  private productosLocalStorage_:any = localStorage.getItem("productos");
-  private productosService:any = [];
+  public productosService:any = [];
   private filtrar = this.ToolsService.filtrarProductosEnLista;
   public productos = this.productosService;
   private categoria:any;
@@ -40,20 +43,25 @@ export class StoreComponent implements OnInit , OnDestroy {
   public agregarProducto:boolean = false;
   public longitud = this.ToolsService.recortarString;
   public Imagen = this.ToolsService.imagen;
-  private categoriasLocalStorage_:any = localStorage.getItem("categorias");
-  public categorias = JSON.parse(this.categoriasLocalStorage_);
+  public categorias:any = [];
   public mostrarSelectorCategorias:boolean = false;
+  public loading: false;
+  public productos$():Observable<any>{
+    return this.store.select(listaDeProductos);
+  };
+
 
   private productosPorPagina = 10;
   public categoriasEnUso:any = [];
 
   constructor(
     private ToolsService: ToolsService,
-    private ProductosService: ProductosService,
     private ProductoService: ProductoService,
     private route: ActivatedRoute,
     private categoriaService:CategoriaService,
-    private authService:AuthService
+    private authService:AuthService,
+    private localStorageService:LocalStorageService,
+    private store:Store<any>
   ) {}
 
   public getLogValue(){
@@ -72,7 +80,6 @@ export class StoreComponent implements OnInit , OnDestroy {
           if(!usadas.includes(producto.categoria))
             this.categoriasEnUso.push(producto.categoria);
         })
-        localStorage.setItem("productos",JSON.stringify(this.productosService));
     })
   }
 
@@ -241,18 +248,22 @@ export class StoreComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit() {
+    this.productos$().subscribe(
+      (response)=> {
+        this.productosService = response.productos;
+        this.loading = response.loading;
+        this.actualizarLista();
+      }
+    )
 
-    if(this.productosLocalStorage_ != null && this.productosLocalStorage_!= undefined){
-      this.productosService = JSON.parse(this.productosLocalStorage_) };
-
+    this.categorias = this.localStorageService.getValues("categorias");
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
+
     this.listarProductos();
-    this.actualizarLista();
+
   }
   ngOnDestroy():void{
-    this.ProductoService.listar().subscribe();
-    this.categoriaService.listar().subscribe();
   }
 
 }

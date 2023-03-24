@@ -15,19 +15,23 @@ export class ProductoService {
     private toolsService:ToolsService) {
   }
 
- public listar():Observable<ProductoModel[]>{
+  public buscarPorId(id:number):Observable<ProductoModel[]>{
+    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/id/${id}`)
+  }
+
+  public listar():Observable<ProductoModel[]>{
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/listar`)
- }
+  }
 
- public editar(curso:ProductoModel):Observable<ProductoModel>{
-  return this.http.put<ProductoModel>(`${this.apiServerUrl}/productos/editar`,curso)
-}
+  public editar(curso:ProductoModel):Observable<ProductoModel>{
+    return this.http.put<ProductoModel>(`${this.apiServerUrl}/productos/editar`,curso)
+  }
 
- public agregar(curso:ProductoModel):Observable<ProductoModel>{
-  return this.http.put<ProductoModel>(`${this.apiServerUrl}/productos/agregar`,curso)
- }
+  public agregar(curso:ProductoModel):Observable<ProductoModel>{
+    return this.http.post<ProductoModel>(`${this.apiServerUrl}/productos/agregar`,curso)
+  }
 
- public eliminar(id:number):Observable<any>{
-  return this.http.delete(`${this.apiServerUrl}/productos/${id}`)
- }
+  public eliminar(id:number):Observable<any>{
+    return this.http.delete(`${this.apiServerUrl}/productos/${id}`)
+  }
 }

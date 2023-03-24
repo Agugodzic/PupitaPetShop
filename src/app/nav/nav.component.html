@@ -11,7 +11,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <a  href="/home"mat-menu-item>
+      <a  href="#//home"mat-menu-item>
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
@@ -19,11 +19,11 @@
         <mat-icon>question_answer</mat-icon>
         <span>Contactanos</span>
       </a>
-      <a href="/store/0" mat-menu-item>
+      <a href="#//store/0" mat-menu-item>
         <mat-icon>redeem</mat-icon>
         <span>Tienda</span>
       </a>
-      <a href="/carrito" mat-menu-item>
+      <a href="#//carrito" mat-menu-item>
         <mat-icon>shopping_cart</mat-icon>
         <span>Carrito</span>
       </a>
@@ -47,16 +47,16 @@
 
 
   <div id="nav" >
-    <a href="home" class="boton" [ngStyle]="estiloBoton(1)" id="nav-inicio">INICIO</a>
+    <a href="#/home" class="boton" [ngStyle]="estiloBoton(1)" id="nav-inicio">INICIO</a>
     <a *ngIf="!getLogValue()" target="_blank" href="https://api.whatsapp.com/send?phone=+5493415717618&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." class="boton" [ngStyle]="estiloBoton(2)">CONTACTANOS</a>
-    <a href="h12236456" *ngIf="getLogValue()" class="boton">PEDIDOS</a>
-    <a href="store/0" class="boton" [ngStyle]="estiloBoton(3)">TIENDA</a>
-    <a href="carrito" *ngIf="!getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">CARRITO</a>
-    <a href="pruebas" *ngIf="getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">PRUEBAS</a>
+    <a href="#/h12236456" *ngIf="getLogValue()" class="boton">PEDIDOS</a>
+    <a href="#/store/0" class="boton" [ngStyle]="estiloBoton(3)">TIENDA</a>
+    <a href="#/carrito" *ngIf="!getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">CARRITO</a>
+    <a href="#/pruebas" *ngIf="getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">PRUEBAS</a>
   </div>
 
   <div id="contenedor-carrito">
-    <a *ngIf="!getLogValue()" href="carrito" id="chango">
+    <a *ngIf="!getLogValue()" href="#/carrito" id="chango">
       <img *ngIf="tema == 'oscuro'" id="carrito" [src]="imagen.carritoBlanco"/>
       <img *ngIf="tema !== 'oscuro'" id="carrito" [src]="imagen.carrito"/>
       <p *ngIf="generar() !== 0" id="cantidad-productos">{{cantidadCarrito}}</p>

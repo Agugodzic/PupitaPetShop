@@ -185,7 +185,7 @@ export class ToolsService {
     preferencia = {
       items: Items,
       metadata : {
-        ordenId:ordenId
+        order_id:ordenId
       }
     }
     console.log(preferencia)
@@ -237,8 +237,8 @@ export class ToolsService {
     patita:"https://static.vecteezy.com/system/resources/previews/009/344/667/original/dog-paw-free-png.png"
   }
 
-  // public apiServerUrl = "https://pupita-backend-production.up.railway.app";
- public apiServerUrl = "http://localhost:8080";
+  //public apiServerUrl = "https://pupita-node.vercel.app";
+  public apiServerUrl = "http://localhost:3000";
   //apiServerUrl = ""
 }
 

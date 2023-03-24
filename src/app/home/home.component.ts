@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
 import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
+import { listaDeProductos } from '../state/selectors/productos.selectors';
 import { ToolsService } from '../tools.service';
 
 @Component({
@@ -18,14 +21,20 @@ export class HomeComponent implements OnInit {
   public imagen = this.toolsService.imagen;
   private categorias:CategoriaModel[];
   private productos:any;
-  public productosRecomendados:any = [];
+  public productosRecomendados:any = {undefined:true};
+  public loading:boolean = true
+  public productos$():Observable<any>{
+    return this.store.select(listaDeProductos);
+  };
+
   image = "https://t1.ea.ltmcdn.com/es/posts/0/3/7/que_es_mejor_arnes_o_collar_para_perros_22730_orig.jpg";
 
   constructor(
     private productoService:ProductoService,
     private toolsService:ToolsService,
     private authService:AuthService,
-    private categoriaService:CategoriaService
+    private categoriaService:CategoriaService,
+    private store:Store<any>
     ) { }
 
     public getLogValue(){
@@ -62,7 +71,7 @@ export class HomeComponent implements OnInit {
       return '/prod/' + producto.id;
     }
 
-    public asignarProductosRecomendados(){
+    public async asignarProductosRecomendados(){
       this.productosRecomendados = [];
       for(let n = 0 ; n < 5; n++){
         if(this.productos !== null && this.productos[n] !== undefined){
@@ -72,9 +81,13 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    let localStorage_:any = localStorage.getItem("productos");
-    this.productos =  JSON.parse(localStorage_);
-    this.asignarProductosRecomendados();
+    this.productos$().subscribe(
+      (response)=> {
+        this.productos = response.productos;
+        this.loading = response.loading;
+        this.asignarProductosRecomendados();
+      }
+    )
     this.listarProductos();
   }
 

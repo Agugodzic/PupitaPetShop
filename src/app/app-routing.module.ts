@@ -21,8 +21,9 @@ const routes: Routes = [
 { path: 'contactanos', component:ContactanosComponent},
 { path: 'pruebas', component:PruebasComponent},
 { path: 'h12236456', component:PedidosComponent},
+
 { path: '', redirectTo: '/store/0', pathMatch: 'full' },
-{ path: '**', redirectTo: '/store/0', pathMatch: 'full' }
+{ path: '**', redirectTo: '/store/0', pathMatch: 'full' },
 ];
 
 @NgModule({

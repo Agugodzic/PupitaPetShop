@@ -7,11 +7,11 @@ mat-icon{
 }
 .producto {
   display: inline-block;
-  width: 207px;
+  width: 186px;
   height: auto;
   background-color: rgba(255, 255, 255, 0);
   text-align: center;
-  margin: 7px;
+  margin: 8px;
   padding: 0;
   /*box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.137);*/
   cursor: pointer;
@@ -22,13 +22,14 @@ mat-icon{
   border-color: #e6e6e6;
   border-radius: 2px;
   vertical-align: top;
+  /*background-color: rgba(255, 0, 0, 0.473);*/
 }
 .producto:hover{
   border-color: #00000048;
 }
 .producto-imagen {
-  max-height: 204px;
-  max-width: 204px;
+  max-height: 182px;
+  max-width: 182px;
   margin-bottom: 6px;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
@@ -42,18 +43,19 @@ mat-icon{
   position: relative;
   vertical-align: middle;
   transform: translate(-0.5px, -0.5px);
-  height: 205px;
-  width: 205px;
+  height: 183px;
+  width: 182px;
   object-fit:cover;
+  margin:0;
 }
 
 .producto-nombre {
-  font-size: 17px;
+  font-size: 16px;
   min-height: 40px;
   margin: 13px;
 }
 .producto-descripcion {
-  font-size: 15px;
+  font-size: 14px;
   margin: 12px;
   min-height: 52px;
   opacity: 75%;

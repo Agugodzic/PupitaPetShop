@@ -19,6 +19,7 @@ p{
   display: inline-block;
   text-align: center;
   width: 90vw;
+  border-radius: 8px;
 }
 .contenedor-pedido{
   display:inline;
@@ -26,6 +27,7 @@ p{
   height: fit-content;
 }
 .pedido{
+  background-color: rgb(255, 255, 255);
   display: inline-block;
   border-style: solid;
   border-width: 1px;
@@ -36,6 +38,10 @@ p{
   height: fit-content;
   margin: 20px;
   /*box-shadow: 3px 3px 4px 4px rgba(0, 0, 0, 0.062);*/
+}
+.titulo{
+  color:rgba(0, 0, 0, 0.651);
+  font-size: 17px;
 }
 .botones{
   display:block;
@@ -53,6 +59,7 @@ p{
 .pedido-columna{
   text-align: left;
   margin-left: 25px;
+  width: fit-content;
 
 }
 .pedido-botones{
@@ -64,4 +71,24 @@ p{
   margin:20px;
   font-style:italic;
   opacity:50%
+}
+
+#botones-estado{
+  text-align: center;
+  margin: 10px auto;
+  margin-top:25px;
+  width: fit-content;
+}
+.boton-estado{
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 4px 14px;
+  border-style:solid;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color:rgb(148, 148, 148);
+  margin:3px;
+}
+#boton-pendientes:visited{
+  background-color: rgb(0, 75, 187);
 }

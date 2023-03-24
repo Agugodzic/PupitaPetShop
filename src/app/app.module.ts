@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, isDevMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from './servicios/producto.service';
 import { ComprarComponent } from './comprar/comprar.component';
 import { NavComponent } from './nav/nav.component';
+import { ImageInputComponent } from './formularios/image-input/image-input.component';
 import { AuthService } from './servicios/auth.service';
 import { InterceptorService } from './servicios/interceptor.service';
 import { LogInComponent } from './logIn/logIn.component';
@@ -29,9 +30,18 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { PruebasComponent } from './pruebas/pruebas.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { PedidoComponent } from './pedido/pedido.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { productosReducer } from './state/reducers/productos.reducer';
+import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { LoadderComponent } from './loadder/loadder.component';
 
 @NgModule({
   declarations: [
+    ImageInputComponent,
     AppComponent,
     CarritoComponent,
     HomeComponent,
@@ -46,7 +56,9 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     ContactanosComponent,
     FooterComponent,
     PruebasComponent,
-    PedidosComponent
+    PedidosComponent,
+    PedidoComponent,
+    LoadderComponent,
   ],
   imports: [
     MatIconModule,
@@ -59,12 +71,16 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     ProductoService,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    { provide: LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

@@ -1,3 +1,27 @@
+
+.contenedor-loading{
+  width: fit-content;
+  height: 0px;
+  padding-top:100px;
+  margin: 0 auto;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #e6e6e6;
+    box-shadow: -24px 0 #7a9cac, 24px 0 #e6e6e6;
+  }
+  66% {
+    background: #6f92a1;
+    box-shadow: -24px 0 #e6e6e6, 24px 0 #FFF;
+  }
+  100% {
+    background: #FFF;
+    box-shadow: -24px 0 #ececec, 24px 0 #7fa1b1;
+  }
+}
+
+
 p {
   font-family: Lato;
 }

@@ -5,15 +5,13 @@
 <app-nav actual="4"></app-nav>
 
 <div id="contenido">
-  <h4 id="titulo">Carrito:</h4>
+  <h4 *ngIf="!estadoRecurso.undefined" id="titulo">Carrito:</h4>
 
-  <div id="mensaje-espera" *ngIf="total == undefined">
-    <p id="mensaje-espera-texto"></p>
+  <div *ngIf="estadoRecurso.undefined" class="contenedor-loading">
+    <app-loadder class="loader"></app-loadder>
   </div>
 
-
   <div id="contenedor-productos" *ngIf="total !== undefined">
-
     <div class="generador-productos" *ngFor="let producto of productoCantidad" >
 
       <div class="producto" >

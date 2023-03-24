@@ -44,24 +44,21 @@
 
 <app-nav></app-nav>
 
-<div  *ngIf="producto == undefined">
-  <p id="mensaje-espera"></p>
-</div>
-
 <div id="contenido" [ngStyle]="{
-  'cursor': producto == undefined ? 'wait': 'default'
+  'cursor': loading ? 'wait': 'default'
 }">
 
+<div *ngIf="loading" class="contenedor-loading">
+  <app-loadder class="loader"></app-loadder>
+</div>
 
-  <div id="contenido-edicion">
+  <div id="contenido-edicion" *ngIf="!loading">
     <a href="store/0">Tienda</a>{{ " / "+producto.categoria }}
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
   </div>
 
-
-
-  <div id="imagenes-producto" *ngIf="producto !== undefined">
+  <div id="imagenes-producto" *ngIf="!loading">
     <div id="miniaturas">
       <div class="contenedor-miniatura"*ngFor="let elemento of ImagenesProducto">
         <img
@@ -87,7 +84,7 @@
   </div>
 
 
-  <div id="descripcion" *ngIf="producto !== undefined">
+  <div id="descripcion" *ngIf="!loading">
 
   <div id="descripcion-edicion">
     {{ "Tienda / "+ producto.categoria }}
@@ -129,7 +126,7 @@
 
 <!---------- PRODUCTOS  RELACIONADOS  ----------->
 
-  <div id="relacionados" *ngIf="producto !== undefined ">
+  <div id="relacionados" *ngIf="!loading">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productos">

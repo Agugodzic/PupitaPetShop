@@ -15,6 +15,17 @@
   padding-bottom: 30px;
 }
 
+.loader{
+  position:absolute;
+  left:0;
+  right: 0;
+  top:300px;
+  text-align: center;
+  margin:0 auto;
+  width: fit-content;
+  padding-left: 130px;
+}
+
 #titulo{
   color:rgba(0, 0, 0, 0.651);
   font-size: 17px;

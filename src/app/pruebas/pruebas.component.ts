@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { ItemsModel } from '../modelos/items-model';
-import { PreferenciaModel } from '../modelos/preferencia-model';
+import { ProductoModel } from '../modelos/producto-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 import { ProductoService } from '../servicios/producto.service';
+import { listaDeProductos } from '../state/selectors/productos.selectors';
 
 @Component({
   selector: 'app-pruebas',
@@ -13,12 +16,17 @@ export class PruebasComponent implements OnInit {
   public localStorageData:any;
   public serviceData:any;
   public carritoPrueba:any;
+  public linkCheckout:string;
   private items:ItemsModel[] = [];
-  linkCheckout:string;
+
+  public productos$:Observable<any>
+
+
 
   constructor(
     private productoService:ProductoService,
-    private check : CheckoutExpressService
+    private check : CheckoutExpressService,
+    private store:Store<any>
     ){
       this.carritoPrueba = [
         {id:1,nombre:"correa",precio:500,cantidad:3},
@@ -43,9 +51,13 @@ export class PruebasComponent implements OnInit {
 
 
   ngOnInit(){
-    this.productoService.listar().subscribe(response => this.serviceData = response);
-    let localStorage_:any = localStorage.getItem("productos");
-    this.localStorageData =  JSON.parse(localStorage_);
+    this.productos$ = this.store.select(listaDeProductos);
+    this.productoService.listar().subscribe(
+      (response:ProductoModel[]) => {
+        this.serviceData = response;
+      });
+   // let localStorage_:any = localStorage.getItem("productos");
+    //this.localStorageData =  JSON.parse(localStorage_);
     this.generarPreferencias();
   }
 }

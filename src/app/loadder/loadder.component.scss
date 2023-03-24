@@ -1,0 +1,67 @@
+
+// This is just to center the spinner
+
+html, body { height: 100%; }
+
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.loader-container {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+
+}
+.loader-container svg{
+  position: absolute;
+}
+// Here is where the magic happens
+
+$offset: 622;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+#loader-component{
+  position:relative;
+  height: 200px;
+  width: 320px;
+  transform: translate(-55px,-50px);
+  margin:0 auto;
+  text-align: center;
+}
+.loader-dog {
+  width: 93px;
+  height:auto;
+  transform: translate(55px,50px);
+}
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  stroke: #FCB316;
+  animation:
+    dash $duration ease-in-out infinite;
+}
+
+@keyframes dash {
+ 0% {
+   stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(30deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(70deg);
+ }
+}

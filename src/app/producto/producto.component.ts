@@ -6,6 +6,9 @@ import { ToolsService } from '../tools.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
 import { LocalStorageService } from '../servicios/local-storage.service';
+import { Store } from '@ngrx/store';
+import { listaDeProductos } from '../state/selectors/productos.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-producto',
@@ -18,10 +21,10 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public longitud = this.ToolsService.recortarString;
   public productoId:number;
   public imagenSeleccionada:any = {};
-  public producto:any;
+  public producto:any = {undefined:true};
   public precio = this.ToolsService.precio;
   public logged:boolean = true;
-  public cantidadImagenes:number;
+  public cantidadImagenes:number = 0;
   public mostrarEspecificaciones:boolean = false;
   public mostrarAlert:boolean = false;
   public editarProducto:boolean = false;
@@ -40,6 +43,10 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public mostrarInputImage:boolean = false;
   public inputImageAction:string;
   public resource: any;
+  public productos$():Observable<any>{
+    return this.store.select(listaDeProductos);
+  };
+  public loading:boolean = true;
 
 
   constructor(
@@ -48,19 +55,12 @@ export class ProductoComponent implements OnInit, OnDestroy {
     private ToolsService: ToolsService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private store:Store<any>
   ) {
   }
 
   public getLogValue(){ return this.authService.loggedIn() };
-
-  private preCargarProducto(){
-    this.productos = this.localStorageService.getValues("productos")
-    this.producto = this.productos.find(
-      (prod:any) => prod.id == Number(this.productoId)
-    );
-    this.listarImagenes();
-  }
 
   public listarProductos(){
     this.ProductoService.listar().subscribe(
@@ -197,8 +197,17 @@ export class ProductoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.productosCarrito = localStorage.getItem('carrito');
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
+    this.productos$().subscribe(
+      (response)=> {
+        this.productos = response.productos;
+        this.loading = response.loading;
+        this.producto = this.productos.find(
+          (prod:any) => prod.id == Number(this.productoId)
+        );
+        this.listarImagenes();
+      }
+    )
     this.listarProductos();
-    this.preCargarProducto();
   }
 
   ngOnDestroy():void{

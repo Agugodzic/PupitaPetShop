@@ -1,8 +1,12 @@
 <div style="height:100vh;">
   <app-nav></app-nav>
    <div class="contenedor-pruebas">
-      <h1>Local Storage</h1>
-      <p *ngFor="let producto of localStorageData">{{producto.nombre}}</p>
+
+
+      <app-loadder></app-loadder>
+
+      <h1>NgRx</h1>
+      <p *ngFor="let producto of productos$ | async">{{producto.nombre}}</p>
    </div>
    <div class="contenedor-pruebas">
     <h1>Service</h1>

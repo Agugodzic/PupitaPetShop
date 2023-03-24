@@ -1,6 +1,12 @@
-<div class="page-component">
-
 <app-nav actual="1" tema="claro"></app-nav>
+
+<div id="load-fondo" *ngIf="loading"></div>
+
+<div *ngIf="loading" id="contenedor-loading">
+  <app-loadder id="loading" ></app-loadder>
+</div>
+
+<div [ngStyle]="{'opacity': loading==true ? '0%':'100%'}" class="page-component">
 
   <!--
   <div class="banners"
@@ -65,12 +71,15 @@
 
 
 <div id="slide-productos">
-  <div id="recomendados"><p id="recomendados-titulo">Recomendados:</p><div id="recomendados-boton"><a href="/store/0" class="boton1" id="ver-todos">Ver todos</a></div></div>
+  <div id="recomendados"><p id="recomendados-titulo">Recomendados:</p><div id="recomendados-boton"><a href="/#/store/0" class="boton1" id="ver-todos">Ver todos</a></div></div>
     <div
     class="contenedorProducto"
     *ngFor="let producto of productosRecomendados"
      >
      <app-producto-miniatura [producto]="producto"></app-producto-miniatura>
+  </div>
+  <div *ngIf="loading" class="contenedor-loading">
+    <span class="loader"></span>
   </div>
 </div>
 

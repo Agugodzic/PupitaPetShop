@@ -23,6 +23,7 @@
     "@ngrx/effects": "^15.4.0",
     "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.4.0",
+    "angular-snap": "^1.8.4",
     "firebase": "^9.17.2",
     "ngrok": "^4.3.3",
     "rxjs": "~7.8.0",

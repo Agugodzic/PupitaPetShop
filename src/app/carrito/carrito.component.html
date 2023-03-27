@@ -7,9 +7,11 @@
 <div id="contenido">
   <h4 *ngIf="!estadoRecurso.undefined" id="titulo">Carrito:</h4>
 
-  <div *ngIf="estadoRecurso.undefined" class="contenedor-loading">
-    <app-loadder class="loader"></app-loadder>
+  <div *ngIf="estadoRecurso.undefined" id="contenedor-loading">
+    <app-loadder id="loading"></app-loadder>
   </div>
+
+
 
   <div id="contenedor-productos" *ngIf="total !== undefined">
     <div class="generador-productos" *ngFor="let producto of productoCantidad" >

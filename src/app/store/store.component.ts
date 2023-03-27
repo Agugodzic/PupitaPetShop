@@ -45,7 +45,7 @@ export class StoreComponent implements OnInit , OnDestroy {
   public Imagen = this.ToolsService.imagen;
   public categorias:any = [];
   public mostrarSelectorCategorias:boolean = false;
-  public loading: false;
+  public loading: true;
   public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
   };

@@ -1,19 +1,8 @@
 html {
   scroll-behavior: smooth;
+  width: 100vw;
 }
 
-#chango {
-  position: absolute;
-  right: 30px;
-  top: 20px;
-  opacity: 80%;
-  cursor: pointer;
-}
-
-#carrito{
-  height: 25px;
-  display: inline-block;
-}
 
 #fondo{
   position:fixed;

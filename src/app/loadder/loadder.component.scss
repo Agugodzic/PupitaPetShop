@@ -13,7 +13,6 @@ body {
   position: absolute;
   height: 120px;
   width: 120px;
-
 }
 .loader-container svg{
   position: absolute;
@@ -27,11 +26,9 @@ $duration: 1.4s;
   animation: rotator $duration linear infinite;
 }
 #loader-component{
-  position:relative;
+  position:absolute;
   height: 200px;
   width: 320px;
-  transform: translate(-55px,-50px);
-  margin:0 auto;
   text-align: center;
 }
 .loader-dog {

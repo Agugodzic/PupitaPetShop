@@ -1,15 +1,3 @@
-.loader {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  display: block;
-  margin:15px auto;
-  position: relative;
-  background: #FFF;
-  box-shadow: -24px 0 #FFF, 24px 0 #FFF;
-  box-sizing: border-box;
-  animation: shadowPulse 2s linear infinite;
-}
 
 #load-fondo{
   display: flex;
@@ -24,15 +12,15 @@
 }
 
 #contenedor-loading{
-  margin: 200px auto;
-  transform: translateX(60px);
+  position:relative;
+  margin: calc(50vh - 150px) auto;
+  height: 15px;
+  width: 320px;
+  text-align: center;  /*background-color: aqua;*/
 }
 
-.contenedor-loading{
-  width: 60vw;
-  height: 200px;
-  padding-top:100px;
-  margin: 0 auto;
+#loading{
+  position:relative;
 }
 
 @keyframes shadowPulse {

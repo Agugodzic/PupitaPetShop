@@ -38,6 +38,7 @@ import { productosReducer } from './state/reducers/productos.reducer';
 import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadderComponent } from './loadder/loadder.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { LoadderComponent } from './loadder/loadder.component';
     PedidosComponent,
     PedidoComponent,
     LoadderComponent,
+    SpinnerComponent,
   ],
   imports: [
     MatIconModule,

@@ -47,6 +47,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
     return this.store.select(listaDeProductos);
   };
   public loading:boolean = true;
+  public loadingImagenes:boolean = true;
   private imagenes:any = ["","","",""]
 
 
@@ -63,17 +64,12 @@ export class ProductoComponent implements OnInit, OnDestroy {
 
   public getLogValue(){ return this.authService.loggedIn() };
 
-  public listarProductos(){
-    this.ProductoService.listar().subscribe(
+  public solicitarProducto(id:number){
+    this.ProductoService.buscarPorId(id).subscribe(
       (response: ProductoModel[])  =>{
-        this.productos = response;
-        this.producto = this.productos.find(
-          (prod:any) => prod.id == Number(this.productoId)
-        );
-        this.listarImagenes();/*
-        this.ToolsService.extraerBase64(this.producto.imagen1).then((image:any) => {
-          this.imagenSeleccionada = image.base;
-    })*/
+        this.producto = response[0];
+        this.listarImagenes();
+        this.loadingImagenes = false;
   })
   }
 
@@ -173,7 +169,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public listarImagenes(){
     this.ImagenesProducto = [];
     let contador = 0;
-    this.imagenes[1] = [this.producto.imagen1]
+    this.imagenes = [this.producto.imagen1,this.producto.imagen2,this.producto.imagen3,this.producto.imagen4]
     for(let imagen of this.imagenes){
       if(imagen){
         contador = contador + 1;
@@ -206,15 +202,11 @@ export class ProductoComponent implements OnInit, OnDestroy {
           (prod:any) => prod.id == Number(this.productoId)
         );
         this.listarImagenes();
+        this.solicitarProducto(this.productoId);
       }
     )
-    this.listarProductos();
-    this.ProductoService.imagenesPorId(this.productoId).subscribe((response)=>{
-      this.imagenes[2] = response.imagen2;
-      this.imagenes[3] = response.imagen3;
-      this.imagenes[4] = response.imagen4;
-      this.listarImagenes();
-    })
+    //this.listarProductos();
+
   }
 
 

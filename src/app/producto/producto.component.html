@@ -48,9 +48,9 @@
   'cursor': loading ? 'wait': 'default'
 }">
 
-<div *ngIf="loading" class="contenedor-loading">
-  <app-loadder class="loader"></app-loadder>
-</div>
+  <div *ngIf="loading" id="contenedor-loading">
+    <app-loadder id="loading" ></app-loadder>
+  </div>
 
   <div id="contenido-edicion" *ngIf="!loading">
     <a href="store/0">Tienda</a>{{ " / "+producto.categoria }}
@@ -60,13 +60,16 @@
 
   <div id="imagenes-producto" *ngIf="!loading">
     <div id="miniaturas">
-      <div class="contenedor-miniatura"*ngFor="let elemento of ImagenesProducto">
-        <img
-          class="imagen-miniatura"
-          [src]="elemento.imagen"
-          (click)="cambiarImagen(elemento)"
-        />
+      <div *ngIf="!loadingImagenes">
+        <div class="contenedor-miniatura fx-aparecer" *ngFor="let elemento of ImagenesProducto" (click)="cambiarImagen(elemento)">
+          <img
+            class="imagen-miniatura"
+            [src]="elemento.imagen"
+
+          />
+        </div>
       </div>
+
       <img
       *ngIf="cantidadImagenes < 4 && getLogValue()"
       (click) = "switchInputImage(cantidadImagenes,'agregar')"

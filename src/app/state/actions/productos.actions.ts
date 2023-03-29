@@ -11,9 +11,9 @@ export const eliminarProducto = createAction(
   props<{producto:ProductoModel}>()
 );
 
-export const agregarProducto = createAction(
-  '[form-producto] Agregar producto',
-  props<{producto:ProductoModel}>()
+export const agregarProductos = createAction(
+  '[form-producto] Agregar productos',
+  props<{productos:any}>()
 );
 
 export const editarProducto = createAction(

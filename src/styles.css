@@ -125,3 +125,19 @@ select{
   margin-left: 5px;
   min-height: 30px;
 }
+
+.fx-aparecer{
+  animation-name: aparecer;
+  animation-duration: 0.5s;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0%;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}

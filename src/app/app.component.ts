@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CategoriaModel } from './modelos/categoria-model';
 import { ProductoModel } from './modelos/producto-model';
+import { RangoModel } from './modelos/rango-model';
 import { CategoriaService } from './servicios/categoria.service';
 import { LocalStorageService } from './servicios/local-storage.service';
 import { ProductoService } from './servicios/producto.service';
@@ -15,7 +16,7 @@ import { ProductoActions } from './state';
 
 
 export class AppComponent implements OnInit{
-  private productos:ProductoModel[];
+  private productos:any = [];
   private categorias:CategoriaModel[];
   public mostrarNav:boolean = true;
 
@@ -29,18 +30,19 @@ export class AppComponent implements OnInit{
   title = 'e-commerce';
 
   listarProductos(){
+    const continuar = true;
+    let rango = 1;
     this.productoService.listar().subscribe((response:ProductoModel[]) => {
-      this.productos=response;
-      this.store.dispatch(ProductoActions.listarProductos({productos:response}))
-    }
-      )
+      this.productos.push(response);
+      this.store.dispatch(ProductoActions.listarProductos({productos:response}));
+    })
   }
+
   listarCategorias(){
     this.categoriaService.listar().subscribe((response) => {
       this.categorias=response;
       this.localStorageService.setValues('categorias',response);
-    }
-      )
+    })
   }
 
   ngOnInit(){

@@ -6,11 +6,12 @@
       <app-loadder></app-loadder>
 
       <h1>NgRx</h1>
-      <p *ngFor="let producto of productos$ | async">{{producto.nombre}}</p>
+      <p *ngFor="let producto of productosRx">{{producto.nombre}}</p>
    </div>
    <div class="contenedor-pruebas">
     <h1>Service</h1>
     <p *ngFor="let producto of serviceData">{{producto.nombre}}</p>
+    <p>{{cantidadTotal}}</p>
  </div>
 
 <div style="margin:10px;border-top-style:solid;border-width: 1px;text-align: center;height:fit-content;">

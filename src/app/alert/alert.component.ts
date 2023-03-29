@@ -78,9 +78,11 @@ export class AlertComponent implements OnInit {
 
   eliminarProducto(){
     this.productoService.eliminar(this.productoId).subscribe(()=>{
-      alert('eliminado')
-      location.href='/#/store/0';
     });
+    setTimeout(function(){
+      location.href='/#/store/0';
+  }, 2000);
+
   }
 
   agregarCategoria(){

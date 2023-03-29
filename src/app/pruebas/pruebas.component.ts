@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ItemsModel } from '../modelos/items-model';
 import { ProductoModel } from '../modelos/producto-model';
+import { RangoModel } from '../modelos/rango-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
 import { ProductoService } from '../servicios/producto.service';
 import { listaDeProductos } from '../state/selectors/productos.selectors';
@@ -17,9 +18,15 @@ export class PruebasComponent implements OnInit {
   public serviceData:any;
   public carritoPrueba:any;
   public linkCheckout:string;
+  public productosRx:any = [];
+  public loading:any = true;
   private items:ItemsModel[] = [];
 
-  public productos$:Observable<any>
+  public productos$():Observable<any>{
+    return this.store.select(listaDeProductos);
+  };
+
+  cantidadTotal: number;
 
 
 
@@ -51,10 +58,17 @@ export class PruebasComponent implements OnInit {
 
 
   ngOnInit(){
-    this.productos$ = this.store.select(listaDeProductos);
-    this.productoService.listar().subscribe(
-      (response:ProductoModel[]) => {
-        this.serviceData = response;
+    this.productos$().subscribe(
+      (response)=> {
+        this.productosRx = response.productos;
+        this.loading = response.loading;
+      }
+    )
+
+    this.productoService.listarPorRango(1).subscribe(
+      (response:RangoModel) => {
+        this.serviceData = response.items;
+        this.cantidadTotal = response.cantidad;
       });
    // let localStorage_:any = localStorage.getItem("productos");
     //this.localStorageData =  JSON.parse(localStorage_);

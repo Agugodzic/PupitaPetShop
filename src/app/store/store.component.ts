@@ -260,7 +260,7 @@ export class StoreComponent implements OnInit , OnDestroy {
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
 
-    this.listarProductos();
+   // this.listarProductos();
 
   }
   ngOnDestroy():void{

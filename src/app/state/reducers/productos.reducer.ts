@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ProductosState } from 'src/app/state/stateModels/producto.state';
 import { ProductoModel } from 'src/app/modelos/producto-model';
-import { listarProductos, agregarProducto, editarProducto, eliminarProducto} from '../actions/productos.actions';
+import { listarProductos, editarProducto, eliminarProducto, agregarProductos} from '../actions/productos.actions';
 
 export interface State {
   home: number;
@@ -24,8 +24,12 @@ export const productosReducer = createReducer(
   on(eliminarProducto, (state,action)=> {
     return {... state,loading:true};
   }),
-  on(agregarProducto, (state,action)=> {
-    return {... state,loading:true};
+  on(agregarProductos, (state,action)=> {
+    let nuevaLista:any = action.productos;
+    return {
+      productos:nuevaLista,
+      loading:false
+    };;
   }),
   on(editarProducto, (state,action)=> {
     return {... state,loading:true};

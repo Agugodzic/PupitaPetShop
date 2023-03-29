@@ -27,6 +27,7 @@ export class FormProductoComponent implements OnInit {
   public imageFile4: any;
 
   private buttonDisabled:boolean = false;
+  public spinner:boolean = false;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -61,6 +62,8 @@ export class FormProductoComponent implements OnInit {
   }
 
   public submitEditar(){
+    this.spinner = true;
+
     if(this.imageFile1){
       this.editarProducto.value.imagen1 = this.imageFile1;
     }
@@ -83,6 +86,8 @@ export class FormProductoComponent implements OnInit {
   }
 
   public submitAgregar(){
+    this.spinner = true;
+
     if(!this.buttonDisabled){
       this.buttonDisabled = !this.buttonDisabled;
       if(this.imageFile1){

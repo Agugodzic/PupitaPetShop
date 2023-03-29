@@ -69,6 +69,7 @@
       <input class="boton1" value="Guardar" type="submit">
       <button class="boton2" (click)="actualizar()"  type="button">Cancelar</button>
     </div>
+      <app-spinner *ngIf="spinner" class="spinner"></app-spinner>
     </div>
   </form>
 
@@ -129,6 +130,7 @@
       <input class="boton1" id="btn" value="Guardar" type="submit">
       <button class="boton2" (click)="actualizar()" type="button">Cancelar</button>
     </div>
+      <app-spinner *ngIf="spinner" class="spinner"></app-spinner>
     </div>
   </form>
 </div>

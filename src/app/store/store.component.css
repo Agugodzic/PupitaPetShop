@@ -43,13 +43,14 @@ span {
 #galeria {
   margin: 5px;
   margin-bottom: 50px;
+  margin-right: 40px;
   background: rgba(235, 235, 235, 0);
   display: inline-block;
   min-height: 600px;
   border-radius: 4px;
   padding: 2px;
   width: 76vw;
-  /*background-color:rgba(0, 0, 255, 0.089);*/
+
 }
 .contenedorProducto {
   display: inline;
@@ -104,7 +105,7 @@ span {
   display: inline-block;
   text-align: left;
   width: fit-content;
-  padding: 20px 25px 20px 25px;
+  padding: 20px 40px 20px 10px;
   border-radius: 4px;
   position: relative;
   color: rgb(0, 0, 0);
@@ -115,7 +116,7 @@ span {
   border-color: rgba(128, 128, 128, 0);
   font-family:'Montserrat', sans-serif;
   font-size: 17px;
-  /*background-color: aqua;*/
+
 }
 .boton-lateral{
   display: block;

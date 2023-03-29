@@ -19,6 +19,10 @@ export class ProductoService {
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/id/${id}`)
   }
 
+  public imagenesPorId(id:number):Observable<any>{
+    return this.http.get<any>(`${this.apiServerUrl}/productos/imagenes/${id}`)
+  }
+
   public listar():Observable<ProductoModel[]>{
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/listar`)
   }

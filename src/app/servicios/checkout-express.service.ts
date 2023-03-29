@@ -2,15 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PreferenciaModel } from '../modelos/preferencia-model';
+import { ToolsService } from '../tools.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutExpressService {
 
-  expressUrl = "http://localhost:3000"
+  expressUrl = this.toolsService.apiServerUrl;
 
-  constructor(private http:HttpClient) {
+  constructor(
+    private http:HttpClient,
+    private toolsService:ToolsService
+    ) {
+
    }
 
   public sendPreferences(preferencias:PreferenciaModel):Observable<any>{

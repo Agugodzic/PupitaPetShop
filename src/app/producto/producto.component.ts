@@ -47,6 +47,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
     return this.store.select(listaDeProductos);
   };
   public loading:boolean = true;
+  private imagenes:any = ["","","",""]
 
 
   constructor(
@@ -172,8 +173,8 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public listarImagenes(){
     this.ImagenesProducto = [];
     let contador = 0;
-    let imagenes = [this.producto.imagen1,this.producto.imagen2,this.producto.imagen3,this.producto.imagen4]
-    for(let imagen of imagenes){
+    this.imagenes[1] = [this.producto.imagen1]
+    for(let imagen of this.imagenes){
       if(imagen){
         contador = contador + 1;
         this.ImagenesProducto.push({
@@ -208,7 +209,14 @@ export class ProductoComponent implements OnInit, OnDestroy {
       }
     )
     this.listarProductos();
+    this.ProductoService.imagenesPorId(this.productoId).subscribe((response)=>{
+      this.imagenes[2] = response.imagen2;
+      this.imagenes[3] = response.imagen3;
+      this.imagenes[4] = response.imagen4;
+      this.listarImagenes();
+    })
   }
+
 
   ngOnDestroy():void{
   }

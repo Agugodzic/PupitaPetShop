@@ -16,7 +16,7 @@ export class CarritoComponent implements OnInit {
 
   public productosCarrito:any = [];
   public productos:any = [];
-  public estadoRecurso = {undefined:true}
+  public estadoRecurso = {undefined:true};
   public productoCantidad:any = [];
 
   private carritoLocalStorage:any = [];

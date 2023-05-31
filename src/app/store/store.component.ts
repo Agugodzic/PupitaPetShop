@@ -36,8 +36,8 @@ export class StoreComponent implements OnInit , OnDestroy {
   public productos = this.productosService;
   private categoria:any;
 
-  private cantidadDePaginas = this.numerosDePagina(this.productos).length;
-  private paginas = this.numerosDePagina(this.productos);
+  private cantidadDePaginas = this.numerosDePagina().length;
+  private paginas = this.numerosDePagina();
 
   public paginaActual = 1;
   public agregarProducto:boolean = false;
@@ -46,6 +46,8 @@ export class StoreComponent implements OnInit , OnDestroy {
   public categorias:any = [];
   public mostrarSelectorCategorias:boolean = false;
   public loading: true;
+  private cantidadDeProductos:number = 1;
+
   public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
   };
@@ -69,13 +71,14 @@ export class StoreComponent implements OnInit , OnDestroy {
   };
 
   public listarProductos(){
-    this.ProductoService.listar().subscribe(
-      (response: ProductoModel[])  =>{
-        this.productosService = response;
+    this.ProductoService.rango(this.paginaActual).subscribe(
+      (response)  =>{
+        this.productosService = response.items;
+        this.cantidadDeProductos = response.cantidad;
         this.estadoRecursos = 'defined';
         this.actualizarLista();// se filtran los productos para mostrar en pantalla
         this.textoAlternativo = "No se encontraron coincidencias."
-        response.forEach((producto)=>{ // se filtran las categorias que contienen productos para ocultar las vacias;
+        response.items.forEach((producto:any)=>{ // se filtran las categorias que contienen productos para ocultar las vacias;
           let usadas:any = [];
           if(!usadas.includes(producto.categoria))
             this.categoriasEnUso.push(producto.categoria);
@@ -113,8 +116,8 @@ export class StoreComponent implements OnInit , OnDestroy {
 
   private actualizarLista() {
     this.filtrarProductos();
-    this.cantidadDePaginas = this.numerosDePagina(this.productos).length;
-    this.paginas = this.numerosDePagina(this.productos);
+    this.cantidadDePaginas = this.numerosDePagina().length;
+    this.paginas = this.numerosDePagina();
     this.productosPaginaActual = this.extraerElementos(
       this.productos,
       this.productosPorPagina * (this.paginaActual - 1),
@@ -181,11 +184,11 @@ export class StoreComponent implements OnInit , OnDestroy {
     this.actualizarLista();
   }
 
-  public numerosDePagina(productos:any) {
+  public numerosDePagina() {
     let listaPaginas = [1];
     let contador = 1;
     let numerosDePagina = 1;
-    for (let iterador = 1; iterador < productos.length; iterador++) {
+    for (let iterador = 1; iterador < this.cantidadDeProductos; iterador++) {
       contador++;
       if (contador > this.productosPorPagina) {
         numerosDePagina++;
@@ -226,7 +229,7 @@ export class StoreComponent implements OnInit , OnDestroy {
   }
 
   public ultimaPagina(): void {
-    this.paginaActual = this.numerosDePagina(this.productos).length;
+    this.paginaActual = this.numerosDePagina().length;
     this.actualizarLista();
   }
 

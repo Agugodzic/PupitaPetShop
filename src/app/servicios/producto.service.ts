@@ -37,7 +37,11 @@ export class ProductoService {
   }
 
   public listar():Observable<ProductoModel[]>{
-    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/listar`)
+    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/rango/1`)
+  }
+
+  public rango(rango:number):Observable<any>{
+    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/rango/${rango}`)
   }
 
   public editar(curso:ProductoModel):Observable<ProductoModel>{

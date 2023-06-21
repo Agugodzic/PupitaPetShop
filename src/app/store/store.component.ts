@@ -1,57 +1,57 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../tools.service';
-import { ProductosService } from '../productos.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { CategoriaService } from '../servicios/categoria.service';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { AuthService } from '../servicios/auth.service';
 import { LocalStorageService } from '../servicios/local-storage.service';
-import { Observable } from 'rxjs';
-import { listaDeProductos } from '../state/selectors/productos.selectors';
-import { Store } from '@ngrx/store';
+import { RangoModel } from '../modelos/rango-model';
+import { FiltroModel } from '../modelos/filtro-model';
+import { ImagenService } from '../servicios/imagen.service';
+//import { Store } from '@ngrx/store';
+//import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
-export class StoreComponent implements OnInit , OnDestroy {
+export class StoreComponent implements OnInit {
 
-  @Input() productoIn:string = 'Todos los productos';
+  @Input() productoIn:string = 'all';
 
-  public productoFiltro: string = 'Todos los productos';
+  public productoFiltro: string = 'all';
   public marcaFiltro: string = 'Todas las marcas';
   public logged:boolean = true;
   public textoAlternativo:string = "";
   public estadoRecursos:any;
+  private ordenPrecio:string = 'asc';
 
-  private extraerElementos = this.ToolsService.extraerElementos;
-  private menorPrecio = this.ToolsService.menorPrecio;
-  private mayorPrecio = this.ToolsService.mayorPrecio;
-  public listaDeProductos:any;
-  public productosService:any = [];
-  private filtrar = this.ToolsService.filtrarProductosEnLista;
-  public productos = this.productosService;
+  public listaDeProductos:ProductoModel[];
+  public productosService:ProductoModel[] = [];
+
   private categoria:any;
 
   private cantidadDePaginas = this.numerosDePagina().length;
   private paginas = this.numerosDePagina();
+  public paginaActual:number = 1;
 
-  public paginaActual = 1;
   public agregarProducto:boolean = false;
   public longitud = this.ToolsService.recortarString;
   public Imagen = this.ToolsService.imagen;
   public categorias:any = [];
   public mostrarSelectorCategorias:boolean = false;
-  public loading: true;
+  public loading:boolean = true;
   private cantidadDeProductos:number = 1;
+  public images = this.imagenService;
 
+  /*
   public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
   };
-
+  */
 
   private productosPorPagina = 10;
   public categoriasEnUso:any = [];
@@ -63,27 +63,41 @@ export class StoreComponent implements OnInit , OnDestroy {
     private categoriaService:CategoriaService,
     private authService:AuthService,
     private localStorageService:LocalStorageService,
-    private store:Store<any>
+    private imagenService:ImagenService
+   // private store:Store<any>
   ) {}
 
   public getLogValue(){
     return this.authService.loggedIn()
   };
 
-  public listarProductos(){
-    this.ProductoService.rango(this.paginaActual).subscribe(
-      (response)  =>{
-        this.productosService = response.items;
+  public listarProductos(rango:number){
+    this.ProductoService.rango(rango).subscribe(
+      (response:RangoModel)  =>{
+        this.loading = false;
+        this.productosService = response.productos;
         this.cantidadDeProductos = response.cantidad;
         this.estadoRecursos = 'defined';
-        this.actualizarLista();// se filtran los productos para mostrar en pantalla
+
+
+        this.cantidadDePaginas = this.numerosDePagina().length;
+        this.paginas = this.numerosDePagina();
         this.textoAlternativo = "No se encontraron coincidencias."
-        response.items.forEach((producto:any)=>{ // se filtran las categorias que contienen productos para ocultar las vacias;
-          let usadas:any = [];
-          if(!usadas.includes(producto.categoria))
-            this.categoriasEnUso.push(producto.categoria);
-        })
     })
+  }
+
+  private filtrarProductos() {
+    this.ProductoService.filtrar(this.paginaActual,this.productoFiltro,this.ordenPrecio).subscribe(
+      (response:FiltroModel)  =>{
+        this.loading = false;
+        this.productosService = response.productos;
+        this.cantidadDeProductos = response.cantidad;
+        this.estadoRecursos = 'defined';
+        this.cantidadDePaginas = this.numerosDePagina().length;
+        this.paginas = this.numerosDePagina();
+        this.textoAlternativo = "No se encontraron coincidencias."
+    }
+    );
   }
 
   public listarCategorias(){
@@ -91,39 +105,8 @@ export class StoreComponent implements OnInit , OnDestroy {
       (response:CategoriaModel[]) =>{
         this.categorias = response;
         this.productoFiltro = this.generadorDeFiltro(this.categoria);
-
       }
     )
-  }
-
-  private indicesPorPagina(): number {
-    if (this.paginaActual == this.cantidadDePaginas) {
-      return this.productos.length - 1;
-    } else {
-      return this.productosPorPagina * this.paginaActual - 1;
-    }
-  }
-
-  private filtrarProductos() {
-    this.productos = this.filtrar(
-      this.productosService,
-      this.productoFiltro,
-      this.marcaFiltro,
-      'Todos los productos',
-      'Todas las marcas'
-    );
-  }
-
-  private actualizarLista() {
-    this.filtrarProductos();
-    this.cantidadDePaginas = this.numerosDePagina().length;
-    this.paginas = this.numerosDePagina();
-    this.productosPaginaActual = this.extraerElementos(
-      this.productos,
-      this.productosPorPagina * (this.paginaActual - 1),
-      this.indicesPorPagina()
-    );
-    console.log(this.productosPaginaActual.length);
   }
 
   public switchSelectorCategorias(){
@@ -138,14 +121,53 @@ export class StoreComponent implements OnInit , OnDestroy {
     }
   }
 
+  public productoLink(producto: any): string {
+    return '/prod/' + producto.id;
+  }
+
+  public linkCategoria(id:number){
+    return `store/${id}`
+  }
+
+  public get precio() {
+    return this.ToolsService.precio;
+  }
+
+    // ------------------- FILTROS -------------------- //
+
+
+  public cambiarProducto(producto:any) {
+    this.productoFiltro = producto;
+    this.loading = true;
+    this.paginaActual = 1;
+    this.filtrarProductos();
+  }
+
+  public cambiarProductoM(producto:any) {
+    this.cambiarProducto(producto);
+    this.switchSelectorCategorias();
+  }
+
+  public ordenarProductos(orden:string) {
+    this.loading = true;
+
+    if (orden == 'menorPrecio') {
+      this.ordenPrecio = 'desc';
+    } else if (orden == 'mayorPrecio') {
+      this.ordenPrecio = 'asc';
+    }
+    this.paginaActual = 1;
+    this.filtrarProductos();
+  }
+
   private generadorDeFiltro(categoria: number):any {
     let numeroRuta:number;
 
-    if (categoria == 0) {
+    if (categoria == 0){
       return 'Todos los productos';
     }
-    else{
 
+    else{
       for(let Categoria of this.categorias){
         numeroRuta = Categoria.id;
 
@@ -156,38 +178,48 @@ export class StoreComponent implements OnInit , OnDestroy {
     }
   }
 
-  public productosPaginaActual = this.extraerElementos(
-    this.productos,
-    this.productosPorPagina * (this.paginaActual - 1),
-    this.indicesPorPagina()
-  );
 
-  public productoLink(producto: any): string {
-    return '/prod/' + producto.id;
+  // ------------------- PAGINAS -------------------//
+
+  public siguiente(): void {
+    if (this.paginaActual < this.cantidadDePaginas) {
+      this.paginaActual = this.paginaActual + 1;
+      this.loading = true;
+      this.listarProductos(this.paginaActual);
+    }
   }
 
-  public cambiarProducto(producto:any) {
-    this.productoFiltro = producto;
-    this.paginaActual = 1;
-    this.actualizarLista();
+  public ultimaPagina(): void {
+    this.paginaActual = this.numerosDePagina().length;
+    this.loading = true;
+    this.listarProductos(this.paginaActual);
   }
 
-  public cambiarProductoM(producto:any) {
-    this.cambiarProducto(producto);
-    this.paginaActual = 1;
-    this.switchSelectorCategorias();
+  public anterior(): void {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.loading = true;
+      this.listarProductos(this.paginaActual);
+    }
   }
 
-  public cambiarMarca(marca:string) {
-    this.marcaFiltro = marca;
+  public primeraPagina(): void {
     this.paginaActual = 1;
-    this.actualizarLista();
+    this.loading = true;
+    this.listarProductos(this.paginaActual);
+  }
+
+  public cambiarPagina(pagina: number): void {
+    this.paginaActual = pagina;
+    this.loading = true;
+    this.listarProductos(pagina);
   }
 
   public numerosDePagina() {
     let listaPaginas = [1];
     let contador = 1;
     let numerosDePagina = 1;
+
     for (let iterador = 1; iterador < this.cantidadDeProductos; iterador++) {
       contador++;
       if (contador > this.productosPorPagina) {
@@ -203,70 +235,13 @@ export class StoreComponent implements OnInit , OnDestroy {
     return this.paginas;
   }
 
-  public get precio() {
-    return this.ToolsService.precio;
-  }
-
-  public ordenarProductos(orden:string) {
-    if (orden === 'menorPrecio') {
-      this.productosService = this.menorPrecio(this.productosService);
-    } else if (orden === 'mayorPrecio') {
-      this.productosService = this.mayorPrecio(this.productosService);
-    }
-    this.paginaActual = 1;
-    this.actualizarLista();
-  }
-
-  public siguiente(): void {
-    if (this.paginaActual < this.cantidadDePaginas) {
-      this.paginaActual = this.paginaActual + 1;
-      this.actualizarLista();
-    }
-  }
-
-  public linkCategoria(id:number){
-    return `store/${id}`
-  }
-
-  public ultimaPagina(): void {
-    this.paginaActual = this.numerosDePagina().length;
-    this.actualizarLista();
-  }
-
-  public anterior(): void {
-    if (this.paginaActual > 1) {
-      this.paginaActual--;
-      this.actualizarLista();
-    }
-  }
-
-  public primeraPagina(): void {
-    this.paginaActual = 1;
-    this.actualizarLista();
-  }
-
-  public cambiarPagina(pagina: number): void {
-    this.paginaActual = pagina;
-    this.actualizarLista();
-  }
-
-  ngOnInit() {
-    this.productos$().subscribe(
-      (response)=> {
-        this.productosService = response.productos;
-        this.loading = response.loading;
-        this.actualizarLista();
-      }
-    )
-
+  ngOnInit() {/*
+    this.productos$().subscribe((response)=> {})*/
     this.categorias = this.localStorageService.getValues("categorias");
     this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
+    this.listarProductos(this.paginaActual);
 
-   // this.listarProductos();
-
-  }
-  ngOnDestroy():void{
   }
 
 }

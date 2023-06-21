@@ -32,7 +32,7 @@
 
   <div id="contenedor-logo">
     <a href=""
-    ><img [ngStyle]="{'filter':tema == 'oscuro' ? 'invert()' : 'none' }" id="logo" src="https://i.postimg.cc/B62kYXYg/logo.png"
+    ><img [ngStyle]="{'filter':tema == 'oscuro' ? 'invert()' : 'none' }" id="logo" src="assets/logos/logo-texto.png"
     /></a>
   </div>
 
@@ -52,7 +52,7 @@
     <a href="#/h12236456" *ngIf="getLogValue()" class="boton">PEDIDOS</a>
     <a href="#/store/0" class="boton" [ngStyle]="estiloBoton(3)">TIENDA</a>
     <a href="#/carrito" *ngIf="!getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">CARRITO</a>
-    <a href="#/pruebas" *ngIf="getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">PRUEBAS</a>
+   <!-- <a href="#/pruebas" *ngIf="getLogValue()" class="boton" [ngStyle]="estiloBoton(4)">PRUEBAS</a> -->
   </div>
 
   <div id="contenedor-carrito">

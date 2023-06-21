@@ -132,10 +132,9 @@
   <div id="relacionados" *ngIf="!loading">
     <h2 id="relacionados-titulo">Productos relacionados:</h2>
     <div id="galeria">
-      <div class="contenedorProducto" *ngFor="let elemento of productos">
+      <div class="contenedorProducto" *ngFor="let elemento of productosRelacionados">
         <app-producto-miniatura
           class="producto"
-          *ngIf="(elemento.categoria == producto.categoria) &&elemento.nombre != producto.nombre"
           [producto]="elemento">
         </app-producto-miniatura>
       </div>

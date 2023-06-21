@@ -39,6 +39,7 @@ import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadderComponent } from './loadder/loadder.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ImagenService } from './servicios/imagen.service';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   ],
   providers: [
     ProductoService,
+    ImagenService,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},

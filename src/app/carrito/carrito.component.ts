@@ -3,6 +3,7 @@ import { ToolsService } from '../tools.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { CheckoutExpressService } from '../servicios/checkout-express.service';
+import { ProductoCantidad } from '../modelos/producto-cantidad';
 
 @Component({
   selector: 'app-carrito',
@@ -17,10 +18,12 @@ export class CarritoComponent implements OnInit {
   public productosCarrito:any = [];
   public productos:any = [];
   public estadoRecurso = {undefined:true};
-  public productoCantidad:any = [];
+  public productoCantidad:ProductoCantidad[] = [];
 
   private carritoLocalStorage:any = [];
   private carritoId:any = [];
+
+  public loading:boolean = true;
 
   constructor(
     private ProductoService: ProductoService,
@@ -33,34 +36,37 @@ export class CarritoComponent implements OnInit {
   }
 
   public listarProductos(){
-    this.ProductoService.listar().subscribe(
-      (response: ProductoModel[])  =>{
+
+    this.ProductoService.listarPorIds(this.carritoId).subscribe(
+      (response: ProductoModel[]) => {
         this.estadoRecurso.undefined = false;
-        this.productos = response;
-        this.productosCarrito = this.ToolsService.filtrarPorId(response,this.carritoId);
+        this.productosCarrito = response;
         this.listarProductoCantidad(this.productosCarrito)
-        this.total = this.precioTotal();
+        this.total = this.precioTotal(this.productoCantidad);
     });
+
   }
 
-  public listarProductoCantidad(listaProductos:any){
+  public listarProductoCantidad(listaProductos:ProductoModel[]){
     let productos = listaProductos;
+    let localStorageIds = this.carritoId;
+    let iterador = 0;
+
     this.productoCantidad = [];
 
-    while(productos.length != 0){
+    while(localStorageIds != 0){
+      let producto = productos[iterador];
+      let productoId:number = producto.id;
+      let cantidad:number = 0;
 
-      let producto = productos[0];
-      let id = producto.id;
-      let cantidad = 0;
 
-      productos.forEach((elemento:any) => {
-        if(elemento.id == id){
-          cantidad ++;
-          productos = productos.filter( (prod:any) => prod !== producto)
+      localStorageIds.forEach((id:number) => {
+        if(id == productoId){
+          cantidad = cantidad + 1;
         }
       });
 
-
+      localStorageIds = localStorageIds.filter( (Id:number) => Id !== productoId);
 
       this.productoCantidad.push(
         {
@@ -68,6 +74,7 @@ export class CarritoComponent implements OnInit {
         producto:producto
         }
       )
+      iterador += 1;
     }
   }
 
@@ -114,11 +121,12 @@ export class CarritoComponent implements OnInit {
     location.reload();
   }
 
-  public precioTotal(){
-    let total:number=0;
-    for(let producto of this.productosCarrito){
-      total = total + producto.precio;
-    }
+  public precioTotal(productos:ProductoCantidad[]):number {
+    let total = 0;
+    productos.forEach((elemento:ProductoCantidad)=>{
+      total += (elemento.cantidad * elemento.producto.precio)
+    });
+
     return total;
   }
 
@@ -126,7 +134,7 @@ export class CarritoComponent implements OnInit {
   ngOnInit() {
     this.carritoLocalStorage = localStorage.getItem("carrito");
     this.carritoId = JSON.parse(this.carritoLocalStorage);
-    this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
+    //this.productosCarrito = this.ToolsService.filtrarPorId(this.productos,this.carritoId);
     this.listarProductos();
   }
 }

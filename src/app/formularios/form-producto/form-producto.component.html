@@ -4,7 +4,7 @@
   <div id="agregar-categoria" >
     <p id="titulo">Agregar categoria:</p>
     <form class="form-categoria" [formGroup]="agregarCategoria" (ngSubmit)="submitCategoria()">
-      <input id="input-categoria"  type="text" placeholder="Nueva Categoria" formControlName="categoria">
+      <input id="input-categoria"  type="text" placeholder="Nueva categoria" formControlName="categoria">
       <div id="botones-categoria">
         <input class="guardar-categoria" value="Agregar" type="submit" >
         <button (click)="switchCategoria()" class="cancelar-categoria">Cancelar</button>
@@ -27,15 +27,16 @@
     <div class="contenedor-inl">
       <p class="descripcion-input">Datos basicos:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
-      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
+      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio" min="1"></p>
       <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
 
       <p style="text-align:start">
-        <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
-        <option style="color:rgb(141, 141, 141)">Categoria</option>
+        <select default="22" name="Categoria" class="form-control" id="select-input" placeholder="Categoria" formControlName="categoria" required>
+        <option *ngIf="categoriaEditarProducto.categoria != null" selected>{{categoriaEditarProducto.categoria}}</option>
+        <option *ngIf="categoriaEditarProducto.categoria == null" style="color:rgb(189, 189, 189)">Categoria</option>
         <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
       </select>
-      <button (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
+      <button type="button" (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>
@@ -84,15 +85,16 @@
 
       <p class="descripcion-input">Datos basicos:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
-      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
+      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio" min="1"></p>
       <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
 
       <p style="text-align:start">
-        <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
-        <option style="color:rgb(141, 141, 141)">Categoria</option>
+        <select name="Categoria" (ngModel)="categoriaInputValue" class="form-control" placeholder="Categoria" formControlName="categoria">
+        <option *ngIf="nuevaCategoria">{{this.nuevaCategoria.categoria}}</option>
+        <option *ngIf="!nuevaCategoria" style="color:rgb(189, 189, 189)">Categoria</option>
         <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
       </select>
-      <button type="button"  (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
+      <button type="button" (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>

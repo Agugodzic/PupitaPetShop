@@ -13,7 +13,7 @@
     <div class="centrar">
       <div id="selector-categorias">
 
-        <button class="selector-categorias-opcion" (click)="cambiarProductoM('Todos los productos')">
+        <button class="selector-categorias-opcion" (click)="cambiarProductoM('all')">
           Ver todo
         </button>
 
@@ -60,8 +60,11 @@
 
   </div>
 </div>
--->
 <img style="width:100%" src="https://puppis.vteximg.com.br/arquivos/ids/190746/2212-Website-Banner-Perro-Viaje-256030-237161-D.png?v=638120633641770000">
+-->
+
+<img style="width:100%" [src]="images.banner.store">
+
 
 <!--------- Menu Lateral -------->
 
@@ -70,7 +73,7 @@
     <span>Productos:</span>
     <button
       class="boton-lateral"
-      (click)="cambiarProducto('Todos los productos')"
+      (click)="cambiarProducto('all')"
     >
       Todos
     </button>
@@ -98,7 +101,7 @@
 <!--------- Productos -------->
 
 <div id="galeria">
-  <div *ngIf="productos.length !== 0 || loading"  id="galeria">
+  <div *ngIf="productosService.length !== 0 || loading"  id="galeria">
 
     <div id="contenedor-filtros">
       <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
@@ -115,10 +118,10 @@
     </div>
 
 
-  <div *ngIf="productos.length > 0">
+  <div *ngIf="productosService.length > 0 && !loading">
       <div
         class="contenedorProducto"
-        *ngFor="let producto of productosPaginaActual"
+        *ngFor="let producto of productosService"
       >
       <app-producto-miniatura [producto]="producto"></app-producto-miniatura>
 
@@ -130,7 +133,7 @@
 
 <!--------- Productos | No coincidencias-------->
 
-<div *ngIf="productos.length == 0  && !loading " id="galeria">
+<div *ngIf="productosService.length == 0  && !loading " id="galeria">
   <div id="contenedor-filtros">
     <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
 
@@ -148,7 +151,7 @@
 </div>
 </div>
 
-<a target="_blank" href="https://api.whatsapp.com/send?phone=+5493415717618&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." ><img *ngIf="!getLogValue()" id="chat" [src]=Imagen.logoWsp ></a>
+<a target="_blank" href="https://api.whatsapp.com/send?phone=+5493417238680&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." ><img *ngIf="!getLogValue()" id="chat" [src]=Imagen.logoWsp ></a>
 
 <!----------- Controlador de paginas -------------->
 

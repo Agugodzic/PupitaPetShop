@@ -75,15 +75,15 @@ export class ToolsService {
      4- Un valor que de coincidir con el segundo argumento desactiva el filtro producto.
      5- Un valor que de coincidir con el tercer argumento desactiva el filtro marca.
     */
-    lista: any,
+    lista: ProductoModel[],
     filtroProducto: string,
     filtroMarca: string,
     excepcionProducto: string,
     excepcionMarca:string
-  ): any {
+  ): ProductoModel[] {
     let listaFiltrada = [];
 
-    for (let objeto of lista) {
+    for(let objeto of lista) {
       if (
         (objeto.categoria == filtroProducto ||
           filtroProducto == excepcionProducto) &&
@@ -237,7 +237,7 @@ export class ToolsService {
     patita:"https://static.vecteezy.com/system/resources/previews/009/344/667/original/dog-paw-free-png.png"
   }
 
-    //public apiServerUrl = "https://pupita-node.vercel.app";
+    // public apiServerUrl = "https://pupita-node.vercel.app";
  public apiServerUrl = "http://localhost:3000";
   //apiServerUrl = ""
 }

@@ -6,9 +6,9 @@ import { ToolsService } from '../tools.service';
 import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
 import { LocalStorageService } from '../servicios/local-storage.service';
-import { Store } from '@ngrx/store';
-import { listaDeProductos } from '../state/selectors/productos.selectors';
-import { Observable } from 'rxjs';
+//import { Store } from '@ngrx/store';
+//import { listaDeProductos } from '../state/selectors/productos.selectors';
+//import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-producto',
@@ -29,7 +29,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public mostrarAlert:boolean = false;
   public editarProducto:boolean = false;
   public Imagen = this.ProductosService.imagen;
-
+  public categoria = 'all';
   public cantidad:number = 1;
 
   private mostrarAlertEliminar:boolean = false;
@@ -37,18 +37,18 @@ export class ProductoComponent implements OnInit, OnDestroy {
 
   private productosCarrito:any;
   public ImagenesProducto:any = [];
-  public productos:any = [];
+  public productosRelacionados:any = [];
   public inputImageNumber:number;
   public inputImageValue:string;
   public mostrarInputImage:boolean = false;
   public inputImageAction:string;
   public resource: any;
-  public productos$():Observable<any>{
-    return this.store.select(listaDeProductos);
-  };
   public loading:boolean = true;
   public loadingImagenes:boolean = true;
-  private imagenes:any = ["","","",""]
+  private imagenes:any = ["","","",""];
+    /*public productos$():Observable<any>{
+    return this.store.select(listaDeProductos);
+  };*/
 
 
   constructor(
@@ -58,11 +58,13 @@ export class ProductoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
-    private store:Store<any>
+   // private store:Store<any>
   ) {
   }
 
-  public getLogValue(){ return this.authService.loggedIn() };
+  public getLogValue(){
+    return this.authService.loggedIn()
+  };
 
   public solicitarProducto(id:number){
     this.ProductoService.buscarPorId(id).subscribe(
@@ -70,7 +72,17 @@ export class ProductoComponent implements OnInit, OnDestroy {
         this.producto = response[0];
         this.listarImagenes();
         this.loadingImagenes = false;
+        this.loading = false;
+        this.categoria = this.producto.categoria;
   })
+  }
+
+  public listarRelacionados(){
+    this.ProductoService.relacionados('all',4).subscribe(
+      (response:ProductoModel[]) =>{
+        this.productosRelacionados = response;
+      }
+    );
   }
 
   public switchEliminar(){
@@ -78,7 +90,6 @@ export class ProductoComponent implements OnInit, OnDestroy {
   }
 
   public switchInputImage(numero:number,action:string){
-
     this.inputImageNumber = numero;
     this.inputImageAction = action;
     this.resource = this.producto;
@@ -192,9 +203,9 @@ export class ProductoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.productosCarrito = localStorage.getItem('carrito');
+    //this.productosCarrito = localStorage.getItem('carrito');
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
-    this.productos$().subscribe(
+    /*this.productos$().subscribe(
       (response)=> {
         this.productos = response.productos;
         this.loading = response.loading;
@@ -204,8 +215,12 @@ export class ProductoComponent implements OnInit, OnDestroy {
         this.listarImagenes();
         this.solicitarProducto(this.productoId);
       }
-    )
+    )*/
     //this.listarProductos();
+
+    this.listarImagenes();
+    this.solicitarProducto(this.productoId);
+    this.listarRelacionados();
 
   }
 

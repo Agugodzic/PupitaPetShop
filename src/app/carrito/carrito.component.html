@@ -1,6 +1,4 @@
-<div class="page-component" [ngStyle]="{
-  'cursor': total == undefined ? 'wait': 'default'
-}">
+<div class="page-component">
 
 <app-nav actual="4"></app-nav>
 
@@ -12,8 +10,7 @@
   </div>
 
 
-
-  <div id="contenedor-productos" *ngIf="total !== undefined">
+  <div id="contenedor-productos" *ngIf="!estadoRecurso.undefined">
     <div class="generador-productos" *ngFor="let producto of productoCantidad" >
 
       <div class="producto" >
@@ -75,7 +72,7 @@
 
     </div>
 
-    <div id ="texto-vacio" *ngIf="productosCarrito < 1">
+    <div id ="texto-vacio" *ngIf="productosCarrito == 0">
       No hay productos en el carrito.
     </div>
 

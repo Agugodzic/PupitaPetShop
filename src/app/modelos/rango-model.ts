@@ -1,6 +1,6 @@
 import { ProductoModel } from "./producto-model";
 
 export interface RangoModel{
-  items:ProductoModel[],
+  productos:ProductoModel[],
   cantidad:number
 }

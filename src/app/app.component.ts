@@ -30,11 +30,11 @@ export class AppComponent implements OnInit{
   title = 'e-commerce';
 
   listarProductos(){
-    const continuar = true;
     let rango = 1;
-    this.productoService.listar().subscribe((response:ProductoModel[]) => {
-      this.productos.push(response);
-      this.store.dispatch(ProductoActions.listarProductos({productos:response}));
+    this.productoService.rango(rango).subscribe((response:RangoModel) => {
+      let resp = response.productos;
+      this.productos.push(resp);
+      //this.store.dispatch(ProductoActions.listarProductos({productos:response}));
     })
   }
 
@@ -47,6 +47,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.listarProductos();
-    this.listarCategorias()
+    this.listarCategorias();
   }
 }

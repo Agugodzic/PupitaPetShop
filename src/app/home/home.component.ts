@@ -8,11 +8,14 @@ import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
 import { listaDeProductos } from '../state/selectors/productos.selectors';
 import { ToolsService } from '../tools.service';
+import { RangoModel } from '../modelos/rango-model';
+import { ImagenService } from '../servicios/imagen.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers:[ImagenService]
 })
 export class HomeComponent implements OnInit {
 
@@ -20,21 +23,21 @@ export class HomeComponent implements OnInit {
   public longitud = this.toolsService.recortarString;
   public imagen = this.toolsService.imagen;
   private categorias:CategoriaModel[];
-  private productos:any;
+  private productos:any = [];
   public productosRecomendados:any = {undefined:true};
-  public loading:boolean = true
-  public productos$():Observable<any>{
+  public loading:boolean = true;
+  public images = this.imagenService;
+ /* public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
-  };
-
-  image = "https://t1.ea.ltmcdn.com/es/posts/0/3/7/que_es_mejor_arnes_o_collar_para_perros_22730_orig.jpg";
+  };*/
 
   constructor(
     private productoService:ProductoService,
     private toolsService:ToolsService,
     private authService:AuthService,
     private categoriaService:CategoriaService,
-    private store:Store<any>
+    private imagenService:ImagenService
+    //private store:Store<any>
     ) { }
 
     public getLogValue(){
@@ -42,10 +45,11 @@ export class HomeComponent implements OnInit {
     };
 
     public listarProductos(){
-      this.productoService.listar().subscribe(
-        (response: ProductoModel[])  =>{
-          this.productos = response;
-          this.asignarProductosRecomendados()
+      this.productoService.rango(1).subscribe(
+        (response: RangoModel)  =>{
+          this.productos = response.productos;
+          this.loading = false;
+          this.asignarProductosRecomendados();
       })
     }
 
@@ -81,14 +85,17 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
+    this.listarProductos();
+
+    /*
     this.productos$().subscribe(
       (response)=> {
         this.productos = response.productos;
         this.loading = response.loading;
         this.asignarProductosRecomendados();
       }
-    )
-    this.listarProductos();
+    )*/
   }
 
 }

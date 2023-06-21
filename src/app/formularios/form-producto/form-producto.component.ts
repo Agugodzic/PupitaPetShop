@@ -1,6 +1,5 @@
 import { Component, Input,  OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { CategoriaModel } from 'src/app/modelos/categoria-model';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { LocalStorageService } from 'src/app/servicios/local-storage.service';
@@ -17,9 +16,14 @@ export class FormProductoComponent implements OnInit {
 
   public editarProducto:FormGroup;
   public agregarProducto:FormGroup;
+
   public agregarCategoria:FormGroup;
   public categorias:CategoriaModel[];
   public categoriaAlert:boolean = false;
+  public categoriaInputValue:any = '';
+  public categoriaEditarProducto:any = {categoria:''};
+  public nuevaCategoria:CategoriaModel;
+
 
   public imageFile1: any;
   public imageFile2: any;
@@ -33,12 +37,11 @@ export class FormProductoComponent implements OnInit {
     private formBuilder:FormBuilder,
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
-    private sanitizer:DomSanitizer,
     private localStorageService:LocalStorageService
     ) { }
 
   public switchCategoria(){
-    this.categoriaAlert = ! this.categoriaAlert
+    this.categoriaAlert = ! this.categoriaAlert;
   }
 
   public editar():boolean{
@@ -54,10 +57,17 @@ export class FormProductoComponent implements OnInit {
   }
 
   private listarCategorias(){
-    this.categorias = this.localStorageService.getValues('categorias')
+    //this.categorias = this.localStorageService.getValues('categorias');
     this.categoriaService.listar().subscribe(
       (response: CategoriaModel[])  =>{
-        this.categorias = response;
+        let resp = response;
+        if(this.accion == 'editar' && this.producto.categoria){
+          this.categorias = resp.filter(categoria => categoria.categoria != this.producto.categoria);
+          this.categoriaEditarProducto = resp.find( categoria => categoria.categoria == this.producto.categoria);
+        }else{
+          this.categorias = response;
+        }
+
     })
   }
 
@@ -106,24 +116,58 @@ export class FormProductoComponent implements OnInit {
     this.categoriaService.agregar(this.agregarCategoria.value).subscribe(
       (response)=>{
         this.localStorageService.addValue('categorias',response);
-        this.listarCategorias()
+        this.nuevaCategoria = this.agregarCategoria.value;
+        this.listarCategorias();
       }
     )
-    this.switchCategoria()
-    this.listarCategorias()
+
+    //let inputValue = document.getElementById();
+
+    this.switchCategoria();
+    this.listarCategorias();
+
   }
 
   public image1Change(event:any):any{
     let imagen = event.target.files[0];
     this.extraerBase64(imagen).then((image:any) => {
-      this.imageFile1 = image.base;
-    }
+      this.resizeBase64Img(image.base,400).then((img:any) => {
+      this.imageFile1 = img;
+      })}
   )}
+
+  public resizeBase64Img(base64:string, newWidth:number) {return new Promise((resolve, reject)=>{
+        let image:any, oldHeight:number, oldWidth:number, newHeight:number, canvas, context;
+
+        image =  new Image();
+        image.src = base64;
+
+        image.onload = function () {
+
+          oldWidth = image.width;
+          oldHeight = image.height;
+          newHeight = Math.floor(oldHeight / oldWidth * newWidth);
+
+          canvas = document.createElement("canvas");
+          canvas.width = newWidth;
+          canvas.height = newHeight;
+
+          context = canvas.getContext("2d");
+
+          if(context != null){
+            //context.scale(newWidth/image.width,  newHeight/image.height);
+            context.drawImage(image, 0, 0, newWidth, newHeight);
+            resolve(canvas.toDataURL());
+          }else{
+            console.log("no")
+          }
+      }
+    });
+  }
+
   extraerBase64 = async ($event: any) => new Promise(
     (resolve, reject):any => {
     try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
       const reader = new FileReader();
       reader.readAsDataURL($event);
       reader.onload = () => {
@@ -144,13 +188,16 @@ export class FormProductoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let editSelectValue = document.getElementById("select-input");
+
     this.listarCategorias();
+   // this.categoriaEditarProducto = this.categorias.filter((categoria:CategoriaModel)=>{categoria.categoria == this.producto.categoria});
 
     this.agregarCategoria = this.formBuilder.group(
       {
         categoria:["",[]]
       }
-    )
+    );
 
     this.editarProducto = this.formBuilder.group(
       {
@@ -166,7 +213,7 @@ export class FormProductoComponent implements OnInit {
         imagen3:["",[]],
         imagen4:["",[]]
       }
-    )
+    );
 
     this.agregarProducto = this.formBuilder.group(
       {
@@ -181,7 +228,7 @@ export class FormProductoComponent implements OnInit {
         imagen3:["",[]],
         imagen4:["",[]]
       }
-    )
+    );
 
     if(this.accion=="editar"){
       this.editarProducto.patchValue({
@@ -192,11 +239,10 @@ export class FormProductoComponent implements OnInit {
       descripcioncorta:this.producto.descripcioncorta,
       descripcion:this.producto.descripcion,
       categoria:this.producto.categoria,
-
       imagen2:this.producto.imagen2,
       imagen3:this.producto.imagen3,
       imagen4:this.producto.imagen4
-    })
+    });
 
     this.imageFile1 = this.producto.imagen1;
     }

@@ -4,6 +4,7 @@ import { ProductoModel } from '../modelos/producto-model';
 import { HttpClient } from '@angular/common/http';
 import { ToolsService } from '../tools.service';
 import { RangoModel } from '../modelos/rango-model';
+import { FiltroModel } from '../modelos/filtro-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,27 @@ export class ProductoService {
   }
 
 
+  public rango(rango:number):Observable<RangoModel>{
+    return this.http.get<RangoModel>(`${this.apiServerUrl}/productos/rango/${rango}`)
+    /* Devuelve 10 productos , saltea los [(rango - 1) * 10] primeros productos de la base de datos.
+    modelo {
+      items:ProductoModel[],
+      cantidad:number  / Cantidad total de productos en la base de datos
+    }
+  */
+  }
+
+  public filtrar(rango:number,categoria:string,ordenSegunPrecio:string):Observable<FiltroModel>{
+    return this.http.get<FiltroModel>(`${this.apiServerUrl}/productos/filter/${rango}/${categoria}/${ordenSegunPrecio}`)
+  }
+
+  public relacionados(categoria:string,cantidad:number):Observable<ProductoModel[]>{
+    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/relacionados/${categoria}/${cantidad}`)
+  }
+
   public listarPorRango(rango:number):Observable<RangoModel>{
     return this.http.get<RangoModel>(`${this.apiServerUrl}/productos/rango/${rango}`)
-    /* Devuelve (rango * 10) productos , saltea los [(rango - 1) * 10] primeros productos de la base de datos.
+    /* Devuelve 10 productos , saltea los [(rango - 1) * 10] primeros productos de la base de datos.
     modelo {
       items:ProductoModel[],
       cantidad:number  / Cantidad total de productos en la base de datos
@@ -31,6 +50,10 @@ export class ProductoService {
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/id/${id}`)
   }
 
+  public listarPorIds(ids:number[]):Observable<ProductoModel[]>{
+    return this.http.post<ProductoModel[]>(`${this.apiServerUrl}/productos/id-list`,ids)
+  }
+
   public imagenesPorId(id:number):Observable<any>{
     return this.http.get<any>(`${this.apiServerUrl}/productos/imagenes/${id}`)
     // Devuelve las imagenes 2, 3 y 4 del producto de id dado.
@@ -38,10 +61,6 @@ export class ProductoService {
 
   public listar():Observable<ProductoModel[]>{
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/rango/1`)
-  }
-
-  public rango(rango:number):Observable<any>{
-    return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/rango/${rango}`)
   }
 
   public editar(curso:ProductoModel):Observable<ProductoModel>{

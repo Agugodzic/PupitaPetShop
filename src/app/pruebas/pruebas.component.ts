@@ -67,7 +67,7 @@ export class PruebasComponent implements OnInit {
 
     this.productoService.listarPorRango(1).subscribe(
       (response:RangoModel) => {
-        this.serviceData = response.items;
+        this.serviceData = response.productos;
         this.cantidadTotal = response.cantidad;
       });
    // let localStorage_:any = localStorage.getItem("productos");

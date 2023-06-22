@@ -49,7 +49,7 @@ export class ComprarComponent implements OnInit {
   // ------------ METODOS PASO 1 ------------------//
 
   public volverALaTienda(){
-    window.location.href='/store/0';
+    window.location.href='/#/store/0';
   }
 
   public selectOptionStyle1():any{
@@ -152,20 +152,20 @@ export class ComprarComponent implements OnInit {
 
       for(let item of preferencia.items){
         total = total + item.quantity * item.unit_price;
-        preferenciasToUrl = preferenciasToUrl + "%20" + item.quantity + "%20" + item.title + "%20%20"+ item.quantity+ "%20x%20$" + item.unit_price + "%0A" ;
+        preferenciasToUrl = preferenciasToUrl + "%20" + item.quantity + "%20" + item.title + "%20%20" + item.quantity + "%20x%20$" + item.unit_price + "%0A" ;
       }
 
       let textoWsp:string = "Hola, %20mi%20nombre%20es%20"+ this.datosValidados.nombre +
-        "%20y%20quisiera%20comprar:%0A"+ preferenciasToUrl + "Total: $" + total +
-        "%0AMIS%20DATOS:%0A"+
-        "nombre: " + this.datosValidados.nombre+" "+this.datosValidados.apellido+"%0A"+
-        "telefono: " + this.datosValidados.telefono+"%0A"+
-        "email: " + this.datosValidados.email+"%0A"+
-        "direccion: " + this.datosValidados.direccion+"%0A"+
-        "piso/depto: " + this.datosValidados.pisoDepto+"%0A"+
+        "%20y%20quisiera%20comprar:%0A" + preferenciasToUrl + "Total: $" + total +
+        "%0AMIS%20DATOS:%0A" +
+        "nombre: " + this.datosValidados.nombre+" " + this.datosValidados.apellido+"%0A" +
+        "telefono: " + this.datosValidados.telefono+"%0A" +
+        "email: " + this.datosValidados.email+"%0A" +
+        "direccion: " + this.datosValidados.direccion+"%0A" +
+        "piso/depto: " + this.datosValidados.pisoDepto+"%0A" +
         "c. postal: " + this.datosValidados.codigoPostal+"%0A";
 
-      let linkWspMsj:string = "https://api.whatsapp.com/send?phone=+5493425419964&text=" + textoWsp;
+      let linkWspMsj:string = "https://api.whatsapp.com/send?phone=+5493417238680&text=" + textoWsp;
       window.open(linkWspMsj);
       this.pasoActual = 3;
       localStorage.setItem('carrito',"[]");

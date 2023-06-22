@@ -101,7 +101,7 @@
 <!--------- Productos -------->
 
 <div id="galeria">
-  <div *ngIf="productosService.length !== 0 || loading"  id="galeria">
+  <div *ngIf="listaDeProductos.length !== 0 || loading"  id="galeria">
 
     <div id="contenedor-filtros">
       <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
@@ -118,10 +118,10 @@
     </div>
 
 
-  <div *ngIf="productosService.length > 0 && !loading">
+  <div *ngIf="listaDeProductos.length > 0 && !loading">
       <div
         class="contenedorProducto"
-        *ngFor="let producto of productosService"
+        *ngFor="let producto of listaDeProductos"
       >
       <app-producto-miniatura [producto]="producto"></app-producto-miniatura>
 
@@ -133,7 +133,7 @@
 
 <!--------- Productos | No coincidencias-------->
 
-<div *ngIf="productosService.length == 0  && !loading " id="galeria">
+<div *ngIf="listaDeProductos.length == 0  && !loading " id="galeria">
   <div id="contenedor-filtros">
     <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
 

@@ -50,6 +50,7 @@ button{
 #contenedor-preview{
   display:flex;
   align-items: center;
+  justify-content: center;
   /*ackground-color: rgba(255, 255, 255, 0);*/
   height:170px;width:170px;
   border-style: solid;

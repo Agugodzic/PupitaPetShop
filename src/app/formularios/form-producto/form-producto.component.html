@@ -56,7 +56,7 @@
   </label>
 </div>
 
-<div id="contenedor-preview"><img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px"></div>
+<div class="contenedor-preview"><img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px"></div>
 
 <!------------------- descripcion larga --------------------->
 
@@ -85,11 +85,11 @@
 
       <p class="descripcion-input">Datos basicos:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
-      <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio" min="1"></p>
+      <p><input min="1" class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
       <p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>
 
       <p style="text-align:start">
-        <select name="Categoria" (ngModel)="categoriaInputValue" class="form-control" placeholder="Categoria" formControlName="categoria">
+        <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
         <option *ngIf="nuevaCategoria">{{this.nuevaCategoria.categoria}}</option>
         <option *ngIf="!nuevaCategoria" style="color:rgb(189, 189, 189)">Categoria</option>
         <option *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
@@ -105,7 +105,7 @@
 
     <!------------------- inputs de imagen --------------------->
 
-      <div id="contenedor-preview">
+      <div class="contenedor-preview">
         <img height="169px" width="169px" *ngIf="!imageFile1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81rH-ojGJ0uVfThbfEF0Dg7nGd7fEF-YeLpUkaeMLXCB6TXfDe4UZdfjOtjJGNG4UxuY&usqp=CAU">
         <img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px">
       </div>

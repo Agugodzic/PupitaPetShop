@@ -1,5 +1,5 @@
 import { Component, Input,  OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaModel } from 'src/app/modelos/categoria-model';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { LocalStorageService } from 'src/app/servicios/local-storage.service';
@@ -18,11 +18,11 @@ export class FormProductoComponent implements OnInit {
   public agregarProducto:FormGroup;
 
   public agregarCategoria:FormGroup;
-  public categorias:CategoriaModel[];
+  public categorias:CategoriaModel[] = [];
   public categoriaAlert:boolean = false;
   public categoriaInputValue:any = '';
   public categoriaEditarProducto:any = {categoria:''};
-  public nuevaCategoria:CategoriaModel;
+  public nuevaCategoria:any;
 
 
   public imageFile1: any;
@@ -38,7 +38,7 @@ export class FormProductoComponent implements OnInit {
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
     private localStorageService:LocalStorageService
-    ) { }
+    ) {}
 
   public switchCategoria(){
     this.categoriaAlert = ! this.categoriaAlert;
@@ -61,6 +61,7 @@ export class FormProductoComponent implements OnInit {
     this.categoriaService.listar().subscribe(
       (response: CategoriaModel[])  =>{
         let resp = response;
+        this.categorias = response;
         if(this.accion == 'editar' && this.producto.categoria){
           this.categorias = resp.filter(categoria => categoria.categoria != this.producto.categoria);
           this.categoriaEditarProducto = resp.find( categoria => categoria.categoria == this.producto.categoria);
@@ -73,7 +74,7 @@ export class FormProductoComponent implements OnInit {
 
   public submitEditar(){
     this.spinner = true;
-
+    this.nuevaCategoria = {categoria:this.producto.categoria};
     if(this.imageFile1){
       this.editarProducto.value.imagen1 = this.imageFile1;
     }
@@ -188,10 +189,7 @@ export class FormProductoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let editSelectValue = document.getElementById("select-input");
-
     this.listarCategorias();
-   // this.categoriaEditarProducto = this.categorias.filter((categoria:CategoriaModel)=>{categoria.categoria == this.producto.categoria});
 
     this.agregarCategoria = this.formBuilder.group(
       {
@@ -203,7 +201,7 @@ export class FormProductoComponent implements OnInit {
       {
         id:["",[]],
         nombre:["",[]],
-        precio:["",[]],
+        precio:["",[Validators.min(0)]],
         marca:["",[]],
         descripcioncorta:["",[]],
         descripcion:["",[]],
@@ -218,7 +216,7 @@ export class FormProductoComponent implements OnInit {
     this.agregarProducto = this.formBuilder.group(
       {
         nombre:["",[]],
-        precio:["",[]],
+        precio:["",[Validators.min(0)]],
         descripcioncorta:["",[]],
         descripcion:["",[]],
         marca:["",[]],

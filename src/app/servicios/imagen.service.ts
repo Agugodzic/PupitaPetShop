@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ImagenService {
   public banner = {
-    home:"assets/portadas/banner-home.png",
+    home:"assets/portadas/banner-home.jpg",
     store:"assets/portadas/banner-store.png"
   }
   public icon = {

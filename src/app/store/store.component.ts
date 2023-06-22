@@ -29,8 +29,7 @@ export class StoreComponent implements OnInit {
   public estadoRecursos:any;
   private ordenPrecio:string = 'asc';
 
-  public listaDeProductos:ProductoModel[];
-  public productosService:ProductoModel[] = [];
+  public listaDeProductos:ProductoModel[] = [];
 
   private categoria:any;
 
@@ -73,9 +72,9 @@ export class StoreComponent implements OnInit {
 
   public listarProductos(rango:number){
     this.ProductoService.rango(rango).subscribe(
-      (response:RangoModel)  =>{
+      (response:RangoModel) =>{
         this.loading = false;
-        this.productosService = response.productos;
+        this.listaDeProductos = response.productos;
         this.cantidadDeProductos = response.cantidad;
         this.estadoRecursos = 'defined';
 
@@ -90,12 +89,12 @@ export class StoreComponent implements OnInit {
     this.ProductoService.filtrar(this.paginaActual,this.productoFiltro,this.ordenPrecio).subscribe(
       (response:FiltroModel)  =>{
         this.loading = false;
-        this.productosService = response.productos;
+        this.listaDeProductos = response.productos;
         this.cantidadDeProductos = response.cantidad;
         this.estadoRecursos = 'defined';
         this.cantidadDePaginas = this.numerosDePagina().length;
         this.paginas = this.numerosDePagina();
-        this.textoAlternativo = "No se encontraron coincidencias."
+        this.textoAlternativo = "No se encontraron coincidencias.";
     }
     );
   }
@@ -238,10 +237,15 @@ export class StoreComponent implements OnInit {
   ngOnInit() {/*
     this.productos$().subscribe((response)=> {})*/
     this.categorias = this.localStorageService.getValues("categorias");
-    this.listarCategorias();
     this.categoria = this.route.snapshot.paramMap.get('categoria');
-    this.listarProductos(this.paginaActual);
 
+    this.listarCategorias();
+    if(this.categoria != 0){
+      this.productoFiltro = this.generadorDeFiltro(this.categoria);
+      this.filtrarProductos();
+    }else{
+      this.listarProductos(this.paginaActual);
+    }
   }
 
 }

@@ -58,59 +58,62 @@
       <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
   </div>
 
-  <div id="imagenes-producto" *ngIf="!loading">
-    <div id="miniaturas">
-      <div *ngIf="!loadingImagenes">
-        <div class="contenedor-miniatura fx-aparecer" *ngFor="let elemento of ImagenesProducto" (click)="cambiarImagen(elemento)">
-          <img
-            class="imagen-miniatura"
-            [src]="elemento.imagen"
+  <div id="contenedor-imagenes-botones" *ngIf="!loading">
 
-          />
+    <div id="imagenes-producto">
+      <div id="miniaturas">
+        <div *ngIf="!loadingImagenes">
+          <div class="contenedor-miniatura fx-aparecer" *ngFor="let elemento of ImagenesProducto" (click)="cambiarImagen(elemento)">
+            <img
+              class="imagen-miniatura"
+              [src]="elemento.imagen"
+
+            />
+          </div>
         </div>
+
+        <img
+        *ngIf="cantidadImagenes < 4 && getLogValue()"
+        (click) = "switchInputImage(cantidadImagenes,'agregar')"
+        style="opacity: 70%;"
+        class="contenedor-miniatura" id="imagen-agergar"
+        src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
+      />
       </div>
 
-      <img
-      *ngIf="cantidadImagenes < 4 && getLogValue()"
-      (click) = "switchInputImage(cantidadImagenes,'agregar')"
-      style="opacity: 70%;"
-      class="contenedor-miniatura" id="imagen-agergar"
-      src="https://i.postimg.cc/7YPhDxTj/Plus-icon-icons-com-71848.png"
-    />
+
+      <div id="contenedor-imagen">
+        <button *ngIf="getLogValue()" style="position:absolute" class="boton3 eliminar-imagen" (click)="eliminarImagen(imagenSeleccionada.numero)">Eliminar imagen</button>
+        <img id="imagen-producto" [src]="imagenSeleccionada.imagen" />
+      </div>
     </div>
 
 
-    <div id="contenedor-imagen">
-      <button *ngIf="getLogValue()" style="position:absolute" class="boton3" (click)="eliminarImagen(imagenSeleccionada.numero)">Eliminar imagen</button>
-      <img id="imagen-producto" [src]="imagenSeleccionada.imagen" />
+    <div id="descripcion">
+
+      <div id="descripcion-edicion">
+        {{ "Tienda / "+ producto.categoria }}
+        <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
+        <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
+      </div>
+
+
+      <h2 id="titulo">{{ producto.nombre }}</h2>
+      <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
+
+      <div id="selector-cantidad">
+        Cantidad:
+        <input [(ngModel)]='cantidad'
+        id="input-cantidad" type="number" min="1" max="10" value="1">
+      </div>
+      <div id="botones">
+        <button class="boton1 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Comprar</button>
+        <button class="boton2 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Agregar</button>
+      </div>
     </div>
   </div>
-
-
-  <div id="descripcion" *ngIf="!loading">
-
-  <div id="descripcion-edicion">
-    {{ "Tienda / "+ producto.categoria }}
-    <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEditar()">Editar</button>
-    <button id="boton-editar" *ngIf="getLogValue()" (click)="switchEliminar()">Eliminar</button>
-  </div>
-
-
-    <h2 id="titulo">{{ producto.nombre }}</h2>
-    <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
-
-    <div id="selector-cantidad">
-      Cantidad:
-      <input [(ngModel)]='cantidad'
-       id="input-cantidad" type="number" min="1" max="10" value="1">
-    </div>
-    <div id="botones">
-      <button class="boton1" (click)="agregarAlCarrito(producto.id,cantidad)">Comprar</button>
-      <button class="boton2" style="margin-right:0" (click)="agregarAlCarrito(producto.id,cantidad)">Agregar</button>
-    </div>
-
-
-
+  <div id="descripcion-larga" *ngIf="!loading">
+    <h3 id="descripcion-titulo">Descripcion:</h3>
     <p id="texto-descripcion">
       {{ producto.descripcion }}
     </p>

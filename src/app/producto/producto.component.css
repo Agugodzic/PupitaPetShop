@@ -18,6 +18,12 @@ input[type=number]::-webkit-inner-spin-button-
 .boton1, .boton2{
   margin-top:30px;
 }
+.eliminar-imagen{
+  position:absolute;
+  top: 8px;
+  left: 8px;
+}
+
 
 #contenido {
   background-color: rgb(255, 255, 255);
@@ -56,13 +62,16 @@ input[type=number]::-webkit-inner-spin-button-
 }
 
 #contenedor-imagen{
-  display: inline;
+  justify-content: center;
+  position:relative;
+  display: flex;
+  align-items: center;
   height: 400px;
   width: 400px;
   box-shadow: 2px 5px 10px rgba(39, 39, 39, 0.192);
   margin: 50px;
   margin-left: 50px;
-  margin-right: 100px;
+  margin-right: 10px;
   border: 1px;
   float:left;
   border-style: solid;
@@ -72,22 +81,65 @@ input[type=number]::-webkit-inner-spin-button-
 }
 
 #imagen-producto {
-
   max-height: 400px;
   max-width: 400px;
 
 }
 
+#contenedor-imagenes-botones{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 #descripcion {
+  display: flex;
+  flex-direction:column;
   text-align: right;
   padding: 50px;
-  min-height: 400px;
+  width: 300px;
+  min-width: 250px;
+  flex-grow: 2;
+}
+
+#imagenes-producto{
+  display: flex;
+  width: fit-content;
+  flex-grow: 2;
+  justify-content: left;
+}
+
+#descripcion-larga{
+  margin-left: 60px;
+  margin-right: 30px;
 }
 
 #texto-descripcion {
+  white-space:pre-wrap;
   text-align: justify;
-  font-size: 17px;
-  font-family: 'Red Hat Display', sans-serif;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color:rgba(0, 0, 0, 0.794);
+}
+
+#descripcion-titulo{
+  font-size: 24px;
+  text-align: left;
+  opacity: 80%;
+  margin-bottom:0px;
+}
+
+#botones{
+  height: fit-content;
+}
+
+.boton-producto{
+  width:25vw;
+  height: 34px;
+  margin: 12px;
+  margin-right: 0;
 }
 
 #precio {
@@ -97,8 +149,8 @@ input[type=number]::-webkit-inner-spin-button-
 
 
 #selector-cantidad{
-  font-size:17px
-
+  font-size:17px;
+  margin-bottom: 20px;
 }
 
 #input-cantidad{
@@ -253,24 +305,6 @@ span {
   float: left;
 }
 
-#especificaciones{
-  margin:5px;
-  border-radius: 8px;
-  border: 1px;
-  border-color: rgba(0, 0, 0, 0.158);
-  border-style: solid;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  width:70vw;
-  height: fit-content;
-  min-height: 50px;
-  background-color: rgb(233, 233, 233);
-  font-family: 'Red Hat Display', sans-serif;
-}
-
 #verMas {
   background-color: rgb(236, 236, 236);
   padding: 5px 8px 5px 8px;
@@ -300,10 +334,15 @@ span {
   font-family:'Montserrat', sans-serif;
 }
 
+@media only screen and (max-width: 1300px) {
 
-@media only screen and (max-width: 910px) {
+  #descripcion-larga{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
   #contenido{
-    width: 92vw;
+    width: 98vw;
     background-color: rgba(255, 255, 255, 0);
     padding: 0px;
     margin:0;
@@ -311,6 +350,64 @@ span {
     min-height: 0;
   }
 
+  #contenedor-imagenes-botones{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #descripcion {
+    min-height: 0px;
+    height: fit-content;
+  }
+
+  #imagenes-producto{
+    display: flex;
+    flex-grow: 2;
+    justify-content: center;
+  }
+
+  #contenedor-imagen{
+    display: flex;
+    align-items: center;
+    margin: 2vw;
+  }
+
+  #descripcion-titulo{
+    font-size: 24px;
+    text-align: left;
+    opacity: 80%;
+  }
+
+  #botones{
+    height: fit-content;
+    min-height: 0;
+    width:auto;
+  }
+
+  .boton-producto{
+    width:25vw;
+  }
+
+  #precio {
+    color: rgb(5, 167, 40);
+    font-size: 30px;
+  }
+
+
+  #selector-cantidad{
+    font-size:17px;
+    margin-bottom: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 510px) {
+
+  #descripcion-larga{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 
   #descripcion-edicion{
     visibility: hidden;
@@ -336,24 +433,27 @@ span {
     position:relative;
     width: 98vw;
     height: fit-content;
+    margin:0;
   }
 
-  #descripcion {
+
+  #descripcion{
+    width: auto;
+    min-width: auto;
     display: block;
     text-align: end;
     padding: 0px;
     height: auto;
-    padding: 0;
-    margin:0px;
+    padding: 15px;
     min-height: none;
-    font-family: 'Monserrat', sans-serif;
-    font-weight: 500px;
+    font-family: 'Montserrat', sans-serif;
+
   }
 
   #contenedor-imagen{
     display: flex;
-    width: 75vw;
-    height: 75vw;
+    width: 74.2vw;
+    height: 74.2vw;
     margin: 2vw;
     margin-top: 30px;
     float:none;
@@ -366,8 +466,8 @@ span {
   }
 
   #imagen-producto {
-    max-width: 75vw;
-    max-height: 75vw;
+    max-width: 74vw;
+    max-height: 74vw;
     margin: 0 auto;
 
   }
@@ -380,17 +480,20 @@ span {
     height: 13vw;
     margin-bottom: 5vw;
     margin-top: 0;
-
   }
+
   .imagen-miniatura {
     max-width: 13vw;
     max-height: 13vw;
     margin: 0 auto;
   }
 
-  #miniaturas {
+  #miniaturas{
     margin-top:15px;
-    display: inline;
+    padding:0;
+    min-width: 0;
+    margin-top:30px;
+    margin-left: 8px;
   }
 
   #relacionados {

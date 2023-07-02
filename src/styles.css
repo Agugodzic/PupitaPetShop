@@ -111,12 +111,7 @@ input[type=file]{
   margin-left: 0;
 }
 
-textarea{
-  border-radius: 0;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.137);
-  border-bottom-color: rgba(0, 0, 0, 0.651);
-}
+
 select{
   border-radius: 0;
   border-style: solid;

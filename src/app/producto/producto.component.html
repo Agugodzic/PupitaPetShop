@@ -99,7 +99,12 @@
 
 
       <h2 id="titulo">{{ producto.nombre }}</h2>
+      <p id="descripcion-corta">
+        {{ producto.descripcioncorta }}
+      </p>
+
       <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
+
 
       <div id="selector-cantidad">
         Cantidad:
@@ -110,6 +115,8 @@
         <button class="boton1 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Comprar</button>
         <button class="boton2 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Agregar</button>
       </div>
+      <div>
+    </div>
     </div>
   </div>
   <div id="descripcion-larga" *ngIf="!loading">

@@ -5,29 +5,12 @@
 }
 
 
-input[type=text], input[type=number]{
-  width: 220px;
-}
-
-input[type=file]{
-  width: 220px;
-}
-
-
-select{
-  width: 170px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
 .contenedor-preview{
   display:flex;
   align-items: center;
   justify-content: center;
   /*ackground-color: rgba(255, 255, 255, 0);*/
-  height:200px;
-  width:200px;
+  height:170px;width:170px;
   border-style: solid;
   border-radius: 4px;
   border-width: 2px;
@@ -48,7 +31,7 @@ select{
 }
 
 .inputfile + label {
-  max-width: 100%;
+  max-width: 80%;
   font-size: 1.25rem;;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -73,10 +56,10 @@ select{
 }
 
 .iborrainputfile {
-  margin-left: 0;
-  font-size:14px;
-  font-weight: 400;
-  font-family:'Montserrat', sans-serif;
+margin-left: 0;
+font-size:14px;
+font-weight: 400;
+font-family:'Montserrat', sans-serif;
 }
 
 /* style 1 */
@@ -113,22 +96,15 @@ p{
   text-align: left;
 }
 
-.contenedor-row{
-  display: flex;
-  flex-direction: row;
-  margin: 4px auto;
-  width: 650px;
-  background-color: beige;
+.contenedor-inl{
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
-.contenedor-col{
-  height: auto;
-  display: flex;
-  width: 325px;
-  flex-direction: column;
+.contenedor-block{
+  display: block;
   margin-top: 20px;
-  justify-content: center;
-  align-items: center;
 }
 
 .descripcion-input{
@@ -138,13 +114,16 @@ p{
 
 form{
   font-family:'Montserrat', sans-serif;
-  width: 700px;
+  background-color: rgb(241, 241, 241);
+  min-width: 370px;
   border-radius: 4px;
   display:flex;
-  flex-direction: column;
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
   padding-top:15px;
   padding-bottom:30px;
+  text-align: center;
   z-index:1000;
   overflow-y: scroll;
   max-height: 90vh;
@@ -300,4 +279,3 @@ form{
     width: 350px;
   }
 }
-

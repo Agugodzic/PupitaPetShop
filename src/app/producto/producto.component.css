@@ -18,6 +18,7 @@ input[type=number]::-webkit-inner-spin-button-
 .boton1, .boton2{
   margin-top:30px;
 }
+
 .eliminar-imagen{
   position:absolute;
   top: 8px;
@@ -123,6 +124,15 @@ input[type=number]::-webkit-inner-spin-button-
   font-weight: 400;
   color:rgba(0, 0, 0, 0.794);
 }
+#descripcion-corta {
+  white-space:pre-wrap;
+  text-align: end;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color:rgba(0, 0, 0, 0.794);
+}
 
 #descripcion-titulo{
   font-size: 24px;
@@ -136,8 +146,8 @@ input[type=number]::-webkit-inner-spin-button-
 }
 
 .boton-producto{
-  width:25vw;
-  height: 34px;
+  /*width:25vw;
+  height: 34px;*/
   margin: 12px;
   margin-right: 0;
 }
@@ -341,6 +351,10 @@ span {
     margin-right: 30px;
   }
 
+  #descripcion-corta{
+    display:none;
+  }
+
   #contenido{
     width: 98vw;
     background-color: rgba(255, 255, 255, 0);
@@ -441,10 +455,9 @@ span {
     width: auto;
     min-width: auto;
     display: block;
-    text-align: end;
     padding: 0px;
     height: auto;
-    padding: 15px;
+    padding: 20px;
     min-height: none;
     font-family: 'Montserrat', sans-serif;
 
@@ -511,8 +524,8 @@ span {
     font-size: 22px;
   }
   #galeria{
-    margin-left: 1vw;
-    margin-right: 1vw;
-    width: fit-content;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    width: 99vw;
   }
 }

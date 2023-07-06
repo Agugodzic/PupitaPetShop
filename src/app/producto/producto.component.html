@@ -99,9 +99,7 @@
 
 
       <h2 id="titulo">{{ producto.nombre }}</h2>
-      <p id="descripcion-corta">
-        {{ producto.descripcioncorta }}
-      </p>
+
 
       <h2 id="precio">{{ precio(producto.precio, 0) }}</h2>
 
@@ -109,8 +107,13 @@
       <div id="selector-cantidad">
         Cantidad:
         <input [(ngModel)]='cantidad'
-        id="input-cantidad" type="number" min="1" max="10" value="1">
+        id="input-cantidad" type="number" min="1" max="5" value="1">
       </div>
+
+      <p id="descripcion-corta">
+        {{ producto.descripcioncorta }}
+      </p>
+
       <div id="botones">
         <button class="boton1 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Comprar</button>
         <button class="boton2 boton-producto" (click)="agregarAlCarrito(producto.id,cantidad)">Agregar</button>
@@ -144,6 +147,7 @@
     <div id="galeria">
       <div class="contenedorProducto" *ngFor="let elemento of productosRelacionados">
         <app-producto-miniatura
+          (click)=actualizarProducto()
           class="producto"
           [producto]="elemento">
         </app-producto-miniatura>

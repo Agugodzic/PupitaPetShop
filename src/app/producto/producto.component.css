@@ -27,7 +27,6 @@ input[type=number]::-webkit-inner-spin-button-
 
 
 #contenido {
-  background-color: rgb(255, 255, 255);
   padding-right: 50px;
   margin-top: 40px;
   margin-left: 80px;
@@ -54,7 +53,7 @@ input[type=number]::-webkit-inner-spin-button-
   cursor:pointer;
 }
 #boton-editar:hover{
-  background-color: rgba(211, 211, 211, 0.897);
+
   color:rgb(102, 102, 102);
 }
 
@@ -71,6 +70,7 @@ input[type=number]::-webkit-inner-spin-button-
   width: 400px;
   box-shadow: 2px 5px 10px rgba(39, 39, 39, 0.192);
   margin: 50px;
+  margin-top: 30px;
   margin-left: 50px;
   margin-right: 10px;
   border: 1px;
@@ -79,6 +79,7 @@ input[type=number]::-webkit-inner-spin-button-
   border-color: rgba(0, 0, 0, 0.151);
   border-radius: 5px;
   padding: 10px;
+
 }
 
 #imagen-producto {
@@ -91,6 +92,7 @@ input[type=number]::-webkit-inner-spin-button-
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 0;
 }
 
 #descripcion {
@@ -98,9 +100,11 @@ input[type=number]::-webkit-inner-spin-button-
   flex-direction:column;
   text-align: right;
   padding: 50px;
+  padding-top: 30px;
   width: 300px;
   min-width: 250px;
   flex-grow: 2;
+  text-decoration: none;
 }
 
 #imagenes-producto{
@@ -124,6 +128,7 @@ input[type=number]::-webkit-inner-spin-button-
   font-weight: 400;
   color:rgba(0, 0, 0, 0.794);
 }
+
 #descripcion-corta {
   white-space:pre-wrap;
   text-align: end;
@@ -132,6 +137,7 @@ input[type=number]::-webkit-inner-spin-button-
   font-style: normal;
   font-weight: 400;
   color:rgba(0, 0, 0, 0.794);
+  text-transform: lowercase;
 }
 
 #descripcion-titulo{
@@ -297,7 +303,7 @@ span {
   border-color: rgba(0, 0, 0, 0.171);
   border-radius: 4px;
   margin: 10px;
-  margin-top: 45px;
+  margin-top: 30px;
   margin-left: 40px;
   cursor: pointer;
   text-align: center;
@@ -514,6 +520,7 @@ span {
     font-family: 'Red Hat Display', sans-serif;
     margin: 0px;
     margin-top: 50px;
+    padding:0;
     display: block;
     text-align: center;
   }

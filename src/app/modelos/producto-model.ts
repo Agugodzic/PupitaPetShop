@@ -6,6 +6,7 @@ export interface ProductoModel{
   categoria:String;
   descripcioncorta:String;
   descripcion:String;
+  cantidadmaxima:number;
   imagen1:any;
   imagen2:any;
   imagen3:any;

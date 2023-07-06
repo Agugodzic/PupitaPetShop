@@ -7,6 +7,16 @@ button{
   cursor:pointer;
 }
 
+.spinner{
+  display: block;
+  background-color: white;
+  border-radius: 15px;
+}
+
+#spinner-container{
+  min-height: 25px;
+}
+
 #fondo{
   background-color: rgba(0, 0, 0, 0.281);
   position:fixed;

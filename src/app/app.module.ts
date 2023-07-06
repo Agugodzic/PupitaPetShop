@@ -41,6 +41,7 @@ import { LoadderComponent } from './loadder/loadder.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImagenService } from './servicios/imagen.service';
 
+
 @NgModule({
   declarations: [
     ImageInputComponent,
@@ -61,7 +62,7 @@ import { ImagenService } from './servicios/imagen.service';
     PedidosComponent,
     PedidoComponent,
     LoadderComponent,
-    SpinnerComponent,
+    SpinnerComponent
   ],
   imports: [
     MatIconModule,

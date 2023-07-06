@@ -201,6 +201,9 @@ export class ProductoComponent implements OnInit, OnDestroy {
       this.editarProducto = false;
     }
   }
+  public actualizarProducto():void{
+    location.reload();
+  }
 
   ngOnInit() {
     //this.productosCarrito = localStorage.getItem('carrito');

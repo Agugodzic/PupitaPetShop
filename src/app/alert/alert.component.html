@@ -16,5 +16,9 @@
 
     <button class="boton1" (click)="funcion()">{{textoBoton}}</button>
     <button id="boton-cancelar" class="boton2" (click)="funcionCancelar()" *ngIf="textoCancelar.length >= 1">{{textoCancelar}}</button>
+    <div *ngIf="spinner" id="spinner-container">
+      <app-spinner  class="spinner"></app-spinner>
+    </div>
   </div>
+
 </div>

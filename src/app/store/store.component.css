@@ -101,6 +101,7 @@ span {
   color: rgb(14, 14, 14);
   max-width: 200px;
 }
+
 #lateral {
   display: inline-block;
   text-align: left;
@@ -118,17 +119,52 @@ span {
   font-size: 17px;
 
 }
+
+.item-lateral{
+  display: block;
+}
+
 .boton-lateral{
   display: block;
+  width: fit-content;
   border: none;
   cursor: pointer;
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0);
   text-align: center;
   font-family:'Montserrat', sans-serif;
   color: rgb(0, 0, 0);
   font-size: 14px;
+  background-color: rgba(0, 0, 0, 0);
 }
+
+.eliminar-categoria-img{
+  height: 15px;
+  transform: translate(-4px,3px);
+  opacity: 0%;
+  transition: 0.3s;
+}
+
+
+.boton-lateral:hover > .eliminar-categoria-img{
+ display: inline;
+ opacity: 37%;
+ transition: 0;
+ transform: translate(0,3px);
+}
+
+.boton-lateral:hover > .eliminar-categoria-img:hover{
+  opacity: 75%;
+}
+
+.boton-categoria{
+  border:none;
+  text-align: center;
+  font-family:'Montserrat', sans-serif;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .botonLateral:hover {
   color: rgb(138, 91, 39);
 }
@@ -366,6 +402,7 @@ span {
 @media only screen and (max-width: 1200px) {
  #galeria{
   width: 70vw;
+  background-color: #7a9cac00;
  }
 }
 
@@ -375,7 +412,7 @@ span {
   }
   #galeria{
     margin:0px;
-    width: 90vw;
+    width: 96vw;
     padding: 0;
     margin-bottom: 50px;
   }
@@ -410,6 +447,7 @@ span {
 }
 
 @media only screen and (max-width: 800px) {
+
   .tools {
     display: block;
   }
@@ -427,7 +465,5 @@ span {
   #boton-agregar{
     height: fit-content;
   }
-
-
 
 }

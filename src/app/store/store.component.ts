@@ -46,6 +46,8 @@ export class StoreComponent implements OnInit {
   private cantidadDeProductos:number = 1;
   public images = this.imagenService;
 
+  public mostrarEliminarCategoria = false;
+
   /*
   public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
@@ -54,6 +56,7 @@ export class StoreComponent implements OnInit {
 
   private productosPorPagina = 10;
   public categoriasEnUso:any = [];
+  public eliminarCategoriaId:number;
 
   constructor(
     private ToolsService: ToolsService,
@@ -85,6 +88,7 @@ export class StoreComponent implements OnInit {
     })
   }
 
+
   private filtrarProductos() {
     this.ProductoService.filtrar(this.paginaActual,this.productoFiltro,this.ordenPrecio).subscribe(
       (response:FiltroModel)  =>{
@@ -110,6 +114,15 @@ export class StoreComponent implements OnInit {
 
   public switchSelectorCategorias(){
     this.mostrarSelectorCategorias = !this.mostrarSelectorCategorias;
+  }
+
+  public switchEliminarCategoria(mostrar:boolean,id:number):void{
+    if(mostrar){
+      this.eliminarCategoriaId = id;
+      this.mostrarEliminarCategoria = true;
+    }else if(!mostrar){
+      this.mostrarEliminarCategoria = false;
+    }
   }
 
   public switchAgregar():void{

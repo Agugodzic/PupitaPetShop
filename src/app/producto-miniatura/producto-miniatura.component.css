@@ -39,6 +39,7 @@ mat-icon{
   transform: translate(-50%, -50%);
   object-fit:cover;
 }
+
 #contenedor-imagen{
   position: relative;
   vertical-align: middle;
@@ -101,21 +102,22 @@ mat-icon{
 
 @media only screen and (max-width: 470px) {
   .producto {
-    width: 32vw;
+    width: 42vw;
     height: auto;
-    padding: 12px;
+    padding: 0px;
     margin: 2vw;
   }
   .producto-imagen {
-    max-height: 32vw;
-    max-width: 32vw;
+    max-height: 41.7vw;
+    max-width: 41.7vw;
     margin-bottom: 6px;
     margin:0;
   }
   #contenedor-imagen{
+    height: 42vw;
+    width: 42vw;
     margin:0;
-    height: 32vw;
-    width: 32vw;
+
   }
   .producto-nombre {
     font-size: 4vw;

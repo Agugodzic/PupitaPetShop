@@ -9,6 +9,16 @@
     </div>
   </div>
 
+  <app-alert
+    *ngIf="mostrarEliminarCategoria"
+    titulo="Seguro que desea eliminar esta categoria?"
+    textoBoton="eliminar"
+    textoCancelar="cancelar"
+    [categoriaId]="eliminarCategoriaId"
+    accion="eliminar-categoria"
+    (mostrar)="switchEliminarCategoria($event,0)"
+    ></app-alert>
+
   <div id="contenedor-formulario" *ngIf="mostrarSelectorCategorias">
     <div class="centrar">
       <div id="selector-categorias">
@@ -80,11 +90,14 @@
 
     <div *ngFor="let categoria of categorias" >
       <!--*ngIf="categoriasEnUso.includes(categoria.categoria)" -->
-      <button class="boton-lateral" (click)="cambiarProducto(categoria.categoria)">
-        <div  [ngStyle]="{
-          'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
-          " >{{categoria.categoria}}</div>
-      </button>
+
+        <div class="boton-lateral">
+          <button class="boton-categoria"  (click)="cambiarProducto(categoria.categoria)" [ngStyle]="{
+            'color': categoria.categoria == productoFiltro ?  'rgb(138, 91, 39)': 'black'}
+            " >{{categoria.categoria}}</button>
+            <img *ngIf='getLogValue()' class='eliminar-categoria-img' src="assets\utils\delete.png" (click)="switchEliminarCategoria(true,categoria.id)">
+        </div>
+
     </div>
   </div>
 

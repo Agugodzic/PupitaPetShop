@@ -11,19 +11,19 @@ import { PruebasComponent } from './pruebas/pruebas.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 
 const routes: Routes = [
-{ path: 'store/:categoria', component: StoreComponent },
-{ path: 'store', component: StoreComponent },
-{ path: 'home', component: HomeComponent },
-{ path: 'carrito', component: CarritoComponent },
-{ path: 'prod/:id', component: ProductoComponent },
-{ path: 'comprar', component:ComprarComponent },
-{ path: 'admin-log', component:LogInComponent },
-{ path: 'contactanos', component:ContactanosComponent},
-{ path: 'pruebas', component:PruebasComponent},
-{ path: 'h12236456', component:PedidosComponent},
+  { path: 'store/:categoria', component:StoreComponent },
+  { path: 'store', component:StoreComponent },
+  { path: 'home', component:HomeComponent },
+  { path: 'carrito', component:CarritoComponent },
+  { path: 'prod/:id', component:ProductoComponent },
+  { path: 'comprar', component:ComprarComponent },
+  { path: 'admin-log', component:LogInComponent },
+  { path: 'contactanos', component:ContactanosComponent },
+  { path: 'pruebas', component:PruebasComponent },
+  { path: 'h12236456', component:PedidosComponent },
 
-{ path: '', redirectTo: '/store/0', pathMatch: 'full' },
-{ path: '**', redirectTo: '/store/0', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CategoriaModel } from '../modelos/categoria-model';
 import { CategoriaService } from '../servicios/categoria.service';
-import { LocalStorageService } from '../servicios/local-storage.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
+import { LocalStorageService } from '../servicios/local-storage.service';
 
 @Component({
   selector: 'app-alert',
@@ -18,6 +18,7 @@ export class AlertComponent implements OnInit {
   @Input() accion:string;
   @Input() accionCancelar:any;
   @Input() productoId:number;
+  @Input() categoriaId:number;
   @Input() ruta:string;
   @Input() tipo:string;
   @Input() metodo:any;
@@ -27,12 +28,12 @@ export class AlertComponent implements OnInit {
   private categoria:CategoriaModel;
   public cantidad:number = 1;
   public tipoInputNumber:any;
+  public spinner:boolean = false;
 
   constructor(
-    private productoService:ProductoService,
-    private categoriaService:CategoriaService,
-    private toolsService:ToolsService,
-    private localStorageService:LocalStorageService
+      private productoService:ProductoService,
+      private categoriaService:CategoriaService,
+      private toolsService:ToolsService
     ){}
 
   actualizar(){
@@ -46,6 +47,7 @@ export class AlertComponent implements OnInit {
 
   funcion(){
     if(this.accion == "eliminar-producto"){
+      this.spinner = true;
       this.eliminarProducto()
     }
     if(this.accion == "agregar-imagen"){
@@ -61,6 +63,15 @@ export class AlertComponent implements OnInit {
     }
     if(this.accion == "agregar-categoria"){
       location.reload()
+    }
+    if(this.accion == "eliminar-categoria"){
+      this.spinner = true;
+      this.categoriaService.eliminar(this.categoriaId).subscribe(()=>{
+        location.href='/#/store/0';
+      })
+      setTimeout(()=>{
+        location.reload();
+    }, 2000);
     }
     else{
       this.mostrar.emit();
@@ -78,6 +89,7 @@ export class AlertComponent implements OnInit {
 
   eliminarProducto(){
     this.productoService.eliminar(this.productoId).subscribe(()=>{
+      location.href='/#/store/0';
     });
     setTimeout(function(){
       location.href='/#/store/0';

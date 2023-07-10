@@ -78,13 +78,19 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  public aumentarProducto(productoID:number){
+  public aumentarProducto(productoID:number,cantidad:number,cantidadmaxima:number){
+    let max:number;
+    if(cantidadmaxima){
+      max = cantidadmaxima;
+    }else{
+      max = 5;
+    }
+    if(cantidad < cantidadmaxima){
+      if(this.carritoLocalStorage != null && this.carritoLocalStorage!= undefined){
+        this.carritoLocalStorage = JSON.parse(this.carritoLocalStorage);
+        this.carritoLocalStorage.push(productoID);
 
-    if(this.carritoLocalStorage != null && this.carritoLocalStorage!= undefined){
-      this.carritoLocalStorage = JSON.parse(this.carritoLocalStorage);
-      this.carritoLocalStorage.push(productoID);
-
-      localStorage.setItem("carrito",JSON.stringify(this.carritoLocalStorage));
+        localStorage.setItem("carrito",JSON.stringify(this.carritoLocalStorage));
 
       }else{
         this.carritoLocalStorage = [productoID];
@@ -92,20 +98,23 @@ export class CarritoComponent implements OnInit {
       };
 
       location.reload();
-}
-
-  public disminuirProducto(id:number){
-    let nuevaLista:any = [];
-    let revisados:any = [];
-
-    for(let elemento of this.carritoId){
-      if(elemento != id || revisados.includes(elemento)){
-        nuevaLista.push(elemento);
-      }
-      revisados.push(elemento);
     }
-    localStorage.setItem("carrito",JSON.stringify(nuevaLista));
-    location.reload();
+  }
+
+  public disminuirProducto(id:number,cantidad:number):void {
+    if(cantidad > 1){
+      let nuevaLista:any = [];
+      let revisados:any = [];
+
+      for(let elemento of this.carritoId){
+        if(elemento != id || revisados.includes(elemento)){
+          nuevaLista.push(elemento);
+        }
+        revisados.push(elemento);
+      }
+      localStorage.setItem("carrito",JSON.stringify(nuevaLista));
+      location.reload();
+    }
   }
 
   public eliminarProducto(id:number){

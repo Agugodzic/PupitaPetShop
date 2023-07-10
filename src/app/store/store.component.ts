@@ -34,8 +34,9 @@ export class StoreComponent implements OnInit {
   private categoria:any;
 
   private cantidadDePaginas = this.numerosDePagina().length;
-  private paginas = this.numerosDePagina();
+  public paginas = this.numerosDePagina();
   public paginaActual:number = 1;
+  public listaDePaginas:number[];
 
   public agregarProducto:boolean = false;
   public longitud = this.ToolsService.recortarString;
@@ -95,10 +96,12 @@ export class StoreComponent implements OnInit {
         this.loading = false;
         this.listaDeProductos = response.productos;
         this.cantidadDeProductos = response.cantidad;
+
         this.estadoRecursos = 'defined';
         this.cantidadDePaginas = this.numerosDePagina().length;
         this.paginas = this.numerosDePagina();
         this.textoAlternativo = "No se encontraron coincidencias.";
+        this.numerosDePagina()
     }
     );
   }
@@ -164,9 +167,9 @@ export class StoreComponent implements OnInit {
     this.loading = true;
 
     if (orden == 'menorPrecio') {
-      this.ordenPrecio = 'desc';
-    } else if (orden == 'mayorPrecio') {
       this.ordenPrecio = 'asc';
+    } else if (orden == 'mayorPrecio') {
+      this.ordenPrecio = 'desc';
     }
     this.paginaActual = 1;
     this.filtrarProductos();
@@ -197,34 +200,54 @@ export class StoreComponent implements OnInit {
     if (this.paginaActual < this.cantidadDePaginas) {
       this.paginaActual = this.paginaActual + 1;
       this.loading = true;
-      this.listarProductos(this.paginaActual);
+      if(this.productoFiltro == 'Todos los productos'){
+        this.listarProductos(this.paginaActual);
+      }else{
+        this.filtrarProductos();
+      }
     }
   }
 
   public ultimaPagina(): void {
     this.paginaActual = this.numerosDePagina().length;
     this.loading = true;
-    this.listarProductos(this.paginaActual);
+    if(this.productoFiltro == 'Todos los productos'){
+      this.listarProductos(this.paginaActual);
+    }else{
+      this.filtrarProductos();
+    }
   }
 
   public anterior(): void {
     if (this.paginaActual > 1) {
       this.paginaActual--;
       this.loading = true;
-      this.listarProductos(this.paginaActual);
+      if(this.productoFiltro == 'Todos los productos'){
+        this.listarProductos(this.paginaActual);
+      }else{
+        this.filtrarProductos();
+      }
     }
   }
 
   public primeraPagina(): void {
     this.paginaActual = 1;
     this.loading = true;
-    this.listarProductos(this.paginaActual);
+    if(this.productoFiltro == 'Todos los productos'){
+      this.listarProductos(this.paginaActual);
+    }else{
+      this.filtrarProductos();
+    }
   }
 
   public cambiarPagina(pagina: number): void {
     this.paginaActual = pagina;
     this.loading = true;
-    this.listarProductos(pagina);
+    if(this.productoFiltro == 'Todos los productos'){
+      this.listarProductos(this.paginaActual);
+    }else{
+      this.filtrarProductos();
+    }
   }
 
   public numerosDePagina() {
@@ -240,12 +263,11 @@ export class StoreComponent implements OnInit {
         contador = 1;
       }
     }
+    this.listaDePaginas = listaPaginas;
     return listaPaginas;
   }
 
-  public get listaPaginas() {
-    return this.paginas;
-  }
+
 
   ngOnInit() {/*
     this.productos$().subscribe((response)=> {})*/

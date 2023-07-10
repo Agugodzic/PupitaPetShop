@@ -19,6 +19,20 @@
     <div *ngIf="spinner" id="spinner-container">
       <app-spinner  class="spinner"></app-spinner>
     </div>
+    <div *ngIf="cantidad && cantidad > cantidadMaxima">
+      <p style="color:rgb(238, 60, 60);font-size:14px;">Este producto tiene un limite por compra de {{cantidadMaxima}} unidades.
+        Contactanos para mayores cantidades.
+      </p>
+    </div>
+    <div *ngIf="!cantidad">
+      <p style="color:rgb(238, 60, 60);font-size:14px;">
+        Selecciona una cantidad.
+      </p>
   </div>
+  <div *ngIf="cantidad < 0">
+    <p style="color:rgb(238, 60, 60);font-size:14px;">
+      Selecciona una cantidad valida.
+    </p>
+</div>
 
 </div>

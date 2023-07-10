@@ -27,11 +27,11 @@
           <div id="cantidad">{{producto.cantidad}}</div>
             <div id="botones-cantidad">
 
-              <button (click)="aumentarProducto(producto.producto.id)" class="boton-cantidad material-symbols-outlined">
+              <button (click)="aumentarProducto(producto.producto.id,producto.cantidad,producto.producto.cantidadmaxima)" class="boton-cantidad material-symbols-outlined">
                 <p class="flecha">arrow_drop_up</p>
               </button>
 
-              <button (click)="disminuirProducto(producto.producto.id)" class="boton-cantidad material-symbols-outlined">
+              <button (click)="disminuirProducto(producto.producto.id,producto.cantidad)" class="boton-cantidad material-symbols-outlined">
                 <p class="flecha">arrow_drop_down</p>
               </button>
 

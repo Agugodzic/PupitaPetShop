@@ -46,6 +46,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   public loading:boolean = true;
   public loadingImagenes:boolean = true;
   private imagenes:any = ["","","",""];
+  public cantidadmaxima:number = 5;
     /*public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
   };*/
@@ -74,6 +75,11 @@ export class ProductoComponent implements OnInit, OnDestroy {
         this.loadingImagenes = false;
         this.loading = false;
         this.categoria = this.producto.categoria;
+
+        if(this.producto.cantidadmaxima > 0){
+          this.cantidadmaxima = this.producto.cantidadmaxima;
+        }
+
   })
   }
 
@@ -173,8 +179,10 @@ export class ProductoComponent implements OnInit, OnDestroy {
   }
 
   public agregarAlCarrito(productoID:number,cantidad:number){
-      this.ToolsService.agregarAlCarrito(productoID,cantidad)
-      this.mostrarAlert = true;
+      if(cantidad && cantidad <= this.cantidadmaxima && this.cantidad > 0){
+        this.ToolsService.agregarAlCarrito(productoID,cantidad)
+        this.mostrarAlert = true;
+      }
   }
 
   public listarImagenes(){

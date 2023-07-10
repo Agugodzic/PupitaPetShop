@@ -22,6 +22,8 @@ export class AlertComponent implements OnInit {
   @Input() ruta:string;
   @Input() tipo:string;
   @Input() metodo:any;
+  @Input() productoCantidadMaxima:number;
+
 
   @Output() mostrar = new EventEmitter();
 
@@ -29,6 +31,7 @@ export class AlertComponent implements OnInit {
   public cantidad:number = 1;
   public tipoInputNumber:any;
   public spinner:boolean = false;
+  public cantidadMaxima = 5;
 
   constructor(
       private productoService:ProductoService,
@@ -58,8 +61,10 @@ export class AlertComponent implements OnInit {
       location.reload()
     }
     if(this.accion == "agregar-carrito"){
-      this.agregarAlCarrito();
-      location.reload();
+      if(this.cantidad && this.cantidad <= this.cantidadMaxima && this.cantidad > 0){
+        this.agregarAlCarrito();
+        location.reload();
+      }
     }
     if(this.accion == "agregar-categoria"){
       location.reload()
@@ -103,5 +108,8 @@ export class AlertComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipoInputNumber = this.tipo == "inputNumber"
+    if(this.productoCantidadMaxima){
+      this.cantidadMaxima = this.productoCantidadMaxima;
+    }
   }
 }

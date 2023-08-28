@@ -63,12 +63,16 @@ export class ProductoService {
     return this.http.get<ProductoModel[]>(`${this.apiServerUrl}/productos/listarInfo`);
   }
 
-  public editar(curso:ProductoModel):Observable<ProductoModel>{
-    return this.http.put<ProductoModel>(`${this.apiServerUrl}/productos/editar`,curso);
+  public editar(producto:ProductoModel):Observable<ProductoModel>{
+    return this.http.put<ProductoModel>(`${this.apiServerUrl}/productos/editar`,producto);
   }
 
-  public agregar(curso:ProductoModel):Observable<ProductoModel>{
-    return this.http.post<ProductoModel>(`${this.apiServerUrl}/productos/agregar`,curso);
+  public variarPrecios(porcentaje:any):Observable<ProductoModel>{
+    return this.http.put<any>(`${this.apiServerUrl}/productos/variar-precios`,porcentaje);
+  }
+
+  public agregar(producto:ProductoModel):Observable<ProductoModel>{
+    return this.http.post<ProductoModel>(`${this.apiServerUrl}/productos/agregar`,producto);
   }
 
   public eliminar(id:number):Observable<any>{

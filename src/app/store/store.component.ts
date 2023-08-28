@@ -22,12 +22,13 @@ export class StoreComponent implements OnInit {
 
   @Input() productoIn:string = 'all';
 
+  public mostrarVariarPrecios:boolean = false;
   public productoFiltro: string = 'all';
   public marcaFiltro: string = 'Todas las marcas';
   public logged:boolean = true;
   public textoAlternativo:string = "";
   public estadoRecursos:any;
-  private ordenPrecio:string = 'asc';
+  private ordenPrecio:string = 'none';
 
   public listaDeProductos:ProductoModel[] = [];
 
@@ -119,6 +120,10 @@ export class StoreComponent implements OnInit {
     this.mostrarSelectorCategorias = !this.mostrarSelectorCategorias;
   }
 
+  public switchVariarPrecios(){
+    this.mostrarVariarPrecios= !this.mostrarVariarPrecios;
+  }
+
   public switchEliminarCategoria(mostrar:boolean,id:number):void{
     if(mostrar){
       this.eliminarCategoriaId = id;
@@ -170,7 +175,10 @@ export class StoreComponent implements OnInit {
       this.ordenPrecio = 'asc';
     } else if (orden == 'mayorPrecio') {
       this.ordenPrecio = 'desc';
+    }else{
+      this.ordenPrecio = 'none';
     }
+
     this.paginaActual = 1;
     this.filtrarProductos();
   }

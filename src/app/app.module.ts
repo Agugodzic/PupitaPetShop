@@ -40,6 +40,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoadderComponent } from './loadder/loadder.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImagenService } from './servicios/imagen.service';
+import { VariarPreciosComponent } from './formularios/variar-precios/variar-precios.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ImagenService } from './servicios/imagen.service';
     PedidosComponent,
     PedidoComponent,
     LoadderComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    VariarPreciosComponent
   ],
   imports: [
     MatIconModule,

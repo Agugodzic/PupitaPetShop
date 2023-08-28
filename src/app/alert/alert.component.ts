@@ -102,12 +102,14 @@ export class AlertComponent implements OnInit {
 
   }
 
+
+
   agregarCategoria(){
     this.categoriaService.agregar(this.categoria).subscribe();
   }
 
   ngOnInit(): void {
-    this.tipoInputNumber = this.tipo == "inputNumber"
+    this.tipoInputNumber = this.tipo == "inputNumber";
     if(this.productoCantidadMaxima){
       this.cantidadMaxima = this.productoCantidadMaxima;
     }

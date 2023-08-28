@@ -1,0 +1,21 @@
+<div id="fondo">
+  <div id="alert">
+    <p id="titulo">Seleccione un porcentaje para aumentar o disminuir los precios.</p>
+
+    <div>
+    <span style="margin-right:16px;font-size:15px">Porcentaje:</span>
+      <input
+        [(ngModel)]='porcentaje'
+        id="input-cantidad"
+        type="number"
+        value="1">
+    </div>
+
+    <button class="boton1" (click)="variarPrecios()">Aplicar</button>
+    <button id="boton-cancelar" class="boton2" (click)="cancelar()">Cancelar</button>
+    <div *ngIf="spinner" id="spinner-container">
+      <app-spinner  class="spinner"></app-spinner>
+    </div>
+
+
+</div>

@@ -7,6 +7,8 @@ export interface ProductoModel{
   descripcioncorta:String;
   descripcion:String;
   cantidadmaxima:number;
+  talle:String;
+  preview:String;
   imagen1:any;
   imagen2:any;
   imagen3:any;

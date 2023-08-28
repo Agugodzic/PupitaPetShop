@@ -132,37 +132,40 @@ export class FormProductoComponent implements OnInit {
   public image1Change(event:any):any{
     let imagen = event.target.files[0];
     this.extraerBase64(imagen).then((image:any) => {
-      this.resizeBase64Img(image.base,400).then((img:any) => {
+      this.resizeBase64Img(image.base,400,1).then((img:any) => {
       this.imageFile1 = img;
       })}
   )}
 
-  public resizeBase64Img(base64:string, newWidth:number) {return new Promise((resolve, reject)=>{
-        let image:any, oldHeight:number, oldWidth:number, newHeight:number, canvas, context;
+  public resizeBase64Img(base64: string, newWidth: number, quality: number): Promise<string> {
+    return new Promise((resolve, reject) => {
+      let image = new Image();
+      image.src = base64;
 
-        image =  new Image();
-        image.src = base64;
+      image.onload = function () {
+        const oldWidth = image.width;
+        const oldHeight = image.height;
+        const newHeight = Math.floor(oldHeight / oldWidth * newWidth);
 
-        image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = newWidth;
+        canvas.height = newHeight;
 
-          oldWidth = image.width;
-          oldHeight = image.height;
-          newHeight = Math.floor(oldHeight / oldWidth * newWidth);
+        const context = canvas.getContext("2d");
 
-          canvas = document.createElement("canvas");
-          canvas.width = newWidth;
-          canvas.height = newHeight;
+        if (context !== null) {
+          context.drawImage(image, 0, 0, newWidth, newHeight);
 
-          context = canvas.getContext("2d");
-
-          if(context != null){
-            //context.scale(newWidth/image.width,  newHeight/image.height);
-            context.drawImage(image, 0, 0, newWidth, newHeight);
-            resolve(canvas.toDataURL());
-          }else{
-            console.log("no")
-          }
-      }
+          // Convert the canvas data to a base64 string with the specified quality
+          const compressedBase64 = canvas.toDataURL("image/png", quality);
+          resolve(compressedBase64);
+        } else {
+          reject(new Error("Canvas context is null."));
+        }
+      };
+      image.onerror = function (error) {
+        reject(error);
+      };
     });
   }
 

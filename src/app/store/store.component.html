@@ -17,7 +17,12 @@
     [categoriaId]="eliminarCategoriaId"
     accion="eliminar-categoria"
     (mostrar)="switchEliminarCategoria($event,0)"
-    ></app-alert>
+  ></app-alert>
+
+  <app-variar-precios
+    *ngIf="mostrarVariarPrecios"
+    (mostrar)="switchVariarPrecios()"
+  ></app-variar-precios>
 
   <div id="contenedor-formulario" *ngIf="mostrarSelectorCategorias">
     <div class="centrar">
@@ -106,6 +111,7 @@
 
     <button class="boton-lateral" (click)="ordenarProductos('menorPrecio')">Menor precio</button>
     <button class="boton-lateral" (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
+    <button class="boton-lateral" (click)="ordenarProductos('noOrdenar')">No ordenar</button>
   </div>
 
 </div>
@@ -117,6 +123,7 @@
   <div *ngIf="listaDeProductos.length !== 0 || loading"  id="galeria">
 
     <div id="contenedor-filtros">
+      <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchVariarPrecios()">Variar Precios</button>
       <button *ngIf="getLogValue()" id="boton-agregar" (click)="switchAgregar()">Agregar Producto</button>
 
       <span id="filtros">{{"Tienda / " + productoFiltro }}</span>

@@ -75,6 +75,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
         this.loadingImagenes = false;
         this.loading = false;
         this.categoria = this.producto.categoria;
+        this.listarRelacionados(this.categoria);
 
         if(this.producto.cantidadmaxima > 0){
           this.cantidadmaxima = this.producto.cantidadmaxima;
@@ -83,8 +84,8 @@ export class ProductoComponent implements OnInit, OnDestroy {
   })
   }
 
-  public listarRelacionados(){
-    this.ProductoService.relacionados('all',4).subscribe(
+  public listarRelacionados(categoria:string){
+    this.ProductoService.relacionados(categoria,5).subscribe(
       (response:ProductoModel[]) =>{
         this.productosRelacionados = response;
       }
@@ -231,8 +232,6 @@ export class ProductoComponent implements OnInit, OnDestroy {
 
     this.listarImagenes();
     this.solicitarProducto(this.productoId);
-    this.listarRelacionados();
-
   }
 
 

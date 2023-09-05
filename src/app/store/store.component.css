@@ -26,13 +26,15 @@
 }
 
 
-p {
+p{
   font-family: Lato;
 }
+
 button {
   margin: 2px;
   cursor: pointer;
 }
+
 span {
   margin: 3px;
 }
@@ -40,6 +42,7 @@ span {
 #contenedor-store {
   min-height: calc(100vh);
 }
+
 #galeria {
   margin: 5px;
   margin-bottom: 50px;
@@ -50,11 +53,12 @@ span {
   border-radius: 4px;
   padding: 2px;
   width: 76vw;
-
 }
+
 .contenedorProducto {
   display: inline;
 }
+
 #chat {
   position: fixed;
   height: 45px;
@@ -62,9 +66,11 @@ span {
   right: 20px;
   cursor: pointer;
 }
+
 #chat:hover {
   height: 50px;
 }
+
 #contenedor-tools {
   margin-top: 7px;
   padding: 5px;
@@ -73,7 +79,6 @@ span {
   background-color:rgb(255, 255, 255);
   animation-name: transicionNavegador;
   animation-duration: 0.3s;
-
   /*
   border-bottom-style: solid ;
   border-color: rgba(155, 98, 29, 0.596);
@@ -81,6 +86,7 @@ span {
 
   padding-bottom: 0;
 }
+
 .tools {
   display: inline;
   margin: 10px;
@@ -91,6 +97,7 @@ span {
   margin-left: 40px;
   color: #000000;
 }
+
 .tool {
   display: inline;
   position:relative;
@@ -106,7 +113,7 @@ span {
   display: inline-block;
   text-align: left;
   width: fit-content;
-  padding: 20px 40px 20px 10px;
+  padding: 20px 10px 20px 30px;
   border-radius: 4px;
   position: relative;
   color: rgb(0, 0, 0);
@@ -163,15 +170,19 @@ span {
   color: rgb(0, 0, 0);
   font-size: 14px;
   background-color: rgba(0, 0, 0, 0);
+  border-radius: 6px;
 }
 
 .botonLateral:hover {
   color: rgb(138, 91, 39);
+  color: rgb(245, 114, 0);
 }
+
 .lat-menu {
   margin-bottom: 25px;
   margin-top: 10px;
 }
+
 .boton-lateral-patita{
   position:absolute;
   height: 30px;
@@ -180,10 +191,12 @@ span {
   left:5px;
   transform: translateY(-7px);
 }
+
 #no-coincidencias{
   margin-top:65px;
   color:rgba(0, 0, 0, 0.76);
 }
+
 #contenedor-formulario{
   position:fixed;
   height:100vh;
@@ -196,6 +209,7 @@ span {
   top:0px;
   left:0px;
 }
+
 .centrar{
   position:relative;
   margin-left: auto;
@@ -203,6 +217,7 @@ span {
   display: flex;
   direction:row;
 }
+
 .cerrar{
   position:absolute;
   top:10px;
@@ -213,13 +228,16 @@ span {
   background-color: rgba(0, 0, 0, 0);
   z-index: 2000;
 }
+
 .cerrar:hover{
   opacity: 100%;
 }
+
 .imagen-cerrar{
   height: 17px;
   cursor:pointer;
 }
+
 #contenedor-filtros{
   margin: 0px 18px;
   padding-top: 0px;
@@ -229,16 +247,19 @@ span {
   display: flex;
   align-items: center;
 }
+
 #filtros {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: italic;
   color: rgba(0, 0, 0, 0.459);
 }
+
 #selector-categoria-out{
   text-align: end;
   flex-grow: 2;
   visibility: hidden;
 }
+
 #selector-categoria-out-boton{
   display: inline;
   border-width: 1px;
@@ -252,6 +273,7 @@ span {
   z-index: 5000;
   width: 110px;
 }
+
 #boton-agregar{
   background-color: rgb(224, 224, 224);
   border-color:rgba(97, 86, 86, 0.671);
@@ -263,10 +285,12 @@ span {
   padding-bottom: 4px;
   height: 25px;
 }
+
 #boton-agregar:hover{
   background-color: rgba(211, 211, 211, 0.897);
   color:rgb(102, 102, 102);
 }
+
 #selector-categorias{
   width: 75vw;
   height: auto;
@@ -277,6 +301,7 @@ span {
   border-radius: 5px;
   overflow: hidden;
 }
+
 .selector-categorias-opcion{
   font-size: 17px;
   display: block;
@@ -289,6 +314,7 @@ span {
   margin: 0;
   font-family:'Montserrat', sans-serif;
 }
+
 .controladorPaginas {
   background-color: rgba(255, 255, 255, 0.856);
   color: rgba(0, 0, 0, 0.829);
@@ -300,21 +326,26 @@ span {
   border-width: 1px;
   border-color: #a3a3a3;
 }
+
 .controladorPaginas:hover {
   color: rgb(0, 0, 0);
 }
+
 .material-symbols-numeros{
   height: 7px;
 }
+
 #numerosDePagina {
   display: inline;
   border: none;
   background-color: rgba(0, 0, 0, 0);
 }
+
 #selectorDePaginas {
   margin-bottom: 0px;
   height: 12px;
 }
+
 .numerosDePagina {
   background-color: rgba(240, 248, 255, 0);
   padding: 6px;
@@ -329,12 +360,15 @@ span {
   border-radius: 3px;
   font-size: 13px;
 }
+
 .numerosDePagina:hover {
   color: black;
 }
+
 .material-symbols-outlined{
   font-size: 22px;
 }
+
 #desplegable{
 	position: absolute;
 	background: #ffffff;
@@ -346,15 +380,18 @@ span {
   padding: 8px;
   text-align: left;
 }
+
 .tool:hover #desplegable{
   visibility: visible;
 }
+
 .desplegable-tool{
   margin:10px;
   font-size: 13px;
   display: inline;
   cursor:pointer;
 }
+
 .desplegable-categoria{
 	display: block;
 	color: #fff;
@@ -364,12 +401,15 @@ span {
   padding-bottom: 12px;
   padding-left: 3px;
 }
+
 .desplegable-categoria:hover{
   background-color: rgba(131, 73, 8, 0.288);
 }
+
 .tool:active .desplegable{
   visibility: hidden;
 }
+
 #mensaje-espera{
   font-size: 15px;
   margin-top: 35px;

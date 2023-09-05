@@ -122,11 +122,12 @@ input[type=number]::-webkit-inner-spin-button-
 #texto-descripcion {
   white-space:pre-wrap;
   text-align: justify;
+  text-decoration: none;
   font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500;
+  color:rgba(0, 0, 0, 0.965);
   font-style: normal;
-  font-weight: 400;
-  color:rgba(0, 0, 0, 0.794);
 }
 
 #descripcion-corta {
@@ -135,16 +136,16 @@ input[type=number]::-webkit-inner-spin-button-
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   color:rgba(0, 0, 0, 0.794);
   text-transform: lowercase;
 }
 
 #descripcion-titulo{
   font-size: 24px;
-  text-align: left;
-  opacity: 80%;
+  text-align: left;;
   margin-bottom:0px;
+  font-weight: 600;
 }
 
 #botones{
@@ -192,7 +193,6 @@ span {
   margin-top:80px;
   white-space: nowrap;
   width: 76vw;
-
 }
 
 p {
@@ -200,14 +200,12 @@ p {
 }
 
 #galeria {
-  margin: 40px;
   margin-top: 20px;
-  background: rgba(35, 68, 216, 0);
   display: block;
   border-radius: 4px;
   padding: 5px;
   height: fit-content;
-  width: fit-content;
+  width: 100%;
 }
 
 .contenedorProducto {

@@ -5,6 +5,7 @@ mat-icon{
   transform: translateY(1px);
   opacity: 80%;
 }
+
 .producto {
   display: inline-block;
   width: 186px;
@@ -19,14 +20,18 @@ mat-icon{
   animation-duration: 0.4s;
   border-style: solid;
   border-width: 1px ;
-  border-color: #e6e6e6;
-  border-radius: 2px;
+  /*border-color: #e6e6e6;*/
+  border-color: #e0e0e085;
+  border-radius: 5px;
   vertical-align: top;
-  /*background-color: rgba(255, 0, 0, 0.473);*/
+  background-color: rgb(255, 255, 255);
 }
+
 .producto:hover{
-  border-color: #00000048;
+ border-color: #00000048;
+   /*box-shadow: 0px 1px 4px 2px rgba(56, 56, 56, 0.122);*/
 }
+
 .producto-imagen {
   max-height: 182px;
   max-width: 182px;
@@ -53,14 +58,18 @@ mat-icon{
 .producto-nombre {
   font-size: 16px;
   min-height: 40px;
+  font-weight: 500;
   margin: 13px;
 }
+
 .producto-descripcion {
   font-size: 14px;
   margin: 12px;
   min-height: 52px;
-  opacity: 75%;
+  font-weight: 500;
+  opacity: 85%;
 }
+
 .producto-precio {
   margin: 10px;
   color: rgba(46, 192, 46, 0.952);
@@ -68,12 +77,14 @@ mat-icon{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 15px;
 }
+
 .agregar-input{
   height: 22px;
   width: 20px;
   display: inline;
   margin-right: 15px;
 }
+
 .agregar-boton{
   display:inline;
   margin:12px;
@@ -89,9 +100,8 @@ mat-icon{
   border-style: none;
   cursor:pointer;
   z-index:60000;
-
-
 }
+
 .agregar-boton:hover{
   background-color: rgba(65, 137, 230, 0.192);
   color:rgba(12, 48, 167, 0.63);
@@ -107,30 +117,37 @@ mat-icon{
     padding: 0px;
     margin: 2vw;
   }
+
   .producto-imagen {
     max-height: 41.7vw;
     max-width: 41.7vw;
     margin-bottom: 6px;
     margin:0;
   }
+
   #contenedor-imagen{
     height: 42vw;
     width: 42vw;
     margin:0;
 
   }
+
   .producto-nombre {
     font-size: 4vw;
     min-height: 8vw;
   }
+
   .producto-descripcion {
     font-size: 3vw;
     min-height: 8vw;
     margin: 1px;
+    color:rgb(4, 51, 70);
   }
+
   .producto-precio {
     font-size: 15px;
   }
+
   .agregar{
     padding:6px;
     margin:2px;

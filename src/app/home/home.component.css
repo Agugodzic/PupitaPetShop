@@ -84,8 +84,8 @@
 }
 .etiqueta-filtro{
   width: var(--tamaño-filtro);
-  height: calc( var(--tamaño-filtro) / 5 );
-  margin-top: calc(var(--tamaño-filtro) - calc( var(--tamaño-filtro) / 5 ) );
+  height: calc( var(--tamaño-filtro) / 4 );
+  margin-top: calc(var(--tamaño-filtro) - calc( var(--tamaño-filtro) / 4 ) );
   background-color: rgba(9, 10, 16, 0.257);
   color: rgb(255, 255, 255);
   font-family: 'Monserrat', sans-serif;

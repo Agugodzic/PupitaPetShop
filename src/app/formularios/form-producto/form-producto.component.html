@@ -25,12 +25,15 @@
     <!------------------- datos basicos / descripcion corta --------------------->
 
     <div class="contenedor-inl">
-      <p class="descripcion-input">Datos basicos:</p>
+      <p class="descripcion-input">Nombre:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
+      <p class="descripcion-input">Precio $:</p>
       <p><input class="form-control" type="number" placeholder="Precio" formControlName="precio" min="1"></p>
+      <p class="descripcion-input">Limite por compra:</p>
       <p><input class="form-control" type="number" placeholder="Limite por compra" formControlName="cantidadmaxima" min="1"></p>
       <!--<p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>-->
 
+      <p class="descripcion-input">Categoria:</p>
       <p style="text-align:start">
         <select default="22" name="Categoria" class="form-control" id="select-input" placeholder="Categoria" formControlName="categoria" required>
         <option *ngIf="categoriaEditarProducto.categoria != null" selected>{{categoriaEditarProducto.categoria}}</option>
@@ -41,14 +44,13 @@
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>
-      <textarea class="campo-de-texto scroll" maxlength="255" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+      <textarea class="scroll" maxlength="255" placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
     </div>
 
     <div class="contenedor-inl">
 
 <!------------------- inputs de imagen --------------------->
 
-<p class="descripcion-input">Imagen:</p>
 <div class="container-input">
   <input (change)="image1Change($event)" formControlName="imagen1" accept="image/*" type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"/>
   <label for="file-1">
@@ -62,7 +64,20 @@
 <!------------------- descripcion larga --------------------->
 
       <p class="descripcion-input">Descripcion larga:</p>
-      <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+      <div class="textarea-container">
+        <div class="textarea-buttons">
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','⭐')">⭐</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','👍')">👍</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','❤️')">❤️</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','🔥')">🔥</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','⚡️')">⚡️</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','🔶')">🔶</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','♦')">♦</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','●')">●</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-editar','▸')">▸</button>
+        </div>
+        <textarea #textareaDescripcionEditar class="scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+      </div>
     </div>
 
 <!------------------------- botones ------------------------->
@@ -84,12 +99,14 @@
 
     <!------------------- datos basicos / descripcion corta --------------------->
 
-      <p class="descripcion-input">Datos basicos:</p>
+    <p class="descripcion-input">Nombre:</p>
       <p><input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"></p>
+      <p class="descripcion-input">Precio $:</p>
       <p><input min="1" class="form-control" type="number" placeholder="Precio" formControlName="precio"></p>
+      <p class="descripcion-input">Limite por compra:</p>
       <p><input class="form-control" type="number" placeholder="Limite por compra" formControlName="cantidadmaxima" min="1"></p>
       <!--<p><input class="form-control" type="text" placeholder="Marca" formControlName="marca"></p>-->
-
+      <p class="descripcion-input">Categoria:</p>
       <p style="text-align:start">
         <select name="Categoria" class="form-control" placeholder="Categoria" formControlName="categoria">
         <option *ngIf="nuevaCategoria">{{this.nuevaCategoria.categoria}}</option>
@@ -100,7 +117,7 @@
       </p>
 
       <p class="descripcion-input">Descripcion corta:</p>
-      <textarea class="campo-de-texto scroll" maxlength="255"  placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
+      <textarea class="scroll" maxlength="255"placeholder="Descripcion corta" formControlName="descripcioncorta"></textarea>
     </div>
 
     <div class="contenedor-inl">
@@ -112,8 +129,6 @@
         <img *ngIf="imageFile1" [src]="imageFile1" style="max-height:170px;max-width:170px">
       </div>
 
-
-      <p class="descripcion-input">Imagenes:</p>
       <div class="container-input">
         <input (change)="image1Change($event)" formControlName="imagen1" accept="image/*" type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"/>
         <label for="file-1">
@@ -125,7 +140,20 @@
       <!------------------- descripcion larga --------------------->
 
       <p class="descripcion-input">Descripcion larga:</p>
-      <textarea class="campo-de-texto scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+      <div class="textarea-container">
+        <div class="textarea-buttons">
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','⭐')">⭐</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','👍')">👍</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','❤️')">❤️</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','🔥')">🔥</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','⚡️')">⚡️</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','🔶')">🔶</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','♦')">♦</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','●')">●</button>
+          <button type="button" class="icon-button" (click)="insertarIcono('descripcion-agregar','▸')">▸</button>
+        </div>
+      <textarea #textareaDescripcionAgregar class="scroll" placeholder="Descripcion larga" formControlName="descripcion"></textarea>
+      </div>
     </div>
 
     <!------------------------- botones ------------------------->

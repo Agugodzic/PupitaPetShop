@@ -79,7 +79,7 @@ export class StoreComponent implements OnInit {
     this.ProductoService.rango(rango).subscribe(
       (response:RangoModel) =>{
         this.loading = false;
-        this.listaDeProductos = response.productos;
+        this.listaDeProductos = this.ToolsService.ordenarProductosPorTalle(response.productos);
         this.cantidadDeProductos = response.cantidad;
         this.estadoRecursos = 'defined';
 
@@ -95,7 +95,7 @@ export class StoreComponent implements OnInit {
     this.ProductoService.filtrar(this.paginaActual,this.productoFiltro,this.ordenPrecio).subscribe(
       (response:FiltroModel)  =>{
         this.loading = false;
-        this.listaDeProductos = response.productos;
+        this.listaDeProductos = this.ToolsService.ordenarProductosPorTalle(response.productos);
         this.cantidadDeProductos = response.cantidad;
 
         this.estadoRecursos = 'defined';

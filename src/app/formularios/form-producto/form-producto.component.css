@@ -10,12 +10,17 @@
   align-items: center;
   justify-content: center;
   /*ackground-color: rgba(255, 255, 255, 0);*/
-  height:170px;width:170px;
+  height:180px;
+  width:180px;
   border-style: solid;
   border-radius: 4px;
   border-width: 2px;
   border-color: #00000042;
-  margin-left: 15px;
+  margin: 25px auto;
+}
+
+.container-input{
+  margin: 0 auto;
 }
 
 /* INPUT FILE STYLES*/
@@ -92,14 +97,44 @@ font-family:'Montserrat', sans-serif;
 }
 
 p{
+  position:relative;
   color:black;
   text-align: left;
+  width: 100%;
+  padding:0;
+  margin-top: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+input[type="text"],input[type="password"],input[type="number"],textarea {
+  width: 100%;
+  margin:0;
+  padding:2px 4px;
+  box-sizing: border-box;
+  min-height: 33px;
+}
+select {
+  width: 100%;
+  min-height: 33px;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  transform: translateX(-5px);
+}
+textarea{
+  height: 100px;
 }
 
 .contenedor-inl{
+  position:relative;
   display: inline-block;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding:1px 35px;
+  width: 350px;
+  box-sizing: border-box;
+
 }
 
 .contenedor-block{
@@ -127,7 +162,7 @@ form{
   z-index:1000;
   overflow-y: scroll;
   max-height: 90vh;
-  max-width: 90vw;
+  max-width: 100%;
 
 }
 
@@ -135,7 +170,7 @@ form{
   font-family:'Montserrat', sans-serif;
   padding-top:0px;
   padding-bottom:0px;
-  background-color: rgba(119, 117, 117, 0);
+  background-color: rgba(41, 159, 71, 0.467);
   max-height:none;
   min-width: 0;
   margin-left: auto;
@@ -177,6 +212,10 @@ form{
   font-size: 14px;
   border-style: none;
   cursor:pointer;
+}
+
+.descripcion-input{
+  margin-bottom:5px !important;
 }
 
 .nueva-categoria:hover{
@@ -245,6 +284,34 @@ form{
   margin: 15px;
 }
 
+.textarea-container{
+  width: 100%;
+}
+
+.textarea-buttons{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: rgb(208, 208, 208);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  align-items:center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.icon-button{
+  height:25px;
+  width:25px;
+  margin:0;
+  box-sizing: border-box;
+  padding:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:none;
+}
+
 .campo-de-texto{
   height: 100px;
   width: 210px;
@@ -274,8 +341,9 @@ form{
   background-color: #000030ad;
 }
 
-@media (max-width:500px){
-  form{
-    width: 350px;
+@media (max-width:450px){
+  .contenedor-inl{
+    width: 95%;
+    margin:5px;
   }
 }

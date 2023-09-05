@@ -85,7 +85,6 @@ html {
 }
 
 #nav {
-  /*background-color: rgb(255, 255, 255);*/
   padding: 12px;
   border-radius: 5px;
   text-align: left;
@@ -99,6 +98,7 @@ html {
 
 #contenedor-nav{
   width: 100vw;
+  max-width: 100%;
   height: 60px;
   display:flex;
   align-items: center;
@@ -110,6 +110,7 @@ html {
   border-bottom-style: solid ;
   border-color: rgba(53, 43, 29, 0.13);
   border-width: 1px;
+  background-color: rgb(255, 255, 255);
 }
 
 #fondo{

@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   public productosRecomendados:any = {undefined:true};
   public loading:boolean = true;
   public images = this.imagenService;
+  public homeFiltros:{nombre:string,imagen:string,link:string}[] = [];
  /* public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
   };*/
@@ -85,6 +86,14 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
+    this.homeFiltros = [
+      {nombre:'Collares',imagen:'assets/images/collares.jpg',link:"/#/store/"+14},
+      {nombre:'Fundas para asiento',imagen:'assets/images/fundas.png',link:"/#/store/"+17},
+      {nombre:'Abrigos',imagen:'assets/images/abrigos.jpg',link:"/#/store/"+29},
+      {nombre:'Correas',imagen:'assets/images/correas.jpg',link:"/#/store/"+5},
+      {nombre:'Moises',imagen:'assets/images/colchonetas.jpg',link:"/#/store/"+22}
+    ]
 
     this.listarProductos();
 

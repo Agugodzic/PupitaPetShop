@@ -193,6 +193,33 @@ export class ToolsService {
     return preferencia;
   }
 
+  public ordenarProductosPorTalle(listaProductos: ProductoModel[]): ProductoModel[] {
+    function obtenerTalle(producto: String): string | null {
+        const match = producto.match(/\((.*?)\)/);
+        return match ? match[1] : null;
+    }
+
+    const productosConTalle: { producto: ProductoModel; talle: string }[] = [];
+    const productosSinTalle: ProductoModel[] = [];
+
+    for (const producto of listaProductos) {
+        const nombreProducto = producto.nombre;
+        const talle = obtenerTalle(nombreProducto);
+        if (talle) {
+            productosConTalle.push({ producto, talle });
+        } else {
+            productosSinTalle.push(producto);
+        }
+    }
+
+    const productosOrdenados = productosConTalle.sort((a, b) =>
+        a.talle.localeCompare(b.talle)
+    );
+
+    return productosSinTalle.concat(productosOrdenados.map(({ producto }) => producto));
+}
+
+
   public extraerBase64 = async ($event: any) => new Promise(
     (resolve, reject):any => {
     try {
@@ -214,7 +241,9 @@ export class ToolsService {
     } catch (e) {
       return null;
     }
-  })
+  });
+
+
 
   public fechaEsp(){
     let fecha = new Date();

@@ -25,50 +25,20 @@
 
 
 <div id="contenedor-filtros">
+
   <div>
 
-    <a class="filtros"
-    href="/#/store/14">
-      <img
-        class="imagen-filtro"
-        src="assets\images\collares.jpg"
-      />
-      <a class="etiqueta-filtro">Collares</a>
-    </a>
-    <a class="filtros"
-    href="/#/store/17"
-    ><img
-      class="imagen-filtro"
-      src="assets\images\fundas.png"
-    />
-    <a class="etiqueta-filtro etiqueta2">Fundas para asiento</a>
-  </a>
-    <a class="filtros"
-      href="/#/store/29"
-        ><img
-          class="imagen-filtro"
-          src="assets\images\abrigos.jpg"
-      />
-      <a class="etiqueta-filtro">Abrigos</a>
-    </a>
-    <a class="filtros"
-      href="/#/store/5"
+    <a *ngFor="let filtro of homeFiltros" class="filtros"
+      [href]="filtro.link"
       ><img
         class="imagen-filtro"
-        src="assets\images\correas.jpg"
+        [src]="filtro.imagen"
       />
-      <a class="etiqueta-filtro">Correas</a>
+      <a class="etiqueta-filtro">{{filtro.nombre}}</a>
     </a>
 
-    <a class="filtros"
-      href="/#/store/22"
-      ><img
-        class="imagen-filtro"
-        src="assets\images\colchonetas.jpg"
-      />
-      <a class="etiqueta-filtro">Moises</a>
-    </a>
   </div>
+
 </div>
 
 
@@ -88,4 +58,3 @@
 <a target="_blank" href="https://api.whatsapp.com/send?phone=+549341157238680&text=Hola!%20quiero%20realizar%20la%20siguiente%20consulta." ><img *ngIf="!getLogValue()" id="chat" [src]=imagen.logoWsp ></a>
 
 </div>
-

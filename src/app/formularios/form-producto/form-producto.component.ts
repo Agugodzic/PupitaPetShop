@@ -1,4 +1,4 @@
-import { Component, Input,  OnInit } from '@angular/core';
+import { Component, Input,  OnInit ,ViewChild , ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaModel } from 'src/app/modelos/categoria-model';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
@@ -13,6 +13,8 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 export class FormProductoComponent implements OnInit {
   @Input() accion:any;
   @Input() producto:any;
+  @ViewChild('textareaDescripcionEditar') textareaDescripcionEditar: ElementRef;
+  @ViewChild('textareaDescripcionAgregar') textareaDescripcionAgregar: ElementRef;
 
   public editarProducto:FormGroup;
   public agregarProducto:FormGroup;
@@ -71,6 +73,58 @@ export class FormProductoComponent implements OnInit {
 
     })
   }
+
+  public insertarIcono(formulario:string,icono:string){
+    let textarea:any;
+    let savedScrollTop = 0;
+    let savedScrollLeft = 0;
+
+
+
+    if(formulario == 'descripcion-editar'){
+      textarea = this.textareaDescripcionEditar.nativeElement as HTMLTextAreaElement;
+      textarea.addEventListener('focus', () => {
+        savedScrollTop = textarea.scrollTop;
+        savedScrollLeft = textarea.scrollLeft;
+      });
+
+      textarea.addEventListener('input', () => {
+        textarea.scrollTop = savedScrollTop;
+        textarea.scrollLeft = savedScrollLeft;
+    });
+
+      const posicionActual = textarea.selectionStart;
+      const texto = textarea.value;
+      const nuevoTexto = texto.slice(0, posicionActual) + icono + texto.slice(posicionActual);
+      textarea.value = nuevoTexto;
+      textarea.focus();
+      const nuevaPosicion = posicionActual + icono.length;
+      textarea.setSelectionRange(nuevaPosicion, nuevaPosicion);
+
+    }else if(formulario == 'descripcion-agregar'){
+
+      if(formulario == 'descripcion-agregar'){
+        textarea = this.textareaDescripcionAgregar.nativeElement as HTMLTextAreaElement;
+        textarea.addEventListener('focus', () => {
+          savedScrollTop = textarea.scrollTop;
+          savedScrollLeft = textarea.scrollLeft;
+        });
+
+        textarea.addEventListener('input', () => {
+          textarea.scrollTop = savedScrollTop;
+          textarea.scrollLeft = savedScrollLeft;
+      });
+
+        const posicionActual = textarea.selectionStart;
+        const texto = textarea.value;
+        const nuevoTexto = texto.slice(0, posicionActual) + icono + texto.slice(posicionActual);
+        textarea.value = nuevoTexto;
+        textarea.focus();
+        const nuevaPosicion = posicionActual + icono.length;
+        textarea.setSelectionRange(nuevaPosicion, nuevaPosicion);
+    }
+  }
+}
 
   public submitEditar(){
     this.spinner = true;

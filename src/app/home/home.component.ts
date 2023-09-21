@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { CategoriaModel } from '../modelos/categoria-model';
-import { ProductoModel } from '../modelos/producto-model';
 import { AuthService } from '../servicios/auth.service';
 import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
-import { listaDeProductos } from '../state/selectors/productos.selectors';
 import { ToolsService } from '../tools.service';
 import { RangoModel } from '../modelos/rango-model';
 import { ImagenService } from '../servicios/imagen.service';
+import { PortadaService } from '../servicios/portada.service';
+import { BannerService } from '../servicios/banner.service';
+import { FiltroService } from '../servicios/filtro.service';
+import { Filtro } from '../modelos/filtro';
 
 @Component({
   selector: 'app-home',
@@ -22,35 +22,92 @@ export class HomeComponent implements OnInit {
   public precio = this.toolsService.precio;
   public longitud = this.toolsService.recortarString;
   public imagen = this.toolsService.imagen;
-  private categorias:CategoriaModel[];
+  public categorias:CategoriaModel[];
   private productos:any = [];
   public productosRecomendados:any = {undefined:true};
-  public loading:boolean = true;
+  public portadaLoaded:boolean = false;
+  public productsLoaded:boolean = false;
+  public loading:boolean = !this.portadaLoaded && !this.productsLoaded;
   public images = this.imagenService;
-  public homeFiltros:{nombre:string,imagen:string,link:string}[] = [];
- /* public productos$():Observable<any>{
-    return this.store.select(listaDeProductos);
-  };*/
+  public homeFiltros:Filtro[] = [];
+  public showEditarPortada:boolean = false;
+  public showEditarFiltro:boolean = false;
+  public portada = "";
+  public banner = "";
+  public filtroFromForm:Filtro | undefined;
+  public deleteFilterId:number;
+  public showAlertFiltro:boolean = false;
 
   constructor(
     private productoService:ProductoService,
     private toolsService:ToolsService,
     private authService:AuthService,
     private categoriaService:CategoriaService,
-    private imagenService:ImagenService
-    //private store:Store<any>
+    private imagenService:ImagenService,
+    private portadaService:PortadaService,
+    private bannerService:BannerService,
+    private filtrosService:FiltroService
     ) { }
 
     public getLogValue(){
       return this.authService.loggedIn()
     };
 
+    public getPortada(storageVerify?:boolean){
+      if(storageVerify){
+        if(localStorage.getItem('portada') !== null && localStorage.getItem('portada') !== undefined){
+          this.portada = localStorage.getItem('portada') || "";
+          this.portadaLoaded = true;
+          this.loading = !this.portadaLoaded && !this.productsLoaded;
+        }else{
+          this.portadaService.get().subscribe((response)=>{
+            this.portada = response[0].portada;
+            localStorage.setItem('portada', this.portada);
+            this.portadaLoaded = true;
+            this.loading = !this.portadaLoaded && !this.productsLoaded;
+          });
+        }
+      }else{
+        this.portadaService.get().subscribe((response)=>{
+          this.portada = response[0].portada;
+          localStorage.setItem('portada',this.portada);
+          this.portadaLoaded = true;
+          this.loading = !this.portadaLoaded && !this.productsLoaded;
+        });
+      }
+    }
+
+    getFiltros(){
+      this.filtrosService.get().subscribe((response)=>{
+        this.homeFiltros = response;
+      });
+    }
+
+    public getBanner(storageVerify?:boolean){
+      if(storageVerify){
+        if(localStorage.getItem('banner') !== null && localStorage.getItem('banner') !== undefined){
+          this.banner = localStorage.getItem('banner') || "";
+        }else{
+          this.bannerService.get().subscribe((response)=>{
+            this.banner = response[0].banner;
+            localStorage.setItem('banner', this.banner);
+          });
+        }
+      }else{
+        this.bannerService.get().subscribe((response)=>{
+          this.banner = response[0].banner;
+          localStorage.setItem('banner',this.banner);
+        });
+      }
+    }
+
     public listarProductos(){
       this.productoService.rango(1).subscribe(
         (response: RangoModel)  =>{
           this.productos = response.productos;
-          this.loading = false;
           this.asignarProductosRecomendados();
+          this.productsLoaded = true;
+          this.loading = !this.portadaLoaded && !this.productsLoaded;
       })
     }
 
@@ -59,21 +116,6 @@ export class HomeComponent implements OnInit {
         (response: CategoriaModel[])  =>{
           this.categorias = response;
       })
-    }
-
-    public categoriaLink(categoria:string){
-      let categoriaId:number = 0;
-
-      for(let Categoria of this.categorias){
-        if(Categoria.categoria == categoria){
-          categoriaId = Categoria.id;
-        }
-      }
-      return '/store/' + categoriaId;
-    }
-
-    public productoLink(producto: any): string {
-      return '/prod/' + producto.id;
     }
 
     public async asignarProductosRecomendados(){
@@ -85,26 +127,37 @@ export class HomeComponent implements OnInit {
       }
     }
 
-  ngOnInit(): void {
-
-    this.homeFiltros = [
-      {nombre:'Collares',imagen:'assets/images/collares.jpg',link:"/#/store/"+14},
-      {nombre:'Fundas para asiento',imagen:'assets/images/fundas.png',link:"/#/store/"+17},
-      {nombre:'Abrigos',imagen:'assets/images/abrigos.jpg',link:"/#/store/"+29},
-      {nombre:'Correas',imagen:'assets/images/correas.jpg',link:"/#/store/"+5},
-      {nombre:'Moises',imagen:'assets/images/colchonetas.jpg',link:"/#/store/"+22}
-    ]
-
-    this.listarProductos();
-
-    /*
-    this.productos$().subscribe(
-      (response)=> {
-        this.productos = response.productos;
-        this.loading = response.loading;
-        this.asignarProductosRecomendados();
+    public switchEditarPortada(actualizar?:boolean): void {
+      this.showEditarPortada = !this.showEditarPortada;
+      if(actualizar){
+        this.getPortada();
       }
-    )*/
+    }
+
+    public switchEditarFiltro(filtro?:Filtro): void {
+      this.filtroFromForm = filtro || undefined;
+      this.showEditarFiltro = !this.showEditarFiltro;
+      if(!this.showEditarFiltro){
+        this.getFiltros();
+      }
+    }
+
+    public switchAlertFiltro(id?:number){
+      this.showAlertFiltro = !this.showAlertFiltro;
+      this.deleteFilterId = id || 0;
+      this.getFiltros();
+    }
+
+    public filtrosClick(id?:number){
+      if(!this.getLogValue() && id){
+        location.href = '#/store/' + id;
+      }
+    }
+
+  ngOnInit(): void {
+    this.getFiltros();
+    this.getPortada();
+    this.listarProductos();
   }
 
 }

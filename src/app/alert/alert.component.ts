@@ -4,6 +4,7 @@ import { CategoriaService } from '../servicios/categoria.service';
 import { ProductoService } from '../servicios/producto.service';
 import { ToolsService } from '../tools.service';
 import { LocalStorageService } from '../servicios/local-storage.service';
+import { FiltroService } from '../servicios/filtro.service';
 
 @Component({
   selector: 'app-alert',
@@ -19,11 +20,11 @@ export class AlertComponent implements OnInit {
   @Input() accionCancelar:any;
   @Input() productoId:number;
   @Input() categoriaId:number;
+  @Input() filtroId:number;
   @Input() ruta:string;
   @Input() tipo:string;
   @Input() metodo:any;
   @Input() productoCantidadMaxima:number;
-
 
   @Output() mostrar = new EventEmitter();
 
@@ -36,7 +37,8 @@ export class AlertComponent implements OnInit {
   constructor(
       private productoService:ProductoService,
       private categoriaService:CategoriaService,
-      private toolsService:ToolsService
+      private toolsService:ToolsService,
+      private filtroService:FiltroService
     ){}
 
   actualizar(){
@@ -69,6 +71,12 @@ export class AlertComponent implements OnInit {
     if(this.accion == "agregar-categoria"){
       location.reload()
     }
+    if(this.accion == "eliminar-filtro"){
+      this.spinner=true;
+      this.filtroService.eliminar(+this.filtroId).subscribe(()=>{
+        this.mostrar.emit(false);
+      });
+    }
     if(this.accion == "eliminar-categoria"){
       this.spinner = true;
       this.categoriaService.eliminar(this.categoriaId).subscribe(()=>{
@@ -79,7 +87,7 @@ export class AlertComponent implements OnInit {
     }, 2000);
     }
     else{
-      this.mostrar.emit();
+     // this.mostrar.emit();
     }
   }
 

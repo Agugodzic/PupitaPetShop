@@ -16,9 +16,6 @@
 
     <button class="boton1" (click)="funcion()">{{textoBoton}}</button>
     <button id="boton-cancelar" class="boton2" (click)="funcionCancelar()" *ngIf="textoCancelar.length >= 1">{{textoCancelar}}</button>
-    <div *ngIf="spinner" id="spinner-container">
-      <app-spinner  class="spinner"></app-spinner>
-    </div>
     <div *ngIf="cantidad && cantidad > cantidadMaxima">
       <p style="color:rgb(238, 60, 60);font-size:14px;">Este producto tiene un limite por compra de {{cantidadMaxima}} unidades.
         Contactanos para mayores cantidades.
@@ -34,5 +31,7 @@
       Selecciona una cantidad valida.
     </p>
 </div>
+
+<div  *ngIf="spinner" style="height:35px"><app-spinner></app-spinner></div>
 
 </div>

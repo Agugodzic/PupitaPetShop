@@ -6,32 +6,50 @@
   padding-left: 5px;
 }
 
+#background{
+  background-image: url("https://images2.alphacoders.com/131/1319231.jpeg");
+  background-size: cover;
+  position:fixed;
+  top:0;
+  bottom:0;
+  height: 100%;
+  width: 100%;
+}
+
 p{
   color:black;
   text-align: right;
 }
 
-#cont{
-  height: 94vh;
+#login-container{
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   vertical-align: middle;
+  padding: 30px auto;
+  backdrop-filter: blur(4px);
+  position:fixed;
+  top:0;
+  left: 0;
 }
 
 form{
+  display: flex;
+  flex-direction: column;
   font-family:'Montserrat', sans-serif;
-  background-color: rgba(221, 221, 221, 0.897);
+  background-color: rgba(255, 255, 255, 0.909);
   width: 350px;
   height: fit-content;
-  border-radius: 6px;
-  display:flex;
+  border-radius: 16px;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
   padding-top:15px;
-  padding-bottom:30px;
+  padding-bottom:15px;
   text-align: center;
   z-index:1000;
+  box-shadow: 2px 3px 5px 3px rgba(0, 0, 0, 0.196);
 }
 
 #contenedor-form-controls{
@@ -78,4 +96,17 @@ form{
 
 .ingresar:hover{
   background-color: #0268cfe2;
+}
+
+#error-message{
+ color:rgb(255, 37, 37);
+ font-weight: 400;
+ font-family:'Montserrat', sans-serif;
+ font-size: 13px;
+ margin:0;
+ font-style: italic;
+}
+
+#logo{
+  height: 40px;
 }

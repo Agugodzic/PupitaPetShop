@@ -28,12 +28,17 @@ button{
   cursor:pointer;
 }
 
+input[type="number"]{
+  border:solid 1px;
+  border-radius: 2px;
+}
+
 .boton1{
   text-align: center;
   margin:12px;
   height: 30px;
   min-width: 130px;
-  border-radius: 3px;
+  border-radius: 6px;
   border-style: none;
   background-color: rgba(68, 91, 218, 0.952);
   border-color: rgba(0, 0, 0, 0);
@@ -84,7 +89,7 @@ button{
   border-radius: 3px;
   border-style: none;
   background-color:#92c0eca8;
-  color: rgba(20, 70, 136, 0.767);
+  color: rgb(17, 47, 87);
   font-weight: 600;
   font-size: 14px;
 }

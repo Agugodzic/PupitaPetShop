@@ -10,20 +10,26 @@ import { AuthService } from '../servicios/auth.service';
 export class LogInComponent implements OnInit {
   public registrado:boolean = true;
   public logIn:FormGroup;
+  public showErrorMessage:boolean = false;
+  public spinner:boolean = false;
 
 
   constructor(private authService:AuthService, private formBuilder:FormBuilder) { }
 
-  comprobar(){
-    if(this.authService.loggedIn()){
+  comprobar(response:string){
+    if(this.authService.loggedIn() && response !== 'e'){
       window.location.href='/#/store/0';
     }else{
-      alert("El usuario o la contraseña son incorrectos.")
+      this.showErrorMessage = true;
+      this.spinner = false;
     }
   }
 
   ingresar(){
-    this.authService.IniciarSesion(this.logIn.value).subscribe(()=>this.comprobar());
+    this.spinner = true;
+    this.authService.IniciarSesion(this.logIn.value).subscribe((response)=>{
+      this.comprobar(response);
+    });
   }
 
   ngOnInit(): void {

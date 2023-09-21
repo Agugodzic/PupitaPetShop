@@ -113,6 +113,8 @@ input[type="text"],input[type="password"],input[type="number"],textarea {
   padding:2px 4px;
   box-sizing: border-box;
   min-height: 33px;
+  border-radius: 2px;
+  border:solid 1px;
 }
 select {
   width: 100%;
@@ -151,7 +153,7 @@ form{
   font-family:'Montserrat', sans-serif;
   background-color: rgb(241, 241, 241);
   min-width: 370px;
-  border-radius: 4px;
+  border-radius: 10px;
   display:flex;
   position: relative;
   margin-left: auto;
@@ -170,7 +172,6 @@ form{
   font-family:'Montserrat', sans-serif;
   padding-top:0px;
   padding-bottom:0px;
-  background-color: rgba(41, 159, 71, 0.467);
   max-height:none;
   min-width: 0;
   margin-left: auto;
@@ -179,6 +180,7 @@ form{
   overflow-y: hidden;
   width: 300px;
   display:block;
+  background-color: white;
 }
 
 #agregar-categoria{

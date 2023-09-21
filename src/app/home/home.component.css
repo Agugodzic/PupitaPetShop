@@ -23,6 +23,7 @@
   position:relative;
 }
 
+
 @keyframes shadowPulse {
   33% {
     background: #e6e6e6;
@@ -73,6 +74,7 @@
   height: auto;
   margin:1vw;
   vertical-align: middle;
+  border-radius: 6px;
 }
 .imagen-filtro {
   width: var(--tamaño-filtro);
@@ -105,8 +107,37 @@
 .etiqueta2{
   font-size: 1.8vw;
 }
+
+
+#agregar-filtro{
+  height: 90px;
+  width: 90px;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border:none;
+  border-radius: 8px;
+  background-color: #dedede;
+  font-size: 30px;
+  color:rgb(50, 50, 50);
+  margin-left: 40px;
+}
+
+#agregar-filtro:hover{
+  border: solid 1px rgb(175, 175, 175);
+}
+
+#agregar-filtro p{
+  font-size: 16px;
+  margin:0;
+}
 /* -------------------*/
 
+#home-boton-portada{
+  position:absolute;
+  left:20px;
+}
 
 #slide-productos{
   background-color: rgba(209, 209, 209, 0);
@@ -147,6 +178,56 @@
 }
 #chat:hover {
   height: 55px;
+}
+
+.filtro-botones{
+  position:absolute;
+  width: 100%;
+  height: calc(100% - 3px);
+  background-color: rgba(0, 0, 0, 0.708);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 0;
+  padding: 0 16%;
+  box-sizing: border-box;
+}
+
+.filtro-icon{
+  height: 60%;
+  opacity: 87%;
+  transform: translateX(1px);
+}
+.filtro-icon-delete{
+  height: 50%;
+  opacity: 87%
+}
+
+
+.filtro-botones:hover{
+  opacity: 100%;
+  transition:0.2s;
+}
+.filtro-botones button{
+  border:none;
+  border-radius: 16px;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.886);
+}
+
+.filtro-botones button:hover img{
+  opacity: 100% !important;
+}
+
+.filtro-botones button:hover{
+  background-color: #ffffff;
+}
+
+.filtros:hover a{
+  display: none;
 }
 
 @keyframes mover {

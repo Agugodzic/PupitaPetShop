@@ -10,6 +10,7 @@ import { LocalStorageService } from '../servicios/local-storage.service';
 import { RangoModel } from '../modelos/rango-model';
 import { FiltroModel } from '../modelos/filtro-model';
 import { ImagenService } from '../servicios/imagen.service';
+import { BannerService } from '../servicios/banner.service';
 //import { Store } from '@ngrx/store';
 //import { Observable } from 'rxjs';
 
@@ -49,7 +50,10 @@ export class StoreComponent implements OnInit {
   public images = this.imagenService;
 
   public mostrarEliminarCategoria = false;
+  public showEditarBanner:boolean = false;
 
+  public banner:string = "";
+  public bannerLoaded:boolean = false;
   /*
   public productos$():Observable<any>{
     return this.store.select(listaDeProductos);
@@ -67,13 +71,32 @@ export class StoreComponent implements OnInit {
     private categoriaService:CategoriaService,
     private authService:AuthService,
     private localStorageService:LocalStorageService,
-    private imagenService:ImagenService
+    private imagenService:ImagenService,
+    private bannerService:BannerService
    // private store:Store<any>
   ) {}
 
   public getLogValue(){
-    return this.authService.loggedIn()
+    return this.authService.loggedIn();
   };
+
+  public getBanner(storageVerify?:boolean){
+    if(storageVerify){
+      if(localStorage.getItem('banner') !== null && localStorage.getItem('banner') !== undefined){
+        this.banner = localStorage.getItem('banner') || "";
+      }else{
+        this.bannerService.get().subscribe((response)=>{
+          this.banner = response[0].banner;
+          localStorage.setItem('banner', this.banner);
+        });
+      }
+    }else{
+      this.bannerService.get().subscribe((response)=>{
+        this.banner = response[0].banner;
+        localStorage.setItem('banner',this.banner);
+      });
+    }
+  }
 
   public listarProductos(rango:number){
     this.ProductoService.rango(rango).subscribe(
@@ -114,6 +137,13 @@ export class StoreComponent implements OnInit {
         this.productoFiltro = this.generadorDeFiltro(this.categoria);
       }
     )
+  }
+
+  public switchEditarBanner(actualizar?:boolean): void {
+    this.showEditarBanner = !this.showEditarBanner;
+    if(actualizar){
+      this.getBanner()
+    }
   }
 
   public switchSelectorCategorias(){
@@ -283,6 +313,8 @@ export class StoreComponent implements OnInit {
     this.categoria = this.route.snapshot.paramMap.get('categoria');
 
     this.listarCategorias();
+    this.getBanner(true);
+
     if(this.categoria != 0){
       this.productoFiltro = this.generadorDeFiltro(this.categoria);
       this.filtrarProductos();

@@ -1,10 +1,18 @@
-<div id="cont">
-<form (ngSubmit)="ingresar()" [formGroup]="logIn">
-  <div id="contenedor-form-controls">
-  <p id="titulo">Iniciar Sesión</p>
-  <p><input class="form-control" type="text" placeholder="Usuario" formControlName="user"></p>
-  <p><input class="form-control" type="password" placeholder="Contraseña" formControlName="password"></p>
-  <input class="form-control ingresar" value="Ingresar" type="submit">
-  </div>
-</form>
+<div id="background"></div>
+<div id="login-container">
+  <form (ngSubmit)="ingresar()" [formGroup]="logIn">
+    <div id="contenedor-form-controls">
+
+      <img id="logo" src="assets/logos/logo-texto.png">
+
+      <p><input class="form-control" type="text" placeholder="Usuario" formControlName="user"></p>
+      <p><input class="form-control" type="password" placeholder="Contraseña" formControlName="password"></p>
+
+      <p *ngIf="showErrorMessage" id="error-message">Usuario o contraseña incorrectos</p>
+      <input class="form-control ingresar" value="Ingresar" type="submit">
+
+      <div  *ngIf="spinner" style="height:20px"><app-spinner></app-spinner></div>
+
+    </div>
+  </form>
 </div>

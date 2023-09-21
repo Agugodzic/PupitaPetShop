@@ -74,4 +74,5 @@ export class LocalStorageService {
       localStorage.setItem(item,JSON.stringify(nuevaLista));
     }
   }
+
 }

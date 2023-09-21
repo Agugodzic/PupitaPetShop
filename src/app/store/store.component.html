@@ -24,6 +24,9 @@
     (mostrar)="switchVariarPrecios()"
   ></app-variar-precios>
 
+  <app-editar-portada recurso="banner" *ngIf="showEditarBanner" (actualizar)="switchEditarBanner($event)" (mostrar)="switchEditarBanner()" [portadaActual]="banner"></app-editar-portada>
+
+
   <div id="contenedor-formulario" *ngIf="mostrarSelectorCategorias">
     <div class="centrar">
       <div id="selector-categorias">
@@ -46,39 +49,11 @@
 
 <!--------------- Tools ------------->
 
-<!--
-<div id="contenedor-tools">
-
-  <div class="tools">
-    <span>Ordenar por:</span>
-    <button class="tool" (click)="ordenarProductos('mayorPrecio')">Mayor precio</button>
-    <button class="tool" (click)="ordenarProductos('menorPrecio')">Menor precio</button>
-    <button class="tool" >Mas relevantes</button>
-  </div>
-
-  <div class="tools" id="selector-categoria-in">
-    <span>Filtrar por:</span>
-      <div class="tool" >
-
-        <div class="desplegable-tool">{{ productoFiltro +" "}}
-          <div style="opacity:70%;font-size:11px;display:inline;">▼</div>
-        </div>
-
-        <div>
-          <div id="desplegable">
-            <a class="desplegable-categoria" [href]="linkCategoria(categoria.id)" *ngFor="let categoria of categorias">
-              <a class="tool">{{categoria.categoria}}</a>
-            </a>
-          </div>
-        </div>
-      </div>
-
-  </div>
+<div *ngIf="getLogValue()" id="store-boton-portada">
+  <button type="button" class="boton1" (click)="switchEditarBanner()" id="home-boton-portada-boton">Editar banner</button>
 </div>
-<img style="width:100%" src="https://puppis.vteximg.com.br/arquivos/ids/190746/2212-Website-Banner-Perro-Viaje-256030-237161-D.png?v=638120633641770000">
--->
 
-<img style="width:100%" [src]="images.banner.store">
+<img style="width:100%" [src]="banner">
 
 
 <!--------- Menu Lateral -------->

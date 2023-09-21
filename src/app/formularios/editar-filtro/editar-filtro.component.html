@@ -1,0 +1,51 @@
+<div *ngIf="categoriaAlert" id="fondo-alert">
+  <div id="agregar-categoria" >
+    <p id="titulo">Agregar categoria:</p>
+    <form class="form-categoria" [formGroup]="agregarCategoria" (ngSubmit)="submitCategoria()">
+      <input id="input-categoria"  type="text" placeholder="Nueva categoria" formControlName="categoria">
+      <div id="botones-categoria">
+        <input class="guardar-categoria" value="Agregar" type="submit" >
+        <button (click)="switchCategoria()" class="cancelar-categoria">Cancelar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<div id="ef-container">
+  <div id="ef-window">
+    <form id="ef-form" [formGroup]="formFiltro">
+      <h3 id="ef-title">Editar filtro</h3>
+
+      <div class="contenedor-preview">
+        <img height="169px" width="169px" *ngIf="!imagenFiltro" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81rH-ojGJ0uVfThbfEF0Dg7nGd7fEF-YeLpUkaeMLXCB6TXfDe4UZdfjOtjJGNG4UxuY&usqp=CAU">
+        <img [src]="imagenFiltro" style="max-width:70%">
+      </div>
+
+      <div class="container-input">
+        <input (change)="image1Change($event)" accept="image/*" type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"/>
+        <label for="file-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+        <span class="iborrainputfile">Seleccionar imagen</span>
+        </label>
+      </div>
+
+      <div id="inputs-container">
+        <p class="descripcion-input">Categoria:</p>
+          <select name="Categoria" class="form-control" (change)="onCategoriaChange($event)" formControlName="categoria">
+            <option (ngValue)="selectedCategory.id" *ngIf="selectedCategory" selected>{{this.selectedCategory.categoria}}</option>
+            <option (ngValue)="categoria.id" *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
+          </select>
+          <button type="button" (click)="switchCategoria()" class="nueva-categoria">Nueva</button>
+      </div>
+
+
+      <button type="button" class="boton1" (click)="submit()">Aplicar</button>
+      <button type="button" class="boton2" (click)="funcionCancelar()">Cancelar</button>
+
+      <div  *ngIf="spinner" style="height:35px"><app-spinner></app-spinner></div>
+
+    </form>
+  </div>
+</div>

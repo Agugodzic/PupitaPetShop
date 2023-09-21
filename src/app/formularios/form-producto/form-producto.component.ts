@@ -26,11 +26,10 @@ export class FormProductoComponent implements OnInit {
   public categoriaEditarProducto:any = {categoria:''};
   public nuevaCategoria:any;
 
-
-  public imageFile1: any;
-  public imageFile2: any;
-  public imageFile3: any;
-  public imageFile4: any;
+  public imageFile1:any;
+  public imageFile2:any;
+  public imageFile3:any;
+  public imageFile4:any;
 
   private buttonDisabled:boolean = false;
   public spinner:boolean = false;
@@ -40,7 +39,7 @@ export class FormProductoComponent implements OnInit {
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
     private localStorageService:LocalStorageService
-    ) {}
+  ) {}
 
   public switchCategoria(){
     this.categoriaAlert = ! this.categoriaAlert;

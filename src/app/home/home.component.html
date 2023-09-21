@@ -1,3 +1,9 @@
+<!-----  Formularios ------>
+
+<app-editar-portada recurso="portada" *ngIf="showEditarPortada" (actualizar)="switchEditarPortada($event)" (mostrar)="switchEditarPortada()" [portadaActual]="this.portada"></app-editar-portada>
+<app-editar-filtro [categorias]="categorias" (mostrar)="switchEditarFiltro()" [filtro]="filtroFromForm"  *ngIf="showEditarFiltro" [categorias]="categorias"></app-editar-filtro>
+<app-alert *ngIf="showAlertFiltro" textoBoton="OK" textoCancelar="Cancelar" (mostrar)="switchAlertFiltro()" [filtroId]="deleteFilterId" accion="eliminar-filtro" titulo="Seguro que desea eliminar este filtro?"></app-alert>
+<!----- ------------ ------>
 
 <app-nav actual="1" tema="claro"></app-nav>
 
@@ -9,36 +15,39 @@
 
 <div [ngStyle]="{'opacity': loading==true ? '0%':'100%'}" class="page-component">
 
-  <!--
-  <div class="banners"
-    ><img id="banner" src="https://i.postimg.cc/wjMMmwZt/banner8.png" value="sdfd"
-    />
-    <div class="descuento-banner">20% OFF a partir de las 10 unidades</div>
-    <div class="titulo-banner">Lo mejor para tu mascota</div>
-    <div class="descripcion-banner">Al mejor precio</div>
-    <a href="/store/0" class="boton">Ir a la tienda</a>
+
+  <div *ngIf="getLogValue()" id="home-boton-portada">
+    <button type="button" class="boton1" (click)="switchEditarPortada()" id="home-boton-portada-boton">Editar portada</button>
   </div>
-  <img style="width:100vw" src="https://catycanar.vtexassets.com/assets/vtex.file-manager-graphql/images/dcfe4707-4d59-4330-8e6d-88f5f5e93ed8___5d075fe635fe4ad55b29de9ebebd939b.jpg">
 
-  -->
-  <img style="width:100vw" [src]='images.banner.home'>
-
+  <img style="width:100vw" [src]='this.portada'>
 
 <div id="contenedor-filtros">
-
   <div>
+    <div (click)="filtrosClick(filtro.categoria)" *ngFor="let filtro of homeFiltros" class="filtros">
 
-    <a *ngFor="let filtro of homeFiltros" class="filtros"
-      [href]="filtro.link"
-      ><img
+      <div *ngIf="getLogValue()" class="filtro-botones">
+        <button (click)="switchAlertFiltro(filtro.id)"><img class="filtro-icon-delete" src="assets/utils/delete.png"></button>
+        <button (click)="switchEditarFiltro(filtro)" ><img class="filtro-icon" src="assets/utils/edit.png"></button>
+      </div>
+
+      <img
         class="imagen-filtro"
         [src]="filtro.imagen"
       />
-      <a class="etiqueta-filtro">{{filtro.nombre}}</a>
-    </a>
 
+      <span *ngIf="!getLogValue()" class="etiqueta-filtro">{{filtro.nombre}}</span>
+      <a *ngIf="getLogValue()" class="etiqueta-filtro">{{filtro.nombre}}</a>
   </div>
 
+    <div class="filtros" *ngIf="getLogValue()">
+      <button (click)="switchEditarFiltro()" id="agregar-filtro">
+        +
+        <p>Agregar filtro</p>
+      </button>
+    </div>
+
+  </div>
 </div>
 
 

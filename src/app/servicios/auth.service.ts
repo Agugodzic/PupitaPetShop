@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, retry } from 'rxjs';
 import { LoginModel } from '../modelos/login-model';
 import { ToolsService } from '../tools.service';
 
@@ -8,7 +8,6 @@ import { ToolsService } from '../tools.service';
   providedIn: 'root'
 })
 export class AuthService {
-
   currentUserSubject: BehaviorSubject<any>;
   private apiServerUrl = this.toolsService.apiServerUrl;
 
@@ -21,10 +20,15 @@ export class AuthService {
 
   IniciarSesion(credenciales: LoginModel): Observable<any> {
     return this.http.post(`${this.apiServerUrl}/login`, credenciales).pipe(
+      retry(3),
       map((data) => {
         sessionStorage.setItem('token', JSON.stringify(data));
         this.currentUserSubject.next(data);
         return data;
+      }),
+      catchError((error:any) => {
+        console.error('Error en la solicitud de inicio de sesión:', error);
+        return "e";
       })
     );
   }
@@ -43,5 +47,10 @@ export class AuthService {
 
     this.currentUserSubject.next(null);
     alert('Has finalizado la sesion.');
+  }
+
+  private handleError(error: any): Observable<any> {
+    console.error('Hubo un error en la solicitud:', error);
+    return error;
   }
 }

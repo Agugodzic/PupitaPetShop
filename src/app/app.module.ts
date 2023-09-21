@@ -41,6 +41,8 @@ import { LoadderComponent } from './loadder/loadder.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImagenService } from './servicios/imagen.service';
 import { VariarPreciosComponent } from './formularios/variar-precios/variar-precios.component';
+import { EditarPortadaComponent } from './formularios/editar-portada/editar-portada.component';
+import { EditarFiltroComponent } from './formularios/editar-filtro/editar-filtro.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { VariarPreciosComponent } from './formularios/variar-precios/variar-prec
     PedidoComponent,
     LoadderComponent,
     SpinnerComponent,
-    VariarPreciosComponent
+    VariarPreciosComponent,
+    EditarPortadaComponent,
+    EditarFiltroComponent
   ],
   imports: [
     MatIconModule,
